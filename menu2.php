@@ -1,8 +1,6 @@
 <html>
 	<head>
-		<title>
-			Menu
-		</title>	
+		<link rel="icon" type="image/x-icon" href="img/procast.ico"/>
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
