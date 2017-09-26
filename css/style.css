@@ -1,0 +1,80 @@
+.nav-menu
+    {
+        background-color:none;
+        color:white;
+        font-size: 20px !important;
+        font-family: 'Nunito', sans-serif;
+        padding: 30px;
+        position: fixed;
+        width: 100%;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+}
+.rolagem{
+    background: #333;
+}
+.login{
+    background: #3c3d41;
+}
+.menu-item
+{
+    color: #f2f4f2;
+    font-family: 'Nunito', sans-serif;
+    margin-right:30px;
+    cursor: pointer;
+}
+.menu-item:hover,.menu-item:active,.menu-item:focus
+{
+    transition: all linear .15s;
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+}
+.nav-menu-mobile
+{
+    background-color:rgba(51, 51, 51, 1);
+    color:white;
+    font-size: 20px !important;
+    font-family: Nunito;
+}
+.logo
+{
+    margin-top: -10px !important;
+    display: block;
+}
+.nav-menu-mobile
+{
+    background-color:rgba(51, 51, 51, 1);
+    color:white;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    padding: 5px;
+}
+.item-mobile{
+    margin-top:20px ;
+}
+.item-mobile a 
+{
+    display: block;
+    color: white;
+    font-family: 'Nunito', sans-serif;    
+}
+.item-mobile a:hover 
+{
+    transition: all linear .15s;
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+}
+.logo_horizontal
+{
+    margin:10px;
+}
+.login .btn{
+    font-size: 20px !important;
+    background: #3c3d41;
+}
+.login-mob{
+    background: #3c3d41;
+    padding: 10px;
+}

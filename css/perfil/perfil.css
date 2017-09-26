@@ -1,0 +1,218 @@
+*{
+	font-family: 'Nunito', sans-serif;
+}
+.bg-progress{
+   background-color: #1A5A9B !important;
+}
+
+.imagem{
+	background: url(../../img/index/capa.jpg) no-repeat center ;	 
+}
+.banner {
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  padding-top: 20%;
+  height: 450px;
+  letter-spacing: 2px;
+  filter: alpha(opacity:0.5); 
+}
+.banner h1 {
+	color: #fff;
+  font-size: 2.50rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.banner h2 {
+	color: #fff;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+/*CARTÃO INFORMAÇÕES*/
+
+.cartao{
+  background-color: rgba(51,51,51,0.8);
+  color: white;
+  padding-top: 6px;
+	padding-bottom: 2px;
+}
+
+.cartao-grande{
+    background-color: rgba(51,51,51,0.8);
+    text-align: center;
+    padding-top: 80px;
+    border-radius: 5px;
+    width: 150%;
+    color: white;
+}
+
+.informacoes{
+	padding-bottom: 40px;
+    padding-top: 40px;
+}
+.clube{
+    background-color: #333;
+    padding-top: 30px;
+    padding-bottom: 24px;
+}
+.descricao{
+	padding-top: 30px;
+    padding-bottom: 24px;
+}
+
+
+/*CARTÃO EQUIPE*/
+
+.cartao-equipe {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.profile-img {
+  height: 90px;
+  background: white;
+  margin-bottom: 8px;
+  margin-left: 13px;
+}
+
+/* CONQUISTAS E MENSAGENS*/
+.message-item {
+margin-bottom: 25px;
+margin-left: 40px;
+position: relative;
+}
+.message-item .message-inner {
+background: #fff;
+border: 1px solid #ddd;
+border-radius: 3px;
+padding: 10px;
+position: relative;
+}
+.message-item .message-inner:before {
+border-right: 10px solid #ddd;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -20px;
+top: 6px;
+width: 0;
+}
+.message-item .message-inner:after {
+border-right: 10px solid #fff;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -18px;
+top: 6px;
+width: 0;
+}
+.message-item:before {
+background: #fff;
+border-radius: 2px;
+bottom: -30px;
+box-shadow: 0 0 3px rgba(0,0,0,0.2);
+content: "";
+height: 100%;
+left: -30px;
+position: absolute;
+width: 3px;
+}
+.message-item:after {
+background: #fff;
+border: 2px solid #ccc;
+border-radius: 50%;
+box-shadow: 0 0 5px rgba(0,0,0,0.1);
+content: "";
+height: 15px;
+left: -36px;
+position: absolute;
+top: 10px;
+width: 15px;
+}
+.clearfix:before, .clearfix:after {
+content: " ";
+display: table;
+}
+.message-item .message-head {
+border-bottom: 1px solid #eee;
+margin-bottom: 8px;
+padding-bottom: 8px;
+}
+.message-item .message-head .avatar {
+margin-right: 20px;
+}
+.message-item .message-head .user-detail {
+overflow: hidden;
+}
+.message-item .message-head .user-detail h5 {
+font-size: 16px;
+font-weight: bold;
+margin: 0;
+}
+.message-item .message-head .post-meta {
+float: left;
+padding: 0 15px 0 0;
+}
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+
+
+
+/* Dates */
+.agenda .agenda-date { width: 170px; }
+.agenda .agenda-date .dayofmonth {
+  width: 100%;
+  font-size: 15px;
+  line-height: 36px;
+  float: left;
+  text-align: right;
+  margin-right: 10px; 
+}
+.agenda .agenda-date .shortdate {
+  font-size: 0.75em; 
+}
+
+
+/* Times */
+.agenda .agenda-time { width: 140px; } 
+
+
+/* Events */
+.agenda .agenda-events {  } 
+.agenda .agenda-events .agenda-event {  } 
+
+@media (max-width: 767px) {
+    
+}
+
+

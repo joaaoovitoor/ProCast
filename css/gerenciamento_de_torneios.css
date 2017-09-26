@@ -1,0 +1,16 @@
+.titulo
+{
+	padding: 50px;
+	background-color: #333333;
+	color: white;
+}
+.active-procast a
+{
+	background-color: #02314C;
+	color: white !important;
+}
+.active-procast a:hover
+{
+	background-color: #02314C !important;
+	color: white !important;
+}

@@ -1,0 +1,54 @@
+.bg-procast
+{
+	background-color: #333333;
+	color:white;
+}
+.titulo
+{
+	padding: 50px;
+}
+.procast-active
+{
+	background-color: #02314C;
+	border-radius: 6px;
+	color: white !important;
+
+}
+.procast-active a{
+	color: white;
+}
+.procast-active a:hover{
+	color: black;
+	transition: all linear .15s;
+}
+.btn-procast
+{
+	background-color: #02314C;
+	color: white;
+}
+.btn-procast:hover
+{
+	color: white;
+}
+.panel-footer
+{
+	background-color: #02314C;
+}
+.panel-heading
+{
+background-color: #02314C !important;
+color: white !important;
+font-size: 20px !important;	
+}
+.panel-default{
+	background-color:#fff;
+}
+.fonte_azul_claro{
+	color: #1a5a9b !important;
+}
+*{
+	font-family: 'Nunito', sans-serif;
+}
+.container{
+	width: 100%;
+}

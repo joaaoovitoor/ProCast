@@ -1,0 +1,55 @@
+*{
+	font-family: 'Nunito', sans-serif;
+}
+
+.btn-outro{
+	background-color: #02314C;
+	color: white;
+}
+*, *::after, *::before {
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.login {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: auto;
+  height: auto;
+  background-color: #fff;
+}
+.login .div-esquerda {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  width: 50%;
+  height: 100%;
+  background-color: #2d2b2c;
+  background-image: url(../../img/index/capa.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 25%;
+}
+.login .div-direita {
+  overflow: auto;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 50%;
+  height: 100%
+  background-color: #333;
+}
+.login .copyright {
+  margin-top: 2%;
+  text-align: center;
+}
+.login .copyright p {
+  color: #575757;
+  font-size: 13px;
+}

@@ -1,0 +1,66 @@
+*{
+	font-family: 'Nunito', sans-serif;
+}
+
+.container-fluid{
+	width: 100%;
+}
+.bg_branco{
+	background: #f4f2f4 !important;
+}
+.bg_azul_claro{
+	background: #1a5a9b !important;
+}
+.bg_azul_escuro{
+	background: #02314c !important;
+}
+.sem_bg{
+	background: none;
+}
+.fonte_cinza_escuro{
+	color: #333 !important;
+}
+.fonte_azul_claro{
+	color: #1a5a9b !important;
+}
+.fonte_branca{
+	color: #f4f2f4 !important;
+}
+.sombra{
+	box-shadow: 3px 3px 5px #e5e0e5;
+}
+.borda_azul{
+	border: 1px solid #1a5a9b !important;
+}
+.texto_sombra{
+	text-shadow: 2px 2px 7px #333;
+}
+.sem_borda{
+	border:none !important;
+}
+.banner{
+	background: url(../img/banner_contato.png);
+	margin-bottom: 3%;
+}
+.banner h1{
+	margin-top: 7%;
+	margin-bottom: 2%;
+	font-size: 4.5em;
+}
+.banner p{
+	margin-bottom: 7%;
+}
+.font-25{
+	font-size: 25px;
+}
+.info i{
+	margin-right: 5px;
+	margin-left: 15px;
+}
+.mg_tp{
+	margin-top: 1%;
+}
+.form_panel{
+	margin-top: 3%;
+	padding: 2% 1%;
+}

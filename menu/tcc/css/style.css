@@ -1,0 +1,64 @@
+body
+{
+    margin:0px;
+    padding:0px;
+    background-color: #34495e;
+}
+.item:hover
+{
+  
+    text-decoration: none;
+    background-color: #34495e;
+    color: white;
+    transition: all .15s linear;
+}
+
+.item
+{
+    border-radius: 1px;
+    padding: 20px;
+    text-align: left;
+    color: rgba(0,0,0,0.4);
+    background-color: #f4f2f4;
+    border: 0.5;
+  
+
+}
+.font-16
+{
+    font-size: 16px;
+
+}
+.item-logo
+{
+    border-radius: 0px;
+    padding: 20px;
+    border-top: none;
+    bor
+}
+.menu
+{
+    margin-left: 0px;
+
+
+}
+.div-menu
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px
+    padding-bottom:0px;
+  
+}
+.btn-default
+{
+   filter:alpha(opacity=50);
+     opacity: 0.1;
+     -moz-opacity:0.1;
+     -webkit-opacity:0.1;
+     border: white 1px solid;
+}
+.white
+{
+    color: black;
+}

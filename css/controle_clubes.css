@@ -1,0 +1,64 @@
+*{
+	font-family: 'Nunito', sans-serif;
+}
+body{
+	background: #f4f2f4;
+}
+.box-investidor{
+	background: url(../img/banner_clubes.jpg);
+	padding: 9% 0% 2.2% 0%;
+	color: #f4f2f4;
+}
+.box-investidor .btn{
+	background: none;
+	color: #f4f2f4;
+	border: #f4f2f4 solid 1px;
+}
+.box-investidor .btn:hover,.box-investidor .btn:active,.box-investidor .btn:focus{
+	background: none;
+	color: #f4f2f4;
+	border: #f4f2f4 solid 1px;
+}
+.pesquisa{
+	background: #f4f2f4;
+	color: #28303F;
+	border: none;
+}
+.pesquisa:hover{
+	color: #28303F;
+}
+.input-group{
+	background: #28303F;
+	padding: 0.5%;
+}
+.corpo{
+	margin: 0.5% 1%;
+	padding: 3% 5%;
+	background: white;
+}
+.clube-card{
+	background: #f4f2f4;
+	padding: 1%;
+}
+.clube-card span{
+	color: #1a5a9b;
+}
+.clube-card .btn-group{
+	background: linear-gradient(to right, #02314c, #1a5a9b);
+}
+.clube-card .btn-group .btn-default{
+	background: none;
+	border: none;
+}
+.clube-card .btn-group .btn span{
+	color: #f4f2f4;
+}
+.cinza-esc{
+	background-color: #f4f2f4;
+	border: none;
+	color: #333333;
+}
+.cinza-cl{
+	background-color: white;
+	color: #333333;
+}

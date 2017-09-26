@@ -1,0 +1,40 @@
+.bg-procast
+{
+	background-color: #333333;
+	color:white;
+}
+.titulo
+{
+	padding: 50px;
+}
+.procast-active
+{
+	background-color: #02314C;
+	border-radius: 6px;
+	color: white !important;
+
+}
+
+.procast-active:hover{
+	color: black !important;
+}
+.btn-procast
+{
+	background-color: #02314C;
+	color: white;
+}
+.btn-procast:hover
+{
+	
+	color: white;
+}
+.btn-info-procast
+{
+	background-color: #1A5A9B;
+	color: white;
+}
+.btn-info-procast:hover
+{
+	
+	color: white;
+}

@@ -1,0 +1,119 @@
+*{
+	font-family: 'Nunito', sans-serif;
+}
+
+.container-fluid{
+	width: 100%;
+}
+.bg_grad{
+	background:linear-gradient(to right, #02314c, #1a5a9b) !important;
+}
+.bg_grad_cinza{
+	background:linear-gradient(to right, #0a0a0a, #333) !important;
+}
+.bg_branco{
+	background: #f4f2f4 !important;
+}
+.bg_branco_w{
+	background: white !important;
+}
+.bg_azul_escuro{
+	background: #02314c !important;
+}
+.bg_azul_claro{
+	background: #1a5a9b !important;
+}
+.bg_cinza_escuro{
+	background: #333 !important;
+}
+.bg_cinza_claro{
+	background: #3c3d41 !important;
+}
+.sem_bg{
+	background: none;
+}
+.fonte_cinza_claro{
+	color: #3c3d41 !important;
+}
+.fonte_cinza_escuro{
+	color: #333 !important;
+}
+.fonte_azul_escuro{
+	color: #02314c !important;
+}
+.fonte_azul_claro{
+	color: #1a5a9b !important;
+}
+.fonte_branca{
+	color: #f4f2f4 !important;
+}
+.sombra{
+	box-shadow: 3px 3px 5px #e5e0e5;
+}
+.texto_sombra{
+	text-shadow: 2px 2px 7px #333;
+}
+.borda_azul{
+	border: 1px solid #1a5a9b !important;
+}
+.borda_cinza{
+	border: 1px solid #333 !important;
+}
+.sem_borda{
+	border:none !important;
+}
+.banner{
+	background: url(../img/banner_noticia.jpg);
+	margin-bottom: 3%;
+}
+.banner h1{
+	margin-top: 10%;
+	margin-bottom: 2%;
+	font-size: 4.5em;
+}
+.banner p{
+	margin-bottom: 10%;
+}
+.not{
+	padding-left: 5% !important;
+	padding-right: 5% !important;
+}
+.thumbnail:hover{
+	box-shadow: 3px 3px 5px #e5e0e5;
+	cursor: pointer;
+}
+.thumbnail img{
+	margin-bottom: 2% !important;
+}
+.label{
+	font-size: 16px !important;
+	padding: 2% !important;
+}
+.not li{
+	margin-right: 1% !important;
+	border-bottom: 3px solid #d8d8d8 !important;
+}
+.not li:hover{
+	border-bottom: 3px solid #333 !important;
+}
+.not li:hover,.tabs_menu:hover{
+	background: none !important;
+}
+.not li:focus,.tabs_menu:focus,.not li:active,.tabs_menu:active{
+	background: #333 !important;
+	color: #f2f4f2 !important;
+	border-bottom:0px !important;
+	border-radius: 0px;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.previous a:hover,.next a:hover{
+	background: #1a5a9b !important;
+	color: #f2f4f2 !important;
+	border: none !important;
+}
+a:hover{
+	text-decoration: none !important;
+}

@@ -1,0 +1,40 @@
+.list-group{
+	margin-left: -5%;
+	margin-right: 5%;
+}
+.list-group-item.active{
+	background: #02314C;
+}
+.list-group-item.active:hover{
+	background: #02314C;
+}
+.glyphicon{
+	color: #02314C;
+}
+.btn-default{
+	background: #fff;
+}
+.btn-default:hover{
+	background: #F4F2F4;
+}
+#textobtn .glyphicon{
+	color: #fff;
+}
+.img-den{
+	width: 100px;
+	height: 100px;
+	border: 1px black;
+	border-radius: 100px;
+}
+.fundo:hover{
+	background-color: #F4F2F4;
+}
+.titulo
+{
+	padding: 50px;
+	background-color: #333333;
+	color: white;
+}
+.espaco{
+	margin-top:3%;
+}
