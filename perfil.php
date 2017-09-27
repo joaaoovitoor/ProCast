@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<meta charset="UTF-8">
 		<title>Perfil</title>
-	    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
-	    <!--RODAPÉ-->
-	    <link rel="stylesheet" href="css/rodape.css">
 	    <!--MENU PERFIL-->
 	    <link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />
   		<script src="js/modernizr.custom.js"></script>
-  		
+  		<!--ESTILO PERFIL-->
   		<link rel="stylesheet" href="css/perfil/perfil.css">
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
 		<?php

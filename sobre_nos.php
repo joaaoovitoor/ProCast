@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<title>Sobre Nós</title>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
 		<link rel="stylesheet" href="css/sn.css" type="text/css"/>
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
 		<?php
@@ -16,7 +16,7 @@
                 <div class="row">
                     <h1 class="text-center  fonte_branca texto_sombra"><strong>Sobre Nós</strong></h1> 
                     <p class="text-center  fonte_branca texto_sombra">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam
+                       Somos uma equipe inspirada nos jogadores,<br> que trabalha para fazer o melhor para você. 
                     </p>
                 </div>
             </div>

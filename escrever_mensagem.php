@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<meta charset="UTF-8">
 		<title>Mensagens</title>
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
-	    <link rel="stylesheet" href="css/rodape.css">
 	    <link rel="stylesheet" href="css/email.css">
         <script src="js/tinymce/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
         <?php

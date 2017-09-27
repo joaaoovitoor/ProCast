@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<meta charset="UTF-8">
 		<title>Clubes</title>
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
 	    <link rel="stylesheet" href="css/controle_clubes.css">
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
 		<?php

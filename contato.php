@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<meta charset="UTF-8">
 		<title>Contato</title>
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/contato.css">
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
 		<?php
@@ -17,7 +16,7 @@
 				<div class="row">
 					<h1 class="text-center fonte_branca texto_sombra"><strong>Contate-nos</strong></h1>	
 					<p class="text-center fonte_branca texto_sombra">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam
+						Queremos te ouvir! Nos informe sobre elogios, sugestões e críticas.<br> Sua opinião é importante para nós!
 					</p>
 				</div>
 			</div>

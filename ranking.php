@@ -1,14 +1,11 @@
-<?php 
-	include('conexao.php');
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 	<head>
 		<title>Ranking</title>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
 		<link rel="stylesheet" href="css/ranking.css" type="text/css"/>
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
 		<?php
@@ -19,7 +16,7 @@
                 <div class="row">
                     <h1 class="text-center  texto_sombra"><strong>Ranking</strong></h1> 
                     <p class="text-center  texto_sombra">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam
+                        Veja os <strong>melhores</strong> jogadores dos torneios <br>e se inspire para jogar e alcançar o sucesso
                     </p>
                 </div>
             </div>
@@ -28,6 +25,8 @@
 		<div class="row">
 				<div class="col-sm-3 col-md-3"></div>
 <?php 
+	include('conexao.php');
+	
 	$sqlsel1 = "SELECT * FROM jogadortorneio ORDER BY colocacao DESC LIMIT 3;";
 	$resul1 = mysqli_query($conexao,$sqlsel1);
 	$sqlsel2 = "SELECT * FROM jogadortorneio ORDER BY pontos DESC LIMIT 20 OFFSET 3;";
