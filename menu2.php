@@ -1,13 +1,11 @@
-<html>
-	<head>
-		<link rel="icon" type="image/x-icon" href="img/procast.ico"/>
+
+		<link rel="shortcut icon" type="image/x-icon" href="img/procast.ico"/>
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<meta charset="UTF-8"/>	
-	</head>
-	<body>
+
 		<nav class="nav-menu hidden-xs hidden-sm navbar-fixed-top">
 		<a href="home.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-5">

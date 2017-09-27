@@ -1,9 +1,7 @@
-<html>
-	<head>	
+
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="icon" type="image/x-icon" href="img/procast.ico"/>
-	</head>
-	<body>
+		<link rel="shortcut icon" type="image/x-icon" href="img/procast.ico"/>
+
 		<nav class="nav-menu hidden-xs hidden-sm navbar-fixed-top">
 		<img src="img/logo_horizontal.png" class="pull-left img-responsive logo" >
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-9">
