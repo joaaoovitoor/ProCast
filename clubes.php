@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<title>
-			Gerencimento de times
+			Gerencimento de clubes
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/clubes.css">
