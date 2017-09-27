@@ -66,16 +66,16 @@ html {
      src: url('../../fonts/nulshock bd.ttf');
 }
 h1 {
-    position: absolute;
-    width: 100%;
-    font-size: 60px;
-    text-align: center;
-    height: 120px;
-    line-height: 1;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    color: #fff;
+    position: absolute !important;
+    width: 100% !important;
+    font-size: 60px !important;
+    text-align: center !important;
+    height: 120px !important;
+    line-height: 1 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    margin: auto !important;
+    color: #fff !important;
 	font-family:nulshock !important;
 }
 h1 span {
