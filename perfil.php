@@ -1,7 +1,10 @@
+<?php
+	ob_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<title>Perfil</title>
+        <title>Perfil</title>
 	    <!--MENU PERFIL-->
 	    <link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />
@@ -76,6 +79,7 @@
 									<li><a href="#3"><span>Agenda</span></a></li>
 									<li><a href="#4"><span>Vídeos</span></a></li>
 									<li><a href="#5"><span>Mensagens</span></a></li>
+									<li><a href="#6"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
 								</ul>
 							</nav>
 							<div class="content-wrap">
@@ -350,6 +354,181 @@
 									</div>
 									<!--Fim da mensagem-->
 								</section>
+								<section id="6">
+									<!--Coletar dados do jogador-->
+									<?php
+								    	include('conexao.php');
+								    	$sqlsel=('SELECT * FROM usuario;');
+								    	/*WHERE id_usuario="'.$_SESSION['id_usuario'].'"*/
+										$resul=mysqli_query($conexao,$sqlsel);
+										$con=mysqli_fetch_array($resul);
+								    ?>
+								    <!--Formulário para alterar-->
+									<form action="#" method="post">
+										<input type="hidden" class="validate" name="id_usuario" value="<?php echo($con['id_usuario']);?>">
+										<div class="col-md-6">
+											<div class="form-group">
+												Nome <input type="text" class="form-control" name="nome_edt" value="<?php echo $con['nome'];?>" maxlength="15">
+											</div>
+											<div class="form-group">
+												Sobrenome <input type="text" class="form-control" name="sobrenome_edt"  maxlength="15" value="<?php echo $con['sobrenome'];?>">
+											</div>
+											<div class="form-group">
+												Nick <input type="text" class="form-control" name="nick_edt" maxlength="15" value="<?php echo $con['nick'];?>">
+											</div>
+											<div class="form-group">
+											Função primária
+											<select name="funcao_1_edt" class="form-control">
+											  <option <?php if($con['funcao_1']=='a'){echo 'selected';}?> value="a">Atirador</option>
+											  <option <?php if($con['funcao_1']=='c'){echo 'selected';}?> value="c">Caçador</option>
+											  <option <?php if($con['funcao_1']=='m'){echo 'selected';}?> value="m">Meio</option>
+											  <option <?php if($con['funcao_1']=='s'){echo 'selected';}?> value="s">Suporte</option>
+											  <option  <?php if($con['funcao_1']=='t'){echo 'selected';}?> value="t">Topo</option>
+											</select>
+											</div>
+											<div class="form-group">
+											Função secundária
+											<select name="funcao_2_edt" class="form-control">
+											  <option <?php if($con['funcao_2']=='a'){echo 'selected';}?> value="a">Atirador</option>
+											  <option <?php if($con['funcao_2']=='c'){echo 'selected';}?> value="c">Caçador</option>
+											  <option <?php if($con['funcao_2']=='m'){echo 'selected';}?> value="m">Meio</option>
+											  <option <?php if($con['funcao_2']=='s'){echo 'selected';}?> value="s">Suporte</option>
+											  <option  <?php if($con['funcao_2']=='t'){echo 'selected';}?> value="t">Topo</option>
+											</select>
+											</div>
+											<div class="form-group">
+												Senha <input type="password" name="senha_edt" value="senha" maxlength="25" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												Sexo <input type="text" class="form-control" value=
+												"<?php 
+													if ($con['sexo']=='f'){
+														echo 'Feminino';
+													}else{
+														echo 'Masculino';
+													}
+												?>"
+												readonly>
+											</div>
+											<div class="form-group">
+												E-mail<input type="email" name="email_edt" value="<?php echo $con['email'];?>" class="form-control" maxlength="30">
+											</div>
+											<div class="form-group">
+												Estado
+												<select name="estado_edt" class="form-control">
+													<option <?php if($con['estado']=='ac'){echo 'selected';}?> value="ac">Acre</option>
+													<option <?php if($con['estado']=='al'){echo 'selected';}?> value="al">Alagoas</option> 
+													<option <?php if($con['estado']=='am'){echo 'selected';}?> value="am">Amazonas</option> 
+													<option <?php if($con['estado']=='ap'){echo 'selected';}?> value="ap">Amapá</option> 
+													<option <?php if($con['estado']=='ba'){echo 'selected';}?> value="ba">Bahia</option> 
+													<option <?php if($con['estado']=='ce'){echo 'selected';}?> value="ce">Ceará</option> 
+													<option <?php if($con['estado']=='df'){echo 'selected';}?> value="df">Distrito Federal</option> 
+													<option <?php if($con['estado']=='es'){echo 'selected';}?> value="es">Espírito Santo</option> 
+													<option <?php if($con['estado']=='go'){echo 'selected';}?> value="go">Goiás</option> 
+													<option <?php if($con['estado']=='ma'){echo 'selected';}?> value="ma">Maranhão</option> 
+													<option <?php if($con['estado']=='mt'){echo 'selected';}?> value="mt">Mato Grosso</option> 
+													<option <?php if($con['estado']=='ms'){echo 'selected';}?> value="ms">Mato Grosso do Sul</option> 
+													<option <?php if($con['estado']=='mg'){echo 'selected';}?> value="mg">Minas Gerais</option> 
+													<option <?php if($con['estado']=='pa'){echo 'selected';}?> value="pa">Pará</option> 
+													<option <?php if($con['estado']=='pb'){echo 'selected';}?> value="pb">Paraíba</option> 
+													<option <?php if($con['estado']=='pr'){echo 'selected';}?> value="pr">Paraná</option> 
+													<option <?php if($con['estado']=='pe'){echo 'selected';}?> value="pe">Pernambuco</option> 
+													<option <?php if($con['estado']=='pi'){echo 'selected';}?> value="pi">Piauí</option> 
+													<option <?php if($con['estado']=='rj'){echo 'selected';}?> value="rj">Rio de Janeiro</option> 
+													<option <?php if($con['estado']=='rn'){echo 'selected';}?> value="rn">Rio Grande do Norte</option> 
+													<option <?php if($con['estado']=='ro'){echo 'selected';}?> value="ro">Rondônia</option> 
+													<option <?php if($con['estado']=='rs'){echo 'selected';}?> value="rs">Rio Grande do Sul</option> 
+													<option <?php if($con['estado']=='rr'){echo 'selected';}?> value="rr">Roraima</option> 
+													<option <?php if($con['estado']=='sc'){echo 'selected';}?> value="sc">Santa Catarina</option> 
+													<option <?php if($con['estado']=='se'){echo 'selected';}?> value="se">Sergipe</option> 
+													<option <?php if($con['estado']=='sp'){echo 'selected';}?> value="sp">São Paulo</option> 
+													<option <?php if($con['estado']=='to'){echo 'selected';}?> value="to">Tocantins</option> 
+												</select>
+											</div>
+											<div class="form-group">
+												CPF <input type="text" class="form-control" value="<?php echo $con['cpf'];?>" readonly>
+											</div>
+											<div class="form-group">
+												Data de nascimento<input type="text" class="form-control" value="<?php echo $con['dta_nascimento'];?>" readonly>
+											</div>
+											<div class="form-group">
+												Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<input class="form-control" type="submit" name="editar" value="Editar"><br>
+										</div>
+									</form>
+										<div class="col-md-12">
+											<input class="form-control" type="submit" name="excluir" value="Excluir" data-toggle="modal" data-target="#confirmar" >
+										</div>
+										
+										<!--Confirmar excluir-->
+										<div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModalLabel">Confirmar exclusão</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <form action="#" method="post">
+											    <div class="modal-body">
+											    	E-mail <input type="text" class="form-control" name="email_verificacao" value="<?php echo $con['email'];?>" id="telefone">
+													Senha <input type="password" name="senha_verificacao" placeholder="Senha" maxlength="25" class="form-control">
+											    </div>
+										    	<div class="modal-footer">
+                                                    <input class="form-control" type="submit" name="confirmar" value="Confirmar">
+										      	</div>
+										      </form>
+										      <!--Excluir-->
+												<?php
+													include('conexao.php');
+													if(isset($_POST['confirmar']))
+													{
+												    	$sqlsel=('SELECT email,senha FROM usuario;');
+												    	/*WHERE id_usuario="'.$_SESSION['id_usuario'].'"*/
+												    	
+														$email_verificacao=$_POST['email_verificacao'];
+														$senha_verificacao=md5($_POST['senha_verificacao']);
+														if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha']){
+															header ('excluir.php');
+														}else{
+														}
+														$resul=mysqli_query($conexao,$sqlsel);
+														$con=mysqli_fetch_array($resul);
+													}
+											    ?>
+										    </div>
+										  </div>
+										</div>
+									<!--Excluir conta-->
+									<!--Editar informações-->
+									<?php
+										if(isset($_POST['editar']))
+										{
+											//resgata
+											$id_usuario=$_POST['id_usuario'];
+											$nome=$_POST['nome_edt'];
+											$sobrenome=$_POST['sobrenome_edt'];
+											$nick=$_POST['nick_edt'];
+											$funcao_1=$_POST['funcao_1_edt'];
+											$funcao_2=$_POST['funcao_2_edt'];
+											$senha=md5($_POST['senha_edt']);
+											$email=$_POST['email_edt'];
+											$estado=$_POST['estado_edt'];
+											$telefone=$_POST['telefone_edt'];
+											//edita
+											$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", nick="'.$nick.'", funcao_1="'.$funcao_1.'", funcao_2="'.$funcao_2.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'" WHERE id_usuario='.$id_usuario.';');
+											mysqli_query($conexao,$sqledt);
+											header('location:perfil.php');
+											exit();	
+										}
+									?>
+								</section>
 							</div>
 						</div>
 					</section>
@@ -359,15 +538,19 @@
 		<?php
 			include('rodape.html');
 		?>
-		<!--Card equipe-->
-		<script>	
-		$("figure").mouseleave(
-		  function () {
-		    $(this).removeClass("hover");
-		  }
-		);
+        <script src="js/bootstrap.min.js"></script>
+	    <script src="js/jquery.js"></script>
+		<!--Validação-->
+	    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	    
+	    <!--Modal-->
+	    <script>
+		    $('#myModal').on('shown.bs.modal', function () {
+			  $('#myInput').focus()
+			})
 		</script>
-				
 		<!-- Menu perfil -->
 		<script src="js/cbpFWTabs.js"></script>
 		<script>
