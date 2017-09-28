@@ -1,0 +1,160 @@
+CREATE DATABASE DBProcast;
+USE DBProcast;
+
+CREATE TABLE usuario(
+	id_usuario int auto_increment primary key,
+	nome varchar (15) not null,
+	sobrenome varchar (30),
+	cpf char(14),
+	cnpj char(18),
+	sexo char(1),
+	categoria_usuario char(1) not null,
+	nick varchar (16),
+	foto_perfil varchar(30) not null,
+	funcao_1 char (1),
+	funcao_2 char(1),
+	senha varchar(100) not null,
+	email varchar (30) not null,
+	dta_nascimento char(10) not null,
+	estado char(2) not null,
+	telefone char(15) not null
+);
+
+CREATE TABLE admin(
+	id_admin int auto_increment primary key,
+	nome varchar (15) not null,
+	sobrenome varchar (30),
+	senha varchar (100) not null,
+	email varchar (100) not null
+);
+
+CREATE TABLE anunciante(
+	id_anunciante int auto_increment primary key,
+	nome_anunciante varchar (30) not null,
+	cnpj varchar(18) not null,
+	ramo varchar(30) not null
+);
+
+CREATE TABLE categoria_noticia(
+	id_categoria_noticia int auto_increment primary key,
+	categoria_noticia char(1) not null
+);
+
+CREATE TABLE conquista(
+	id_conquista int auto_increment primary key,
+	descricao varchar(200) not null
+);
+
+CREATE TABLE noticia(
+	id_noticia int auto_increment primary key,
+	dta_publicacao varchar(10) not null,
+	titulo varchar(50) not null,
+	lide varchar(200) not null,
+	texto varchar(1000) not null,
+	imagem_noticia varchar(30),
+	id_categoria_noticia int,
+	constraint fk_categoria_noticia foreign key (id_categoria_noticia) references categoria_noticia(id_categoria_noticia)
+);
+
+CREATE TABLE comentario(
+	id_comentario int auto_increment primary key,
+	texto_comentario varchar(150) not null,
+	id_usuario int,
+	constraint fk_comentario_usuario foreign key (id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE anuncio(
+	id_anuncio int auto_increment primary key,
+	imagem_anuncio varchar(30) not null,
+	nome_anuncio varchar(25) not null,
+	id_anunciante int,
+	constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante)
+);
+
+CREATE TABLE denuncia(
+	id_denuncia int auto_increment primary key,
+	descricao_denuncia varchar(100) not null,
+	tipo_denuncia char(1) not null,
+	id_usuario int,
+	constraint fk_denuncia_usuario foreign key (id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE contato(
+	id_contato int auto_increment primary key,
+	motivo varchar(20) not null,
+	descricao_contato varchar(300) not null,
+	id_usuario int,
+	imagem_contato varchar(30),
+	constraint fk_contato_usuario foreign key (id_usuario) references usuario(id_usuario)
+);
+
+
+CREATE TABLE torneio(
+	id_torneio int auto_increment primary key,
+	tipo_torneio char(1) not null,
+	dta_inicio_torneio varchar(10) not null,
+	dta_termino_torneio varchar(10) not null,
+	colocacoes_torneio varchar(4)
+);
+
+CREATE TABLE colocacao(
+	id_colocacao int auto_increment primary key,
+	id_torneio int,
+	id_usuario int,
+	colocacao varchar(4),
+	constraint fk_torneio_colocacao foreign key (id_torneio) references torneio(id_torneio),
+	constraint fk_usuario_colocacao foreign key (id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE clube(
+	id_clube int auto_increment primary key,
+	logo_clube varchar(30) not null,
+	nome_clube varchar(20) not null,
+	dta_criacao varchar(10) not null,
+	numero_jogadores varchar(2) not null,
+	descricao_clube varchar(1000) not null,
+	numero_vitorias_clube varchar(4),
+	id_usuario int,
+	constraint fk_usuario_clube foreign key(id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE pagamento(
+	id_pagamento int auto_increment primary key,
+	dta_pagamento varchar(10) not null,
+	valor_pagamento varchar(10) not null,
+	numero_boleto varchar(30) not null,
+	id_usuario int,
+	constraint fk_usuario_pagamento foreign key(id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE video(
+	id_video int auto_increment primary key,
+	data_video varchar(10) not null,
+	descricao_video varchar(300) not null,
+	titulo_video varchar(50) not null,
+	id_usuario int,
+	constraint fk_usuario_video foreign key(id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE agenda(
+	id_agenda int auto_increment primary key,
+	hora varchar(5),
+	data varchar(20),
+	evento varchar(20),
+	id_usuario int,
+	constraint fk_usuario_agenda foreign key(id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE mensagem(
+	id_mensagem int auto_increment primary key,
+	assunto varchar(50) not null,
+	anexo varchar(30),
+	mensagem varchar(500) not null,
+	favorito varchar(10),
+	rascunho varchar(500),
+	solicitacao varchar(30),
+	id_enviar int,
+	id_receber int,
+	constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario),
+	constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario)
+);
