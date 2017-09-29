@@ -1,3 +1,3 @@
-<?php  
-	$conexao = mysqli_connect("localhost","root","","DBProcast") or die(mysqli_error.("Erro de conexao"));
+﻿<?php
+	$conexao=mysqli_connect ('localhost' , 'root' , '' , 'teste') or die  ('Erro de conexão'.mysqli_error());
 ?>
