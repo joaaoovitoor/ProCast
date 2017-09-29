@@ -1,0 +1,156 @@
+
+/*CAIXA COM TEXTO*/
+.intro-icon {
+  display: inline-block;
+  vertical-align: top;
+  padding: 5% 0 0 43%;
+  margin-right: 20px;
+  width: 60px;
+ }
+
+.intro-content {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+ }
+
+.intro-content h5{
+	font-size: 2rem;
+    color: #1A5A9B;
+}
+/* ==========================================================================
+Features-stack
+========================================================================== */
+.features {
+  position: relative; }
+  .features p {
+    margin-bottom: 0;
+    padding-bottom: 0; }
+  .features h3 {
+    margin: 0 0 20px 0; }
+  .features span.icon {
+    font-size: 35px;
+    color: #FF5274;
+    font-weight: bold; }
+  .features .feature-icon {
+    display: inline-block;
+    vertical-align: top;
+    padding: 6px 0 0 0;
+    margin-right: 20px;
+    width: 35px; }
+  .features .feature-content {
+    display: inline-block;
+    width: 75%; }
+  .features .intro-icon {
+    display: inline-block;
+    vertical-align: top;
+    padding: 6px 0 0 0;
+    margin-right: 20px; }
+  .features .intro-content {
+    display: inline-block;
+    width: 80%; }
+  .features ul.features-stack {
+    margin-top: 50px; }
+  .features ul.features-stack li {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #E6E9EA; }
+  .features ul.features-stack li:last-child {
+    padding-bottom: 0px;
+    border-bottom: none; }
+  .features .ipad-wrap {
+    width: 706px;
+    height: 1002px;
+    background: url("../img/ipad-device.png") no-repeat center center;
+    z-index: 1; }
+  .features .iphone-wrap {
+    width: 304px;
+    height: 620px;
+    background: url("../img/iphone6.png") no-repeat center center;
+    position: absolute;
+    left: 530px;
+    bottom: 129px;
+    z-index: 2; }
+  .features .device-showcase {
+    position: absolute;
+    bottom: -365px;
+    right: 61%; }
+
+.features .responsive-feature-img, .features-extra .responsive-feature-img {
+  display: none; }
+
+.devices {
+  position: relative; }
+
+/* ==========================================================================
+Footer
+========================================================================== */
+footer {
+  background-color: #3D4351;
+  position: relative; }
+  footer p {
+    color: #ACB1B4;
+    font-size: 13px; }
+  footer a {
+    color: #fff; }
+  footer a:hover {
+    color: #FF5274; }
+  footer ul.footer-group {
+    border-top: solid 1px #4E566C;
+    padding-top: 25px;
+    margin-bottom: 45px; }
+  footer ul.footer-group li {
+    display: inline-block; }
+  footer ul.footer-group li a {
+    font-size: 13px;
+    text-transform: uppercase; }
+  footer ul.footer-group li a:hover {
+    color: #FF5274; }
+  footer ul.footer-group li {
+    margin-right: 30px; }
+  footer ul.footer-group li:last-child {
+    margin-right: 0; }
+  footer span.fa-heart {
+    color: #ff415c;
+    font-size: 15px;
+    margin: 0 2px; }
+  footer .social-share {
+    position: absolute;
+    background-color: #373D4A;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    padding: 142px 0 0 70px; }
+    footer .social-share p {
+      color: #fff;
+      text-transform: uppercase;
+      padding-bottom: 10px; }
+    footer .social-share a.twitter-share {
+      height: 60px;
+      width: 60px;
+      background-color: #1AB4EF;
+      border-radius: 3px;
+      font-size: 22px;
+      display: inline-block;
+      text-align: center;
+      margin-right: 20px; }
+    footer .social-share a.twitter-share:hover, footer .social-share a.twitter-share:focus {
+      background-color: #1590BF; }
+    footer .social-share a.facebook-share:hover, footer .social-share a.facebook-share:focus {
+      background-color: #324C85; }
+    footer .social-share a.facebook-share {
+      height: 60px;
+      width: 60px;
+      background-color: #3B5898;
+      border-radius: 3px;
+      font-size: 22px;
+      display: inline-block;
+      text-align: center; }
+    footer .social-share a {
+      color: #fff; }
+    footer .social-share a:hover {
+      color: #fff; }
+    footer .social-share a i {
+      margin-top: 20px; }
+  footer .footer-links {
+    margin: 120px 0 120px 0; }

@@ -1,0 +1,243 @@
+*{
+	font-family: 'Nunito', sans-serif;
+}
+.primeiro p{
+	margin-top:-80%;
+}
+.pricing__item  img{
+	margin-top:5%;
+}
+.parallax { 
+    background-image: url(../../img/index/capa.jpg);
+    height: 100%; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom:5%;
+    margin-bottom: 10%;
+}
+
+/* NOTÍCIA */
+.demo-title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 50px;
+}
+
+.pricing-table {
+  display: table;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+}
+.pricing-table .pricing-option {
+  background: white;
+  float: left;
+  padding: 2%;
+  text-align: center;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.pricing-table .pricing-option:nth-child(even) {
+  margin: 0 2%;
+}
+.pricing-table .pricing-option:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
+}
+.pricing-table .pricing-option:hover i, .pricing-table .pricing-option:hover h2, .pricing-table .pricing-option:hover span, .pricing-table .pricing-option:hover b {
+  color: #1A5A9B;
+}
+.pricing-table .pricing-option:hover .front {
+  opacity: 0;
+  visibility: hidden;
+}
+.pricing-table .pricing-option:hover .back {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.pricing-table .pricing-option:hover .back a.button {
+  -webkit-transform: translateY(0px) !important;
+          transform: translateY(0px) !important;
+}
+.pricing-table .pricing-option hr {
+  border: none;
+  border-bottom: 1px solid #F0F0F0;
+}
+.pricing-table .pricing-option i {
+  font-size: 3rem;
+  color: #D8D8D8;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.pricing-table .pricing-option h2 {
+  margin: 10px 0;
+  color: #212121;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.pricing-table .pricing-option p {
+  color: #999;
+  padding: 0 10px;
+  line-height: 1.3;
+}
+.pricing-table .pricing-option .price {
+  position: relative;
+}
+.pricing-table .pricing-option .price .front span.price {
+  font-size: 1rem;
+  margin-top: 20px;
+  display: block;
+  font-weight: 700;
+  position: relative;
+}
+.pricing-table .pricing-option .price .front span.price b {
+  position: absolute;
+  font-size: 1rem;
+  margin-left: 2px;
+  font-weight: 600;
+}
+.pricing-table .pricing-option .price .back {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.pricing-table .pricing-option .price .back a.button {
+  background: #1A5A9B;
+  padding: 15px 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  position: absolute;
+  font-size: 13px;
+  top: -5px;
+  left: 0;
+  right: 0;
+  width: 150px;
+  margin: auto;
+  text-transform: uppercase;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+@media screen and (max-width: 600px) {
+  .pricing-table .pricing-option {
+    padding: 5%;
+    width: 90%;
+  }
+  .pricing-table .pricing-option:nth-child(even) {
+    margin: 30px 0 !important;
+  }
+}
+
+
+/* Comentários */
+
+/* carousel */
+#quote-carousel 
+{
+  padding: 0 10px 30px 10px;
+  margin-top: 30px;
+}
+
+/* Control buttons  */
+#quote-carousel .carousel-control
+{
+  background: none;
+  color: #222;
+  font-size: 2.3em;
+  text-shadow: none;
+  margin-top: 30px;
+}
+/* Previous button  */
+#quote-carousel .carousel-control.left 
+{
+  left: -12px;
+}
+/* Next button  */
+#quote-carousel .carousel-control.right 
+{
+  right: -12px !important;
+}
+/* Changes the position of the indicators */
+#quote-carousel .carousel-indicators 
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the color of the indicators */
+#quote-carousel .carousel-indicators li 
+{
+  background: #c0c0c0;
+}
+#quote-carousel .carousel-indicators .active 
+{
+  background: #333333;
+}
+#quote-carousel img
+{
+  width: 250px;
+  height: 100px
+}
+/* End carousel */
+
+.item blockquote {
+    border-left: none; 
+    margin: 0;
+}
+
+.item blockquote img {
+    margin-bottom: 10px;
+}
+
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+/**
+  MEDIA QUERIES
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    #quote-carousel 
+    {
+      margin-bottom: 0;
+      padding: 0 40px 30px 40px;
+    }
+    
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) { 
+    
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+    
+    #quote-carousel .carousel-indicators {
+        bottom: -20px !important;  
+    }
+    #quote-carousel .carousel-indicators li {
+        display: inline-block;
+        margin: 0px 5px;
+        width: 15px;
+        height: 15px;
+    }
+    #quote-carousel .carousel-indicators li.active {
+        margin: 0px 5px;
+        width: 20px;
+        height: 20px;
+    }
+}
