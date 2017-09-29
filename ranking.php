@@ -27,14 +27,15 @@
 <?php 
 	include('conexao.php');
 	
-	$sqlsel1 = "SELECT * FROM jogadortorneio ORDER BY colocacao DESC LIMIT 3;";
+	$sqlsel1 = "SELECT * FROM colocacao ORDER BY colocacao DESC LIMIT 3;";
 	$resul1 = mysqli_query($conexao,$sqlsel1);
-	$sqlsel2 = "SELECT * FROM jogadortorneio ORDER BY pontos DESC LIMIT 20 OFFSET 3;";
+	$sqlsel2 = "SELECT * FROM colocacao ORDER BY colocacao DESC LIMIT 20 OFFSET 3;";
 	$resul2 = mysqli_query($conexao,$sqlsel2);
 	$cont1=1;
 	$cont2=4;
-	while ($con1=mysqli_fetch_array($resul1)) 
-	{
+	if (mysqli_num_rows($resul1)>0){
+		while ($con1=mysqli_fetch_array($resul1)) 
+		{
 ?>
 			<div class="col-sm-2 col-md-2">
 					<div class="thumbnail">
@@ -50,6 +51,10 @@
 			</div>
 <?php
 		$cont1++; 
+		}
+	}
+	else{
+		echo "Nenhum registro";
 	}
 ?>
 			<div class="table-responsive col-md-10 col-md-offset-1">
@@ -65,7 +70,8 @@
 					</thead>
 					<tbody>
 <?php 
-	while($con2=mysqli_fetch_array($resul2)){
+	if(mysqli_num_rows($resul2)>0){
+		while($con2=mysqli_fetch_array($resul2)){
 ?>
 						<tr>
 							<td class="text-center texto-ranking"><h4><?php echo($cont2);?></h4></td>
@@ -76,6 +82,10 @@
 						</tr>
 <?php 
 		$cont2++;
+		}
+	}
+	else{
+		echo "Nenhum resultado";
 	}
 ?>
 					</tbody>
