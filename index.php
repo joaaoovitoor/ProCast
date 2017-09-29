@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-	    <meta charset="utf-8">
-	    <title>ProCast</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!--BOOTSTRAP E JQUERY-->
-		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<!--FONTES-->
-	    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-	    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>ProCast</title>
 	    <!--SLIDESHOW-->
 		<link rel="stylesheet" href="css/index/slideshow.css" />
 	    <!--ESTILO-->
@@ -18,6 +9,9 @@
 		<link rel="stylesheet" type="text/css" href="css/index/ranking.css" />
 		<link rel="stylesheet" type="text/css" href="css/index/landio.css" />
         <link rel="stylesheet" type="text/css" href="css/index/styles.css" />
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
 		<?php
@@ -238,6 +232,8 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 		<?php
 			include('rodape.html');
 		?>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<script src="js/index/landio.min.js"></script>
 	    <!-- SLIDESHOW -->
 		<script src="js/index/covervid.js"></script>
