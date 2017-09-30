@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(isset($_SESSION['email'])){
+        $email_usuario=$_SESSION['email'];
+    }
+    else{
+        header('location:destruir.php');    
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>

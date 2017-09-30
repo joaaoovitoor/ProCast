@@ -31,7 +31,7 @@
 								<div class="content-wrap">
 									<!-- FORMULÁRIO JOGADOR -->
 									<section id="jogador">
-										<form action="#" method="post">
+										<form action="verificar.php" method="post">
 											<div class="col-md-6">
 												<div class="form-group">
 													Nome <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
@@ -125,6 +125,7 @@
 											      <input type="checkbox" required checked><a href="#">Li e concordo com os termos de uso</a>
 											    </label>
 											</div>
+											<input type="hidden" name="categoria_usuario" value="1">
 											<input class="form-control btn-outro" type="submit" name="enviar_jogador" value="Enviar">
 											</div>
 										</form>
@@ -132,7 +133,7 @@
 									
 									<!-- FORMULÁRIO INVESTIDOR -->
 									<section id="investidor">
-										<form action="#" method="post">
+										<form action="verificar.php" method="post">
 											<div class="col-md-6">
 												<div class="form-group">
 													Nome <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
@@ -206,6 +207,7 @@
 											      <input type="checkbox"required checked><a href="#">Li e concordo com os termos de uso</a>
 											    </label>
 											</div>
+											<input type="hidden" name="categoria_usuario" value="2">
 											<input class="form-control btn-outro" type="submit" name="enviar_investidor" value="Enviar">
 											</div>
 										</form>

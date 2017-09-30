@@ -22,7 +22,7 @@
 					<div class="row">
 						<div class="col-md-offset-3 col-md-6 tela-login">
 							<h2 align="center">Login</h2>
-							<form action="#" method="POST">
+							<form action="verificar.php" method="POST">
 								<div class="form-group">
 									E-mail <input type="text" name="usuario" placeholder="E-mail" class="form-control" required>
 								</div>
@@ -30,7 +30,7 @@
 									Senha <input type="password" name="senha" placeholder="Senha" class="form-control" required>
 								</div>
 								<div class="form-group">
-									<input type="submit" name="envio" value="Entrar" class="form-control btn btn-outro">
+									<input type="submit" name="logar" value="Entrar" class="form-control btn btn-outro">
 								</div>
 							</form>
 						</div>
