@@ -10,7 +10,7 @@
     session_start();
     //botão logar do formuário de login da página index
     if (isset($_POST['logar'])){
-        $email=$_POST['email'];
+        $email=$_POST['usuario'];
         $senha=$_POST['senha'];
         $senha=base64_encode($senha);
         if(!empty($email)&&!empty($senha))
@@ -34,15 +34,14 @@
 					else
 					{
 						echo('<script>swal("Senha inválida", "", "error");</script>');
-						echo('<script>window.location="destruir.php";</script>');
-					}
+											}
 				}
 			}
 			else
 			{
 				//se o email não retornar alguma linha de registro é pq ele não existe no banco
 				echo('<script>swal("Email inválido", "", "error");</script>');
-				echo('<script>window.location="destruir.php";</script>');
+				
 			}
 		}
 	}
@@ -63,6 +62,7 @@
 		$categoria_usuario=$_POST['categoria_usuario'];
 		if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($dta_nascimento)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
 		{
+			$senha=base64_encode($senha);
 			if (strlen($cpf)<11) 
 			{
 				echo('<script>swal("O CPF deve ter no mínimo 11 dígitos", "", "error");</script>');
@@ -75,7 +75,7 @@
 				//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
 				if(mysqli_num_rows($resul))
 				{
-					echo('<script>swal("O CPF deve ter no mínimo 11 dígitos", "", "error");</script>');
+					echo('<script>swal("Email já cadastrado", "", "error");</script>');
 					echo('<script>window.location="cadastro.php";</script>');
 				}
 				else
@@ -130,6 +130,7 @@
 		}
 		if (!empty($nome)&&!empty($sobrenome)&&!empty($email)&&!empty($senha)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($dta_nascimento)&&!empty($telefone)&&!empty($categoria_usuario)) 
 		{
+			$senha=base64_encode($senha);
 			if (strlen($cpf)<11) 
 			{
 				echo('<script>swal("O CPF deve ter no mínimo 11 dígitos", "", "error");</script>');

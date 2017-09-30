@@ -17,7 +17,7 @@
 					<a class="menu-item " href="mensagens.php">Mensagens </a>
 			</li>
 			<li class="item item-log">
-					<a class="menu-item" >Sair <i hidden="true" class="fa fa-sign-in fa-1x icone">  </i></a>
+					<a class="menu-item" href="destruir.php">Sair <i hidden="true" class="fa fa-sign-in fa-1x icone">  </i></a>
 			</li>
 		</ul>
 	</nav>
