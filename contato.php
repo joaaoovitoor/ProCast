@@ -46,13 +46,12 @@
 								<div class="col-md-12 mg_tp">
 									<textarea name="mensagem" rows="10" maxlength="1000" class="form-control" placeholder="Escreva sua mensagem"></textarea>
 								</div>
+								<p class="help-block mg_tp">Envie um print se necessário</p>
 								<div class="col-md-12">
-									<p class="help-block mg_tp">Envie um print se necessário</p>
-									<label for='selecao-arquivo'><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Selecionar um arquivo </label>
-									<input id='selecao-arquivo' type='file'>
+									<input type="file" class="btn sem_bg borda_azul fonte_azul_claro mg_bt" name="anexo">
 								</div>
 								<div class="col-md-12 mg_tp">
-									<button type="submit" class="btn btn-block bg_azul_escuro btn-lg fonte_branca" name="enviar" >Enviar </button>
+									<button type="submit" class="btn btn-block bg_azul_escuro btn-lg fonte_branca" name="enviar" > <strong>Enviar <span class="glyphicon glyphicon-send" aria-hidden="true"></span></strong> </button>
 								</div>
 							</form>
 						</div>

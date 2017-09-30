@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<?php
-            include('link_head.html');
-        ?>
+		<meta charset="UTF-8">
+		<title>ProCast</title>
+		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" href="css/rodape.css">
         <link rel="stylesheet" href="css/noticias_cont.css">
 	</head>
 	<body>

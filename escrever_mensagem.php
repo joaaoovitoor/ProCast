@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<?php
-            include('link_head.html');
-        ?>
+		<title>Mensagens</title>
 	    <link rel="stylesheet" href="css/email.css">
         <script src="js/tinymce/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
         <?php

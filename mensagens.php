@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<?php
-            include('link_head.html');
-        ?>
+		<title>Mensagens</title>
 	    <link rel="stylesheet" href="css/email.css">
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<?php
+			include('link_head.html');
+		?>
 	</head>
 	<body>
         <?php
@@ -16,7 +16,7 @@
                 <div class="row">
                     <h1 class="text-center fonte_branca texto_sombra"><strong>Mensagens</strong></h1> 
                     <p class="text-center fonte_branca texto_sombra">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam
+                       Envie e receba mensagens rapidamente, inclusive suas convocações para clube!
                     </p>
                 </div>
             </div>

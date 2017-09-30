@@ -43,7 +43,7 @@
 	margin-bottom: 3%;
 }
 .banner h1{
-	margin-top: 10%;
+	margin-top: 7%;
 	margin-bottom: 2%;
 	font-size: 4.5em;
 }
@@ -63,15 +63,4 @@
 .form_panel{
 	margin-top: 3%;
 	padding: 2% 1%;
-}
-input[type='file'] {
-  display: none !important;
-}
-label {
-  background-color: #02314c;
-  border-radius: 5px;
-  color: #f2f4f2;
-  cursor: pointer;
-  margin: 10px;
-  padding: 2% 4%;
 }
