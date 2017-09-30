@@ -20,6 +20,9 @@
 .fonte_cinza_escuro{
 	color: #333 !important;
 }
+.fonte_cinza_claro{
+	color: #727272 !important;
+}
 .fonte_azul_claro{
 	color: #1a5a9b !important;
 }
@@ -29,6 +32,7 @@
 .sombra{
 	box-shadow: 3px 3px 5px #e5e0e5;
 }
+
 .borda_azul{
 	border: 1px solid #1a5a9b !important;
 }
@@ -39,7 +43,7 @@
 	border:none !important;
 }
 .banner{
-	background: url(../img/banner_contato.png);
+	background: url(../img/banner_mod_an.jpg);
 	margin-bottom: 3%;
 }
 .banner h1{
@@ -73,5 +77,5 @@ label {
   color: #f2f4f2;
   cursor: pointer;
   margin: 10px;
-  padding: 2% 4%;
+  padding: 3% 6%;
 }
