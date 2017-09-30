@@ -40,7 +40,7 @@
 									<input id='selecao-arquivo' type='file'>
 								</div>
 								<div class="col-md-6 mg_tp"">
-									<input type="text" class="form-control input-lg" name="link" placeholder="Link para o anúcio">
+									<input type="text" class="form-control input-lg" name="link" placeholder="Link para o anúncio">
 								</div>
 								<div class="col-md-12 mg_tp">
 									<textarea name="descricao" rows="5" maxlength="300" class="form-control" placeholder="Descrição do anúcio"></textarea>
