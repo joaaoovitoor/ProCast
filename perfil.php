@@ -11,6 +11,8 @@
   		<script src="js/modernizr.custom.js"></script>
   		<!--ESTILO PERFIL-->
   		<link rel="stylesheet" href="css/perfil/perfil.css">
+  		<script src="js/bootstrap.min.js"></script>
+	    <script src="js/jquery.js"></script>
 		<?php
 			include('link_head.html');
 		?>
@@ -19,12 +21,12 @@
 		<?php
             include('menu2.php');
         ?>
-		<div class="banner imagem">
+		<div class="banner-perfil perfil">
    			<div class="container-fluid">
 				<div class="row">
 					<!-- Cartão com informações - GRANDE -->
-					<div class="col-md-offset-1 col-md-3 hidden-sm hidden-xs">
-				        <div class="cartao-grande">
+					<div class="col-md-offset-0 col-md-5 hidden-sm hidden-xs">
+				        <div class="cartao-grande spc-cartao">
 				            <img src="img/perfil_icon.png" class="img-circle">
 				            <div class="row">
 				                <div class="col-md-1"></div>
@@ -34,7 +36,7 @@
 				                    </div>
 				                </div>
 				            </div>
-				            <div class="clube">
+				            <div class="clube-cartao">
 				                <div class="row">
 				                    <div class="col-sm-6">
 				                        <span class="coach-name"><p>Clube</p></span>
@@ -69,7 +71,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<!-- Menu jogador -->
-				<div class="col-md-offset-1 col-md-7">
+				<div class="col-md-7">
 					<section>
 						<div class="tabs tabs-style-linebox">
 							<nav>
@@ -216,60 +218,8 @@
 								</section>
 								<!-- Agenda -->
 								<section id="3">
-									<div class="container">
-									    <div class="agenda">
-									        <div class="table-responsive">
-									            <table class="table table-condensed table-bordered">
-									                <thead>
-									                    <tr>
-									                        <th><img src="img/dia.png"> Dia</th>
-									                        <th><img src="img/hora.png">Hora</th>
-									                        <th><img src="img/evento.png">Evento</th>
-									                    </tr>
-									                </thead>
-									                <tbody>
-									                    <tr>
-									                        <td class="agenda-date" class="active" rowspan="1">
-									                            <div class="dayofmonth"> 05 de novembro 2017</div>
-									                            <div class="dayofweek">Marcado por: <a href="#">Alguém</a></div>
-									                        </td>
-									                        <td class="agenda-time">
-									                            17:30
-									                        </td>
-									                        <td class="agenda-events">
-									                            <div class="agenda-event">
-									                                <i class="glyphicon glyphicon-repeat text-muted" title="Repeating event"></i> 
-									                                Reunião do Clube
-									                            </div>
-									                        </td>
-									                    </tr>
-														
-														<tr>
-									                        <td class="agenda-date" class="active" rowspan="1">
-									                             <div class="dayofmonth">05 de novembro 2017</div>
-									                            <div class="dayofweek">Marcado por: <a href="#">ProCast</a></div>
-									                        </td>
-									                        <td class="agenda-time">
-									                            22:30
-									                        </td>
-									                        <td :class="agenda-events">
-									                            <div class="agenda-event">
-									                                <i class="glyphicon glyphicon-repeat text-muted" title="Repeating event"></i> 
-									                                Torneio
-									                            </div>
-									                        </td>
-									                    </tr>
-									                    
-									                   
-									                </tbody>
-									            </table>
-									        </div>
-									    </div>
-									</div>
 								</section>
 								<!-- Vídeos -->
-								
-
 								<section id="4">
 									<div class="card mb-3">
 										<div class="embed-responsive embed-responsive-16by9">
@@ -538,8 +488,7 @@
 		<?php
 			include('rodape.html');
 		?>
-        <script src="js/bootstrap.min.js"></script>
-	    <script src="js/jquery.js"></script>
+        
 		<!--Validação-->
 	    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	    <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
