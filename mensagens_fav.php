@@ -72,11 +72,9 @@
                             }
                         ?>
     				</div>
-    				<div class="bg_branco cx_em sombra">
-    					<div class="panel bg_branco_w mg_bt">
-    						<div class="panel-body">
                                 <?php
-                                    $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido="V")) OR ((id_enviar="'.$con['id_usuario'].'") AND (excluido="V")) ;';
+                                    $sqlsel='select * from mensagem where ((id_enviar="'.$con['id_usuario'].'") AND (excluido="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (favorito="V")) AND ((id_enviar="'.$con['id_usuario'].'") AND (rascunho="F")) ;';
+                                    
                                     $resul=mysqli_query($conexao,$sqlsel);
                                     echo
                                     ('
@@ -86,7 +84,7 @@
                                     {
                                         while ($con_msg=mysqli_fetch_array($resul))
                                         {
-                                           $sqlsel='select * from usuario where id_usuario="'.$con_msg['id_enviar'].'";';
+                                           $sqlsel='select * from usuario where id_usuario="'.$con_msg['id_receber'].'";';
                                             $resul2=mysqli_query($conexao,$sqlsel);
                                             $con_nick=mysqli_fetch_array($resul2);
                                             echo 
@@ -132,9 +130,8 @@
                                         </div>
                                     ');
                                 ?>    
-    							</div>
-    						</div>
-    					</div>
+    							
+    					
     				</div>
   				</div>
 			</div>
