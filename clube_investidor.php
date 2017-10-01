@@ -49,9 +49,11 @@
 			            <div class="descricao">
 			                    
 			                    <p><strong>Ranking:</strong> Suporte</p>
-			                    <p><strong>Número de partidas:</strong> Alguma Coisa</p> 
-			                    <p><strong>Número de vitórias:</strong> Alguma Coisa</p> 
-			                    <p><strong>Número de derrotas:</strong> Alguma Coisa</p> 
+			                    <p><strong>Data de criação:</strong> 05/04/2017</p>
+			                    <p><strong>Jogadores:</strong> 8 </p>
+			                    <p><strong>Partidas jogadas:</strong> 25 </p> 
+			                    <p><strong>Vitórias:</strong> 20 </p> 
+			                    <p><strong>Derrotas:</strong> 5 </p> 
 			            </div>
 			        </div>
 				</div>

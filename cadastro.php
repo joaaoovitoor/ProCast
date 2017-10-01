@@ -61,10 +61,10 @@
 		  });
 		});
 	</script>
-		
+
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 hidden-xs hidden-sm">
 					<img src="img/login.png">
 				</div>
 				<div class="col-md-6">
@@ -85,10 +85,10 @@
 													Nome <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
 												</div>
 												<div class="form-group">
-													Sobrenome <input type="text" class="form-control" name="sobrenome"  maxlength="15" placeholder="Sobrenome" required>
+													Sobrenome <input type="text" class="form-control" name="sobrenome"  maxlength="30" placeholder="Sobrenome" required>
 												</div>
 												<div class="form-group">
-													Nick <input type="text" class="form-control" name="nick" maxlength="15" placeholder="Nick" required>
+													Nick <input type="text" class="form-control" name="nick" maxlength="16" placeholder="Nick" required>
 												</div>
 												<div class="form-group">
 												Função primária
