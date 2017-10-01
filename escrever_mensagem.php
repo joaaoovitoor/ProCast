@@ -88,12 +88,13 @@
                 $mensagem=$_POST['mensagem'];
                 if (!empty($destinatario)&&!empty($assunto)&&!empty($mensagem)) 
                 {
-                    $sqlsel='select id_usuario from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'") OR (nome="'.$destinatario.'");';
+                    $sqlsel='select * from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'") OR (nome="'.$destinatario.'");';
                     $resul=mysqli_query($conexao,$sqlsel);
+                    $con2=mysqli_fetch_array($resul);
                     if(mysqli_num_rows($resul))
                     {
-                        $con2=mysqli_fetch_array($resul);
-                        $sqlin='insert into mensagem(assunto,id_enviar,mensagem,id_receber) values ("'.$assunto.'",'.$con['id_usuario'].',"'.$mensagem.'",'.$con2.');';
+                        $sqlin='insert into mensagem(assunto,id_enviar,mensagem,id_receber) values ("'.$assunto.'",'.$con['id_usuario'].',"'.$mensagem.'",'.$con2['id_usuario'].');';
+                        mysqli_query($conexao,$sqlin);
                     }
                     else
                     {

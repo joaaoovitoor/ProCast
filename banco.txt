@@ -154,8 +154,8 @@ CREATE TABLE mensagem(
 	excluido varchar(10),
 	rascunho varchar(500),
 	solicitacao varchar(30),
-	id_enviar int,
-	id_receber int,
+	id_enviar int not null,
+	id_receber int not null,
 	constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario),
 	constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario)
 );
