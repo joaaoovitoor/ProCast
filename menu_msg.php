@@ -38,14 +38,10 @@
                     <span class="badge bg_cinza_claro"> 
                             <?php
                                 //contador do badge
-                                $sqlsel='select mensagem from mensagem where (id_enviar='.$con['id_usuario'].') AND (excluido="V");';
+                                 $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido="V")) OR ((id_enviar="'.$con['id_usuario'].'") AND (excluido="V")) ;';
                                 $resul=mysqli_query($conexao,$sqlsel);
                                 $resul=mysqli_num_rows($resul);
-                                $sqlsel='select mensagem from mensagem id_receber where NOT id_receber='.$con['id_usuario'].' AND (excluido="V");';
-                                $resul2=mysqli_query($conexao,$sqlsel);
-                                $resul2=mysqli_num_rows($resul2);
-
-                                echo($resul+$resul2);
+                                echo($resul);
 
                             ?>
                     </span>
@@ -56,13 +52,10 @@
                 <span class="badge bg_cinza_claro"> 
                         <?php
                             //contador do badge
-                            $sqlsel='select mensagem from mensagem where (id_enviar='.$con['id_usuario'].') AND (favorito="V");';
-                            $resul=mysqli_query($conexao,$sqlsel);
-                            $resul=mysqli_num_rows($resul);
-                            $sqlsel='select mensagem from mensagem id_receber where NOT id_receber='.$con['id_usuario'].' AND (favorito="V");';
-                            $resul2=mysqli_query($conexao,$sqlsel);
-                            $resul2=mysqli_num_rows($resul2);
-                            echo($resul+$resul2);
+                             $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (favorito="V")) OR ((id_enviar="'.$con['id_usuario'].'") AND (favorito="V")) ;';
+                                $resul=mysqli_query($conexao,$sqlsel);
+                                $resul=mysqli_num_rows($resul);
+                                echo($resul);
 
                         ?>
                 </span>
@@ -72,14 +65,10 @@
                 <span class="badge bg_cinza_claro"> 
                         <?php
                             //contador do badge
-                            $sqlsel='select mensagem from mensagem where (id_enviar='.$con['id_usuario'].') AND (rascunho="V");';
+                            $$sqlsel='select * from mensagem where ((id_enviar="'.$con['id_usuario'].'") AND (rascunho="V")) ;';
                             $resul=mysqli_query($conexao,$sqlsel);
                             $resul=mysqli_num_rows($resul);
-                            $sqlsel='select mensagem from mensagem id_receber where NOT id_receber='.$con['id_usuario'].' AND (rascunho="V");';
-                            $resul2=mysqli_query($conexao,$sqlsel);
-                            $resul2=mysqli_num_rows($resul2);
-                            echo($resul+$resul2);
-
+                            echo($resul);
                         ?>
                 </span>
             </li>

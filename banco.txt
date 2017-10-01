@@ -148,7 +148,7 @@ CREATE TABLE agenda(
 CREATE TABLE mensagem(
 	id_mensagem int auto_increment primary key,
 	assunto varchar(50) not null,
-	anexo varchar(30),
+	anexo varchar(50),
 	mensagem varchar(500) not null,
 	favorito varchar(10),
 	excluido varchar(10),
@@ -156,6 +156,7 @@ CREATE TABLE mensagem(
 	solicitacao varchar(30),
 	id_enviar int not null,
 	id_receber int not null,
+	data datetime not null;
 	constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario),
 	constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario)
 );

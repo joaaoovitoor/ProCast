@@ -76,7 +76,8 @@
     					<div class="panel bg_branco_w mg_bt">
     						<div class="panel-body">
                                 <?php
-                                    $sqlsel='select * from mensagem where (id_receber="'.$con['id_usuario'].'") AND (favorito="F") AND (rascunho="F") AND (excluido="F");';
+                                    $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido="F")) OR ((id_receber="'.$con['id_usuario'].'") AND (favorito="F")) OR ((id_receber="'.$con['id_usuario'].'") AND (rascunho="F")) ;';
+                                    
                                     $resul=mysqli_query($conexao,$sqlsel);
                                     if(mysqli_num_rows($resul))
                                     {
