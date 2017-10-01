@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<nav class="nav-menu hidden-xs hidden-sm"  style="background-color:#333 !important;">
-		<img src="img/logo_horizontal.png" class="pull-left img-responsive logo" >
+		<a href="index.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-9">
 				<li class="item item-log">
 						<a class=" menu-item " href="login.php">Login <i hidden="true" class="fa fa-sign-in fa-1x icone">  </i></a>

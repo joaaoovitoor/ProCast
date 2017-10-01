@@ -49,7 +49,7 @@
     				</div>
   				</div>
   				<div class="col-md-9">
-  					<form action="#" method="POST">
+  					<form action="#" method="POST" enctype="multipart/form-data">
                         <div class="input-group input-group-lg bg_branco sombra mg_bt">
                             <input type="text"  name="pesquisa_texto" class="form-control bg_branco_w sem_borda" placeholder="Pesquisar pessoa ou email" aria-describedby="pesquisar">
                             <span class="input-group-btn" id="pesquisar">
@@ -68,6 +68,9 @@
                             <label for="mensagem">Mensagem</label>
                             <textarea name="mensagem" class="form-control" id="mensagem" rows="10" cols="80"></textarea>
                         </div>
+                        <input type="hidden" name="favorito" value="F">
+                        <input type="hidden" name="rascunho" value="F">
+                        <input type="hidden" name="excluido" value="F">
                         <div class="mg_bt">
                             <label for='anexo' class="arq"> Anexar arquivo <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></label>
                             <input type="file" class="btn sem_bg borda_azul fonte_azul_claro mg_bt" name="anexo" id="anexo">
@@ -86,14 +89,28 @@
                 $destinatario=$_POST['destinatario'];
                 $assunto=$_POST['assunto'];
                 $mensagem=$_POST['mensagem'];
+                $favorito=$_POST['favorito'];
+                $rascunho=$_POST['rascunho'];
+                $excluido=$_POST['excluido'];
                 if (!empty($destinatario)&&!empty($assunto)&&!empty($mensagem)) 
                 {
-                    $sqlsel='select id_usuario from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'") OR (nome="'.$destinatario.'");';
+                    $sqlsel='select * from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'") OR (nome="'.$destinatario.'");';
                     $resul=mysqli_query($conexao,$sqlsel);
+                    $con2=mysqli_fetch_array($resul);
                     if(mysqli_num_rows($resul))
                     {
-                        $con2=mysqli_fetch_array($resul);
-                        $sqlin='insert into mensagem(assunto,id_enviar,mensagem,id_receber) values ("'.$assunto.'",'.$con['id_usuario'].',"'.$mensagem.'",'.$con2.');';
+                        if (isset($_FILES['anexo']))
+                        {
+                            $extensao= strtolower(substr($_FILES['anexo']['name'], -4));//pega a extensão do arquivo
+                            $novo_nome= md5(time()) . $extensao; //criptografa a hora atual e concatena com id do usuario e extensao
+                            $diretorio="uploads/";
+                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome); //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
+                            $sqlin='insert into mensagem(assunto,id_enviar,mensagem,id_receber,favorito,rascunho,excluido,anexo, data) values ("'.$assunto.'",'.$con['id_usuario'].',"'.$mensagem.'",'.$con2['id_usuario'].',"'.$favorito.'","'.$rascunho.'","'.$excluido.'","'.$novo_nome.'",NOW());';
+                        }
+                        else{
+                            $sqlin='insert into mensagem(assunto,id_enviar,mensagem,id_receber,favorito,rascunho,excluido) values ("'.$assunto.'",'.$con['id_usuario'].',"'.$mensagem.'",'.$con2['id_usuario'].',"'.$favorito.'","'.$rascunho.'","'.$excluido.'");';
+                        }
+                        mysqli_query($conexao,$sqlin);
                     }
                     else
                     {

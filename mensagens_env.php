@@ -58,10 +58,22 @@
 					<div class="mg_bt">
                         <div>
                             <button onclick="location.href='escrever_mensagem.php'" class="btn bg_azul_escuro fonte_branca" href="escrever_mensagem.php">Escrever Mensagem <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                            <form action="#" method="POST">
+                                <button type="submit" class="btn bg_azul_escuro fonte_branca" name="ext">Limpar Caixa <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            </form>
                         </div>
+                        
+                        <?php
+                            if (isset($_POST['ext'])) {
+                                include('conexao.php');
+                                $sqlup='update mensagem set excluido="V" where id_receber="'.$con['id_usuario'].'";';
+                                mysqli_query($conexao,$sqlup);
+                                echo('<script>swal("Itens excluídos com sucesso", "", "success");</script>');
+                            }
+                        ?>
     				</div>
                                 <?php
-                                    $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (favorito="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (rascunho="F")) ;';
+                                    $sqlsel='select * from mensagem where ((id_enviar="'.$con['id_usuario'].'") AND (excluido="F")) OR ((id_enviar="'.$con['id_usuario'].'") AND (favorito="F")) OR ((id_enviar="'.$con['id_usuario'].'") AND (rascunho="F")) ;';
                                     
                                     $resul=mysqli_query($conexao,$sqlsel);
                                     echo
@@ -72,31 +84,29 @@
                                     {
                                         while ($con_msg=mysqli_fetch_array($resul))
                                         {
-                                           $sqlsel='select * from usuario where id_usuario="'.$con_msg['id_enviar'].'";';
+                                           $sqlsel='select * from usuario where id_usuario="'.$con_msg['id_receber'].'";';
                                             $resul2=mysqli_query($conexao,$sqlsel);
                                             $con_nick=mysqli_fetch_array($resul2);
                                             echo 
                                             ('
-                                                <a href="conteudo_msg.php?msg='.$con_msg['id_mensagem'].'" >
-                                                    <div class="panel bg_branco_w mg_bt">
-                                                        <div class="panel-body">
-                                                            <div class="col-xs-2 col-sm-1">
-                                                                <img src="img/perfil_icon.png" alt="" class="img-circle img_env">
-                                                            </div>
-                                                            <div class="col-xs-2 col-md-3">
-                                                                <h4 class="fonte_cinza_escuro nome_user"><strong>'.$con_nick['nick'].'</strong></h4>
-                                                                <p class="fonte_cinza_claro">'.$con_msg['assunto'].'</p>
-                                                            </div>
-                                                            <div class="col-xs-offset-2 col-sm-offset-3 col-xs-5">
-                                                                <form action="#" method="GET">
-                                                                    <button type="submit" class="btn sem_bg borda_azul fonte_azul_claro mg_btn" name="fav">Favoritar Mensagem <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
-                                                                    <a class="btn sem_bg borda_azul fonte_azul_claro mg_btn" href="mensagens.php?ex='.$con_msg['id_mensagem'].'">Apagar Mensagem <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                                                </form>
-                                                            </div>
-
+                                                <div class="panel bg_branco_w mg_bt">
+                                                    <div class="panel-body">
+                                                        <div class="col-xs-2 col-sm-1">
+                                                            <img src="img/perfil_icon.png" alt="" class="img-circle img_env">
                                                         </div>
+                                                        <div class="col-xs-2 col-md-3">
+                                                            <h4 class="fonte_cinza_escuro nome_user"><strong>'.$con_nick['nick'].'</strong></h4>
+                                                            <p class="fonte_cinza_claro">'.$con_msg['assunto'].'</p>
+                                                        </div>
+                                                        <div class="col-xs-offset-2 col-sm-offset-3 col-xs-5">
+                                                            <form action="#" method="GET">
+                                                                <button type="submit" class="btn sem_bg borda_azul fonte_azul_claro mg_btn" name="fav">Favoritar Mensagem <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+                                                                <a class="btn sem_bg borda_azul fonte_azul_claro mg_btn" href="mensagens.php?ex='.$con_msg['id_mensagem'].'">Apagar Mensagem <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                                            </form>
+                                                        </div>
+
                                                     </div>
-                                                </a>
+                                                </div>
 
                                             '); 
                                             if (isset($_GET['fav'])) {

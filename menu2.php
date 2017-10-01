@@ -1,3 +1,6 @@
+<?php
+	//include('verificar_logado.php');
+?>
 	<nav class="nav-menu hidden-xs hidden-sm navbar-fixed-top">
 	<a href="home.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
 		<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-5">
