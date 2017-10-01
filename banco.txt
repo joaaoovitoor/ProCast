@@ -156,7 +156,7 @@ CREATE TABLE mensagem(
 	solicitacao varchar(30),
 	id_enviar int not null,
 	id_receber int not null,
-	data datetime not null;
+	data DATETIME not null,
 	constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario),
 	constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario)
 );

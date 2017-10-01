@@ -103,3 +103,14 @@ input[type='file'] {
 a:hover;a:active;a:focus{
 	text-decoration: none !important;
 }
+.up{
+	width: 10%;
+	height: auto;
+}
+.anexo{
+	padding: 1%;
+}
+.panel{
+	margin-top: 0.2% !important;
+	margin-bottom: 0.5% !important;
+}
