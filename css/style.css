@@ -10,12 +10,14 @@ ol, ul {
         font-size: 17px !important;
         font-family: 'Nunito', sans-serif;
         padding: 20px;
-        position: fixed;
         width: 100%;
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;
         transition: all 0.5s ease;
+}
+.nav-menu cadastro{
+	background-color: #333;
 }
 .rolagem{
     background: #333;

@@ -11,6 +11,8 @@
   		<script src="js/modernizr.custom.js"></script>
   		<!--ESTILO PERFIL-->
   		<link rel="stylesheet" href="css/perfil/perfil.css">
+  		<script src="js/bootstrap.js"></script>
+	    <script src="js/jquery.js"></script>
 		<?php
 			include('link_head.html');
 		?>
@@ -19,6 +21,7 @@
 		<?php
             include('menu2.php');
         ?>
+        <!--BANNER CLUBE-->
 		<div class="banner clube">
             <div class="container-fluid">
                 <div class="row">
@@ -31,8 +34,8 @@
         </div>
 		<div class="container-fluid">
 			<div class="row">
+				<!-- Cartão com informações -->
 				<div class="col-md-5">
-					<!-- Cartão com informações -->
 			        <div class="cartao-grande">
 			            <img src="img/logo_redcanids.png" class="img-circle">
 			            <div class="clube-cartao">
@@ -52,10 +55,10 @@
 			            </div>
 			        </div>
 				</div>
-				<!-- Menu jogador -->
 				<div class="col-md-7">
 					<section>
 						<div class="tabs tabs-style-linebox">
+							<!-- MENU -->
 							<nav>
 								<ul>
 									<li><a href="#1"><span>Jogadores</span></a></li>
@@ -66,8 +69,8 @@
 									<li><a href="#6"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
 								</ul>
 							</nav>
-							<!-- Clube -->
 							<div class="content-wrap">
+								<!-- MENU - CLUBE -->
 								<section id="1">
 						            <div class="cartao-equipe">
 						                <div class="media">
@@ -145,7 +148,8 @@
 						                </div>
 						            </div>
 								</section>
-								<!-- Evento -->
+								<!--FIM MENU - CLUBE-->
+								<!-- MENU - EVENTO -->
 								<section id="2">
 									<div class="container-fluid">
 										<h4 align="center">Crie um evento</h4>
@@ -154,14 +158,20 @@
 										</div>
 										<div class="form-group">
 							                Descrição
-							                <textarea class="form-control" rows="3" placeholder="Descreve sobre o novo evento"></textarea>
+							                <textarea class="form-control" rows="3" placeholder="Descreva sobre o novo evento"></textarea>
 							            </div>
+							            <div class="form-group">
 							            Data <input type="date" class="form-control cinza-esc" id="data_evento" placeholder="Digite a data do evento" name="data_evento">
-							            <br><input class="form-control" type="submit" name="confirmar" value="Criar">
+							            </div>
+							            <div class="form-group">
+											Horário <input type="text" class="form-control" name="nome" placeholder="Horário" maxlength="15" required>
+										</div>
+							            <br><input class="form-control azul" type="submit" name="confirmar" value="Criar">
 
 									</div>
 								</section>
-								<!-- Torneio -->
+								<!--FIM MENU - EVENTO-->
+								<!-- MENU - TORNEIO -->
 								<section id="3">
 									<div class="cartao-equipe cinza">
 								      <h2>Card title</h2>
@@ -169,8 +179,28 @@
 								      <small class="text-muted">Last updated 3 mins ago</small>
 						            </div>
 								</section>
-								<!-- Vídeos -->
+								<!--FIM MENU - TORNEIO-->
+								<!-- MENU VÍDEOS -->
 								<section id="4">
+									<input class="form-control azul" type="submit" value="Compartilhar Vídeo" data-toggle="collapse" data-target="#publicacao" aria-expanded="false" aria-controls="collapseExample"><br>
+									<div class="collapse" id="publicacao">
+									<div class="card card-body">
+										<div class="form-group">
+										    <label class="form-control-label" for="formGroupExampleInput">Nome do Vídeo</label>
+											<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nome">
+										</div>
+										<div class="form-group">
+										    <label for="exampleFormControlTextarea1">Descrição</label>
+										    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Faça uma breve descrição do vídeo"></textarea>
+										</div>
+										<div class="form-group">
+										    <label for="exampleFormControlTextarea1">Link</label>
+										    <a href="ajuda.php"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+										    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+										</div>
+										<br><input class="form-control" type="submit" name="publicar" value="Publicar"><br>
+									</div>
+									</div>
 									<div class="card mb-3">
 										<div class="embed-responsive embed-responsive-16by9">
 								  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-6JqoJrM9IM"></iframe>
@@ -182,8 +212,20 @@
 										</div>
 									</div>
 								</section>
-								<!-- Fotos -->
+								<!--FIM MENU - VÍDEOS-->
+								<!-- MENU - FOTOS -->
 								<section id="5">
+									<input class="form-control azul" type="submit" value="Compartilhar Foto" data-toggle="collapse" data-target="#foto" aria-expanded="false" aria-controls="collapseExample"><br>
+									<div class="collapse" id="foto">
+									<div class="card card-body">
+										<div class="form-group">
+										    <label for="exampleFormControlTextarea1">Link</label>
+										    <a href="ajuda.php"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+										    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+										</div>
+										<br><input class="form-control" type="submit" name="publicar" value="Publicar"><br>
+									</div>
+									</div>
 									<div class="esp-instagram">
 									<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="7" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:37.5% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://www.instagram.com/p/BFJ8MEJuM8m/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">aconchego ❤  #cat #cute #vscocam #love</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">Uma publicação compartilhada por Maira Souza (@mairasouza__) em <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-05-08T17:52:19+00:00">Mai 8, 2016 às 10:52 PDT</time></p></div>										</blockquote>
 <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
@@ -192,6 +234,7 @@
 <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
 									</div>
 								</section>
+								<!--FIM MENU - FOTOS-->
 								<!--Alterar-->
 								<section id="6">
 									<div class="row">
@@ -312,8 +355,6 @@
 		<?php
 			include('rodape.html');
 		?>
-        <script src="js/bootstrap.min.js"></script>
-	    <script src="js/jquery.js"></script>
 		<!--Validação-->
 	    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	    <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>

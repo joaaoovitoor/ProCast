@@ -5,6 +5,15 @@
    background-color: #1A5A9B !important;
 }
 
+.botao{
+    background-color: #02314c;
+    border-radius: 5px;
+    color: #f2f4f2;
+    cursor: pointer;
+    margin: 10px;
+    padding: 3% 6%;
+}
+
 .azul{
 	background-color: #02314C !important;
 	color: white !important;
@@ -47,9 +56,6 @@
 }
 .banner p{
 	margin-bottom: 7%;
-}
-*{
-	font-family: 'Nunito', sans-serif;
 }
 .texto_sombra{
 	text-shadow: 2px 2px 7px #333;

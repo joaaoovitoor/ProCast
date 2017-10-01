@@ -1,7 +1,6 @@
 <?php
 	ob_start();
 ?>
-<!DOCTYPE html>
 <html lang="pt-br">
 	<head>
         <title>Perfil</title>
@@ -32,7 +31,7 @@
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
 			                    <div class="informacoes">
-			                        Nick<br>DIOUD
+			                        Nick<br>Nome do jogador
 			                    </div>
 			                </div>
 			            </div>
@@ -49,7 +48,8 @@
 			            </div>
 			            <div class="descricao">
 			                    <p><strong>Sobre mim:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-			                    <p><strong>Função:</strong> Suporte</p>
+			                    <p><strong>Função Primária:</strong> Suporte</p>
+			                    <p><strong>Função Secundária:</strong> Suporte</p>
 			                    <p><strong>Posicionamento:</strong> Alguma Coisa</p> 
 			            </div>
 			        </div>
@@ -245,7 +245,8 @@
 						    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Faça uma breve descrição do vídeo"></textarea>
 						</div>
 						<div class="form-group">
-						    <label for="exampleFormControlTextarea1">Link <a href="#"><i class="fa fa-question" aria-hidden="true"></i></a></label>
+						    <label for="exampleFormControlTextarea1">Link</label>
+						    <a href="ajuda.php"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
 						    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 						</div>
 						<br><input class="form-control" type="submit" name="publicar" value="Publicar"><br>
@@ -436,11 +437,15 @@
 							</div>
 						</div>
 						<div class="col-md-12">
-							<input class="form-control" type="submit" name="editar" value="Editar"><br>
+							<div class="form-group">
+				                Sobre mim
+				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você"></textarea>
+				            </div>
+							<input class="form-control azul" type="submit" name="editar" value="Editar"><br>
 						</div>
 					</form>
 						<div class="col-md-12">
-							<input class="form-control" type="submit" name="excluir" value="Excluir" data-toggle="modal" data-target="#confirmar" >
+							<input class="form-control azul" type="submit" name="excluir" value="Excluir" data-toggle="modal" data-target="#confirmar" >
 						</div>
 						
 						<!--Confirmar excluir-->
