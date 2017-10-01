@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-	    <title>Cadastro</title>
+	    <title>Login</title>
 		<link rel="icon" type="image/x-icon" href="img/procast.ico"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<nav class="nav-menu hidden-xs hidden-sm"  style="background-color:#333 !important;">
-		<img src="img/logo_horizontal.png" class="pull-left img-responsive logo" >
+		<a href="index.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo"></a>
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-9">
 				<li class="item item-log">
 						<a class=" menu-item " href="login.php">Login <i hidden="true" class="fa fa-sign-in fa-1x icone">  </i></a>
