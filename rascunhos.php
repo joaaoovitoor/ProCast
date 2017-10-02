@@ -65,15 +65,14 @@
                         
                         <?php
                             if (isset($_POST['ext'])) {
-                                include('conexao.php');
-                                $sqlup='update mensagem set excluido="V" where id_receber="'.$con['id_usuario'].'";';
+                                $sqlup='update mensagem set excluido_env="V" where id_enviar='.$con['id_usuario'].';';
                                 mysqli_query($conexao,$sqlup);
                                 echo('<script>swal("Itens excluídos com sucesso", "", "success");</script>');
                             }
                         ?>
     				</div>
                                 <?php
-                                    $sqlsel='select * from mensagem where ((id_enviar="'.$con['id_usuario'].'") AND (excluido="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (favorito="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (rascunho="V")) ;';
+                                    $sqlsel='select * from mensagem where ((id_enviar="'.$con['id_usuario'].'") AND (excluido_env="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (favorito_env="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (rascunho="V")) ;';
                                     
                                     $resul=mysqli_query($conexao,$sqlsel);
                                     echo

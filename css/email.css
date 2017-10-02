@@ -32,6 +32,9 @@
 .fonte_cinza_claro{
 	color: #3c3d41 !important;
 }
+.fonte_cinza_escuro{
+	color: #333 !important;
+}
 .fonte_azul_escuro{
 	color: #02314c !important;
 }
@@ -60,6 +63,11 @@
 .nome_user{
 	border-bottom: 2px solid #1a5a9b;
 	padding-bottom: 4%;
+}
+.nome_user2{
+	border-bottom: 2px solid #1a5a9b;
+	padding-bottom: 1%;
+	margin-bottom: 5%;
 }
 .list-group-item:hover{
 	background: #3c3d41 !important;

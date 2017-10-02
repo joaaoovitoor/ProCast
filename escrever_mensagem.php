@@ -68,9 +68,6 @@
                             <label for="mensagem">Mensagem</label>
                             <textarea name="mensagem" class="form-control" id="mensagem" rows="10" cols="80"></textarea>
                         </div>
-                        <input type="hidden" name="favorito" value="F">
-                        <input type="hidden" name="rascunho" value="F">
-                        <input type="hidden" name="excluido" value="F">
                         <div class="mg_bt">
                             <label for='anexo' class="arq"> Anexar arquivo <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></label>
                             <input type="file" class="btn sem_bg borda_azul fonte_azul_claro mg_bt" name="anexo" id="anexo">
@@ -89,9 +86,6 @@
                 $destinatario=$_POST['destinatario'];
                 $assunto=$_POST['assunto'];
                 $mensagem=$_POST['mensagem'];
-                $favorito=$_POST['favorito'];
-                $rascunho=$_POST['rascunho'];
-                $excluido=$_POST['excluido'];
                 if (!empty($destinatario)&&!empty($assunto)&&!empty($mensagem)) 
                 {
                     $sqlsel='select * from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'") OR (nome="'.$destinatario.'");';
@@ -101,14 +95,30 @@
                     {
                         if (isset($_FILES['anexo']))
                         {
+                            $upFile = $_FILES['anexo']; //Esse índice 'file' é o atributo NAME do input do formulário
+                            $tmpName = $upFile['tmp_name'];
                             $extensao= strtolower(substr($_FILES['anexo']['name'], -4));//pega a extensão do arquivo
-                            $novo_nome= md5(time()) . $extensao; //criptografa a hora atual e concatena com id do usuario e extensao
-                            $diretorio="uploads/";
-                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome); //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
-                            $sqlin='insert into mensagem(assunto,id_enviar,mensagem,id_receber,favorito,rascunho,excluido,anexo, data) values ("'.$assunto.'",'.$con['id_usuario'].',"'.$mensagem.'",'.$con2['id_usuario'].',"'.$favorito.'","'.$rascunho.'","'.$excluido.'","'.$novo_nome.'",NOW());';
+                            $novo_nome= md5(time()).$extensao; 
+                            $error = (int) $upFile['error'];
+                            if($error == 0){
+                                if(move_uploaded_file($tmpName, 'uploads/'.$novo_nome))
+                                {
+                                        echo 'Arquivo enviado com sucesso!';
+                                } 
+                                else {
+                                        echo 'Problemas ao mover o arquivo.';
+                                }
+                            } 
+                            else 
+                            {
+                                echo 'Problemas ao enviar o arquivo.';
+                            }
+
+                            //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
+                            $sqlin='INSERT INTO mensagem(assunto,anexo,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$novo_nome.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
                         }
                         else{
-                            $sqlin='insert into mensagem(assunto,id_enviar,mensagem,id_receber,favorito,rascunho,excluido) values ("'.$assunto.'",'.$con['id_usuario'].',"'.$mensagem.'",'.$con2['id_usuario'].',"'.$favorito.'","'.$rascunho.'","'.$excluido.'");';
+                            $sqlin='INSERT INTO mensagem(assunto,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
                         }
                         mysqli_query($conexao,$sqlin);
                     }

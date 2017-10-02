@@ -58,10 +58,20 @@
 					<div class="mg_bt">
                         <div>
                             <button onclick="location.href='escrever_mensagem.php'" class="btn bg_azul_escuro fonte_branca" href="escrever_mensagem.php">Escrever Mensagem <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                            <form action="#" method="POST">
+                                <button type="submit" class="btn bg_azul_escuro fonte_branca" name="ext">Limpar Caixa <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            </form>
                         </div>
+                        <?php
+                            if (isset($_POST['ext'])) {
+                                $sqlup='update mensagem set excluido_rec="V" where id_receber='.$con['id_usuario'].';';
+                                mysqli_query($conexao,$sqlup);
+                                echo('<script>swal("Itens excluídos com sucesso", "", "success");</script>');
+                            }
+                        ?>
     				</div>
                                 <?php
-                                    $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (favorito="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (rascunho="F")) ;';
+                                    $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (favorito_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (rascunho="F")) ;';
                                     
                                     $resul=mysqli_query($conexao,$sqlsel);
                                     echo
@@ -87,11 +97,9 @@
                                                                 <h4 class="fonte_cinza_escuro nome_user"><strong>'.$con_nick['nick'].'</strong></h4>
                                                                 <p class="fonte_cinza_claro">'.$con_msg['assunto'].'</p>
                                                             </div>
-                                                            <div class="col-xs-offset-2 col-sm-offset-3 col-xs-5">
-                                                                <form action="#" method="GET">
-                                                                    <button type="submit" class="btn sem_bg borda_azul fonte_azul_claro mg_btn" name="fav">Favoritar Mensagem <span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
-                                                                    <a class="btn sem_bg borda_azul fonte_azul_claro mg_btn" href="mensagens.php?ex='.$con_msg['id_mensagem'].'">Apagar Mensagem <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                                                </form>
+                                                            <div class="col-xs-offset-2 col-sm-offset-2 col-xs-6">
+                                                               <a class="btn sem_bg borda_azul fonte_azul_claro mg_btn" href="mensagens.php?fav_1='.$con_msg['id_mensagem'].'">Favoritar Mensagem <span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>
+                                                                <a class="btn sem_bg borda_azul fonte_azul_claro mg_btn" href="mensagens.php?ex_1='.$con_msg['id_mensagem'].'">Apagar Mensagem <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                                             </div>
 
                                                         </div>
@@ -99,15 +107,25 @@
                                                 </a>
 
                                             '); 
-                                            if (isset($_GET['fav'])) {
-                                                $sqlup='update mensagem set favorito="V" where id_receber="'.$con['id_usuario'].'";';
+                                            if (isset($_GET['fav_1']))
+                                            {
+                                                $fav=$_GET['fav_1'];
+                                                $sqlup='update mensagem set favorito_env="V" where id_enviar='.$con['id_usuario'].' AND id_mensagem='.$fav.'';
                                                 mysqli_query($conexao,$sqlup);
-                                                echo('<script>swal("Item favoritado com sucesso", "", "success");</script>');
+                                                $sqlup='update mensagem set favorito_rec="V" where id_receber='.$con['id_usuario'].' AND id_mensagem='.$fav.'';
+                                                mysqli_query($conexao,$sqlup);
+                                                echo('<script>swal("Item desfavoritado com sucesso", "", "success");</script>');
+                                                echo('<script>window.location="mensagens_fav.php";</script>');
                                             }
-                                            if (isset($_GET['ex'])) {
-                                                $sqlup='update mensagem set excluido="V" where id_msg="'.$con['id_msg'].'";';
+                                            if (isset($_GET['ex_1'])) 
+                                            {
+                                                $ex=$_GET['ex_1'];
+                                                $sqlup='update mensagem set excluido_env="V" where id_enviar='.$con['id_usuario'].' AND id_mensagem='.$ex.'';
                                                 mysqli_query($conexao,$sqlup);
-                                                echo('<script>swal("Itens excluídos com sucesso", "", "success");</script>');
+                                                $sqlup='update mensagem set excluido_rec="V" where id_receber='.$con['id_usuario'].' AND id_mensagem='.$ex.'';
+                                                mysqli_query($conexao,$sqlup);
+                                                echo('<script>swal("Item excluído com sucesso", "", "success");</script>');
+                                                echo('<script>window.location="mensagens_exc.php";</script>');
                                             }
                                         }
                                             

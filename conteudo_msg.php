@@ -88,7 +88,7 @@
                                                 <a href="escrever_mensagem.php?msg='.$id.'" class="btn sem_bg fonte_azul_escuro sem_borda">
                                                     <i class="fa fa-reply" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="conteudo_msg.php?ex='.$id.'" class="btn sem_bg fonte_azul_escuro sem_borda">
+                                                <a href="conteudo_msg.php?fav='.$id.'" class="btn sem_bg fonte_azul_escuro sem_borda">
                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="conteudo_msg.php?ex='.$id.'" class="btn sem_bg fonte_azul_escuro sem_borda">
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="panel bg_branco_w">
                                         <div class="panel-body">
-                                            <div class="col-xs-12"><h3 class="fonte_azul_claro">'.strtoupper($con2['assunto']).'</h3></div>
+                                            <div class="col-xs-4 nome_user2"><h3 class="fonte_cinza_escuro">'.strtoupper($con2['assunto']).'</h3></div>
                                             <div class="col-xs-12 ">
                                                 '.$con2['mensagem'].'
                                             </div>
@@ -119,6 +119,25 @@
                                     </div>
                                 </div>        
                             ');
+                        }
+                        if (isset($_GET['fav'])) 
+                        {
+                            $fav=$_GET['fav'];
+                            $sqlup='update mensagem set favorito_env="V" where id_enviar='.$con['id_usuario'].' AND id_mensagem='.$fav.'';
+                            mysqli_query($conexao,$sqlup);
+                            $sqlup='update mensagem set favorito_rec="V" where id_receber='.$con['id_usuario'].' AND id_mensagem='.$fav.'';
+                            mysqli_query($conexao,$sqlup);
+                            echo('<script>window.location="mensagens_exc.php";</script>');
+                            echo('<script>window.location="mensagens_fav.php";</script>');
+                        }
+                        if (isset($_GET['ex'])) 
+                        {
+                            $ex=$_GET['ex'];
+                            $sqlup='update mensagem set excluido_env="V" where id_enviar='.$con['id_usuario'].' AND id_mensagem='.$ex.'';
+                            mysqli_query($conexao,$sqlup);
+                            $sqlup='update mensagem set excluido_rec="V" where id_receber='.$con['id_usuario'].' AND id_mensagem='.$ex.'';
+                            mysqli_query($conexao,$sqlup);
+                            echo('<script>window.location="mensagens_exc.php";</script>');
                         }
                     ?>    
     				</div>
