@@ -27,8 +27,7 @@
                 <div class="row">
                     <h1 class="text-center  texto_sombra"><strong>Clube</strong></h1> 
                     <p class="text-center  texto_sombra">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam
-                    </p>
+                       Veja as informações do seu clube<br>e de quais torneios ele está participando
                 </div>
             </div>
         </div>
