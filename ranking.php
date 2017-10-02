@@ -91,10 +91,10 @@
 					</tbody>
 				</table>
 			</div>
+<?php
+	include('rodape.html');
+?>
 		</div>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</body>
 </html>	
-<?php
- include('rodape.html');
-?>
