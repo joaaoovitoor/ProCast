@@ -70,6 +70,8 @@
                             $sqlsel='select * from usuario where id_usuario='.$con2['id_enviar'].';';
                             $resul=mysqli_query($conexao,$sqlsel);
                             $con3=mysqli_fetch_array($resul);
+                             $sqlup='update mensagem set view="V" where id_receber='.$con['id_usuario'].' AND id_mensagem='.$id.';';
+                            mysqli_query($conexao,$sqlup);
                             echo
                             ('
                                 <div class="bg_branco cx_em sombra">

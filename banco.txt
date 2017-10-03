@@ -157,10 +157,10 @@ CREATE TABLE mensagem(
 	excluido_rec varchar(11),
 	solicitacao_env varchar(11),
 	solicitacao_rec varchar(11),
-	id_enviar varchar(11) not null,
-	id_receber varchar(11) not null,
 	data DATETIME not null,
 	view varchar(1),
+	id_enviar int(11) not null,
+	id_receber int(11) not null,
 	constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario),
 	constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario)
 );

@@ -71,7 +71,7 @@
                         </div>
                     </div>
                                 <?php
-                                     $sqlsel='select * from mensagem where ((id_enviar="'.$con['id_usuario'].'") AND (excluido_env="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (favorito_env="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (rascunho="F")) ;';
+                                     $sqlsel='select * from mensagem where ((id_enviar="'.$con['id_usuario'].'") AND (excluido_env="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (favorito_env="F")) AND ((id_enviar="'.$con['id_usuario'].'") AND (rascunho="F")) ORDER BY id_mensagem DESC;';
                                     $resul=mysqli_query($conexao,$sqlsel);
                                     echo
                                     ('
@@ -99,13 +99,28 @@
                                                             <div class="col-xs-offset-2 col-sm-offset-2 col-xs-6">
                                                                <a class="btn sem_bg borda_azul fonte_azul_claro mg_btn" href="mensagens_env.php?fav_1='.$con_msg['id_mensagem'].'">Favoritar Mensagem <span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>
                                                                 <a class="btn sem_bg borda_azul fonte_azul_claro mg_btn" href="mensagens_env.php?ex_1='.$con_msg['id_mensagem'].'">Apagar Mensagem <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                                            <p class="col-xs-offset-11">
+                                           '); 
+                                            if ($con_msg['view']=="F") {
+                                                echo
+                                                ('
+                                                            <i class="fa fa-eye-slash" aria-hidden="true"></i></p>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </a>
-
-                                            '); 
+                                                ');
+                                            }
+                                            if ($con_msg['view']=="V") {
+                                                echo
+                                                ('
+                                                            <i class="fonte_azul_claro fa fa-eye" aria-hidden="true"></i></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                ');
+                                            }
                                             if (isset($_GET['fav_1']))
                                             {
                                                 $fav=$_GET['fav_1'];

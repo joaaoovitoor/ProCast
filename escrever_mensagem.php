@@ -88,32 +88,17 @@
                 $mensagem=$_POST['mensagem'];
                 if (!empty($destinatario)&&!empty($assunto)&&!empty($mensagem)) 
                 {
-                    $sqlsel='select * from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'") OR (nome="'.$destinatario.'");';
+                    $sqlsel='select * from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'");';
                     $resul=mysqli_query($conexao,$sqlsel);
                     $con2=mysqli_fetch_array($resul);
                     if(mysqli_num_rows($resul))
                     {
                         if (isset($_FILES['anexo']))
                         {
-                            $upFile = $_FILES['anexo']; //Esse índice 'file' é o atributo NAME do input do formulário
-                            $tmpName = $upFile['tmp_name'];
-                            $extensao= strtolower(substr($_FILES['anexo']['name'], -4));//pega a extensão do arquivo
-                            $novo_nome= md5(time()).$extensao; 
-                            $error = (int) $upFile['error'];
-                            if($error == 0){
-                                if(move_uploaded_file($tmpName, 'uploads/'.$novo_nome))
-                                {
-                                        echo 'Arquivo enviado com sucesso!';
-                                } 
-                                else {
-                                        echo 'Problemas ao mover o arquivo.';
-                                }
-                            } 
-                            else 
-                            {
-                                echo 'Problemas ao enviar o arquivo.';
-                            }
-
+                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+                            $diretorio="uploads/";
+                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
                             //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
                             $sqlin='INSERT INTO mensagem(assunto,anexo,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$novo_nome.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
                         }
@@ -121,6 +106,8 @@
                             $sqlin='INSERT INTO mensagem(assunto,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
                         }
                         mysqli_query($conexao,$sqlin);
+                        echo('<script>swal("Mensagem Enviada", "", "success");</script>');
+                        echo('<script>window.location="mensagens_env.php";</script>');
                     }
                     else
                     {
