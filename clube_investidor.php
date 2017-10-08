@@ -34,7 +34,7 @@
         </div>
 		<div class="container-fluid">
 			<div class="row">
-				<!-- Cartão com informações -->
+				<!-- CARD COM INFORMAÇÕES -->
 				<div class="col-md-5">
 			        <div class="cartao-grande">
 			            <img src="img/logo_redcanids.png" class="img-circle">
@@ -150,7 +150,6 @@
 						                </div>
 						            </div>
 								</section>
-								<!--FIM MENU - CLUBE-->
 								<!-- MENU - EVENTO -->
 								<section id="2">
 									<div class="container-fluid">
@@ -169,10 +168,8 @@
 											Horário <input type="text" class="form-control" name="nome" placeholder="Horário" maxlength="15" required>
 										</div>
 							            <br><input class="form-control azul" type="submit" name="confirmar" value="Criar">
-
 									</div>
 								</section>
-								<!--FIM MENU - EVENTO-->
 								<!-- MENU - TORNEIO -->
 								<section id="3">
 									<div class="cartao-equipe cinza">
@@ -181,7 +178,6 @@
 								      <small class="text-muted">Last updated 3 mins ago</small>
 						            </div>
 								</section>
-								<!--FIM MENU - TORNEIO-->
 								<!-- MENU VÍDEOS -->
 								<section id="4">
 									<input class="form-control azul" type="submit" value="Compartilhar Vídeo" data-toggle="collapse" data-target="#publicacao" aria-expanded="false" aria-controls="collapseExample"><br>
@@ -214,7 +210,6 @@
 										</div>
 									</div>
 								</section>
-								<!--FIM MENU - VÍDEOS-->
 								<!-- MENU - FOTOS -->
 								<section id="5">
 									<input class="form-control azul" type="submit" value="Compartilhar Foto" data-toggle="collapse" data-target="#foto" aria-expanded="false" aria-controls="collapseExample"><br>
@@ -236,8 +231,7 @@
 <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
 									</div>
 								</section>
-								<!--FIM MENU - FOTOS-->
-								<!--Alterar-->
+								<!-- MENU - ALTERAR-->
 								<section id="6">
 									<div class="row">
 										<div class="col-md-6">

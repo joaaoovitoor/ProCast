@@ -31,7 +31,7 @@
 	<?php
         include('menu2.php');
     ?>
-	<div class="banner-perfil perfil">
+	<div class="banner-perfil banner">
 		<div class="container-fluid">
 			<div class="row">
 				<!-- CARD COM INFORMAÇÕES - GRANDE -->
@@ -42,7 +42,7 @@
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
 			                    <div class="informacoes">
-			                        Nick<br><?php echo $con['nick'];?>
+			                        Nome <br><?php echo $con['nome'];?>
 			                    </div>
 			                </div>
 			            </div>
@@ -66,38 +66,7 @@
 		                    	echo $con['descricao'];
 							}
 		                    ?>
-		                     </p>
-		                    <p><strong>Função Primária:</strong>
-		                    <?php 
-								if ($con['funcao_1']=='c'){
-									echo 'Caçador';
-								}elseif ($con['funcao_1']=='m'){
-									echo 'Meio';
-								}elseif ($con['funcao_1']=='s'){
-									echo 'Suporte';
-								}elseif ($con['funcao_1']=='t'){
-									echo 'Topo';
-								}else{
-									echo 'Atirador';
-								}
-							?>
-		                    </p>
-		                    <p><strong>Função Secundária:</strong>
-		                    <?php 
-								if ($con['funcao_2']=='c'){
-									echo 'Caçador';
-								}elseif ($con['funcao_2']=='m'){
-									echo 'Meio';
-								}elseif ($con['funcao_2']=='s'){
-									echo 'Suporte';
-								}elseif ($con['funcao_2']=='t'){
-									echo 'Topo';
-								}else{
-									echo 'Atirador';
-								}
-							?>
-		                    </p>
-		                    <p><strong>Posicionamento:</strong> Alguma Coisa</p> 
+		                    </p> 
 			            </div>
 			        </div>
 				</div>
@@ -105,7 +74,7 @@
 				<div class="hidden-md hidden-lg">
 					<div class="cartao">
 					 <img src="img/perfil_icon.png" class="img-circle">
-                        <p>Nick: <?php echo $con['nick'];?> </p>
+                        <p>Nome: <?php echo $con['nome'];?> </p>
                         <p>Clube: Red Canids</p>
 		                <p>SOBRE MIM:
 		                <?php
@@ -116,37 +85,6 @@
 							}
 	                    ?>
 		                </p>
-	                    <p>Função Primária: 
-	                    <?php 
-							if ($con['funcao_1']=='c'){
-								echo 'Caçador';
-							}elseif ($con['funcao_1']=='m'){
-								echo 'Meio';
-							}elseif ($con['funcao_1']=='s'){
-								echo 'Suporte';
-							}elseif ($con['funcao_1']=='t'){
-								echo 'Topo';
-							}else{
-								echo 'Atirador';
-							}
-						?>
-	                    </p>
-	                    <p>Função Secundária: 
-	                    <?php 
-							if ($con['funcao_2']=='c'){
-								echo 'Caçador';
-							}elseif ($con['funcao_2']=='m'){
-								echo 'Meio';
-							}elseif ($con['funcao_2']=='s'){
-								echo 'Suporte';
-							}elseif ($con['funcao_2']=='t'){
-								echo 'Topo';
-							}else{
-								echo 'Atirador';
-							}
-						?>
-	                    </p>
-	                    <p>POSICIONAMENTO: Alguma Coisa</p>
 		            </div>
 				</div>
 			</div>
@@ -159,18 +97,17 @@
 			<section><div class="tabs tabs-style-linebox">
 				<nav>
 					<ul>
-						<li><a href="#1"><span>Clube</span></a></li>
-						<li><a href="#2"><span>Conquistas</span></a></li>
+						<li><a href="#1"><span>Jogadores</span></a></li>
+						<li><a href="#2"><span>Clube</span></a></li>
 						<li><a href="#3"><span>Agenda</span></a></li>
-						<li><a href="#4"><span>Vídeos</span></a></li>
-						<li><a href="#5"><span>Mensagens</span></a></li>
-						<li><a href="#6"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+						<li><a href="#4"><span>Mensagens</span></a></li>
+						<li><a href="#5"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
 					</ul>
 				</nav>
 				<div class="content-wrap">
-				<!--MENU - CLUBE-->
+				<!--MENU - JOGADORES-->
 				<section id="1">
-		            <?php for($v=1;$v<7;$v++){ ?>
+					<?php for($v=1;$v<7;$v++){ ?>
 		            <div class="cartao-equipe">
 		                <div class="media">
 		                    <div class="media-left">
@@ -188,57 +125,14 @@
 		            </div>
 		            <?php }; ?>
 				</section>
-				<!--MENU - CONQUISTAS-->
+				<!--MENU - CLUBE-->
 				<section id="2">
-					<div class="container-fluid">
-						<h4 align="center">Seu progresso</h4>
-						<div class="progress">
-						  <div class="progress-bar bg-progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-						    62%
-						  </div>
-						</div>
-						<br>
-						<!--Início do card conquista-->
-					    <div class="qa-message-list" id="wallmessages">
-		    				<div class="message-item" id="m16">
-								<div class="message-inner">
-									<div class="avatar pull-left"><img src="img/medalha.png"></div>
-									<div class="user-detail">
-										<h5 class="handle">Nome da conquista</h5>
-										<div class="post-meta">
-											<div class="asker-meta">
-												<span class="qa-message-what"></span>
-												<span class="qa-message-when">
-													<span class="qa-message-when-data">Descrição da conquista desconhecida que eu não sei ainda. </span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Fim do card conquista-->
-						<!--Início do card conquista-->
-					    <div class="qa-message-list" id="wallmessages">
-		    				<div class="message-item" id="m16">
-								<div class="message-inner">
-									<div class="avatar pull-left"><img src="img/medalha.png"></div>
-									<div class="user-detail">
-										<h5 class="handle">Nome da conquista</h5>
-										<div class="post-meta">
-											<div class="asker-meta">
-												<span class="qa-message-what"></span>
-												<span class="qa-message-when">
-													<span class="qa-message-when-data">Descrição da conquista desconhecida que eu não sei ainda. </span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Fim do card conquista-->
-					</div>
+					<div class="cartao-equipe cinza">
+					  <img src="img/logo_redcanids.png">
+				      <h2>RED CANIDS</h2>
+				      Informações do clube this card has supporting text below as a natural lead-in to additional content.<br>
+				      <small class="text-muted">Data de criação:06/08/2015</small>
+		            </div>
 				</section>
 				<!--MENU - AGENDA-->
 				<section id="3">
@@ -261,40 +155,8 @@
 		                </div>
 		            </div>   
 				</section>
-				<!--MENU - VÍDEO-->
-				<section id="4">
-					<input class="form-control azul" type="submit" value="Compartilhar Vídeo" data-toggle="collapse" data-target="#publicacao" aria-expanded="false" aria-controls="collapseExample"><br>
-					<div class="collapse" id="publicacao">
-					<div class="card card-body">
-						<div class="form-group">
-						    <label class="form-control-label" for="formGroupExampleInput">Nome do Vídeo</label>
-							<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nome">
-						</div>
-						<div class="form-group">
-						    <label for="exampleFormControlTextarea1">Descrição</label>
-						    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Faça uma breve descrição do vídeo"></textarea>
-						</div>
-						<div class="form-group">
-						    <label for="exampleFormControlTextarea1">Link</label>
-						    <a href="ajuda.php"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
-						    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-						</div>
-						<br><input class="form-control" type="submit" name="publicar" value="Publicar"><br>
-					</div>
-					</div>
-					<div class="card mb-3">
-						<div class="embed-responsive embed-responsive-16by9">
-				  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-6JqoJrM9IM"></iframe>
-				</div>
-						<div class="card-body">
-							<h4 class="card-title">Nome do Vídeo</h4>
-							<p class="card-text">Descrição do Vídeo</p>
-							<p class="card-text"><small class="text-muted">Publicado em:20/08/2017</small></p>
-						</div>
-					</div>
-				</section>
 				<!--MENU - MENSAGEM-->
-				<section id="5">
+				<section id="4">
 					<div class="message-item" id="m16">
 						<div class="message-inner">
 							<div class="message-head clearfix">
@@ -365,7 +227,7 @@
 					<!--Fim da mensagem-->
 				</section>
 				<!--MENU - ALTERAR-->
-				<section id="6">
+				<section id="5">
 				    <!--Formulário para alterar-->
 					<form action="#" method="post">
 						<input type="hidden" class="validate" name="id_usuario" value="<?php echo($con['id_usuario']);?>">
@@ -377,46 +239,10 @@
 								Sobrenome <input type="text" class="form-control" name="sobrenome_edt"  maxlength="15" value="<?php echo $con['sobrenome'];?>">
 							</div>
 							<div class="form-group">
-								Nick <input type="text" class="form-control" name="nick_edt" maxlength="15" value="<?php echo $con['nick'];?>">
-							</div>
-							<div class="form-group">
-							Função primária
-							<select name="funcao_1_edt" class="form-control">
-							  <option <?php if($con['funcao_1']=='a'){echo 'selected';}?> value="a">Atirador</option>
-							  <option <?php if($con['funcao_1']=='c'){echo 'selected';}?> value="c">Caçador</option>
-							  <option <?php if($con['funcao_1']=='m'){echo 'selected';}?> value="m">Meio</option>
-							  <option <?php if($con['funcao_1']=='s'){echo 'selected';}?> value="s">Suporte</option>
-							  <option  <?php if($con['funcao_1']=='t'){echo 'selected';}?> value="t">Topo</option>
-							</select>
-							</div>
-							<div class="form-group">
-							Função secundária
-							<select name="funcao_2_edt" class="form-control">
-							  <option <?php if($con['funcao_2']=='a'){echo 'selected';}?> value="a">Atirador</option>
-							  <option <?php if($con['funcao_2']=='c'){echo 'selected';}?> value="c">Caçador</option>
-							  <option <?php if($con['funcao_2']=='m'){echo 'selected';}?> value="m">Meio</option>
-							  <option <?php if($con['funcao_2']=='s'){echo 'selected';}?> value="s">Suporte</option>
-							  <option  <?php if($con['funcao_2']=='t'){echo 'selected';}?> value="t">Topo</option>
-							</select>
+								E-mail <input type="text" class="form-control" name="email_edt" maxlength="15" value="<?php echo $con['email'];?>">
 							</div>
 							<div class="form-group">
 								Senha <input type="password" name="senha_edt" value="senha" maxlength="25" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								Sexo <input type="text" class="form-control" value=
-								"<?php 
-									if ($con['sexo']=='f'){
-										echo 'Feminino';
-									}else{
-										echo 'Masculino';
-									}
-								?>"
-								readonly>
-							</div>
-							<div class="form-group">
-								E-mail<input type="email" name="email_edt" value="<?php echo $con['email'];?>" class="form-control" maxlength="30">
 							</div>
 							<div class="form-group">
 								Estado
@@ -450,8 +276,24 @@
 									<option <?php if($con['estado']=='to'){echo 'selected';}?> value="to">Tocantins</option> 
 								</select>
 							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								Sexo <input type="text" class="form-control" value=
+								"<?php 
+									if ($con['sexo']=='f'){
+										echo 'Feminino';
+									}else{
+										echo 'Masculino';
+									}
+								?>"
+								readonly>
+							</div>
 							<div class="form-group">
 								CPF <input type="text" class="form-control" value="<?php echo $con['cpf'];?>" readonly>
+							</div>
+							<div class="form-group">
+								CNPJ <input type="text" class="form-control" value="<?php echo $con['cnpj'];?>" readonly>
 							</div>
 							<div class="form-group">
 								Data de nascimento<input type="text" class="form-control" value="<?php echo $con['dta_nascimento'];?>" readonly>
