@@ -79,7 +79,7 @@
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de informações do perfil</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-remove-circle fonte_cinza_claro" aria-hidden="true"></span> Anúncio de programação de partidas</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-remove-circle fonte_cinza_claro" aria-hidden="true"></span> Anúncio de conquistas</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 1 semana</li>
+                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 7 dias</li>
                         </ul>
                         <p class="mg_ld">
                             <a href="#" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp"><strong>Contratar</strong></a>
@@ -99,7 +99,7 @@
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de informações do perfil</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de programação de partidas</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de conquistas</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 10 dias</li>
+                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 14 dias</li>
                         </ul>
                         <p class="mg_ld">
                             <a href="#" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp"><strong>Contratar</strong></a>
@@ -118,7 +118,7 @@
                         <ul class="list-group">
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de nomes dos integrantes do clube</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de conquistas do clube</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de uma semana</li>
+                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 14 dias</li>
                         </ul>
                         <p class="mg_ld">
                             <a href="#" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp"><strong>Contratar</strong></a>
