@@ -1,5 +1,16 @@
 <?php
 	ob_start();
+	session_start();
+    if(isset($_SESSION['email'])){
+        $email_usuario=$_SESSION['email'];
+        include('conexao.php');
+        $sqlsel='select * from usuario where email="'.$email_usuario.'";';
+        $resul=mysqli_query($conexao,$sqlsel);
+        $con=mysqli_fetch_array($resul);
+    }
+    else{
+        header('location:destruir.php');    
+    }
 ?>
 <html lang="pt-br">
 	<head>
@@ -23,7 +34,7 @@
 	<div class="banner-perfil perfil">
 		<div class="container-fluid">
 			<div class="row">
-				<!-- Cartão com informações - GRANDE -->
+				<!-- CARD COM INFORMAÇÕES - GRANDE -->
 				<div class="col-md-offset-0 col-md-5 hidden-sm hidden-xs">
 			        <div class="cartao-grande spc-cartao">
 			            <img src="img/perfil_icon.png" class="img-circle">
@@ -31,7 +42,7 @@
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
 			                    <div class="informacoes">
-			                        Nick<br>Nome do jogador
+			                        Nick<br><?php echo $con['nick'];?>
 			                    </div>
 			                </div>
 			            </div>
@@ -47,21 +58,94 @@
 			                </div>
 			            </div>
 			            <div class="descricao">
-			                    <p><strong>Sobre mim:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-			                    <p><strong>Função Primária:</strong> Suporte</p>
-			                    <p><strong>Função Secundária:</strong> Suporte</p>
+			                    <p><strong>Sobre mim:</strong>
+			                    <?php
+			                    if($con['descricao']==NULL){
+									echo 'Crie uma descrição<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
+								}else{
+			                    	echo $con['descricao'];
+								}
+			                    ?>
+			                     </p>
+			                    <p><strong>Função Primária:</strong>
+			                    <?php 
+									if ($con['funcao_1']=='c'){
+										echo 'Caçador';
+									}elseif ($con['funcao_1']=='m'){
+										echo 'Meio';
+									}elseif ($con['funcao_1']=='s'){
+										echo 'Suporte';
+									}elseif ($con['funcao_1']=='t'){
+										echo 'Topo';
+									}else{
+										echo 'Atirador';
+									}
+								?>
+			                    </p>
+			                    <p><strong>Função Secundária:</strong>
+			                    <?php 
+									if ($con['funcao_2']=='c'){
+										echo 'Caçador';
+									}elseif ($con['funcao_2']=='m'){
+										echo 'Meio';
+									}elseif ($con['funcao_2']=='s'){
+										echo 'Suporte';
+									}elseif ($con['funcao_2']=='t'){
+										echo 'Topo';
+									}else{
+										echo 'Atirador';
+									}
+								?>
+			                    </p>
 			                    <p><strong>Posicionamento:</strong> Alguma Coisa</p> 
 			            </div>
 			        </div>
 				</div>
-				<!-- Cartão com informações - PEQUENO -->
+				<!-- CARD COM INFORMAÇÕES - PEQUENO -->
 				<div class="hidden-md hidden-lg">
 					<div class="cartao">
 					 <img src="img/perfil_icon.png" class="img-circle">
-                            <p>Nick: DIOUD</p>
+                            <p>Nick: <?php echo $con['nick'];?> </p>
                             <p>Clube: Red Canids</p>
-			                <p>SOBRE MIM: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod or.</p>
-		                    <p>FUNÇÃO: Suporte</p>
+			                <p>SOBRE MIM:
+			                <?php
+			                    if($con['descricao']==NULL){
+									echo 'Crie uma descrição<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
+								}else{
+			                    	echo $con['descricao'];
+								}
+		                    ?>
+			                </p>
+		                    <p>Função Primária: 
+		                    <?php 
+								if ($con['funcao_1']=='c'){
+									echo 'Caçador';
+								}elseif ($con['funcao_1']=='m'){
+									echo 'Meio';
+								}elseif ($con['funcao_1']=='s'){
+									echo 'Suporte';
+								}elseif ($con['funcao_1']=='t'){
+									echo 'Topo';
+								}else{
+									echo 'Atirador';
+								}
+							?>
+		                    </p>
+		                    <p>Função Secundária: 
+		                    <?php 
+								if ($con['funcao_2']=='c'){
+									echo 'Caçador';
+								}elseif ($con['funcao_2']=='m'){
+									echo 'Meio';
+								}elseif ($con['funcao_2']=='s'){
+									echo 'Suporte';
+								}elseif ($con['funcao_2']=='t'){
+									echo 'Topo';
+								}else{
+									echo 'Atirador';
+								}
+							?>
+		                    </p>
 		                    <p>POSICIONAMENTO: Alguma Coisa</p>
 		            </div>
 				</div>
@@ -334,14 +418,6 @@
 					<!--Fim da mensagem-->
 				</section><!--FIM MENU - MENSAGAEM-->
 				<section id="6"><!--MENU - ALTERAR-->
-					<!--Coletar dados do jogador-->
-					<?php
-				    	include('conexao.php');
-				    	$sqlsel=('SELECT * FROM usuario;');
-				    	/*WHERE id_usuario="'.$_SESSION['id_usuario'].'"*/
-						$resul=mysqli_query($conexao,$sqlsel);
-						$con=mysqli_fetch_array($resul);
-				    ?>
 				    <!--Formulário para alterar-->
 					<form action="#" method="post">
 						<input type="hidden" class="validate" name="id_usuario" value="<?php echo($con['id_usuario']);?>">
@@ -439,7 +515,7 @@
 						<div class="col-md-12">
 							<div class="form-group">
 				                Sobre mim
-				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você"></textarea>
+				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você" name="descricao_edt" maxlength="200" value="<?php echo $con['descricao'];?>"></textarea>
 				            </div>
 							<input class="form-control azul" type="submit" name="editar" value="Editar"><br>
 						</div>
@@ -469,14 +545,11 @@
 						      </form>
 						      <!--Excluir-->
 								<?php
-									include('conexao.php');
 									if(isset($_POST['confirmar']))
 									{
-								    	$sqlsel=('SELECT email,senha FROM usuario;');
-								    	/*WHERE id_usuario="'.$_SESSION['id_usuario'].'"*/
-								    	
+								    	$sqlsel=('SELECT email,senha FROM usuario WHERE email="'.$email_usuario.'" ;');
 										$email_verificacao=$_POST['email_verificacao'];
-										$senha_verificacao=md5($_POST['senha_verificacao']);
+										$senha_verificacao=base64_decode($_POST['senha_verificacao']);
 										if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha']){
 											header ('excluir.php');
 										}else{
@@ -500,14 +573,15 @@
 							$nick=$_POST['nick_edt'];
 							$funcao_1=$_POST['funcao_1_edt'];
 							$funcao_2=$_POST['funcao_2_edt'];
-							$senha=md5($_POST['senha_edt']);
+							$senha=base64_encode($_POST['senha_edt']);
 							$email=$_POST['email_edt'];
 							$estado=$_POST['estado_edt'];
 							$telefone=$_POST['telefone_edt'];
+							$descricao=$_POST['descricao_edt'];
 							//edita
-							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", nick="'.$nick.'", funcao_1="'.$funcao_1.'", funcao_2="'.$funcao_2.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'" WHERE id_usuario='.$id_usuario.';');
+							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", nick="'.$nick.'", funcao_1="'.$funcao_1.'", funcao_2="'.$funcao_2.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE email="'.$email_usuario.'" ;');
 							mysqli_query($conexao,$sqledt);
-							header('location:perfil.php');
+							header('location:perfil_jogador.php');
 							exit();	
 						}
 					?>

@@ -1,23 +1,5 @@
 
-/*CAIXA COM TEXTO*/
-.intro-icon {
-  display: inline-block;
-  vertical-align: top;
-  padding: 5% 0 0 43%;
-  margin-right: 20px;
-  width: 60px;
- }
 
-.intro-content {
-  text-align: center;
-  display: inline-block;
-  width: 100%;
- }
-
-.intro-content h5{
-	font-size: 2rem;
-    color: #1A5A9B;
-}
 /* ==========================================================================
 Features-stack
 ========================================================================== */

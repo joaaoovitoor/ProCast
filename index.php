@@ -6,9 +6,7 @@
 		<link rel="stylesheet" href="css/index/slideshow.css" />
 	    <!--ESTILO-->
 	    <link rel="stylesheet" href="css/index/estilo.css">
-		<link rel="stylesheet" type="text/css" href="css/index/ranking.css" />
 		<link rel="stylesheet" type="text/css" href="css/index/landio.css" />
-        <link rel="stylesheet" type="text/css" href="css/index/styles.css" />
 		<?php
 			include('link_head.html');
 		?>
@@ -20,13 +18,13 @@
 		<!--SLIDESHOW-->
 		<section class="masthead">
 			<video class="masthead-video" autoplay loop muted poster="assets/images/poster.jpg">
-				<source src="img/index/lol.MP4" type="video/mp4">
+				<source src="img/index/lol.MP4" type="video/mp4"></source>
 			</video>
 			<div class="masthead-overlay"></div>
 			<div class="masthead-arrow"></div>
 			<h1>ProCast<span>Seja um profissional</span></h1>
 		</section>
-		<!---->
+		<!--TEXTO-->
 		<div style="height: 20%"></div>
 		<div class="container-fluid">
             <div class="row">
@@ -58,55 +56,8 @@
                     </div>
                 </div>
             </div>
-        </div><div style="height: 20%"></div>
-			
-        <!--NOTÍCIA--
-        <div class="container-fluid"
-        	<div class="row">
-				<div class="pricing-table">
-					<div class="col-lg-4">
-					    <div class="pricing-option">
-					        <h2>Título da notícia</h2>
-					        <p>
-					        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente harum voluptatum, sit cum voluptatibus inventore quae qui provident eveniet dicta at, quibusdam ipsam iusto reprehenderit hic saepe nesciunt sed illo.
-					        </p>
-					        <div class="price">
-					            <div class="front">
-					                <span class="price">Continue lendo...</span>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-					<div class="col-lg-4">
-					    <div class="pricing-option">
-					        <h2>Título da notícia</h2>
-					        <p>
-					        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente harum voluptatum, sit cum voluptatibus inventore quae qui provident eveniet dicta at, quibusdam ipsam iusto reprehenderit hic saepe nesciunt sed illo.
-					        </p>
-					        <div class="price">
-					            <div class="front">
-					                <span class="price">Continue lendo...</span>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-					<div class="col-lg-4">
-					    <div class="pricing-option">
-					        <h2>Título da notícia</h2>
-					        <p>
-					        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente harum voluptatum, sit cum voluptatibus inventore quae qui provident eveniet dicta at, quibusdam ipsam iusto reprehenderit hic saepe nesciunt sed illo.
-					        </p>
-					        <div class="price">
-					            <div class="front">
-					                <span class="price">Continue lendo...</span>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-					
-				</div>
-			</div>
-		</div>-->
+        </div>
+		<div style="height: 20%"></div>
 		<!--RANKING-->
 		<div class="container-fluid">
 			<div class="row">
@@ -136,7 +87,7 @@
 			    </div>
 			</div>
 		</div>
-		<!---->
+		<!--TEXTO COM BOTÃO-->
 		<div class="container-fluid">
             <div class="row">
                 <div class="col-md-offset-2 col-md-5">
@@ -146,35 +97,25 @@
 Com a plataforma você tem muito mais chances de ser encontrado e ser convocado para grandes equipes. Não perca tempo!
 
                         </p>
-                        BOTÃO
+                        <button type="button" class="btn botao">Cadastre-se</button>
                     </div>
                 </div>
                 <div class="col-md-5">
                 	<img src="img/index/foto2.png" alt="responsive devices">
                 </div>
             </div>
-        </div><div style="height: 20%"></div>
-    
-		<!--VÍDEO VIRAL--
-		<div class="container-fluid">
-	    	<div class="row">
-	    		<div class="col-md-offset-0 col-md-12">
-		    		<div class="embed-responsive embed-responsive-16by9">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-6JqoJrM9IM"></iframe>
-						</div>
-					</div>
-				</div>
-	    	</div>
-	    </div>-->
+        </div>
+        <div style="height: 20%"></div>
+        <!--VÍDEO VIRAL-->
 	    <video id="demo_video" class="video-js vjs-default-skin vjs-big-play-centered" controls poster="img/index/capa_video.png" data-setup='{}'>
-      <source src="img/index/lol.MP4" type='video/mp4'>
-    </video>
-        
+	      <source src="img/index/lol.MP4" type='video/mp4'></source>
+	    </video>
 	    <!--COMENTÁRIOS-->
+	    <div style="height: 20%"></div>
 	    <div class="container-fluid">
 			<div class='row'>
-			    <div class='col-md-offset-1 col-md-10'>
+			    <div class='col-md-offset-0 col-md-12'>
+			    	<h2 align="center">Comentários dos Usuários</h2>
 			      <div class="carousel slide" data-ride="carousel" id="quote-carousel">
 			        
 			        <div class="carousel-inner">
@@ -227,7 +168,6 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 		    	</div>
 		  	</div>
 		</div>
-		
 		<!--RODAPÉ-->
 		<?php
 			include('rodape.html');

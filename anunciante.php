@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-	    <title>Cadastro</title>
+	    <title>Anunciante</title>
 		<link rel="icon" type="image/x-icon" href="img/procast.ico"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
@@ -20,10 +20,7 @@
 		<a href="index.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-9">
 				<li class="item item-log">
-						<a class=" menu-item " href="login.php">Login <i hidden="true" class="fa fa-sign-in fa-1x icone">  </i></a>
-				</li>
-				<li class="item item-log">
-						<a class=" menu-item " href="cadastro.php">Cadastrar <i hidden="true" class="fa fa-sign-in fa-1x icone">  </i></a>
+						<a class=" menu-item " href="index.php">Home <i class="fa fa-home" aria-hidden="true"></i></a>
 				</li>	
 			</ul>
 		</nav>
@@ -35,10 +32,7 @@
 		<!-- Menu mobile-->
 	<nav hidden="true" id="mobile" class="nav-menu-mobile  text-center hidden-md">
 		<div class="row item-mobile login-mob">
-			<a href="login.php">Login <i class="fa fa-sign-in"></i></a>
-		</div>
-		<div class="row item-mobile login-mob">
-			<a href="cadastro.php">Cadastrar <i class="fa fa-sign-in"></i></a>
+			<a href="index.php">Home <i class="fa fa-home" aria-hidden="true"></i></a>
 		</div>
 	</nav>
 	<!-- fim Menu mobile-->
@@ -72,116 +66,32 @@
 							<div class="tabs tabs-style-iconbox">
 								<nav>
 									<ul>
-										<li><a href="jogador" class="icon icon-home"><span>Jogador</span></a></li>
-										<li><a href="investidor" class="icon icon-gift"><span>Investidor</span></a></li>
+										<li><a href="login" class="icon icon-home"><span>Login</span></a></li>
+										<li><a href="cadastro" class="icon icon-gift"><span>Cadastro</span></a></li>
 									</ul>
 								</nav>
 								<div class="content-wrap">
-									<!-- FORMULÁRIO JOGADOR -->
-									<section id="jogador">
-										<form action="verificar.php" method="post">
-											<div class="col-md-6">
-												<div class="form-group">
-													Nome <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
-												</div>
-												<div class="form-group">
-													Sobrenome <input type="text" class="form-control" name="sobrenome"  maxlength="30" placeholder="Sobrenome" required>
-												</div>
-												<div class="form-group">
-													Nick <input type="text" class="form-control" name="nick" maxlength="16" placeholder="Nick" required>
-												</div>
-												<div class="form-group">
-												Função primária
-												<select name="funcao_1" class="form-control">
-												  <option value="a">Atirador</option>
-												  <option value="c">Caçador</option>
-												  <option value="m">Meio</option>
-												  <option value="s">Suporte</option>
-												  <option value="t">Topo</option>
-												</select>
-												</div>
-												<div class="form-group">
-												Função secundária
-												<select name="funcao_2" class="form-control">
-												  <option value="a">Atirador</option>
-												  <option value="c">Caçador</option>
-												  <option value="m">Meio</option>
-												  <option value="s">Suporte</option>
-												  <option value="t">Topo</option>
-												</select>
-												</div>
-												<div class="form-group">
-													Senha <input type="password" name="senha" placeholder="Senha" maxlength="25" class="form-control" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													Sexo
-													<select name="sexo" class="form-control">
-													  <option value="f">Feminino</option>
-													  <option value="m">Masculino</option>
-													</select>
-												</div>
-												<div class="form-group">
-													E-mail<input type="email" name="email" placeholder="E-mail" required class="form-control" maxlength="30">
-												</div>
-												<div class="form-group">
-													Estado
-													<select name="estado" class="form-control">
-														<option value="ac">Acre</option> 
-														<option value="al">Alagoas</option> 
-														<option value="am">Amazonas</option> 
-														<option value="ap">Amapá</option> 
-														<option value="ba">Bahia</option> 
-														<option value="ce">Ceará</option> 
-														<option value="df">Distrito Federal</option> 
-														<option value="es">Espírito Santo</option> 
-														<option value="go">Goiás</option> 
-														<option value="ma">Maranhão</option> 
-														<option value="mt">Mato Grosso</option> 
-														<option value="ms">Mato Grosso do Sul</option> 
-														<option value="mg">Minas Gerais</option> 
-														<option value="pa">Pará</option> 
-														<option value="pb">Paraíba</option> 
-														<option value="pr">Paraná</option> 
-														<option value="pe">Pernambuco</option> 
-														<option value="pi">Piauí</option> 
-														<option value="rj">Rio de Janeiro</option> 
-														<option value="rn">Rio Grande do Norte</option> 
-														<option value="ro">Rondônia</option> 
-														<option value="rs">Rio Grande do Sul</option> 
-														<option value="rr">Roraima</option> 
-														<option value="sc">Santa Catarina</option> 
-														<option value="se">Sergipe</option> 
-														<option value="sp">São Paulo</option> 
-														<option value="to">Tocantins</option> 
-													</select>
-												</div>
-												<div class="form-group">
-													CPF <input type="text" class="form-control" name="cpf" placeholder="CPF" id="cpf" required>
-												</div>
-												<div class="form-group">
-													Data de nascimento<input type="text" class="form-control" name="dta_nascimento" placeholder="dd/mm/aaaa" id="data" required>
-												</div>
-												<div class="form-group">
-													Telefone <input type="text" class="form-control" name="telefone" placeholder="(dd) 00000-0000" id="telefone" required>
-												</div>
-											</div>
-											<div class="col-md-12">
-											<div class="checkbox">
-											    <label>
-											      <input type="checkbox" required checked><a href="#">Li e concordo com os termos de uso</a>
-											    </label>
-											</div>
-											<input type="hidden" name="categoria_usuario" value="1">
-											<input class="form-control btn-outro" type="submit" name="enviar_jogador" value="Enviar">
-											</div>
+									<!-- LOGIN -->
+									<section id="login">
+										<form action="" method="POST">
+                                            <div class="col-md-12" style="margin-top: 10%">
+                                                <h2 align="center">Login</h2>
+                                                <div class="form-group">
+                                                    E-mail <input type="text" name="usuario" placeholder="E-mail" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    Senha <input type="password" name="senha" placeholder="Senha" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" name="logar" value="Entrar" class="form-control btn btn-outro">
+                                                </div>
+                                            </div>
 										</form>
 									</section>
 									
-									<!-- FORMULÁRIO INVESTIDOR -->
+									<!-- CADASTRO -->
 									<section id="investidor">
-										<form action="verificar.php" method="post">
+										<form action="" method="POST">
 											<div class="col-md-6">
 												<div class="form-group">
 													Nome <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
@@ -194,16 +104,15 @@
 												</div>
 												<div class="form-group">
 													E-mail<input type="email" name="email" placeholder="E-mail" required class="form-control" maxlength="30">
-												</div>
-												<div class="form-group">
-													Sexo
-													<select name="sexo" class="form-control">
-													  <option value="">Feminino</option>
-													  <option value="">Masculino</option>
-													</select>
-												</div>													
+												</div>												
 											</div>
 											<div class="col-md-6">
+                                                <div class="form-group">
+													 Nome da Empresa <input type="text" class="form-control" name="nome_empresa" placeholder="Nome da Empresa" maxlength="25" required>
+												</div>
+                                                <div class="form-group">
+													CNPJ <input type="text" maxlength="18" class="form-control" name="cnpj" placeholder="CNPJ" id="cnpj" required>
+												</div>
 												<div class="form-group">
 													Estado
 													<select name="estado" class="form-control">
@@ -236,17 +145,37 @@
 														<option value="to">Tocantins</option> 
 													</select>
 												</div>
-												<div class="form-group">
-													CNPJ <input type="text" maxlength="18" class="form-control" name="cnpj" placeholder="CNPJ (Opcional)" id="cnpj">
-												</div>
-												<div class="form-group">
-													 CPF <input type="text" class="form-control" name="cpf" placeholder="CPF" id="cpf2" required>
-												</div>
-												<div class="form-group">
-													Data de nascimento<input type="text" maxlength="10" class="form-control" name="dta_nascimento" placeholder="dd/mm/aaaa" id="data2" required>
-												</div>
-												<div class="form-group">
-													Telefone <input type="text" class="form-control" name="telefone" placeholder="(dd) 00000-0000" id="telefone2"required>
+                                                <div class="form-group">
+													Cidade
+													<select name="cidade" class="form-control">
+														<option value="ac">Acre</option> 
+														<option value="al">Alagoas</option> 
+														<option value="am">Amazonas</option> 
+														<option value="ap">Amapá</option> 
+														<option value="ba">Bahia</option> 
+														<option value="ce">Ceará</option> 
+														<option value="df">Distrito Federal</option> 
+														<option value="es">Espírito Santo</option> 
+														<option value="go">Goiás</option> 
+														<option value="ma">Maranhão</option> 
+														<option value="mt">Mato Grosso</option> 
+														<option value="ms">Mato Grosso do Sul</option> 
+														<option value="mg">Minas Gerais</option> 
+														<option value="pa">Pará</option> 
+														<option value="pb">Paraíba</option> 
+														<option value="pr">Paraná</option> 
+														<option value="pe">Pernambuco</option> 
+														<option value="pi">Piauí</option> 
+														<option value="rj">Rio de Janeiro</option> 
+														<option value="rn">Rio Grande do Norte</option> 
+														<option value="ro">Rondônia</option> 
+														<option value="rs">Rio Grande do Sul</option> 
+														<option value="rr">Roraima</option> 
+														<option value="sc">Santa Catarina</option> 
+														<option value="se">Sergipe</option> 
+														<option value="sp">São Paulo</option> 
+														<option value="to">Tocantins</option> 
+													</select>
 												</div>
 											</div>
 											<div class="col-md-12">
@@ -260,7 +189,6 @@
 											</div>
 										</form>
 									</section>
-									
 								</div>
 							</div>
 						</section>

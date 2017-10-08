@@ -17,7 +17,8 @@ CREATE TABLE usuario(
 	email varchar (30) not null,
 	dta_nascimento char(10) not null,
 	estado char(2) not null,
-	telefone char(15) not null
+	telefone char(15) not null,
+	descricao text 
 );
 
 CREATE TABLE admin(

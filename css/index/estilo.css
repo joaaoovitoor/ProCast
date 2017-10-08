@@ -1,6 +1,15 @@
 *{
 	font-family: 'Nunito', sans-serif;
 }
+.botao{
+    margin-top: 5%;
+    border-radius: 40px !important;
+    padding: 18px 35px !important;
+    margin-bottom: 15% !important;
+    color: #f4f2f4 !important;
+    background: linear-gradient(to right, #02314c, #1a5a9b) !important;
+}
+
 .primeiro p{
 	margin-top:-80%;
 }
@@ -240,4 +249,152 @@
         width: 20px;
         height: 20px;
     }
+}
+
+/*CAIXA COM TEXTO*/
+.intro-icon {
+  display: inline-block;
+  vertical-align: top;
+  padding: 5% 0 0 43%;
+  margin-right: 20px;
+  width: 60px;
+ }
+
+.intro-content {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+ }
+
+.intro-content h5{
+	font-size: 2rem;
+    color: #1A5A9B;
+}
+
+/*RANKING*/
+
+.pricing {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	width: 100%;
+	margin: 0 auto 3em;
+	padding-top: 10%;
+}
+
+.pricing__item {
+	padding-top: 5%;
+    padding-bottom: 5%;
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+	text-align: center;
+	-webkit-flex: 0 1 330px;
+	flex: 0 1 330x;
+}
+
+.pricing__feature-list {
+	text-align: left;
+}
+
+.pricing__action {
+	color: inherit;
+	border: none;
+	background: none;
+}
+
+.pricing__action:focus {
+	outline: none;
+}
+
+.pricing--pema .pricing__item {
+	margin: 10px;
+	color: #262b38;
+	background: #fff;
+	cursor: default;
+	overflow: hidden;
+	box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+@media screen and (min-width: 66.250em) {
+	}
+	.pricing--pema .pricing__item--featured {
+		z-index: 10;
+		margin: 0;
+		font-size: 1.15em;
+	}
+}
+
+.pricing--pema .pricing__title {
+	font-size: 2em;
+	margin: 0.5em 0 0;
+	color: #1d211f;
+}
+
+.pricing--pema .icon {
+	display: inline-block;
+	min-width: 2em;
+	color: #8A9790;
+	vertical-align: middle;
+}
+
+.pricing--pema .pricing__price {
+	font-size: 5em;
+	font-weight: 800;
+	color: #6ed19c;
+	position: relative;
+	z-index: 100;
+}
+
+.pricing--pema .pricing__currency {
+	font-size: 0.5em;
+	vertical-align: super;
+}
+
+.pricing--pema .pricing__period {
+	font-size: 0.25em;
+	display: inline-block;
+	padding: 0 0 0 0.5em;
+	color: #CEDED6;
+}
+
+.pricing--pema .pricing__sentence {
+	font-weight: bold;
+	margin: 0 0 1em 0;
+	padding: 0 0 0.5em;
+	color: #02134c;
+}
+
+.pricing--pema .pricing__feature-list {
+	font-size: 0.95em;
+	margin: 0;
+	padding: 1.5em 0.5em 2.5em;
+	list-style: none;
+}
+
+.pricing--pema .pricing__feature {
+	padding: 0.15em 0;
+}
+
+.pricing--pema .pricing__action {
+	font-weight: bold;
+	margin-top: auto;
+	padding: 1em 2em;
+	color: #fff;
+	border-radius: 5px;
+	background: #6ed19c;
+	-webkit-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+
+.pricing--pema .pricing__action:hover,
+.pricing--pema .pricing__action:focus {
+	background-color: #4F5F56;
 }

@@ -63,8 +63,8 @@
 	</script>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-7 hidden-xs hidden-sm">
-					<img src="img/login.png">
+				<div class="col-md-7 hidden-xs hidden-sm" style="margin-top: 2%">
+					<img src="img/cadastro.png">
 				</div>
 				<div class="col-md-5" style="margin-top: 10%">
 					<h2 align="center">Login</h2>
