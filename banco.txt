@@ -1,6 +1,12 @@
 CREATE DATABASE DBProcast;
 USE DBProcast;
 
+CREATE TABLE funcao(
+	id_funcao int auto_increment primary key,
+	nome_funcao varchar(12) not null
+);
+INSERT INTO funcao(nome_funcao) VALUES ("Atirador"),("Suporte"),("Meio"),("Caçador"),("Topo");
+
 CREATE TABLE usuario(
 	id_usuario int auto_increment primary key,
 	nome varchar (15) not null,
@@ -11,14 +17,16 @@ CREATE TABLE usuario(
 	categoria_usuario char(1) not null,
 	nick varchar (16),
 	foto_perfil varchar(30) ,
-	funcao_1 char (1),
-	funcao_2 char(1),
+	funcao_1 int,
+	funcao_2 int,
 	senha varchar(100) not null,
 	email varchar (30) not null,
 	dta_nascimento char(10) not null,
 	estado char(2) not null,
 	telefone char(15) not null,
-	descricao text 
+	descricao text,
+	constraint fk_funcao_1 foreign key (funcao_1) references funcao(id_funcao),
+	constraint fk_funcao_2 foreign key (funcao_2) references funcao(id_funcao)
 );
 
 CREATE TABLE admin(
