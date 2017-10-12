@@ -71,8 +71,8 @@
                         <div class="mg_bt">
                             <label for='anexo' class="arq"> Anexar arquivo <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></label>
                             <input type="file" class="btn sem_bg borda_azul fonte_azul_claro mg_bt" name="anexo" id="anexo">
-                            <a class="btn bg_azul_escuro fonte_branca">Salvar como rascunho <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></a>
-                            <a class="btn bg_azul_escuro fonte_branca">Descartar Mensagem <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                            <button type="submit" class="btn bg_azul_escuro fonte_branca" name="rascunho">Salvar como rascunho <span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></button>
+                            <button type="reset" class="btn bg_azul_escuro fonte_branca" name="enviar">Descartar Mensagem <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                             <button type="submit" class="btn bg_azul_escuro fonte_branca" name="enviar">Enviar Mensagem <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
                         </div>
                     </form>
@@ -117,6 +117,44 @@
                 else
                 {
                     echo('<script>swal("Preencha todos os campos", "", "error");</script>');
+                }
+            }
+            elseif (isset($_POST['rascunho'])) 
+            {
+                $destinatario=$_POST['destinatario'];
+                $assunto=$_POST['assunto'];
+                $mensagem=$_POST['mensagem'];
+                if (!empty($destinatario)) 
+                {
+                    $sqlsel='select * from usuario where (email="'.$destinatario.'") OR (nick="'.$destinatario.'");';
+                    $resul=mysqli_query($conexao,$sqlsel);
+                    $con2=mysqli_fetch_array($resul);
+                    if(mysqli_num_rows($resul))
+                    {
+                        if (isset($_FILES['anexo']))
+                        {
+                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+                            $diretorio="uploads/";
+                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+                            //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
+                            $sqlin='INSERT INTO mensagem(assunto,anexo,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$novo_nome.'","'.$mensagem.'","F","F","V","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
+                        }
+                        else{
+                            $sqlin='INSERT INTO mensagem(assunto,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$mensagem.'","F","F","V","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
+                        }
+                        mysqli_query($conexao,$sqlin);
+                        echo('<script>swal("Mensagem salva como rascunho", "", "success");</script>');
+                        echo('<script>window.location="rascunhos.php";</script>');
+                    }
+                    else
+                    {
+                        echo('<script>swal("Destinatário não cadastrado", "", "error");</script>');
+                    }
+                }
+                else
+                {
+                    echo('<script>swal("O campo de destinatário é obrigatório", "", "error");</script>');
                 }
             }
 			include('rodape.html');
