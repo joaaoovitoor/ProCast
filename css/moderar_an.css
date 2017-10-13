@@ -43,7 +43,7 @@
 	border:none !important;
 }
 .banner{
-	background: url(../img/banner_mod_an.jpg);
+	background: url(../img/banner_mod_an.jpg) no-repeat;
 	margin-bottom: 3%;
 }
 .banner h1{
