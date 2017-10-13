@@ -93,21 +93,21 @@
 												<div class="form-group">
 												Função primária
 												<select name="funcao_1" class="form-control">
-												  <option value="a">Atirador</option>
-												  <option value="c">Caçador</option>
-												  <option value="m">Meio</option>
-												  <option value="s">Suporte</option>
-												  <option value="t">Topo</option>
+												  <option value="1">Atirador</option>
+												  <option value="2">Caçador</option>
+												  <option value="3">Meio</option>
+												  <option value="4">Suporte</option>
+												  <option value="5">Topo</option>
 												</select>
 												</div>
 												<div class="form-group">
 												Função secundária
 												<select name="funcao_2" class="form-control">
-												  <option value="a">Atirador</option>
-												  <option value="c">Caçador</option>
-												  <option value="m">Meio</option>
-												  <option value="s">Suporte</option>
-												  <option value="t">Topo</option>
+												  <option value="1">Atirador</option>
+												  <option value="2">Caçador</option>
+												  <option value="3">Meio</option>
+												  <option value="4">Suporte</option>
+												  <option value="5">Topo</option>
 												</select>
 												</div>
 												<div class="form-group">
