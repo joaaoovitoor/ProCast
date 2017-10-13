@@ -2,9 +2,17 @@
 	font-family: 'Nunito', sans-serif;
 }
 .banner{
-	background: url(../../img/banner_clubes.jpg);
-	margin-bottom: 3%;
+	background: url(../../img/banner_ajuda.jpg) no-repeat !important;
+	position: relative;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	text-align: center;
+	height: 450px;
+	letter-spacing: 2px;
+	filter: alpha(opacity:0.5); 
 	color: #f2f4f2;
+	margin-bottom: 3%;
 }
 .banner h1{
 	margin-top: 10%;
@@ -14,9 +22,6 @@
 .banner p{
 	margin-bottom: 7%;
 }
-*{
-	font-family: 'Nunito', sans-serif;
-}
 .texto_sombra{
 	text-shadow: 2px 2px 7px #333;
 }
@@ -25,38 +30,11 @@
     background-color: #02314C !important;
     color: white !important;
 }
-
-.MultiCarousel {
-	float: left;
-	overflow: hidden;
-	padding: 15px;
-	width: 100%;
-	position:relative;
-}
-.MultiCarousel .MultiCarousel-inner {
-	transition: 1s ease all;
-	float: left;
-}
-.MultiCarousel .MultiCarousel-inner .item {
-	float: left;
-}
-.MultiCarousel .MultiCarousel-inner .item > div {
-	text-align: center;
-	padding:10px;
-	margin:10px;
-	background:#f1f1f1;
-	color:#666;
-	}
-.MultiCarousel .leftLst, .MultiCarousel .rightLst {
-	background-color: #1a5a9b;
-    color: white;
-    position:absolute; 
-    border-radius:50%;
-    top:calc(50% - 20px); 
-    }
-.MultiCarousel .leftLst { left:0; }
-.MultiCarousel .rightLst { right:0; }    
-.MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over {
-	pointer-events: none;
-	background:#ccc;
+label {
+    background-color: #02314c;
+    border-radius: 5px;
+    color: #f2f4f2;
+    cursor: pointer;
+    margin: 10px;
+    padding: 22% 14% !important;
 }
