@@ -97,7 +97,7 @@
 Com a plataforma você tem muito mais chances de ser encontrado e ser convocado para grandes equipes. Não perca tempo!
 
                         </p>
-                        <a href="cadastro.php"><button type="button" class="btn botao">Cadastre-se</button></a>
+                        <button type="button" class="btn botao">Cadastre-se</button>
                     </div>
                 </div>
                 <div class="col-md-5">
