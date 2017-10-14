@@ -17,6 +17,9 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 	</head>
 	<body>
+		<?php
+				include('conexao.php');
+		?>
 		<nav class="nav-menu hidden-xs hidden-sm"  style="background-color:#333 !important;">
 		<a href="index.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-9">
@@ -92,24 +95,36 @@
 													Nick <input type="text" class="form-control" name="nick" maxlength="16" placeholder="Nick" required>
 												</div>
 												<div class="form-group">
-												Função primária
-												<select name="funcao_1" class="form-control">
-												  <option value="1">Atirador</option>
-												  <option value="2">Caçador</option>
-												  <option value="3">Meio</option>
-												  <option value="4">Suporte</option>
-												  <option value="5">Topo</option>
-												</select>
+													Função primária
+													<select name="funcao_1" id="funcao_1" class="form-control">
+														<?php
+															$sqlsel='SELECT * FROM funcao;';
+															$resul=mysqli_query($conexao,$sqlsel);
+															while ($con=mysqli_fetch_array($resul))
+															{
+																echo
+																('
+																	<option value="'.$con['id_funcao'].'">'.$con['nome_funcao'].'</option>
+																');
+															}
+														?>
+													</select>
 												</div>
 												<div class="form-group">
-												Função secundária
-												<select name="funcao_2" class="form-control">
-												  <option value="1">Atirador</option>
-												  <option value="2">Caçador</option>
-												  <option value="3">Meio</option>
-												  <option value="4">Suporte</option>
-												  <option value="5">Topo</option>
-												</select>
+													Função secundária
+													<select name="funcao_2" id="funcao_2" class="form-control">
+														<?php
+															$sqlsel='SELECT * FROM funcao;';
+															$resul=mysqli_query($conexao,$sqlsel);
+															while ($con=mysqli_fetch_array($resul))
+															{
+																echo
+																('
+																	<option value="'.$con['id_funcao'].'">'.$con['nome_funcao'].'</option>
+																');
+															}
+														?>
+													</select>
 												</div>
 												<div class="form-group">
 													Senha <input type="password" name="senha" placeholder="Senha" maxlength="25" class="form-control" required>
@@ -128,46 +143,40 @@
 												</div>
 												<div class="form-group">
 													País
-													<select name="pais" class="form-control">
-													  <option value="f">Feminino</option>
-													  <option value="m">Masculino</option>
+													<select name="pais" id="pais" class="form-control">
+													 <?php
+															$sqlsel='SELECT * FROM pais;';
+															$resul=mysqli_query($conexao,$sqlsel);
+															while ($con=mysqli_fetch_array($resul))
+															{
+																echo
+																('
+																	<option value="'.$con['id'].'">'.$con['nome'].'</option>
+																');
+															}
+													?>
 													</select>
 												</div>
 												<div class="form-group">
 													Estado
-													<select name="estado" class="form-control">
-														<option value="ac">Acre</option> 
-														<option value="al">Alagoas</option> 
-														<option value="am">Amazonas</option> 
-														<option value="ap">Amapá</option> 
-														<option value="ba">Bahia</option> 
-														<option value="ce">Ceará</option> 
-														<option value="df">Distrito Federal</option> 
-														<option value="es">Espírito Santo</option> 
-														<option value="go">Goiás</option> 
-														<option value="ma">Maranhão</option> 
-														<option value="mt">Mato Grosso</option> 
-														<option value="ms">Mato Grosso do Sul</option> 
-														<option value="mg">Minas Gerais</option> 
-														<option value="pa">Pará</option> 
-														<option value="pb">Paraíba</option> 
-														<option value="pr">Paraná</option> 
-														<option value="pe">Pernambuco</option> 
-														<option value="pi">Piauí</option> 
-														<option value="rj">Rio de Janeiro</option> 
-														<option value="rn">Rio Grande do Norte</option> 
-														<option value="ro">Rondônia</option> 
-														<option value="rs">Rio Grande do Sul</option> 
-														<option value="rr">Roraima</option> 
-														<option value="sc">Santa Catarina</option> 
-														<option value="se">Sergipe</option> 
-														<option value="sp">São Paulo</option> 
-														<option value="to">Tocantins</option> 
+													<select name="estado" id="estado" class="form-control">
+														<?php
+															$sqlsel='SELECT * FROM estado;';
+															$resul=mysqli_query($conexao,$sqlsel);
+															while ($con=mysqli_fetch_array($resul))
+															{
+																echo
+																('
+																	<option value="'.$con['id'].'">'.$con['nome'].'</option>
+																');
+															}
+														?>
+														 
 													</select>
 												</div>
 												<div class="form-group">
 													Cidade
-													<select name="cidade" class="form-control">
+													<select name="cidade" id="cidade" class="form-control">
 													  <option>Escolha primeiro um estado</option>
 													</select>
 												</div>
