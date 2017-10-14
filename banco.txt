@@ -1,7 +1,5 @@
 CREATE DATABASE DBProcast;
-
 USE DBProcast;
-
 CREATE TABLE IF NOT EXISTS `pais` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(60) DEFAULT NULL,
@@ -141,11 +139,10 @@ CREATE TABLE denuncia(
 
 CREATE TABLE contato(
 	id_contato int auto_increment primary key,
-	assunto int not null,
 	motivo varchar(20) not null,
-	descricao_contato varchar(1000) not null,
+	descricao_contato varchar(300) not null,
 	id_usuario int,
-	imagem_contato varchar(50),
+	imagem_contato varchar(30),
 	constraint fk_contato_usuario foreign key (id_usuario) references usuario(id_usuario)
 );
 
