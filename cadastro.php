@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/pesq_cidade.js"></script>
 		<!--FONTES-->
 	    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	    <!--ESTILO-->
@@ -113,8 +114,6 @@
 												<div class="form-group">
 													Senha <input type="password" name="senha" placeholder="Senha" maxlength="25" class="form-control" required>
 												</div>
-											</div>
-											<div class="col-md-6">
 												<div class="form-group">
 													Sexo
 													<select name="sexo" class="form-control">
@@ -122,8 +121,17 @@
 													  <option value="m">Masculino</option>
 													</select>
 												</div>
+											</div>
+											<div class="col-md-6">
 												<div class="form-group">
 													E-mail<input type="email" name="email" placeholder="E-mail" required class="form-control" maxlength="30">
+												</div>
+												<div class="form-group">
+													País
+													<select name="pais" class="form-control">
+													  <option value="f">Feminino</option>
+													  <option value="m">Masculino</option>
+													</select>
 												</div>
 												<div class="form-group">
 													Estado
@@ -155,6 +163,12 @@
 														<option value="se">Sergipe</option> 
 														<option value="sp">São Paulo</option> 
 														<option value="to">Tocantins</option> 
+													</select>
+												</div>
+												<div class="form-group">
+													Cidade
+													<select name="cidade" class="form-control">
+													  <option>Escolha primeiro um estado</option>
 													</select>
 												</div>
 												<div class="form-group">
