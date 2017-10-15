@@ -72,7 +72,7 @@
 				$descricao_contato=$_POST['descricao_contato'];
 				if(isset($_FILES['print']))
 				{
-					if(empty ($motivo) or ($assunto) or ($descricao))
+					if(empty ($motivo) or ($assunto) or ($descricao_contato))
 					{
 						echo ('<script>window.alert("Complete todos os campos");</script>');
 					}
@@ -84,10 +84,10 @@
 				}
 				else
 				{
-					$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+					$extensao=strtolower(substr($_FILES['print']['name'], -4));
 	                $novo_nome=md5(time().$con['id_usuario']).$extensao;
 	                $diretorio="uploads/";
-	                move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+	                move_uploaded_file($_FILES['print']['tmp_name'], $diretorio.$novo_nome);
 	                if(empty ($motivo) or ($assunto) or ($descricao))
 	                {
 						echo ('<script>window.alert("Complete todos os campos");</script>');
