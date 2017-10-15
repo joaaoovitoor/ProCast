@@ -238,19 +238,20 @@ color: #777;
 font-size: 12px;
 line-height: 22px;
 }
-
-.arq {
-  background-color: #333;
-  border-radius: 5px;
-  color: #f2f4f2;
-  cursor: pointer;
-  margin: 10px;
-  padding: 2% 4%;
+.btn_foto{
+	background: #333;
+	color: #f2f4f2;
+}
+.btn_foto:focus,.btn_foto:hover,.btn_foto:active{
+	background: #333 ;
+	color: #f2f4f2 !important;
 }
 input[type="file"] {
   display: none !important;
 }
-
-
-
-
+#descLabel{
+	color: #333;
+}
+.cp{
+	cursor: pointer;
+}

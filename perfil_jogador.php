@@ -19,6 +19,8 @@
 		<?php
 			include('link_head.html');
 		?>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	</head>
 	<body>
 	<?php
@@ -41,10 +43,10 @@
 			        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"></label>');
 			        		?>
 			        	</div>
-			        	<div class="text-center">
+						<div class="text-center col-xs-12">
 			        		<form action="#" method="POST" enctype="multipart/form-data">
-			        			<label for='anexo' class="arq"> Mudar foto de perfil</label><button type="submit">mudar</button>
 			        			<input type="file" name="anexo" id="anexo">
+			        			<button type="submit" class="btn btn_foto">Mudar foto de perfil</button>
 	                        </form>
 			        	</div>
 			        	<?php
@@ -60,6 +62,7 @@
 
 	                        }
 			        	?>
+
 			            <div class="row">
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
@@ -80,46 +83,64 @@
 			                </div>
 			            </div>
 			            <div class="descricao">
-		                    <p><strong>Sobre mim:</strong>
+		                    <p><strong>Sobre mim:</strong></p>
 		                    <?php
 		                    if($con['descricao']==NULL){
-								echo 'Crie uma descrição<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
+								echo '<p data-toggle="modal" class="cp" data-target="#desc">Crie uma descrição <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>';
 							}else{
-		                    	echo $con['descricao'];
+		                    	echo ('<p>'.$con['descricao'].'</p>');
 							}
 		                    ?>
-		                     </p>
+		                     
+							<div class="modal fade" id="desc" tabindex="-1" role="dialog" aria-labelledby="descLabel">
+								<div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      	<div class="modal-header">
+								        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        	<h4 class="modal-title" id="descLabel">Sobre você</h4>
+								      	</div>
+									    <div class="modal-body">
+									    	<form action="#" method="POST">
+									      		<textarea name="descricao" rows="5" class="form-control" placeholder="Digite aqui algo sobre você"></textarea>
+									    </div>
+									    <div class="modal-footer">
+									        	<button type="submit" class="btn btn-block azul">Salvar Mudanças</button>
+									        </form>
+									    </div>
+								    </div>
+								</div>
+							</div>	
+							<?php 
+								if (isset($_POST['descricao'])) {
+									if(!empty($_POST['descricao']))
+									{
+										$sqlup='update usuario set descricao="'.$_POST['descricao'].'" where id_usuario='.$con['id_usuario'].';';
+										mysqli_query($conexao,$sqlup);
+	                           			echo('<script>window.location="perfil_jogador.php";</script>');
+									}
+									else
+									{
+										echo('<script>swal("Digite algo na descrição", "", "error");</script>');
+
+									}
+								}
+							?>
 		                    <p><strong>Função Primária:</strong>
 		                    <?php 
-								if ($con['funcao_1']=='c'){
-									echo 'Caçador';
-								}elseif ($con['funcao_1']=='m'){
-									echo 'Meio';
-								}elseif ($con['funcao_1']=='s'){
-									echo 'Suporte';
-								}elseif ($con['funcao_1']=='t'){
-									echo 'Topo';
-								}else{
-									echo 'Atirador';
-								}
+								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_1'].';';
+								$resul=mysqli_query($conexao,$sqlsel);
+								$con2=mysqli_fetch_array($resul);
+								echo($con2['nome_funcao']);
 							?>
 		                    </p>
 		                    <p><strong>Função Secundária:</strong>
 		                    <?php 
-								if ($con['funcao_2']=='c'){
-									echo 'Caçador';
-								}elseif ($con['funcao_2']=='m'){
-									echo 'Meio';
-								}elseif ($con['funcao_2']=='s'){
-									echo 'Suporte';
-								}elseif ($con['funcao_2']=='t'){
-									echo 'Topo';
-								}else{
-									echo 'Atirador';
-								}
+								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_2'].';';
+								$resul=mysqli_query($conexao,$sqlsel);
+								$con2=mysqli_fetch_array($resul);
+								echo($con2['nome_funcao']);
 							?>
 		                    </p>
-		                    <p><strong>Posicionamento:</strong> Alguma Coisa</p> 
 			            </div>
 			        </div>
 				</div>
