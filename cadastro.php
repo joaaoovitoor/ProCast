@@ -220,8 +220,8 @@
 												<div class="form-group">
 													Sexo
 													<select name="sexo" class="form-control">
-													  <option value="">Feminino</option>
-													  <option value="">Masculino</option>
+													  <option value="f">Feminino</option>
+													  <option value="m">Masculino</option>
 													</select>
 												</div>													
 											</div>
