@@ -106,16 +106,16 @@
 					$resulclube = mysqli_query($conexao,$sqlclube);
 					$dados=mysqli_fetch_array($resulclube);
 					$rows=mysqli_num_rows($resulclube);
-					$dataexplode = explode("-",$dados['dta_criacao']);
-					$cont=2;
-					for($i=0;$i<3;$i++)
-					{
-						$datainv[$i]=$dataexplode[$cont];
-						$cont--;
-					}
-					$datacerto=implode("/", $datainv);
 					if($rows>0)
 					{
+						$dataexplode = explode("-",$dados['dta_criacao']);
+						$cont=2;
+						for($i=0;$i<3;$i++)
+						{
+							$datainv[$i]=$dataexplode[$cont];
+							$cont--;
+						}
+						$datacerto=implode("/", $datainv);
 						echo "Jogadores do seu clube:";
 						for($v=0;$v<$rows;$v++){ 
 						?>
@@ -145,10 +145,21 @@
 				<!--MENU - CLUBE-->
 				<section id="2">
 					<div class="cartao-equipe cinza">
-					  <img src="uploads/<?php echo($dados['logo_clube']); ?>">
-				      <h2><?php echo($dados['nome_clube']); ?></h2>
-				      <?php echo($dados['descricao_clube']); ?><br>
-				      <small class="text-muted">Data de criação: <?php echo($datacerto); ?></small>
+					<?php 
+					if(isset($datacerto))
+					{
+					?>
+						<img src="uploads/<?php echo($dados['logo_clube']); ?>">
+						<h2><?php echo($dados['nome_clube']); ?></h2>
+						<?php echo($dados['descricao_clube']); ?><br>
+						<small class="text-muted">Data de criação: <?php echo($datacerto); ?></small>
+				    <?php 
+				 	}
+				 	else
+				 	{
+				 		echo "Nada para exibir";
+				 	}
+				    ?>
 		            </div>
 				</section>
 				<!--MENU - AGENDA-->
