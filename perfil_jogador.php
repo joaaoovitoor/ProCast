@@ -38,13 +38,13 @@
 			        			else{
 			        				$cam='img/perfil_icon.png';
 			        			}
-			        			echo('<img src="'.$cam.'" class="img-circle img-responsive">');
+			        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"></label>');
 			        		?>
 			        	</div>
 			        	<div class="text-center">
 			        		<form action="#" method="POST" enctype="multipart/form-data">
 			        			<label for='anexo' class="arq"> Mudar foto de perfil</label><button type="submit">mudar</button>
-	                            <input type="file" name="anexo" id="anexo" hidden="true">				        	
+			        			<input type="file" name="anexo" id="anexo">
 	                        </form>
 			        	</div>
 			        	<?php
