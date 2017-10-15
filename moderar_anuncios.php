@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<title>Contato</title>
+		<title>Anúncios</title>
         <link rel="stylesheet" href="css/moderar_an.css">
 		<?php
 			include('link_head.html');
