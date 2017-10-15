@@ -5791,6 +5791,7 @@ CREATE TABLE agenda(
 	hora varchar(5),
 	data date,
 	evento varchar(20),
+	descricao_evento varchar(200),
 	id_usuario int,
 	constraint fk_usuario_agenda foreign key(id_usuario) references usuario(id_usuario)
 );
