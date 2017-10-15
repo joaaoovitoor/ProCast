@@ -6,8 +6,6 @@
 </html>
 <?php
 	include('conexao.php');
-    //iniciando a sessão
-    session_start();
     //botão logar do formuário de login da página index
     if (isset($_POST['logar'])){
         $email=$_POST['usuario'];
@@ -28,6 +26,8 @@
 					{
 						echo('<script>alert("Logado com sucesso!");</script>');
 						echo('<script>window.location="home.php";</script>');
+						//iniciando a sessão
+    					session_start();
 						//armazenando o email na sessão para usar posteriormente, para identificar o usuário
 						$_SESSION['email']=$email;
 					}
@@ -115,6 +115,8 @@
 							//inserindo dados do usuario
 							$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
 							$inserir=mysqli_query($conexao,$sqlin);
+							//iniciando a sessão
+   							session_start();
 							$_SESSION['email']=$email;
 							if($inserir)
 							{
@@ -194,6 +196,8 @@
 						//inserindo dados do usuario
 						$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
 						$inserir=mysqli_query($conexao,$sqlin);
+						//iniciando a sessão
+    					session_start();
 						$_SESSION['email']=$email;
 				        if($inserir)
 							{
