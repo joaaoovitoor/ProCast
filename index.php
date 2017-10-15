@@ -106,10 +106,13 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
             </div>
         </div>
         <div style="height: 20%"></div>
-        <!--VÍDEO VIRAL-->
+        <!--VÍDEO VIRAL--
 	    <video id="demo_video" class="video-js vjs-default-skin vjs-big-play-centered" controls poster="img/index/capa_video.png" data-setup='{}'>
-	      <source src="img/index/lol.MP4" type='video/mp4'></source>
-	    </video>
+	      <source src="img/index/video_viral.mp4" type='video/mp4'></source>
+	    </video>-->
+	    <div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+</div>
 	    <!--COMENTÁRIOS-->
 	    <div style="height: 20%"></div>
 	    <div class="container-fluid">

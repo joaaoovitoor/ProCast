@@ -1,8 +1,4 @@
-/**
- * Masthead
- * -------------------------------------------------------------------------- */
 html {
-    font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
 .masthead {
@@ -62,8 +58,8 @@ html {
     opacity: 0.4;
 }
 @font-face {
-     font-family: nulshock;
-     src: url('../../fonts/nulshock bd.ttf');
+	font-family: nulshock;
+	src: url('../../fonts/nulshock bd.ttf');
 }
 h1 {
     position: absolute !important;
@@ -92,15 +88,6 @@ h2 {
     margin-bottom: 20px;
     font-size: 40px;
     color: #414141;
-}
-p {
-    margin-top: 0;
-    margin-bottom: 30px;
-    font-size: 18px;
-    color: #414141;
-    letter-spacing: -0.02em;
-    font-weight: 400;
-    line-height: 1.6;
 }
 a {
     color: #1191db;
@@ -186,15 +173,4 @@ pre .m {
 .container {
     margin: auto;
     width: 720px;
-}
-footer {
-    text-align: right;
-    margin-top: 60px;
-    padding-bottom: 60px;
-}
-footer hr {
-    margin: 0;
-    border: none;
-    border-top: 1px solid #ddd;
-    margin-bottom: 30px;
 }

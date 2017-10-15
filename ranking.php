@@ -36,19 +36,24 @@
 	if (mysqli_num_rows($resul1)>0){
 		while ($con1=mysqli_fetch_array($resul1)) 
 		{
+			$sqlusuario='SELECT * FROM usuario WHERE id_usuario='.$con1['id_usuario'].';';
+			$resulusuario=mysqli_query($conexao,$sqlusuario);
+			$dados=mysqli_fetch_array($resulusuario);
+			/*$sqlclube='SELECT * FROM clube WHERE id_usuario='.$con1['id_usuario'].';';
+			$resulclube=mysqli_query($conexao,$sqlclube);
+			$dadoclube=mysqli_fetch_array($resulclube);*/
 ?>
 			<div class="col-sm-2 col-md-2">
 					<div class="thumbnail">
-						<img src="img/<?php echo($cont);?>.png" alt="Primeiro Lugar">
+						<img src="img/<?php echo($cont1);?>.png" alt="Primeiro Lugar">
 						<div class="caption">
-							<p align="center"><img src="<?php $con1['nome']; ?>" class="img-circle" alt="Foto Primeiro Lugar"></p>
-							<h3 align="center"><?php echo ($con1['nome']); ?></h3>
-							<h4 align="center"><?php echo ($con1['clube']); ?></h4>
-							<h4 align="center"><?php echo ($con1['pontos']); ?> pts.</h4>
+							<p align="center"><img src="uploads/<?php echo $dados['foto_perfil']; ?>" class="img-circle rk" alt="Foto Primeiro Lugar"></p>
+							<h3 align="center"><?php echo ($dados['nome']); ?></h3>
+							<h4 align="center"><?php //echo ($dadoclube['nome_clube']); ?></h4>
+							<h4 align="center"><?php echo ($con1['colocacao']); ?> pts.</h4>
 						</div>
 					</div>
 				</div>
-			</div>
 <?php
 		$cont1++; 
 		}
@@ -57,28 +62,38 @@
 		echo "Nenhum registro";
 	}
 ?>
-			<div class="table-responsive col-md-10 col-md-offset-1">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th class="text-center">Posição</th>
-							<th class="text-center"></th>
-							<th class="text-center">Jogador</th>
-							<th class="text-center">Clube</th>
-							<th class="text-center">Pontuação</th>
-						</tr>
-					</thead>
-					<tbody>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="table-responsive col-md-10 col-md-offset-1">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th class="text-center">Posição</th>
+								<th class="text-center"></th>
+								<th class="text-center">Jogador</th>
+								<th class="text-center">Clube</th>
+								<th class="text-center">Pontuação</th>
+							</tr>
+						</thead>
+						<tbody>
 <?php 
 	if(mysqli_num_rows($resul2)>0){
 		while($con2=mysqli_fetch_array($resul2)){
+			$sqlusuario2='SELECT * FROM usuario WHERE id_usuario='.$con2['id_usuario'].';';
+			$resulusuario2=mysqli_query($conexao,$sqlusuario2);
+			$dados2=mysqli_fetch_array($resulusuario2);
+			/*$sqlclube2='SELECT * FROM clube WHERE id_usuario='.$con2['id_usuario'].';';
+			$resulclube2=mysqli_query($conexao,$sqlclube2);
+			$dadoclube2=mysqli_fetch_array($resulclube2);*/
 ?>
 						<tr>
 							<td class="text-center texto-ranking"><h4><?php echo($cont2);?></h4></td>
-							<td align="center"><img src="img/fotinha2.png" class="img-circle" align="Outras Colocações"></td>
-							<td class="text-center texto-ranking"><h4><?php echo ($con1['nome']); ?></h4></td>
-							<td class="text-center texto-ranking"><h4><?php echo ($con1['clube']); ?></h4></td>
-							<td class="text-center texto-ranking"><h4><?php echo ($con1['pontos']); ?> pts.</h4></td>
+							<td align="center"><img src="uploads/<?php echo $dados2['foto_perfil']; ?>" class="img-circle rk2" align="Outras Colocações"></td>
+							<td class="text-center texto-ranking"><h4><?php echo ($dados2['nome']); ?></h4></td>
+							<td class="text-center texto-ranking"><h4><?php //echo ($dadoclube2['nome_clube']); ?></h4></td>
+							<td class="text-center texto-ranking"><h4><?php echo ($con2['colocacao']); ?> pts.</h4></td>
 						</tr>
 <?php 
 		$cont2++;
@@ -91,6 +106,8 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
+	</div>
 <?php
 	include('rodape.html');
 ?>
