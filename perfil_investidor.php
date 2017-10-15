@@ -1,20 +1,14 @@
 <?php
-	ob_start();
-	session_start();
-    if(isset($_SESSION['email'])){
-        $email_usuario=$_SESSION['email'];
-        include('conexao.php');
-        $sqlsel='select * from usuario where email="'.$email_usuario.'";';
-        $resul=mysqli_query($conexao,$sqlsel);
-        $con=mysqli_fetch_array($resul);
-    }
-    else{
-        header('location:destruir.php');    
+	include('verificar_logado.php');
+    if($con['categoria_usuario']==1)
+    {
+    	header('location:perfil_jogador.php');
     }
 ?>
 <html lang="pt-br">
 	<head>
         <title>Perfil</title>
+        <meta charset="utf-8">
 	    <!--MENU PERFIL-->
 	    <link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />
@@ -107,31 +101,65 @@
 				<div class="content-wrap">
 				<!--MENU - JOGADORES-->
 				<section id="1">
-					<?php for($v=1;$v<7;$v++){ ?>
-		            <div class="cartao-equipe">
-		                <div class="media">
-		                    <div class="media-left">
-		                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-		                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-		                    </div>
-		                    <div class="media-body">
-		                        <h3 class="media-heading">Nick carinha</h3>
-		                        <h5>Nome carinha</h5>
-		                        <p>Função primária: Atirador</p>
-		                        <p>Função primária: Meio</p> 
-		                        <p>Posição: Alguma coisa</p>
-		                    </div>
-		                </div>
-		            </div>
-		            <?php }; ?>
+					<?php 
+					$sqlclube='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+					$resulclube = mysqli_query($conexao,$sqlclube);
+					$dados=mysqli_fetch_array($resulclube);
+					$rows=mysqli_num_rows($resulclube);
+					if($rows>0)
+					{
+						$dataexplode = explode("-",$dados['dta_criacao']);
+						$cont=2;
+						for($i=0;$i<3;$i++)
+						{
+							$datainv[$i]=$dataexplode[$cont];
+							$cont--;
+						}
+						$datacerto=implode("/", $datainv);
+						echo "Jogadores do seu clube:";
+						for($v=0;$v<$rows;$v++){ 
+						?>
+			            <div class="cartao-equipe">
+			                <div class="media">
+			                    <div class="media-left">
+			                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
+			                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
+			                    </div>
+			                    <div class="media-body">
+			                        <h3 class="media-heading">Nick carinha</h3>
+			                        <h5>Nome carinha</h5>
+			                        <p>Função primária: Atirador</p>
+			                        <p>Função primária: Meio</p> 
+			                        <p>Posição: Alguma coisa</p>
+			                    </div>
+			                </div>
+			            </div>
+			        <?php 
+			    		}
+					}
+					else{
+						echo 'Você ainda não criou seu clube! <a href="criar_clube.php">Crie seu clube!</a>';
+					}
+					?>
 				</section>
 				<!--MENU - CLUBE-->
 				<section id="2">
 					<div class="cartao-equipe cinza">
-					  <img src="img/logo_redcanids.png">
-				      <h2>RED CANIDS</h2>
-				      Informações do clube this card has supporting text below as a natural lead-in to additional content.<br>
-				      <small class="text-muted">Data de criação:06/08/2015</small>
+					<?php 
+					if(isset($datacerto))
+					{
+					?>
+						<img src="uploads/<?php echo($dados['logo_clube']); ?>">
+						<h2><?php echo($dados['nome_clube']); ?></h2>
+						<?php echo($dados['descricao_clube']); ?><br>
+						<small class="text-muted">Data de criação: <?php echo($datacerto); ?></small>
+				    <?php 
+				 	}
+				 	else
+				 	{
+				 		echo "Nada para exibir";
+				 	}
+				    ?>
 		            </div>
 				</section>
 				<!--MENU - AGENDA-->
@@ -242,7 +270,7 @@
 								E-mail <input type="text" class="form-control" name="email_edt" maxlength="15" value="<?php echo $con['email'];?>">
 							</div>
 							<div class="form-group">
-								Senha <input type="password" name="senha_edt" value="senha" maxlength="25" class="form-control">
+								Senha <input type="password" name="senha_edt" maxlength="25" class="form-control" value="<?php echo base64_decode($con['senha']);?>">
 							</div>
 							<div class="form-group">
 								Estado
@@ -293,7 +321,7 @@
 								CPF <input type="text" class="form-control" value="<?php echo $con['cpf'];?>" readonly>
 							</div>
 							<div class="form-group">
-								CNPJ <input type="text" class="form-control" value="<?php echo $con['cnpj'];?>" readonly>
+								CNPJ <input type="text" class="form-control" value="<?php echo $con['cnpj'];?>" <?php if ($con['cnpj']=="nao_declarado"){}else echo " readonly"; ?>>
 							</div>
 							<div class="form-group">
 								Data de nascimento<input type="text" class="form-control" value="<?php echo $con['dta_nascimento'];?>" readonly>
@@ -360,19 +388,22 @@
 							$id_usuario=$_POST['id_usuario'];
 							$nome=$_POST['nome_edt'];
 							$sobrenome=$_POST['sobrenome_edt'];
-							$nick=$_POST['nick_edt'];
-							$funcao_1=$_POST['funcao_1_edt'];
-							$funcao_2=$_POST['funcao_2_edt'];
 							$senha=base64_encode($_POST['senha_edt']);
 							$email=$_POST['email_edt'];
 							$estado=$_POST['estado_edt'];
 							$telefone=$_POST['telefone_edt'];
 							$descricao=$_POST['descricao_edt'];
 							//edita
-							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", nick="'.$nick.'", funcao_1="'.$funcao_1.'", funcao_2="'.$funcao_2.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE email="'.$email_usuario.'" ;');
-							mysqli_query($conexao,$sqledt);
-							header('location:perfil_jogador.php');
-							exit();	
+							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE email="'.$email_usuario.'" ;');
+							$editado=mysqli_query($conexao,$sqledt);
+							if($editado)
+							{
+								echo ('<script>window.alert("Dados alterados com sucesso!");window.location.href="perfil_investidor.php";</script>');
+							}
+							else
+							{	
+								echo ('<script>window.alert("Erro ao Editar Dados!");window.location.href="perfil_investidor.php";</script>');
+							}
 						}
 					?>
 				</section>

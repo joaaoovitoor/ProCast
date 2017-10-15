@@ -1,3 +1,6 @@
+<?php 
+	include('verificar_deslogado.php');
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -159,6 +162,7 @@
 												<div class="form-group">
 													Estado
 													<select name="estado" id="estado" class="form-control">
+														<option value="">Selecione</option>
 														<?php
 															$sqlsel='SELECT * FROM estado;';
 															$resul=mysqli_query($conexao,$sqlsel);
@@ -220,8 +224,8 @@
 												<div class="form-group">
 													Sexo
 													<select name="sexo" class="form-control">
-													  <option value="">Feminino</option>
-													  <option value="">Masculino</option>
+													  <option value="f">Feminino</option>
+													  <option value="m">Masculino</option>
 													</select>
 												</div>													
 											</div>
@@ -229,6 +233,7 @@
 												<div class="form-group">
 													Estado
 													<select name="estado" class="form-control">
+														<option value="">Selecione</option>
 														<option value="ac">Acre</option> 
 														<option value="al">Alagoas</option> 
 														<option value="am">Amazonas</option> 

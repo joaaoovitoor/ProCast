@@ -1,6 +1,10 @@
 *{
 	font-family: 'Nunito', sans-serif;
 }
+.espaco{
+	margin-bottom: 7%;
+	margin-top: 7%;
+}
 .botao{
     margin-top: 5%;
     border-radius: 40px !important;
@@ -24,7 +28,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom:5%;
-    margin-bottom: 10%;
 }
 
 /* NOTÍCIA */
