@@ -162,7 +162,7 @@
 		$categoria_usuario=$_POST['categoria_usuario'];
 		if(empty($cnpj))
 		{
-			$cnpj="nao_declarado";
+			$cnpj="Não informado";
 		}
 		if (!empty($nome)&&!empty($sobrenome)&&!empty($email)&&!empty($senha)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)) 
 		{
