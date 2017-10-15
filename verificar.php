@@ -210,7 +210,7 @@
 			}
 		}
 		else{
-			echo('<script>alert("Todos os campos devem ser preenchidos Investidor!");</script>');
+			echo('<script>alert("Todos os campos devem ser preenchidos!");</script>');
 			echo('<script>window.location="cadastro.php";</script>');
 		}
 	}

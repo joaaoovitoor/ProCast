@@ -159,6 +159,7 @@
 												<div class="form-group">
 													Estado
 													<select name="estado" id="estado" class="form-control">
+														<option value="">Selecione</option>
 														<?php
 															$sqlsel='SELECT * FROM estado;';
 															$resul=mysqli_query($conexao,$sqlsel);
@@ -229,6 +230,7 @@
 												<div class="form-group">
 													Estado
 													<select name="estado" class="form-control">
+														<option value="">Selecione</option>
 														<option value="ac">Acre</option> 
 														<option value="al">Alagoas</option> 
 														<option value="am">Amazonas</option> 
