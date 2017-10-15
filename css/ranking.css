@@ -38,3 +38,11 @@ th{
 .texto_sombra{
 	text-shadow: 2px 2px 7px #333;
 }
+.rk{
+	width: 150px;
+	height: 150px;
+}
+.rk2{
+	width: 70px;
+	height: 70px;
+}
