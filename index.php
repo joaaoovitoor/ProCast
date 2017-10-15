@@ -6,7 +6,6 @@
 		<link rel="stylesheet" href="css/index/slideshow.css" />
 	    <!--ESTILO-->
 	    <link rel="stylesheet" href="css/index/estilo.css">
-		<link rel="stylesheet" type="text/css" href="css/index/landio.css" />
 		<?php
 			include('link_head.html');
 		?>
@@ -25,8 +24,7 @@
 			<h1>ProCast<span>Seja um profissional</span></h1>
 		</section>
 		<!--TEXTO-->
-		<div style="height: 20%"></div>
-		<div class="container-fluid">
+		<div class="container-fluid espaco">
             <div class="row">
                 <div class=" col-md-4 intro-feature">
                     <div class="intro-icon">
@@ -57,7 +55,6 @@
                 </div>
             </div>
         </div>
-		<div style="height: 20%"></div>
 		<!--RANKING-->
 		<div class="container-fluid">
 			<div class="row">
@@ -88,7 +85,7 @@
 			</div>
 		</div>
 		<!--TEXTO COM BOTÃO-->
-		<div class="container-fluid">
+		<div class="container-fluid espaco">
             <div class="row">
                 <div class="col-md-offset-2 col-md-5">
                     <div class="feature-list">
@@ -105,16 +102,11 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
                 </div>
             </div>
         </div>
-        <div style="height: 20%"></div>
-        <!--VÍDEO VIRAL--
-	    <video id="demo_video" class="video-js vjs-default-skin vjs-big-play-centered" controls poster="img/index/capa_video.png" data-setup='{}'>
-	      <source src="img/index/video_viral.mp4" type='video/mp4'></source>
-	    </video>-->
+        <!--VÍDEO VIRAL-->
 	    <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-</div>
+		  <iframe class="embed-responsive-item" style="height: 70%; width: 100%;" src="https://www.youtube.com/embed/tmJ0tzAZ4aM" allowfullscreen></iframe>
+		</div>
 	    <!--COMENTÁRIOS-->
-	    <div style="height: 20%"></div>
 	    <div class="container-fluid">
 			<div class='row'>
 			    <div class='col-md-offset-0 col-md-12'>
