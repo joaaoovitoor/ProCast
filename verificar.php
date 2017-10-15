@@ -34,7 +34,7 @@
 					else
 					{
 						echo('<script>swal("Senha inválida", "", "error");</script>');
-											}
+					}
 				}
 			}
 			else
@@ -58,6 +58,14 @@
 		$cpf=$_POST['cpf'];
 		$estado=$_POST['estado'];
 		$dta_nascimento=$_POST['dta_nascimento'];
+		$dataexplode=explode("/",$dta_nascimento);
+		$cont=2;
+		for($i=0;$i<3;$i++)
+		{
+			$datainv[$i]=$dataexplode[$cont];
+			$cont--;
+		}
+		$datacerto=implode("-", $datainv);
 		$telefone=$_POST['telefone'];
 		$categoria_usuario=$_POST['categoria_usuario'];
 		if ($funcao_1==$funcao_2) {
@@ -66,7 +74,7 @@
 		}
 		else
 		{
-			if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($dta_nascimento)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
+			if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
 			{
 				$senha=base64_encode($senha);
 				if (strlen($cpf)<11) 
@@ -103,11 +111,18 @@
 						else
 						{
 							//inserindo dados do usuario
-							$sqlin='insert into usuario(nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values ("'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$dta_nascimento.'","'.$telefone.'","'.$categoria_usuario.'");';
-							mysqli_query($conexao,$sqlin);
+							$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+							$inserir=mysqli_query($conexao,$sqlin);
 							$_SESSION['email']=$email;
-					        echo('<script>swal("Cadastrado com sucesso", "", "success");</script>');
-							echo('<script>window.location="home.php";</script>');
+							if($inserir)
+							{
+						        echo('<script>alert("Cadastrado com sucesso");</script>');
+								echo('<script>window.location="home.php";</script>');
+							}
+							else
+							{
+								 echo ('<script>window.alert("Erro no cadastro!");window.location.href="cadastro.php";</script>');
+							}
 						}			
 					}
 				}
@@ -151,7 +166,7 @@
 				//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
 				if(mysqli_num_rows($resul))
 				{
-					echo('<script>swal("O CPF deve ter no mínimo 11 dígitos", "", "error");</script>');
+					echo('<script>swal("Email já cadastrado"", "error");</script>');
 					echo('<script>window.location="cadastro.php";</script>');
 				}
 				else
@@ -166,7 +181,7 @@
 					else
 					{
 						//inserindo dados do usuario
-						$sqlin='insert into usuario(nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,dta_nascimento,telefone,categoria_usuario) values ("'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","'.$dta_nascimento.'","'.$telefone.'","'.$categoria_usuario.'");';
+						$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","'.$dta_nascimento.'","'.$telefone.'","'.$categoria_usuario.'");';
 						mysqli_query($conexao,$sqlin);
 						$_SESSION['email']=$email;
 				        echo('<script>swal("Cadastrado com sucesso", "", "success");</script>');
