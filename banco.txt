@@ -5649,7 +5649,7 @@ CREATE TABLE usuario(
 	sexo char(1),
 	categoria_usuario char(1) not null,
 	nick varchar (16),
-	foto_perfil varchar(30) ,
+	foto_perfil varchar(100) ,
 	funcao_1 int,
 	funcao_2 int,
 	senha varchar(100) not null,

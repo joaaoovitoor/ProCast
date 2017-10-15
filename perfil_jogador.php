@@ -31,13 +31,42 @@
 	<?php
         include('menu2.php');
     ?>
-	<div class="banner-perfil perfil">
+	<div class="banner-perfil perfil">s
 		<div class="container-fluid">
 			<div class="row">
 				<!-- CARD COM INFORMAÇÕES - GRANDE -->
 				<div class="col-md-offset-0 col-md-5 hidden-sm hidden-xs">
 			        <div class="cartao-grande spc-cartao">
-			            <img src="img/perfil_icon.png" class="img-circle">
+			        	<div class="col-md-offset-4 col-md-4">
+			        		<?php
+			        			if($con['foto_perfil']){
+			        				$cam='uploads/'.$con['foto_perfil'];
+			        			}
+			        			else{
+			        				$cam='img/perfil_icon.png';
+			        			}
+			        			echo('<img src="'.$cam.'" class="img-circle img-responsive">');
+			        		?>
+			        	</div>
+			        	<div class="text-center">
+			        		<form action="#" method="POST" enctype="multipart/form-data">
+			        			<label for='anexo' class="arq"> Mudar foto de perfil</label><button type="submit">mudar</button>
+	                            <input type="file" name="anexo" id="anexo" hidden="true">				        	
+	                        </form>
+			        	</div>
+			        	<?php
+			        		if (isset($_FILES['anexo']))
+	                        {
+	                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+	                            $diretorio="uploads/";
+	                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+	                            $sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+	                            mysqli_query($conexao,$sqlup);
+	                            echo('<script>window.location="perfil_jogador.php";</script>');
+
+	                        }
+			        	?>
 			            <div class="row">
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">

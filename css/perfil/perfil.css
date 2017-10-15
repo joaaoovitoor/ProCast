@@ -1,6 +1,7 @@
 *{
 	font-family: 'Nunito', sans-serif;
 }
+
 .bg-progress{
    background-color: #1A5A9B !important;
 }
@@ -234,7 +235,17 @@ font-size: 12px;
 line-height: 22px;
 }
 
-
+label {
+  background-color: #333;
+  border-radius: 5px;
+  color: #f2f4f2;
+  cursor: pointer;
+  margin: 10px;
+  padding: 2% 4%;
+}
+input [type="file"]{
+  display: none !important;
+}
 
 
 

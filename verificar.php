@@ -60,56 +60,64 @@
 		$dta_nascimento=$_POST['dta_nascimento'];
 		$telefone=$_POST['telefone'];
 		$categoria_usuario=$_POST['categoria_usuario'];
-		if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($dta_nascimento)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
+		if ($funcao_1==$funcao_2) {
+			echo('<script>swal("As funções devem ser diferentes", "", "error");</script>');
+			echo('<script>window.location="cadastro.php";</script>');
+		}
+		else
 		{
-			$senha=base64_encode($senha);
-			if (strlen($cpf)<11) 
+			if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($dta_nascimento)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
 			{
-				echo('<script>swal("O CPF deve ter no mínimo 11 dígitos", "", "error");</script>');
-				echo('<script>window.location="cadastro.php";</script>');
-			}
-			else
-			{
-				$sqlsel='select * from usuario where email="'.$email.'";';
-				$resul=mysqli_query($conexao,$sqlsel);
-				//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
-				if(mysqli_num_rows($resul))
+				$senha=base64_encode($senha);
+				if (strlen($cpf)<11) 
 				{
-					echo('<script>swal("Email já cadastrado", "", "error");</script>');
+					echo('<script>swal("O CPF deve ter no mínimo 11 dígitos", "", "error");</script>');
 					echo('<script>window.location="cadastro.php";</script>');
 				}
 				else
 				{
-					$sqlsel='select * from usuario where cpf="'.$cpf.'";';
+					$sqlsel='select * from usuario where email="'.$email.'";';
 					$resul=mysqli_query($conexao,$sqlsel);
+					//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
 					if(mysqli_num_rows($resul))
 					{
-						echo('<script>swal("CPF já cadastrado", "", "error");</script>');
-						echo('<script>window.location="destruir.php";</script>');
-					}
-					$sqlsel='select * from usuario where nick="'.$nick.'";';
-					$resul=mysqli_query($conexao,$sqlsel);
-					if(mysqli_num_rows($resul))
-					{
-						echo('<script>swal("Nick já cadastrado", "", "error");</script>');
-						echo('<script>window.location="destruir.php";</script>');
+						echo('<script>swal("Email já cadastrado", "", "error");</script>');
+						echo('<script>window.location="cadastro.php";</script>');
 					}
 					else
 					{
-						//inserindo dados do usuario
-						$sqlin='insert into usuario(nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values ("'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$dta_nascimento.'","'.$telefone.'","'.$categoria_usuario.'");';
-						mysqli_query($conexao,$sqlin);
-						$_SESSION['email']=$email;
-				        echo('<script>swal("Cadastrado com sucesso", "", "success");</script>');
-						echo('<script>window.location="home.php";</script>');
-					}			
+						$sqlsel='select * from usuario where cpf="'.$cpf.'";';
+						$resul=mysqli_query($conexao,$sqlsel);
+						if(mysqli_num_rows($resul))
+						{
+							echo('<script>swal("CPF já cadastrado", "", "error");</script>');
+							echo('<script>window.location="destruir.php";</script>');
+						}
+						$sqlsel='select * from usuario where nick="'.$nick.'";';
+						$resul=mysqli_query($conexao,$sqlsel);
+						if(mysqli_num_rows($resul))
+						{
+							echo('<script>swal("Nick já cadastrado", "", "error");</script>');
+							echo('<script>window.location="destruir.php";</script>');
+						}
+						else
+						{
+							//inserindo dados do usuario
+							$sqlin='insert into usuario(nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values ("'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$dta_nascimento.'","'.$telefone.'","'.$categoria_usuario.'");';
+							mysqli_query($conexao,$sqlin);
+							$_SESSION['email']=$email;
+					        echo('<script>swal("Cadastrado com sucesso", "", "success");</script>');
+							echo('<script>window.location="home.php";</script>');
+						}			
+					}
 				}
 			}
+			else{
+				echo('<script>swal("Todos os campos devem ser preenchidos", "", "error");</script>');
+				echo('<script>window.location="cadastro.php";</script>');
+			}
 		}
-		else{
-			echo('<script>swal("Todos os campos devem ser preenchidos", "", "error");</script>');
-			echo('<script>window.location="cadastro.php";</script>');
-		}
+		
 	}
 	if (isset($_POST['enviar_investidor'])) 
 	{

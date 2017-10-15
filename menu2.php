@@ -8,7 +8,7 @@
 					<a class="menu-item " href="noticias.php" >Notícias </a>
 			</li>
 			<li class="item item-log">
-					<a class="menu-item " href="perfil_jogador.php" >Perfil </a>
+					<a class="menu-item " href="verificar_perfil.php" >Perfil </a>
 			</li>
 			<li class="item item-log">
 					<a class="menu-item " href="clube_jogador.php">Clube </a>
