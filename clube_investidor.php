@@ -1,5 +1,6 @@
 <?php
 	ob_start();
+	include('verificar_logado.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,7 +38,13 @@
 				<!-- CARD COM INFORMAÇÕES -->
 				<div class="col-md-5">
 			        <div class="cartao-grande">
-			            <img src="img/logo_redcanids.png" class="img-circle">
+
+					<?php
+			        	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+			        	$resul=mysqli_query($conexao,$sqlsel);
+			        	$con2=mysqli_fetch_array($resul);
+			        	echo('<label for="anexo" class="arq2"><img src="uploads/'.$con2['logo_clube'].'" class="img-circle img-responsive perfil_img"></label>');
+			        ?>
 			            <div class="clube-cartao">
 			                <div class="row">
 			                    <div class="col-sm-12">

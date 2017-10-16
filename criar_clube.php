@@ -43,8 +43,8 @@
 			            </div>
 					</div>
 					<div class="col-md-3 col-sm-3">
-							<label for='selecao-arquivo'><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Importar Logo </label>
-							<input id='selecao-arquivo' type='file' name="anexo">
+							<label for='anexo'><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Importar Logo </label>
+							<input id='anexo' type='file' name="anexo"/>
 					</div>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 			{
 				$nome = $_POST['nome'];
 				$descricao = $_POST['descricao'];
-				if(!isset($_FILES['anexo']))
+				if(!isset($_FILES['anexo'])==false)
 				{
 					if(empty($nome) or empty($descricao))
 					{
@@ -74,7 +74,6 @@
 					{
 						$sqlin=('INSERT INTO clube(nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
 						$inserir=mysqli_query($conexao,$sqlin);
-						$teste="Sem imagem";
 					}
 				}
 				else{
@@ -90,12 +89,11 @@
 					{
 						$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$novo_nome.'","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
 						$inserir=mysqli_query($conexao,$sqlin);
-						$teste="Com img";
 					}
 				}
 				if($inserir)
 				{
-					echo ('<script>window.alert("Clube criado com sucesso!'.$teste.'");window.location.href="clube_investidor.php";</script>');
+					echo ('<script>window.alert("Clube criado com sucesso!");window.location.href="clube_investidor.php";</script>');
 				}
 				else
 				{
