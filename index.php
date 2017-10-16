@@ -107,7 +107,7 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
         </div>
         <!--VÍDEO VIRAL-->
 	    <div class="embed-responsive embed-responsive-16by9">
-		  <iframe class="embed-responsive-item" style="height: 70%; width: 100%;" src="https://www.youtube.com/embed/tmJ0tzAZ4aM" allowfullscreen></iframe>
+		  <iframe class="embed-responsive-item" style="height: 70%; width: 100%;" src="https://www.youtube.com/embed/llBYMGfNn7Q?rel=0" allowfullscreen></iframe>
 		</div>
 	    <!--COMENTÁRIOS-->
 	    <div class="container-fluid">
