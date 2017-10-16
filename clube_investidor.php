@@ -38,13 +38,38 @@
 				<!-- CARD COM INFORMAÇÕES -->
 				<div class="col-md-5">
 			        <div class="cartao-grande">
-
 					<?php
-			        	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+						$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
 			        	$resul=mysqli_query($conexao,$sqlsel);
 			        	$con2=mysqli_fetch_array($resul);
-			        	echo('<label for="anexo" class="arq2"><img src="uploads/'.$con2['logo_clube'].'" class="img-circle img-responsive perfil_img"></label>');
+			        	if($con2['logo_clube']){
+			        		$cam='uploads/'.$con2['logo_clube'];
+			        	}
+			        	else{
+			        		$cam='img/clube_icon.png';
+			        	}
+			        	echo('<label for="anexo" class="arq"><img src="'.$cam.'" class="img-circle img-responsive perfil_img2"></label>');
 			        ?>
+			        <div class="text-center col-xs-12">
+			        		<form action="#" method="POST" enctype="multipart/form-data">
+			        			<input type="file" name="anexo" id="anexo">
+			        			<button type="submit" class="btn btn_foto">Mudar foto do clube</button>
+	                        </form>
+			        	</div>
+			        	<?php
+			        		if (isset($_FILES['anexo']))
+	                        {
+	                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+	                            $diretorio="uploads/";
+	                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+	                            $sqlup='update clube set logo_clube="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+	                            mysqli_query($conexao,$sqlup);
+	                            echo('<script>window.location="clube_investidor.php";</script>');
+
+	                        }
+			        	?>
+
 			            <div class="clube-cartao">
 			                <div class="row">
 			                    <div class="col-sm-12">

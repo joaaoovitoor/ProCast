@@ -2,6 +2,10 @@
 	width: 110px;
 	height: 110px !important;
 }
+.perfil_img2{
+	width: 260px;
+	height: 260px !important;
+}
 *{
 	font-family: 'Nunito', sans-serif;
 }
@@ -246,6 +250,7 @@ line-height: 22px;
 	background: #333 ;
 	color: #f2f4f2 !important;
 }
+
 input[type="file"] {
   display: none !important;
 }

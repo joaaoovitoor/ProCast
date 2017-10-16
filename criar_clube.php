@@ -62,43 +62,54 @@
 
 			if(isset($_POST['enviar']))
 			{
-				$nome = $_POST['nome'];
-				$descricao = $_POST['descricao'];
-				if(!isset($_FILES['anexo'])==false)
-				{
-					if(empty($nome) or empty($descricao))
-					{
-						echo ('<script>window.alert("Digite todos os dados");</script>');
-					}
-					else
-					{
-						$sqlin=('INSERT INTO clube(nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
-						$inserir=mysqli_query($conexao,$sqlin);
-					}
-				}
-				else{
-	                $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
-	                $novo_nome=md5(time().$con['id_usuario']).$extensao;
-	                $diretorio="uploads/";
-	                move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
-					if(empty($nome) or empty($descricao))
-					{
-						echo ('<script>window.alert("Digite todos os dados");</script>');
-					}
-					else
-					{
-						$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$novo_nome.'","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
-						$inserir=mysqli_query($conexao,$sqlin);
-					}
-				}
-				if($inserir)
-				{
-					echo ('<script>window.alert("Clube criado com sucesso!");window.location.href="clube_investidor.php";</script>');
+				$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+				$resul=mysqli_query($conexao,$sqlsel);
+				if (mysqli_num_rows($resul)) {
+					echo ('<script>window.alert("Você já possui um clube");window.location.href="clube_investidor.php";</script>');
+
 				}
 				else
 				{
-					echo ('<script>window.alert("Erro ao criar Clube!'.$teste.'");window.location.href="criar_clube.php";</script>');
+					$nome = $_POST['nome'];
+					$descricao = $_POST['descricao'];
+					if(!isset($_FILES['anexo'])==false)
+					{
+						if(empty($nome) or empty($descricao))
+						{
+							echo ('<script>window.alert("Digite todos os dados");</script>');
+						}
+						else
+						{
+							$sqlin=('INSERT INTO clube(nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
+							$inserir=mysqli_query($conexao,$sqlin);
+						}
+					}
+					else{
+		                $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+		                $novo_nome=md5(time().$con['id_usuario']).$extensao;
+		                $diretorio="uploads/";
+		                move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+						if(empty($nome) or empty($descricao))
+						{
+							echo ('<script>window.alert("Digite todos os dados");</script>');
+						}
+						else
+						{
+							$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$novo_nome.'","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
+							$inserir=mysqli_query($conexao,$sqlin);
+						}
+					}
+					if($inserir)
+					{
+						echo ('<script>window.alert("Clube criado com sucesso!");window.location.href="clube_investidor.php";</script>');
+					}
+					else
+					{
+						echo ('<script>window.alert("Erro ao criar Clube!'.$teste.'");window.location.href="criar_clube.php";</script>');
+					}
+
 				}
+			
 			}
 		?>
 		
