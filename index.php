@@ -111,8 +111,8 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 		</div>
 	    <!--COMENTÁRIOS-->
 	    <div class="container-fluid">
-			<div class='row'>
-			    <div class='col-md-offset-0 col-md-12'>
+			<div class="row">
+			    <div class="col-md-offset-0 col-md-12 espaconegativo">
 			    	<h2 align="center">Comentários dos Usuários</h2>
 			      <div class="carousel slide" data-ride="carousel" id="quote-carousel">
 			        
