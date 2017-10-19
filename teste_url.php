@@ -23,19 +23,17 @@
 	$urlrank = file_get_contents("https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/$id?api_key=RGAPI-d89b2cfe-8b5f-4f55-80ef-abc61bc8d931");
 
 	$filas = explode('},',$urlrank);
-	$filasolo = $filas[0].'}]';
-	$retirar = str_replace("[","", $filasolo);
-	$solo = str_replace("]","", $retirar);
+	$filasolo = $filas[0].'}';
+	$solo = str_replace("[","", $filasolo);
 	$rankings = json_decode($solo);
 
 	echo "<br><br><br>Fila Solo/Duo";
 	echo '<br>Tier: '.$rankings->tier;
 	echo '<br>Rank: '.$rankings->rank;
 
-	$filaflex = "[".$filas[1];
-	$retirar = str_replace("[","", $filaflex);
-	$filaflex = str_replace("]","", $retirar);
-	$rankingf = json_decode($filaflex);
+	$filaflex =$filas[1];
+	$flex = str_replace("]","", $filaflex);
+	$rankingf = json_decode($flex);
 
 	echo "<br><br><br>Fila Flex";
 	echo '<br>Tier: '.$rankingf->tier;
