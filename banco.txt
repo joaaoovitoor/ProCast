@@ -52,12 +52,6 @@ INSERT INTO `estado` (`id`, `nome`, `uf`, `pais`) VALUES
 (27, 'Tocantins', 'TO', 1);
 
 
-
-
-
-
-
-
 CREATE TABLE IF NOT EXISTS `cidade` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(120) DEFAULT NULL,
@@ -5655,13 +5649,10 @@ CREATE TABLE usuario(
 	senha varchar(100) not null,
 	email varchar (50) not null,
 	dta_nascimento date not null,
-	estado char(2) not null,
+	estado int(2) not null,
 	telefone char(15) not null,
 	descricao text,
-	dta_criacao_conta DATETIME,
-	constraint fk_funcao_1 foreign key (funcao_1) references funcao(id_funcao),
-	constraint fk_funcao_2 foreign key (funcao_2) references funcao(id_funcao),
-	constraint fk_estado foreign key (estado) references estado(uf)
+	dta_criacao_conta DATETIME
 );
 
 CREATE TABLE admin(
@@ -5697,16 +5688,14 @@ CREATE TABLE noticia(
 	lide varchar(200) not null,
 	texto varchar(1000) not null,
 	imagem_noticia varchar(100),
-	id_categoria_noticia int,
-	constraint fk_categoria_noticia foreign key (id_categoria_noticia) references categoria_noticia(id_categoria_noticia)
+	id_categoria_noticia int
 );
 
 CREATE TABLE comentario(
 	id_comentario int auto_increment primary key,
 	texto_comentario varchar(150) not null,
 	id_usuario int,
-	data_comentario DATETIME,
-	constraint fk_comentario_usuario foreign key (id_usuario) references usuario(id_usuario)
+	data_comentario DATETIME
 );
 
 CREATE TABLE anuncio(
@@ -5714,8 +5703,7 @@ CREATE TABLE anuncio(
 	imagem_anuncio varchar(30) not null,
 	nome_anuncio varchar(25) not null,
 	data_criacao_anuncio DATETIME,
-	id_anunciante int,
-	constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante)
+	id_anunciante int
 );
 
 CREATE TABLE denuncia(
@@ -5723,8 +5711,7 @@ CREATE TABLE denuncia(
 	descricao_denuncia varchar(100) not null,
 	tipo_denuncia char(1) not null,
 	data_denuncia DATETIME,
-	id_usuario int,
-	constraint fk_denuncia_usuario foreign key (id_usuario) references usuario(id_usuario)
+	id_usuario int
 );
 
 CREATE TABLE contato(
@@ -5734,8 +5721,7 @@ CREATE TABLE contato(
 	motivo varchar(20) not null,
 	descricao_contato varchar(1000) not null,
 	id_usuario int,
-	imagem_contato varchar(50),
-	constraint fk_contato_usuario foreign key (id_usuario) references usuario(id_usuario)
+	imagem_contato varchar(50)
 );
 
 
@@ -5751,9 +5737,7 @@ CREATE TABLE colocacao(
 	id_colocacao int auto_increment primary key,
 	id_torneio int,
 	id_usuario int,
-	colocacao varchar(4),
-	constraint fk_torneio_colocacao foreign key (id_torneio) references torneio(id_torneio),
-	constraint fk_usuario_colocacao foreign key (id_usuario) references usuario(id_usuario)
+	colocacao varchar(4)
 );
 
 CREATE TABLE clube(
@@ -5764,8 +5748,7 @@ CREATE TABLE clube(
 	numero_jogadores int(3),
 	descricao_clube varchar(1000) not null,
 	numero_vitorias_clube varchar(4),
-	id_usuario int,
-	constraint fk_usuario_clube foreign key(id_usuario) references usuario(id_usuario)
+	id_usuario int
 );
 
 CREATE TABLE pagamento(
@@ -5773,8 +5756,7 @@ CREATE TABLE pagamento(
 	dta_pagamento DATETIME not null,
 	valor_pagamento varchar(10) not null,
 	numero_boleto varchar(50) not null,
-	id_usuario int,
-	constraint fk_usuario_pagamento foreign key(id_usuario) references usuario(id_usuario)
+	id_usuario int not null
 );
 
 CREATE TABLE video(
@@ -5782,8 +5764,7 @@ CREATE TABLE video(
 	data_video DATETIME not null,
 	descricao_video varchar(300) not null,
 	titulo_video varchar(50) not null,
-	id_usuario int,
-	constraint fk_usuario_video foreign key(id_usuario) references usuario(id_usuario)
+	id_usuario int
 );
 
 CREATE TABLE agenda(
@@ -5792,8 +5773,7 @@ CREATE TABLE agenda(
 	data date,
 	evento varchar(20),
 	descricao_evento varchar(200),
-	id_usuario int,
-	constraint fk_usuario_agenda foreign key(id_usuario) references usuario(id_usuario)
+	id_usuario int
 );
 
 CREATE TABLE mensagem(
@@ -5812,7 +5792,27 @@ CREATE TABLE mensagem(
 	data DATETIME,
 	view varchar(1),
 	id_enviar int(11) not null,
-	id_receber int(11) not null,
-	constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario),
-	constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario)
+	id_receber int(11) not null
 );
+ALTER TABLE usuario ADD constraint fk_funcao_1 foreign key (funcao_1) references funcao(id_funcao);
+ALTER TABLE usuario ADD constraint fk_funcao_2 foreign key (funcao_2) references funcao(id_funcao);
+ALTER TABLE usuario ADD constraint fk_estado foreign key (estado) references estado(id);
+ALTER TABLE noticia ADD constraint fk_categoria_noticia foreign key (id_categoria_noticia) references categoria_noticia(id_categoria_noticia);
+ALTER TABLE comentario ADD constraint fk_comentario_usuario foreign key (id_usuario) references usuario(id_usuario);
+ALTER TABLE anuncio ADD constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante);
+ALTER TABLE denuncia ADD constraint fk_denuncia_usuario foreign key (id_usuario) references usuario(id_usuario);
+ALTER TABLE contato ADD constraint fk_contato_usuario foreign key (id_usuario) references usuario(id_usuario);
+ALTER TABLE colocacao ADD constraint fk_torneio_colocacao foreign key (id_torneio) references torneio(id_torneio);
+ALTER TABLE colocacao ADD constraint fk_usuario_colocacao foreign key (id_usuario) references usuario(id_usuario);
+ALTER TABLE clube ADD constraint fk_usuario_clube foreign key(id_usuario) references usuario(id_usuario);
+ALTER TABLE pagamento ADD constraint fk_usuario_pagamento foreign key(id_usuario) references usuario(id_usuario);
+ALTER TABLE video ADD constraint fk_usuario_video foreign key(id_usuario) references usuario(id_usuario);
+ALTER TABLE agenda ADD constraint fk_usuario_agenda foreign key(id_usuario) references usuario(id_usuario);
+ALTER TABLE mensagem ADD constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario);
+ALTER TABLE mensagem ADD constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario);
+
+
+
+
+
+
