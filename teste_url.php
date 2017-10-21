@@ -1,22 +1,16 @@
 <?php
 	
 	$apikey="RGAPI-52ab3dd2-16d3-404c-bdc5-14279ce28ec6";
-	$nick ="eoakeoak";
+	$nick =$con['nick'];
 	$nickcod = rawurlencode($nick);
-	echo $nickcod;
+	
 	
 	$urljogo = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
-	echo $urljogo;
 	
 	$dados = json_decode($urljogo);
 
-	if($dados->status_code==404)
-	{
-		echo "Nick inválido";
-	}
-	else
-	{
-		echo '<br>ID: '.$dados->id;
+	
+	
 
 		$id=$dados->id;
 
@@ -40,5 +34,5 @@
 		echo "<br><br><br>Fila Flex";
 		echo '<br>Tier: '.$rankingf->tier;
 		echo '<br>Rank: '.$rankingf->rank;
-	}
+	
 ?>
