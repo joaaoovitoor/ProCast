@@ -52,6 +52,21 @@
 		$nome=$_POST['nome'];
 		$sobrenome=$_POST['sobrenome'];
 		$nick=$_POST['nick'];
+		$apikey="RGAPI-f8999a64-bec3-4b2d-acd3-1ab70789db9e";		
+		$nickcod = rawurlencode($nick);
+		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
+		
+		if($urljogo){
+			$retirar = array('{','"','}');
+			$urljogo = str_replace($retirar, '', $urljogo);
+			$urljogo = str_replace(',', ':', $urljogo);
+			$id_nick = explode(':',$urljogo);
+		}
+		else
+		{
+			echo('<script>alert("Nick inválido: usuário inexistente!");</script>');
+			echo('<script>window.location="cadastro.php";</script>');
+		}
 		$funcao_1=$_POST['funcao_1'];
 		$funcao_2=$_POST['funcao_2'];
 		$email=$_POST['email'];
@@ -59,6 +74,7 @@
 		$sexo=$_POST['sexo'];
 		$cpf=$_POST['cpf'];
 		$estado=$_POST['estado'];
+		$cidade=$_POST['cidade'];
 		$dta_nascimento=$_POST['dta_nascimento'];
 		$dataexplode=explode("/",$dta_nascimento);
 		$cont=2;
@@ -113,7 +129,7 @@
 						else
 						{
 							//inserindo dados do usuario
-							$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+							$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,id_nick,cpf,funcao_1,funcao_2,sexo,estado,cidade,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'",'.$id_nick[1].',"'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$cidade.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
 							$inserir=mysqli_query($conexao,$sqlin);
 							//iniciando a sessão
 							if($inserir)
@@ -126,7 +142,6 @@
 							else
 							{
 								echo('<script>alert("Erro no cadastro!");</script>');
-								echo('<script>window.location="cadastro.php";</script>');
 							}
 						}			
 					}
