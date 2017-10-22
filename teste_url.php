@@ -1,20 +1,21 @@
 <?php
 	
 	$apikey="RGAPI-f8999a64-bec3-4b2d-acd3-1ab70789db9e";
-	$nick ='EKAOKEAOKsdao';
+	$nick ='xNegão RX';
 	//$nick ='teste';
 	//$nick ='fhgdfkdjkf';
+	
 	$nickcod = rawurlencode($nick);
-
-	$urljogo = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
+	$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
 	
+	if($urljogo){
 
-	$retirar = array('{','"','}');
-	$urljogo = str_replace($retirar, '', $urljogo);
-	$urljogo = str_replace(',', ':', $urljogo);
-	$urlid = explode(':',$urljogo);
-	
-	if ($urlid[1]) {
+		$retirar = array('{','"','}');
+		$urljogo = str_replace($retirar, '', $urljogo);
+		$urljogo = str_replace(',', ':', $urljogo);
+		$urlid = explode(':',$urljogo);
+		
+
 		$urlrank = file_get_contents("https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/$urlid[1]?api_key=$apikey");
 		
 		//solo/duo
@@ -41,10 +42,11 @@
 		{
 			echo ('usuario não possui rank');
 		}
-	}
 		
-	else{
-		echo('usuário inexistente');
+	}
+	else
+	{
+		echo "Jogador inexistente";
 	}	
 
 ?>

@@ -5643,6 +5643,7 @@ CREATE TABLE usuario(
 	sexo char(1),
 	categoria_usuario char(1) not null,
 	nick varchar (20),
+	id_nick int(20),
 	foto_perfil varchar(100) ,
 	funcao_1 int,
 	funcao_2 int,
@@ -5711,7 +5712,8 @@ CREATE TABLE denuncia(
 	descricao_denuncia varchar(100) not null,
 	tipo_denuncia char(1) not null,
 	data_denuncia DATETIME,
-	id_usuario int
+	id_usuario int,
+	id_denunciante int
 );
 
 CREATE TABLE contato(
@@ -5801,6 +5803,7 @@ ALTER TABLE noticia ADD constraint fk_categoria_noticia foreign key (id_categori
 ALTER TABLE comentario ADD constraint fk_comentario_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE anuncio ADD constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante);
 ALTER TABLE denuncia ADD constraint fk_denuncia_usuario foreign key (id_usuario) references usuario(id_usuario);
+ALTER TABLE denuncia ADD constraint fk_denuncia_denunciante foreign key (id_denunciante) references usuario(id_usuario);
 ALTER TABLE contato ADD constraint fk_contato_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE colocacao ADD constraint fk_torneio_colocacao foreign key (id_torneio) references torneio(id_torneio);
 ALTER TABLE colocacao ADD constraint fk_usuario_colocacao foreign key (id_usuario) references usuario(id_usuario);
