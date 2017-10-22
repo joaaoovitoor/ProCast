@@ -52,6 +52,21 @@
 		$nome=$_POST['nome'];
 		$sobrenome=$_POST['sobrenome'];
 		$nick=$_POST['nick'];
+		$apikey="RGAPI-f8999a64-bec3-4b2d-acd3-1ab70789db9e";		
+		$nickcod = rawurlencode($nick);
+		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
+		
+		if($urljogo){
+			$retirar = array('{','"','}');
+			$urljogo = str_replace($retirar, '', $urljogo);
+			$urljogo = str_replace(',', ':', $urljogo);
+			$id_nick = explode(':',$urljogo);
+		}
+		else
+		{
+			echo('<script>alert("Nick inválido: usuário inexistente!");</script>');
+			echo('<script>window.location="cadastro.php";</script>');
+		}
 		$funcao_1=$_POST['funcao_1'];
 		$funcao_2=$_POST['funcao_2'];
 		$email=$_POST['email'];
@@ -59,6 +74,7 @@
 		$sexo=$_POST['sexo'];
 		$cpf=$_POST['cpf'];
 		$estado=$_POST['estado'];
+		$cidade=$_POST['cidade'];
 		$dta_nascimento=$_POST['dta_nascimento'];
 
 		$apikey="RGAPI-9ecfd0a1-41e1-4b65-bdde-5daaa477dfc8";
@@ -104,9 +120,17 @@
 						}
 						else
 						{
+<<<<<<< HEAD
 							$sqlsel='select * from usuario where cpf="'.$cpf.'";';
 							$resul=mysqli_query($conexao,$sqlsel);
 							if(mysqli_num_rows($resul))
+=======
+							//inserindo dados do usuario
+							$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,id_nick,cpf,funcao_1,funcao_2,sexo,estado,cidade,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'",'.$id_nick[1].',"'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$cidade.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+							$inserir=mysqli_query($conexao,$sqlin);
+							//iniciando a sessão
+							if($inserir)
+>>>>>>> 6057714ad4d5f700212b9af5fd01c2f9602b33f9
 							{
 								echo('<script>alert("CPF já cadastrado!");</script>');
 								echo('<script>window.location="cadastro.php";</script>');
@@ -115,8 +139,12 @@
 							$resul=mysqli_query($conexao,$sqlsel);
 							if(mysqli_num_rows($resul))
 							{
+<<<<<<< HEAD
 								echo('<script>alert("Nick já cadastrado!");</script>');
 								echo('<script>window.location="cadastro.php";</script>');
+=======
+								echo('<script>alert("Erro no cadastro!");</script>');
+>>>>>>> 6057714ad4d5f700212b9af5fd01c2f9602b33f9
 							}
 							else
 							{
