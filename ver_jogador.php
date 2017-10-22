@@ -1,8 +1,8 @@
 <?php
 	include('verificar_logado.php');
 
-	$cod=1;
-	$sqlper=('SELECT * FROM usuario WHERE id_usuario='.$cod.';');
+	$cod="xNegão RX";
+	$sqlper=('SELECT * FROM usuario WHERE nick="'.$cod.'";');
 	$resul_perf=mysqli_query($conexao,$sqlper);
 	$dados_perf=mysqli_fetch_array($resul_perf);
 ?>
