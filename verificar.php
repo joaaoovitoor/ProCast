@@ -52,42 +52,6 @@
 		$nome=$_POST['nome'];
 		$sobrenome=$_POST['sobrenome'];
 		$nick=$_POST['nick'];
-<<<<<<< HEAD
-=======
-		$apikey="RGAPI-f8999a64-bec3-4b2d-acd3-1ab70789db9e";		
-		$nickcod = rawurlencode($nick);
-
-		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
-		
-		if($urljogo){
-			$retirar = array('{','"','}');
-			$urljogo = str_replace($retirar, '', $urljogo);
-			$urljogo = str_replace(',', ':', $urljogo);
-			$id_nick = explode(':',$urljogo);
-
-			$urlrank = @file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.$con['id_nick'].'?api_key='.$apikey.'');
-			if ($urlrank){
-			$filas = explode('},',$urlrank);
-			$filasolo = $filas[0].'}';
-			$solo = str_replace("[","", $filasolo);
-			$rankings = json_decode($solo);
-			$filaflex =$filas[1];
-			$flex = str_replace("]","", $filaflex);
-			$rankingf = json_decode($flex);
-			}
-			else
-			{
-				echo('<script>alert("Usuário Unranked: para se cadastrar, deve ter ranking!");</script>');
-				echo('<script>window.location="cadastro.php";</script>');
-				exit();
-			}
-		}
-		else
-		{
-			echo('<script>alert("Nick inválido: usuário inexistente!");</script>');
-			echo('<script>window.location="cadastro.php";</script>');
-		}
->>>>>>> parent of 5839294... Revert "Merge branch 'master' of https://github.com/negaorx/ProCast"
 		$funcao_1=$_POST['funcao_1'];
 		$funcao_2=$_POST['funcao_2'];
 		$email=$_POST['email'];
