@@ -166,18 +166,9 @@
 				<section id="3">
 					<div class="cartao-equipe">
 		                <div class="media">
-		                <?php 
-							$sqlagenda='SELECT * FROM agenda WHERE id_usuario='.$con['id_usuario'].';';
-							$resulagenda = mysqli_query($conexao,$sqlagenda);
-							if(mysqli_num_rows($resulagenda)>0)
-							{
-								while($dadosagenda=mysqli_fetch_array($resulagenda))
-								{
-									
-						?>
 		                    <div class="media-left">
 		                        <blockquote>
-									<h5>Autor: <a href="clube_jogador.php"><?php echo $con['nome'] ; ?></a></h5>
+									<h5>Autor: <a href="#">Alguém</a></h5>
 									<p>Dia: 05/04/2017</p>
 									<p>Horário: 17:30</p>
 								</blockquote>
@@ -189,14 +180,6 @@
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
 		                        </h4>
 		                    </div>
-	                   <?php 
-	                   			}
-	                   		}
-	                   		else
-	                   		{
-	                   			echo "Nenhum evento!";
-	                   		}
-	                   ?>
 		                </div>
 		            </div>   
 				</section>

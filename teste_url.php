@@ -1,7 +1,6 @@
 <?php
 	
 	$apikey="RGAPI-f8999a64-bec3-4b2d-acd3-1ab70789db9e";
-<<<<<<< HEAD
 	$nick ='mirielesilverio';
 	//$nick ='teste';
 	//$nick ='fhgdfkdjkf';
@@ -16,23 +15,6 @@
 	$urlid = explode(':',$urljogo);
 	
 	if ($urlid[1]) {
-=======
-	$nick ='xNegão RX';
-	//$nick ='teste';
-	//$nick ='fhgdfkdjkf';
-	
-	$nickcod = rawurlencode($nick);
-	$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
-	
-	if($urljogo){
-
-		$retirar = array('{','"','}');
-		$urljogo = str_replace($retirar, '', $urljogo);
-		$urljogo = str_replace(',', ':', $urljogo);
-		$urlid = explode(':',$urljogo);
-		
-
->>>>>>> 6057714ad4d5f700212b9af5fd01c2f9602b33f9
 		$urlrank = file_get_contents("https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/$urlid[1]?api_key=$apikey");
 		
 		//solo/duo
@@ -59,18 +41,10 @@
 		{
 			echo ('usuario não possui rank');
 		}
-<<<<<<< HEAD
 	}
 		
 	else{
 		echo('usuário inexistente');
-=======
-		
-	}
-	else
-	{
-		echo "Jogador inexistente";
->>>>>>> 6057714ad4d5f700212b9af5fd01c2f9602b33f9
 	}	
 
 ?>
