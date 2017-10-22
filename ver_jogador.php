@@ -1,5 +1,10 @@
 <?php
 	include('verificar_logado.php');
+
+	$cod=1;
+	$sqlper=('SELECT * FROM usuario WHERE id_usuario='.$cod.';');
+	$resul_perf=mysqli_query($conexao,$sqlper);
+	$dados_perf=mysqli_fetch_array($resul_perf);
 ?>
 <html lang="pt-br">
 	<head>
@@ -30,8 +35,8 @@
 			        <div class="cartao-grande spc-cartao">
 			        	<div class="col-md-offset-4 col-md-4">
 			        		<?php
-			        			if($con['foto_perfil']){
-			        				$cam='uploads/'.$con['foto_perfil'];
+			        			if($dados_perf['foto_perfil']){
+			        				$cam='uploads/'.$dados_perf['foto_perfil'];
 			        			}
 			        			else{
 			        				$cam='img/perfil_icon.png';
@@ -45,7 +50,7 @@
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
 			                    <div class="informacoes">
-			                        Nick<br><?php echo $con['nick'];?>
+			                        Nick<br><?php echo $dados_perf['nick'];?>
 			                    </div>
 			                </div>
 			            </div>
@@ -63,15 +68,15 @@
 			            <div class="descricao">
 		                    <p><strong>Sobre:</strong></p>
 		                    <?php
-		                    if($con['descricao']==NULL){
+		                    if($dados_perf['descricao']==NULL){
 								echo '<p>Nenhuma descrição</p>';
 							}else{
-		                    	echo ('<p>'.$con['descricao'].'</p>');
+		                    	echo ('<p>'.$dados_perf['descricao'].'</p>');
 							}
 		                    ?>
 		                    <p><strong>Função Primária:</strong>
 		                    <?php 
-								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_1'].';';
+								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$dados_perf['funcao_1'].';';
 								$resul=mysqli_query($conexao,$sqlsel);
 								$con2=mysqli_fetch_array($resul);
 								echo($con2['nome_funcao']);
@@ -79,7 +84,7 @@
 		                    </p>
 		                    <p><strong>Função Secundária:</strong>
 		                    <?php 
-								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_2'].';';
+								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$dados_perf['funcao_2'].';';
 								$resul=mysqli_query($conexao,$sqlsel);
 								$con2=mysqli_fetch_array($resul);
 								echo($con2['nome_funcao']);
@@ -95,14 +100,14 @@
 				<div class="hidden-md hidden-lg">
 					<div class="cartao">
 					 <img src="img/perfil_icon.png" class="img-circle">
-                        <p>Nick: <?php echo $con['nick'];?> </p>
+                        <p>Nick: <?php echo $dados_perf['nick'];?> </p>
                         <p>Clube: Red Canids</p>
 		                <p>SOBRE MIM:
 		                <?php
-		                    if($con['descricao']==NULL){
+		                    if($dados_perf['descricao']==NULL){
 								echo 'Crie uma descrição<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
 							}else{
-		                    	echo $con['descricao'];
+		                    	echo $dados_perf['descricao'];
 							}
 	                    ?>
 		                </p>
@@ -129,7 +134,7 @@
 				<!--MENU - CLUBE-->
 				<section id="1">
 		            <?php 
-					$sqlclube='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+					$sqlclube='SELECT * FROM clube WHERE id_usuario='.$dados_perf['id_usuario'].';';
 					$resulclube = mysqli_query($conexao,$sqlclube);
 					$dados=mysqli_fetch_array($resulclube);
 					$rows=mysqli_num_rows($resulclube);
@@ -290,7 +295,7 @@
 				   			else
 				   			{
 				   				$sqlden='INSERT INTO denuncia(descricao_denuncia, tipo_denuncia, data_denuncia, id_usuario, id_denunciante) 
-				   				VALUES ("'.$desc_denuncia.'","'.$motivo.'", NOW(),1,'.$con['id_usuario'].');';
+				   				VALUES ("'.$desc_denuncia.'","'.$motivo.'", NOW(),'.$dados_perf['id_usuario'].','.$con['id_usuario'].');';
 				   				$den=mysqli_query($conexao,$sqlden);
 				   				if($den)
 				   				{
