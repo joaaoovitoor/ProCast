@@ -60,82 +60,96 @@
 		$cpf=$_POST['cpf'];
 		$estado=$_POST['estado'];
 		$dta_nascimento=$_POST['dta_nascimento'];
-		$dataexplode=explode("/",$dta_nascimento);
-		$cont=2;
-		for($i=0;$i<3;$i++)
+
+		$apikey="RGAPI-9ecfd0a1-41e1-4b65-bdde-5daaa477dfc8";
+		$nickcod = rawurlencode($nick);
+		$urljogo = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
+		$dados = json_decode($urljogo);
+
+		if ($dados->id) 
 		{
-			$datainv[$i]=$dataexplode[$cont];
-			$cont--;
-		}
-		$datacerto=implode("-", $datainv);
-		$telefone=$_POST['telefone'];
-		$categoria_usuario=$_POST['categoria_usuario'];
-		if ($funcao_1==$funcao_2) {
-			echo('<script>alert("As funções devem ser diferentes");</script>');
-			echo('<script>window.location="cadastro.php";</script>');
-		}
-		else
-		{
-			if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
+			$dataexplode=explode("/",$dta_nascimento);
+			$cont=2;
+			for($i=0;$i<3;$i++)
 			{
-				$senha=base64_encode($senha);
-				if (strlen($cpf)<14) 
+				$datainv[$i]=$dataexplode[$cont];
+				$cont--;
+			}
+			$datacerto=implode("-", $datainv);
+			$telefone=$_POST['telefone'];
+			$categoria_usuario=$_POST['categoria_usuario'];
+			if ($funcao_1==$funcao_2) {
+				echo('<script>alert("As funções devem ser diferentes");</script>');
+				echo('<script>window.location="cadastro.php";</script>');
+			}
+			else
+			{
+				if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
 				{
-					echo('<script>alert("O CPF deve ter 11 dígitos");</script>');
-					echo('<script>window.location="cadastro.php";</script>');
-				}
-				else
-				{
-					$sqlsel='select * from usuario where email="'.$email.'";';
-					$resul=mysqli_query($conexao,$sqlsel);
-					//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
-					if(mysqli_num_rows($resul))
+					$senha=base64_encode($senha);
+					if (strlen($cpf)<14) 
 					{
-						echo('<script>alert("Email já cadastrado!");</script>');
+						echo('<script>alert("O CPF deve ter 11 dígitos");</script>');
 						echo('<script>window.location="cadastro.php";</script>');
 					}
 					else
 					{
-						$sqlsel='select * from usuario where cpf="'.$cpf.'";';
+						$sqlsel='select * from usuario where email="'.$email.'";';
 						$resul=mysqli_query($conexao,$sqlsel);
+						//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
 						if(mysqli_num_rows($resul))
 						{
-							echo('<script>alert("CPF já cadastrado!");</script>');
-							echo('<script>window.location="cadastro.php";</script>');
-						}
-						$sqlsel='select * from usuario where nick="'.$nick.'";';
-						$resul=mysqli_query($conexao,$sqlsel);
-						if(mysqli_num_rows($resul))
-						{
-							echo('<script>alert("Nick já cadastrado!");</script>');
+							echo('<script>alert("Email já cadastrado!");</script>');
 							echo('<script>window.location="cadastro.php";</script>');
 						}
 						else
 						{
-							//inserindo dados do usuario
-							$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
-							$inserir=mysqli_query($conexao,$sqlin);
-							//iniciando a sessão
-							if($inserir)
+							$sqlsel='select * from usuario where cpf="'.$cpf.'";';
+							$resul=mysqli_query($conexao,$sqlsel);
+							if(mysqli_num_rows($resul))
 							{
-								session_start();
-								$_SESSION['email']=$email;
-						        echo('<script>alert("Cadastrado com sucesso");</script>');
-								echo('<script>window.location="home.php";</script>');
+								echo('<script>alert("CPF já cadastrado!");</script>');
+								echo('<script>window.location="cadastro.php";</script>');
+							}
+							$sqlsel='select * from usuario where nick="'.$nick.'";';
+							$resul=mysqli_query($conexao,$sqlsel);
+							if(mysqli_num_rows($resul))
+							{
+								echo('<script>alert("Nick já cadastrado!");</script>');
+								echo('<script>window.location="cadastro.php";</script>');
 							}
 							else
 							{
-								echo('<script>alert("Erro no cadastro!");</script>');
-								echo('<script>window.location="cadastro.php";</script>');
-							}
-						}			
+								//inserindo dados do usuario
+								$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+								$inserir=mysqli_query($conexao,$sqlin);
+								//iniciando a sessão
+								if($inserir)
+								{
+									session_start();
+									$_SESSION['email']=$email;
+							        echo('<script>alert("Cadastrado com sucesso");</script>');
+									echo('<script>window.location="home.php";</script>');
+								}
+								else
+								{
+									echo('<script>alert("Erro no cadastro!");</script>');
+									echo('<script>window.location="cadastro.php";</script>');
+								}
+							}			
+						}
 					}
 				}
+				else{
+					echo('<script>alert("Todos os campos devem ser preenchidos!");</script>');
+					echo('<script>window.location="cadastro.php";</script>');
+				}
 			}
-			else{
-				echo('<script>alert("Todos os campos devem ser preenchidos!");</script>');
-				echo('<script>window.location="cadastro.php";</script>');
-			}
+
+		}
+		else{
+			echo('<script>alert("Este nick não existe no League of Legends!");</script>');
+					echo('<script>window.location="cadastro.php";</script>');
 		}
 		
 	}
