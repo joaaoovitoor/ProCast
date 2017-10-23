@@ -25,27 +25,27 @@
 			echo "<div><strong>Fila:</strong> Solo/Duo</div>";
 			if($rankings->tier=="BRONZE")
 			{
-				echo ('<div><img src="img/base-icons/bronze.png"/></div>');
+				echo ('<div><img src="img/base-icons/bronze_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Bronze ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="SILVER")
 			{
-				echo ('<div><img src="img/base-icons/silver.png"/></div>');
+				echo ('<div><img src="img/base-icons/silver_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Prata ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="GOLD")
 			{
-				echo ('<div><img src="img/base-icons/gold.png"/></div>');
+				echo ('<div><img src="img/base-icons/gold_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Ouro ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="PLATINUM")
 			{
-				echo ('<div><img src="img/base-icons/platinum.png"/></div>');
+				echo ('<div><img src="img/base-icons/platinum_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Platina ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="DIAMOND")
 			{
-				echo ('<div><img src="img/base-icons/diamond.png"/></div>');
+				echo ('<div><img src="img/base-icons/diamond_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Diamante ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="MASTER")
@@ -63,27 +63,27 @@
 			echo "<div><strong>Fila:</strong> Flex</div>";
 			if($rankingf->tier=="BRONZE")
 			{
-				echo ('<div><img src="img/base-icons/bronze.png"/></div>');
+				echo ('<div><img src="img/base-icons/bronze_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Bronze ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="SILVER")
 			{
-				echo ('<div><img src="img/base-icons/silver.png"/></div>');
+				echo ('<div><img src="img/base-icons/silver_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Prata ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="GOLD")
 			{
-				echo ('<div><img src="img/base-icons/gold.png"/></div>');
+				echo ('<div><img src="img/base-icons/gold_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Ouro ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="PLATINUM")
 			{
-				echo ('<div><img src="img/base-icons/platinum.png"/></div>');
+				echo ('<div><img src="img/base-icons/platinum_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Platina ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="DIAMOND")
 			{
-				echo ('<div><img src="img/base-icons/diamond.png"/></div>');
+				echo ('<div><img src="img/base-icons/diamond_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Diamante ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="MASTER")
@@ -103,27 +103,27 @@
 			echo "<div><strong>Fila:</strong> Solo/Duo</div>";
 			if($rankingf->tier=="BRONZE")
 			{
-				echo ('<div><img src="img/base-icons/bronze.png"/></div>');
+				echo ('<div><img src="img/base-icons/bronze_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Bronze ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="SILVER")
 			{
-				echo ('<div><img src="img/base-icons/silver.png"/></div>');
+				echo ('<div><img src="img/base-icons/silver_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Prata ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="GOLD")
 			{
-				echo ('<div><img src="img/base-icons/gold.png"/></div>');
+				echo ('<div><img src="img/base-icons/gold_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Ouro ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="PLATINUM")
 			{
-				echo ('<div><img src="img/base-icons/platinum.png"/></div>');
+				echo ('<div><img src="img/base-icons/platinum_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Platina ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="DIAMOND")
 			{
-				echo ('<div><img src="img/base-icons/diamond.png"/></div>');
+				echo ('<div><img src="img/base-icons/diamond_'.strtolower($rankingf->rank).'.png"/></div>');
 				echo ("<div>Diamante ".$rankingf->rank."</div>");
 			}
 			elseif($rankingf->tier=="MASTER")
@@ -141,27 +141,27 @@
 			echo "<div><strong>Fila:</strong> Flex</div>";
 			if($rankings->tier=="BRONZE")
 			{
-				echo ('<div><img src="img/base-icons/bronze.png"/></div>');
+				echo ('<div><img src="img/base-icons/bronze_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Bronze ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="SILVER")
 			{
-				echo ('<div><img src="img/base-icons/silver.png"/></div>');
+				echo ('<div><img src="img/base-icons/silver_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Prata ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="GOLD")
 			{
-				echo ('<div><img src="img/base-icons/gold.png"/></div>');
+				echo ('<div><img src="img/base-icons/gold_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Ouro ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="PLATINUM")
 			{
-				echo ('<div><img src="img/base-icons/platinum.png"/></div>');
+				echo ('<div><img src="img/base-icons/platinum_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Platina ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="DIAMOND")
 			{
-				echo ('<div><img src="img/base-icons/diamond.png"/></div>');
+				echo ('<div><img src="img/base-icons/diamond_'.strtolower($rankings->rank).'.png"/></div>');
 				echo ("<div>Diamante ".$rankings->rank."</div>");
 			}
 			elseif($rankings->tier=="MASTER")
