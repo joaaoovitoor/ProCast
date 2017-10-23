@@ -33,7 +33,7 @@
 				<div class="col-md-offset-2 col-md-8">
 					<div class="panel sombra bg_branco form_panel">
 						<div class="panel-body">
-							<form action="#" method="POST">
+							<form action="#" method="POST" enctype="multipart/form-data">
 								<div class="col-md-6">
 									<input type="text" name="motivo" class="form-control input-lg" placeholder="Título da mensagem">
 								</div>
@@ -43,7 +43,8 @@
 										<option value="1">Dicas</option>
 										<option value="2">Problemas</option>
 										<option value="3">Reclamações</option>
-										<option value="3">Propostas</option>
+										<option value="4">Propostas</option>
+										<option value="5">Elogios</option>
 									</select>
 								</div>
 								<div class="col-md-12 mg_tp">
@@ -70,33 +71,33 @@
 				$motivo=$_POST['motivo'];
 				$assunto=$_POST['assunto'];
 				$descricao_contato=$_POST['descricao_contato'];
-				if(isset($_FILES['print']))
+				//se nada estiver vazio
+				if(!empty($motivo) && !empty($assunto) && !empty($descricao_contato))
 				{
-					if(empty ($motivo) or ($assunto) or ($descricao_contato))
+					//se existir imagem
+					if(isset($_FILES['print']))
 					{
-						echo ('<script>window.alert("Complete todos os campos");</script>');
+						$extensao=strtolower(substr($_FILES['print']['name'], -4));
+						$novo_nome=md5(time().$con['id_usuario']).$extensao;
+						$diretorio="uploads/";
+						move_uploaded_file($_FILES['print']['tmp_name'], $diretorio.$novo_nome);
+						$sqlin=('INSERT INTO contato(assunto,motivo,descricao_contato,imagem_contato,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao_contato.'","'.$novo_nome.'",'.$con['id_usuario'].');');
 					}
+					//se não existir imagem
 					else
 					{
-						$sqlin=('INSERT INTO contato(assunto,motivo,descricao_contato,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao.'",'.$con['id_usuario'].');');
-						$inserir=mysql_query($conexao,$sqlin);
+						$sqlin=('INSERT INTO contato(assunto,motivo,descricao_contato,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao_contato.'",'.$con['id_usuario'].');');
+					}
+					$inserir=mysqli_query($conexao,$sqlin);
+					if($inserir)
+					{
+						echo ('<script>window.alert("Mensagem enviada com sucesso");</script>');
 					}
 				}
+				//se algo estiver vazio
 				else
 				{
-					$extensao=strtolower(substr($_FILES['print']['name'], -4));
-	                $novo_nome=md5(time().$con['id_usuario']).$extensao;
-	                $diretorio="uploads/";
-	                move_uploaded_file($_FILES['print']['tmp_name'], $diretorio.$novo_nome);
-	                if(empty ($motivo) or ($assunto) or ($descricao))
-	                {
-						echo ('<script>window.alert("Complete todos os campos");</script>');
-					}
-					else
-					{
-						$sqlin=('INSERT INTO contato(assunto,motivo,descricao_contato,imagem_contato,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao.'","'.$novo_nome.'",'.$con['id_usuario'].');');
-						$inserir=mysql_query($conexao,$sqlin);
-					}
+					echo ('<script>window.alert("Complete todos os campos");</script>');
 				}
 			}
 		?>
