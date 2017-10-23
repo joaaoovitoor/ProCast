@@ -97,6 +97,7 @@
 		if ($funcao_1==$funcao_2) {
 			echo('<script>alert("As funções devem ser diferentes");</script>');
 			echo('<script>window.location="cadastro.php";</script>');
+			exit();
 		}
 		else
 		{
@@ -107,6 +108,7 @@
 				{
 					echo('<script>alert("O CPF deve ter 11 dígitos");</script>');
 					echo('<script>window.location="cadastro.php";</script>');
+					exit();
 				}
 				else
 				{
@@ -117,6 +119,7 @@
 					{
 						echo('<script>alert("Email já cadastrado!");</script>');
 						echo('<script>window.location="cadastro.php";</script>');
+						exit();
 					}
 					else
 					{
@@ -126,6 +129,7 @@
 						{
 							echo('<script>alert("CPF já cadastrado!");</script>');
 							echo('<script>window.location="cadastro.php";</script>');
+							exit();
 						}
 						$sqlsel='select * from usuario where nick="'.$nick.'";';
 						$resul=mysqli_query($conexao,$sqlsel);
@@ -133,6 +137,7 @@
 						{
 							echo('<script>alert("Nick já cadastrado!");</script>');
 							echo('<script>window.location="cadastro.php";</script>');
+							exit();
 						}
 						else
 						{
