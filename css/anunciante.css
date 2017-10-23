@@ -1,0 +1,100 @@
+*{
+	font-family: 'Nunito', sans-serif;
+}
+.perfil{
+	background: url(../img/banner_anunciante.jpg) no-repeat;
+}
+.anuncio{
+	background: url(../img/banner_anuncio.jpg) no-repeat;
+}
+.banner{
+	position: relative;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	text-align: center;
+	height: 450px;
+	letter-spacing: 2px;
+	filter: alpha(opacity:0.5); 
+	color: #f2f4f2;
+	margin-bottom: 3%;
+}
+
+.banner h1{
+	margin-top: 10%;
+	margin-bottom: 2%;
+	font-size: 4.5em;
+}
+.banner p{
+	margin-bottom: 7%;
+}
+.texto_sombra{
+	text-shadow: 2px 2px 7px #333;
+}
+.fonte_azul_claro{
+	color: #1a5a9b !important;
+}
+
+.x1{
+	font-size: 60px !important;
+	margin-bottom: -20px;
+}
+.x2{
+	font-size: 60px !important;
+	margin-bottom: -15px;
+}
+
+.sombra {
+    box-shadow: 3px 3px 5px #e5e0e5;
+}
+.bg_branco {
+    background: #f4f2f4 !important;
+}
+
+.list-card {
+	padding: 15px;
+	width: 100%;
+	margin-bottom: 2%;
+	overflow: auto;
+	background-color: #f4f2f4;
+	border-radius: 7px;
+}
+.list-card img {
+  border: 0;
+  display: inline-block;
+  float: left;
+  margin-right: 18px;
+}
+.list-label {
+  display: inline-block;
+  position: absolute;
+  margin-left: -5px;
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 4px;
+  color: #fff;
+}
+.list-details {
+  float: none;
+}
+.list-name {
+  font-size: 20px;
+  display: inline-block;
+}
+.list-landmark,
+.list-location {
+  font-size: 12px;
+  opacity: 0.5;
+  margin: 2px 0;
+}
+.list-rooms {
+  font-size: 12px;
+}
+.list-price {
+  font-size: 20px;
+  margin-top: 16px;
+}
+
+.btn-default{
+	width:100%;
+}
