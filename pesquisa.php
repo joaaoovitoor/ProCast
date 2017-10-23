@@ -1,12 +1,18 @@
+<?php
+	include('verificar_logado.php');
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 	<head>
-		<title>Pesquisa</title>
-		<link rel="stylesheet" href="css/pesquisa.css" type="text/css"/>
-		<link rel="stylesheet" href="css/perfil/perfil.css" type="text/css"/>
 		<?php
 			include('link_head.html');
 		?>
+		<title>Pesquisa</title>
+		<link rel="stylesheet" href="css/pesquisa.css" type="text/css"/>
+		<link rel="stylesheet" href="css/perfil/perfil.css" type="text/css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script src="js/pesq_filtr.js"></script>
 	</head>
 	<body>
 		<?php
@@ -36,176 +42,89 @@
 				</div>
 			</div>
 			<!--Filtros-->
-			<div class="row">
-        		<div class="col-md-offset-2 col-md-2 espaco">
-        			Idade
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="idade" value="1" >
-					   13-15
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="idade" value="2" >
-					   16-19
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="idade" value="3" >
-					   20-23
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="idade" value="4" >
-					   25-28
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="idade" value="5" >
-					   29+
-					  </label>
-					</div>
-        		</div>
-				<div class="col-md-2">
-        			Região
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="regiao" value="1" >
-					   Norte
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="regiao" value="2" >
-					   Nordeste
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="regiao" value="3" >
-					   Centro-Oeste
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="regiao" value="4" >
-					   Sudeste
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="regiao" value="5" >
-					   Sul
-					  </label>
-					</div>
-        		</div>
-				<div class="col-md-2">
-        			Função
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="funcao" value="1" >
-					   Atirador
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="funcao" value="2" >
-					   Caçador
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="funcao" value="3" >
-					   Meio
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="funcao" value="4" >
-					   Suporte
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="funcao" value="5" >
-					   Topo
-					  </label>
-					</div>
-        		</div>
-				<div class="col-md-2">
-        			Elo
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="elo" value="1" >
-					  Bronze
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="elo" value="2" >
-					   Prata
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="elo" value="3" >
-					   Ouro
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="elo" value="4" >
-					   Platina
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="elo" value="5" >
-					   Diamante
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="elo" value="5" >
-					   Mestre
-					  </label>
-					</div>
-					<div class="form-check">
-					  <label class="form-check-label">
-					    <input class="form-check-input" type="radio" name="elo" value="5" >
-					   Desafiante
-					  </label>
-					</div>
-        		</div>
-        	</div>
+			<form action="" method="POST" name="filtros">
+				<div class="row">
+	        		<div class="col-md-offset-2 col-md-2 espaco">
+	        			<div class="form-group">
+							Idade
+							<select name="idade" id="idade" class="form-control">
+								<option value="0">Selecione a idade</option>
+								<option value="1">Até 15 anos</option>
+								<option value="2">De 16 a 19 anos</option>
+								<option value="3">De 20 a 23 anos</option>
+								<option value="4">De 24 a 27 anos</option>
+								<option value="5">28+ anos</option>
+							</select>
+						</div>
+	        		</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							Estado
+							<select name="estado" id="estado" class="form-control">
+								<option value="0">Selecione um estado</option>
+									<?php
+										$sqlsel='SELECT * FROM estado;';
+										$resul=mysqli_query($conexao,$sqlsel);
+										while ($con=mysqli_fetch_array($resul))
+										{
+											echo
+											('
+												<option value="'.$con['id'].'">'.$con['nome'].'</option>
+											');
+										}
+									?>
+							</select>
+						</div>
+	        		</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							Função
+							<select name="funcao" id="funcao" class="form-control">
+								<option value="0">Selecione uma função</option>
+								<?php
+									$sqlsel='SELECT * FROM funcao;';
+									$resul=mysqli_query($conexao,$sqlsel);
+									while ($con=mysqli_fetch_array($resul))
+									{
+										echo
+										('
+											<option value="'.$con['id_funcao'].'">'.$con['nome_funcao'].'</option>
+										');
+									}
+								?>
+							</select>
+						</div>
+	        		</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							Elo
+							<select name="elo" id="elo" class="form-control">
+								<option value="0">Selecione um elo</option>
+								<option value="b">Bronze</option>
+								<option value="prt">Prata</option>
+								<option value="o">Ouro</option>
+								<option value="pla">Platina</option>
+								<option value="di">Diamante</option>
+								<option value="m">Mestre</option>
+								<option value="de">Desafiante</option>
+							</select>
+						</div>
+	        		</div>
+	        		<div class="col-md-offset-8 col-md-2">
+	        			<button type="submit" id="pesquisar" name="pesquisar" class="btn btn-block bg_azul_escuro">Filtrar</button>
+	        		</div>
+	        	</div>
+	        </form>
+	    </div>
 			<!--Card com Informações-->
 			<div class="row">
-				<div class="col-md-offset-2 col-md-8">
-					<div class="cartao-equipe">
-			            <div class="media">
-			                <div class="media-left">
-			                    <img class="media-object img-circle profile-img" src="img/fotinha.png">
-			                    <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-			                </div>
-			                <div class="media-body">
-			                    <h3 class="media-heading">Nick carinha</h3>
-			                    <h5>Nome carinha</h5>
-			                    <p>Função primária: Atirador</p>
-			                    <p>Função primária: Meio</p> 
-			                    <p>Posição: Alguma coisa</p>
-			                </div>
-			            </div>
-			        </div>
-				</div>
-			</div>
-        </div>
+				<?php
+			        include('exibe_pesq.php');
+			    ?>
+        	</div>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<?php
+	 	include('rodape.html');
+	?>
 	</body>
 </html>	
-<?php
- include('rodape.html');
-?>

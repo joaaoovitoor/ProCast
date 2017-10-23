@@ -33,3 +33,7 @@
 .espaco{
 	margin-bottom: 3%;
 }
+.bg_azul_escuro{
+	background: #02314c !important;
+	color: #f2f4f2 !important;
+}

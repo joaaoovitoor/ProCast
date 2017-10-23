@@ -5643,6 +5643,7 @@ CREATE TABLE usuario(
 	sexo char(1),
 	categoria_usuario char(1) not null,
 	nick varchar (20),
+	id_nick int(20),
 	foto_perfil varchar(100) ,
 	funcao_1 int,
 	funcao_2 int,
@@ -5650,6 +5651,7 @@ CREATE TABLE usuario(
 	email varchar (50) not null,
 	dta_nascimento date not null,
 	estado int(2) not null,
+	cidade int(2) not null,
 	telefone char(15) not null,
 	descricao text,
 	dta_criacao_conta DATETIME
@@ -5711,7 +5713,8 @@ CREATE TABLE denuncia(
 	descricao_denuncia varchar(100) not null,
 	tipo_denuncia char(1) not null,
 	data_denuncia DATETIME,
-	id_usuario int
+	id_usuario int,
+	id_denunciante int
 );
 
 CREATE TABLE contato(
@@ -5797,10 +5800,12 @@ CREATE TABLE mensagem(
 ALTER TABLE usuario ADD constraint fk_funcao_1 foreign key (funcao_1) references funcao(id_funcao);
 ALTER TABLE usuario ADD constraint fk_funcao_2 foreign key (funcao_2) references funcao(id_funcao);
 ALTER TABLE usuario ADD constraint fk_estado foreign key (estado) references estado(id);
+ALTER TABLE usuario ADD constraint fk_cidade foreign key (cidade) references cidade(id);
 ALTER TABLE noticia ADD constraint fk_categoria_noticia foreign key (id_categoria_noticia) references categoria_noticia(id_categoria_noticia);
 ALTER TABLE comentario ADD constraint fk_comentario_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE anuncio ADD constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante);
 ALTER TABLE denuncia ADD constraint fk_denuncia_usuario foreign key (id_usuario) references usuario(id_usuario);
+ALTER TABLE denuncia ADD constraint fk_denuncia_denunciante foreign key (id_denunciante) references usuario(id_usuario);
 ALTER TABLE contato ADD constraint fk_contato_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE colocacao ADD constraint fk_torneio_colocacao foreign key (id_torneio) references torneio(id_torneio);
 ALTER TABLE colocacao ADD constraint fk_usuario_colocacao foreign key (id_usuario) references usuario(id_usuario);
