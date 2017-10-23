@@ -62,13 +62,11 @@
  			$urljogo = str_replace(',', ':', $urljogo);
  			$id_nick = explode(':',$urljogo);
 
- 			$urlrank = @file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.$id_nick.'?api_key='.$apikey.'');
- 			if ($urlrank)
- 			{
- 			}
- 			else
+ 			$urlrank = @file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.$id_nick[1].'?api_key='.$apikey.'');
+ 			if ($urlrank=="[]")
  			{
  				echo('<script>alert("Usuário Unranked: para se cadastrar, deve ter ranking!");</script>');
+ 				echo('<script>window.location="cadastro.php";</script>');
  				exit();
  			}
  		}
