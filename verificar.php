@@ -52,42 +52,31 @@
 		$nome=$_POST['nome'];
 		$sobrenome=$_POST['sobrenome'];
 		$nick=$_POST['nick'];
-<<<<<<< HEAD
-=======
 		$apikey="RGAPI-f8999a64-bec3-4b2d-acd3-1ab70789db9e";		
-		$nickcod = rawurlencode($nick);
+ 		$nickcod = rawurlencode($nick);
+ 		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
+ 		
+ 		if($urljogo){
+ 			$retirar = array('{','"','}');
+ 			$urljogo = str_replace($retirar, '', $urljogo);
+ 			$urljogo = str_replace(',', ':', $urljogo);
+ 			$id_nick = explode(':',$urljogo);
 
-		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
-		
-		if($urljogo){
-			$retirar = array('{','"','}');
-			$urljogo = str_replace($retirar, '', $urljogo);
-			$urljogo = str_replace(',', ':', $urljogo);
-			$id_nick = explode(':',$urljogo);
-
-			$urlrank = @file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.$con['id_nick'].'?api_key='.$apikey.'');
-			if ($urlrank){
-			$filas = explode('},',$urlrank);
-			$filasolo = $filas[0].'}';
-			$solo = str_replace("[","", $filasolo);
-			$rankings = json_decode($solo);
-			$filaflex =$filas[1];
-			$flex = str_replace("]","", $filaflex);
-			$rankingf = json_decode($flex);
-			}
-			else
-			{
-				echo('<script>alert("Usuário Unranked: para se cadastrar, deve ter ranking!");</script>');
-				echo('<script>window.location="cadastro.php";</script>');
-				exit();
-			}
-		}
-		else
-		{
-			echo('<script>alert("Nick inválido: usuário inexistente!");</script>');
-			echo('<script>window.location="cadastro.php";</script>');
-		}
->>>>>>> parent of 5839294... Revert "Merge branch 'master' of https://github.com/negaorx/ProCast"
+ 			$urlrank = @file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.$id_nick.'?api_key='.$apikey.'');
+ 			if ($urlrank)
+ 			{
+ 			}
+ 			else
+ 			{
+ 				echo('<script>alert("Usuário Unranked: para se cadastrar, deve ter ranking!");</script>');
+ 				exit();
+ 			}
+ 		}
+ 		else
+ 		{
+ 			echo('<script>alert("Nick inválido: usuário inexistente!");</script>');
+ 			echo('<script>window.location="cadastro.php";</script>');
+ 		}
 		$funcao_1=$_POST['funcao_1'];
 		$funcao_2=$_POST['funcao_2'];
 		$email=$_POST['email'];
@@ -95,99 +84,84 @@
 		$sexo=$_POST['sexo'];
 		$cpf=$_POST['cpf'];
 		$estado=$_POST['estado'];
+		$cidade=$_POST['cidade'];
 		$dta_nascimento=$_POST['dta_nascimento'];
-
-		$apikey="RGAPI-9ecfd0a1-41e1-4b65-bdde-5daaa477dfc8";
-		$nickcod = rawurlencode($nick);
-		$urljogo = file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
-		$dados = json_decode($urljogo);
-
-		if ($dados->id) 
+		$dataexplode=explode("/",$dta_nascimento);
+		$cont=2;
+		for($i=0;$i<3;$i++)
 		{
-			$dataexplode=explode("/",$dta_nascimento);
-			$cont=2;
-			for($i=0;$i<3;$i++)
+			$datainv[$i]=$dataexplode[$cont];
+			$cont--;
+		}
+		$datacerto=implode("-", $datainv);
+		$telefone=$_POST['telefone'];
+		$categoria_usuario=$_POST['categoria_usuario'];
+		if ($funcao_1==$funcao_2) {
+			echo('<script>alert("As funções devem ser diferentes");</script>');
+			echo('<script>window.location="cadastro.php";</script>');
+		}
+		else
+		{
+			if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
 			{
-				$datainv[$i]=$dataexplode[$cont];
-				$cont--;
-			}
-			$datacerto=implode("-", $datainv);
-			$telefone=$_POST['telefone'];
-			$categoria_usuario=$_POST['categoria_usuario'];
-			if ($funcao_1==$funcao_2) {
-				echo('<script>alert("As funções devem ser diferentes");</script>');
-				echo('<script>window.location="cadastro.php";</script>');
-			}
-			else
-			{
-				if (!empty($nome)&&!empty($sobrenome)&&!empty($nick)&&!empty($funcao_1)&&!empty($funcao_2)&&!empty($email)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)&&!empty($senha)) 
+				$senha=base64_encode($senha);
+				if (strlen($cpf)<14) 
 				{
-					$senha=base64_encode($senha);
-					if (strlen($cpf)<14) 
+					echo('<script>alert("O CPF deve ter 11 dígitos");</script>');
+					echo('<script>window.location="cadastro.php";</script>');
+				}
+				else
+				{
+					$sqlsel='select * from usuario where email="'.$email.'";';
+					$resul=mysqli_query($conexao,$sqlsel);
+					//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
+					if(mysqli_num_rows($resul))
 					{
-						echo('<script>alert("O CPF deve ter 11 dígitos");</script>');
+						echo('<script>alert("Email já cadastrado!");</script>');
 						echo('<script>window.location="cadastro.php";</script>');
 					}
 					else
 					{
-						$sqlsel='select * from usuario where email="'.$email.'";';
+						$sqlsel='select * from usuario where cpf="'.$cpf.'";';
 						$resul=mysqli_query($conexao,$sqlsel);
-						//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
 						if(mysqli_num_rows($resul))
 						{
-							echo('<script>alert("Email já cadastrado!");</script>');
+							echo('<script>alert("CPF já cadastrado!");</script>');
+							echo('<script>window.location="cadastro.php";</script>');
+						}
+						$sqlsel='select * from usuario where nick="'.$nick.'";';
+						$resul=mysqli_query($conexao,$sqlsel);
+						if(mysqli_num_rows($resul))
+						{
+							echo('<script>alert("Nick já cadastrado!");</script>');
 							echo('<script>window.location="cadastro.php";</script>');
 						}
 						else
 						{
-							$sqlsel='select * from usuario where cpf="'.$cpf.'";';
-							$resul=mysqli_query($conexao,$sqlsel);
-							if(mysqli_num_rows($resul))
+							//inserindo dados do usuario
+							$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,id_nick,cpf,funcao_1,funcao_2,sexo,estado,cidade,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'",'.$id_nick[1].',"'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$cidade.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+							$inserir=mysqli_query($conexao,$sqlin);
+							//iniciando a sessão
+							if($inserir)
 							{
-								echo('<script>alert("CPF já cadastrado!");</script>');
-								echo('<script>window.location="cadastro.php";</script>');
-							}
-							$sqlsel='select * from usuario where nick="'.$nick.'";';
-							$resul=mysqli_query($conexao,$sqlsel);
-							if(mysqli_num_rows($resul))
-							{
-								echo('<script>alert("Nick já cadastrado!");</script>');
-								echo('<script>window.location="cadastro.php";</script>');
+								session_start();
+								$_SESSION['email']=$email;
+						        echo('<script>alert("Cadastrado com sucesso");</script>');
+								echo('<script>window.location="home.php";</script>');
 							}
 							else
 							{
-								//inserindo dados do usuario
-								$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,nick,cpf,funcao_1,funcao_2,sexo,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$nick.'","'.$cpf.'","'.$funcao_1.'","'.$funcao_2.'","'.$sexo.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
-								$inserir=mysqli_query($conexao,$sqlin);
-								//iniciando a sessão
-								if($inserir)
-								{
-									session_start();
-									$_SESSION['email']=$email;
-							        echo('<script>alert("Cadastrado com sucesso");</script>');
-									echo('<script>window.location="home.php";</script>');
-								}
-								else
-								{
-									echo('<script>alert("Erro no cadastro!");</script>');
-									echo('<script>window.location="cadastro.php";</script>');
-								}
-							}			
-						}
+								echo('<script>alert("Erro no cadastro!");</script>');
+							}
+						}			
 					}
 				}
-				else{
-					echo('<script>alert("Todos os campos devem ser preenchidos!");</script>');
-					echo('<script>window.location="cadastro.php";</script>');
-				}
 			}
-
-		}
-		else{
-			echo('<script>alert("Este nick não existe no League of Legends!");</script>');
-					echo('<script>window.location="cadastro.php";</script>');
-		}
-		
+			else{
+				echo('<script>alert("Todos os campos devem ser preenchidos!");</script>');
+				echo('<script>window.location="cadastro.php";</script>');
+			}
+		}	
 	}
 	if (isset($_POST['enviar_investidor'])) 
 	{
@@ -199,6 +173,7 @@
 		$cpf=$_POST['cpf'];
 		$cnpj=$_POST['cnpj'];
 		$estado=$_POST['estado'];
+		$cidade=$_POST['cidade'];
 		$dta_nascimento=$_POST['dta_nascimento'];
 		$dataexplode=explode("/",$dta_nascimento);
 		$cont=2;
@@ -244,7 +219,7 @@
 					else
 					{
 						//inserindo dados do usuario
-						$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+						$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,cidade,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","102",'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
 						$inserir=mysqli_query($conexao,$sqlin);
 						//iniciando a sessão
 				        if($inserir)
