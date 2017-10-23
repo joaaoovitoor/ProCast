@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<?php
-			include('menu2.php');
+			include('menu_anunciante.php');
 		?>
 		<div class="banner">
 			<div class="container-fluid">
