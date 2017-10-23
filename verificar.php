@@ -150,6 +150,7 @@
 							else
 							{
 								echo('<script>alert("Erro no cadastro!");</script>');
+								echo('<script>window.location="cadastro.php";</script>');
 							}
 						}			
 					}
