@@ -1,6 +1,6 @@
 <html lang="pt-br">
 	<head>
-        <title>Perfil</title>
+        <title>Meus Anúncios</title>
         <meta charset="utf-8">
   		<!--ESTILO-->
   		<link rel="stylesheet" href="css/anunciante.css">
@@ -17,9 +17,9 @@
 		<div class="banner anuncio">
             <div class="container-fluid">
                 <div class="row">
-                    <h1 class="text-center  fonte_branca texto_sombra"><strong>MIMIMIM</strong></h1> 
+                    <h1 class="text-center  fonte_branca texto_sombra"><strong>Anúncios</strong></h1> 
                     <p class="text-center  fonte_branca texto_sombra">
-                    hehehehehe
+                    Controle todos seus anúncios já feitos na plataforma
                     </p>
                 </div>
             </div>

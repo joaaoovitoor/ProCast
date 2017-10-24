@@ -18,7 +18,7 @@
 		<?php
 			include('menu2.php');
 		?>
-		<div class="banner">
+		<div class="banner pesquisa">
             <div class="container-fluid">
                 <div class="row">
                     <h1 class="text-center  fonte_branca texto_sombra"><strong>Pesquisa</strong></h1> 

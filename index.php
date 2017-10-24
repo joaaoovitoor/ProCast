@@ -20,7 +20,7 @@
 		<!--SLIDESHOW-->
 		<section class="masthead">
 			<video class="masthead-video" autoplay loop muted poster="assets/images/poster.jpg">
-				<source src="img/index/lol.MP4" type="video/mp4"></source>
+				<source src="img/index/lol.MP4" type="video/mp4">
 			</video>
 			<div class="masthead-overlay"></div>
 			<div class="masthead-arrow"></div>
@@ -122,11 +122,11 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 			            <blockquote>
 			              <div class="row">
 			                <div class="col-sm-3 text-center">
-			                  <img class="img-circle" src="img/fotinha.png" style="width: 100px;height:100px;">
+			                  <img class="img-circle" src="img/index/img1.jpg" style="width: 100px;height:100px;">
 			                </div>
 			                <div class="col-sm-9">
-			                  <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit!</p>
-			                  <small>Pessoa 1</small>
+			                  <p>Simplesmente sensacional! Valeu ProCast, com vocês consegui entrar em uma grande equipe :)</p>
+			                  <small>Ana Laura</small>
 			                </div>
 			              </div>
 			            </blockquote>
@@ -136,11 +136,11 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 			            <blockquote>
 			              <div class="row">
 			                <div class="col-sm-3 text-center">
-			                  <img class="img-circle" src="img/fotinha.png" style="width: 100px;height:100px;">
+			                  <img class="img-circle" src="img/index/img2.jpg" style="width: 100px;height:100px;">
 			                </div>
 			                <div class="col-sm-9">
-			                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam auctor nec lacus ut tempor. Mauris.</p>
-			                  <small>Pessoa 2</small>
+			                  <p>Sem palavras... Uma ideia simples que revolucionou League of Legends no Brasil</p>
+			                  <small>Diogo Silva</small>
 			                </div>
 			              </div>
 			            </blockquote>
@@ -150,11 +150,11 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 			            <blockquote>
 			              <div class="row">
 			                <div class="col-sm-3 text-center">
-			                  <img class="img-circle" src="img/fotinha.png" style="width: 100px;height:100px;">
+			                  <img class="img-circle" src="img/index/img3.jpg" style="width: 100px;height:100px;">
 			                </div>
 			                <div class="col-sm-9">
-			                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum elit in arcu blandit, eget pretium nisl accumsan. Sed ultricies commodo tortor, eu pretium mauris.</p>
-			                  <small>Pessoa 3</small>
+			                  <p>Finalmente teremos grandes jogadores e equipes de E-sport no Brasil!</p>
+			                  <small>Carlos Eduardo</small>
 			                </div>
 			              </div>
 			            </blockquote>

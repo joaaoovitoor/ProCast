@@ -19,7 +19,7 @@
 		<?php
 			include('menu2.php');
 		?>
-		<div class="banner">
+		<div class="banner criar_clube">
             <div class="container-fluid">
                 <div class="row">
                     <h1 class="text-center  texto_sombra"><strong>Criação de clube</strong></h1> 

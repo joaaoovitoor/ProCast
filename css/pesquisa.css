@@ -1,8 +1,13 @@
 *{
 	font-family: 'Nunito', sans-serif;
 }
-.banner{
+.pesquisa{
 	background: url(../img/banner_pesquisa.jpg) no-repeat !important;
+}
+.criar_clube{
+	background: url(../img/banner_criar_clube.jpg) no-repeat !important;
+}
+.banner{
 	position: relative;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

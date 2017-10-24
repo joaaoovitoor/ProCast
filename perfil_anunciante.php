@@ -19,7 +19,7 @@
                 <div class="row">
                     <h1 class="text-center  fonte_branca texto_sombra"><strong>Bem-vindo</strong></h1> 
                     <p class="text-center  fonte_branca texto_sombra">
-                	HIHIHIH
+                	No perfil você pode alterar suas informações 
                     </p>
                 </div>
             </div>
