@@ -32,15 +32,15 @@
 	<!-- Menu mobile-->
 	<nav hidden="true" id="mobile" class="nav-menu-mobile  text-center hidden-md">
 		<div class="row item-mobile">
-			<a href="noticias.php">Notícias</a>
+			<a href="noticias.php" >Notícias </a>
 			
 		</div>
 		<div class="row item-mobile">
-			<a href="perfil.php">Perfil</a>
+			<a href="verificar_perfil.php">Perfil</a>
 			
 		</div>
 		<div class="row item-mobile">
-			<a href="controle_clubes.php">Clubes</a>
+			<a href="clube_jogador.php">Clubes</a>
 			
 		</div>
 		<div class="row item-mobile">
@@ -50,7 +50,7 @@
 			<a href="mensagens.php">Mensagens</a>
 		</div>
 		<div class="row item-mobile login-mob">
-			<a>Sair</a>
+			<a href="destruir.php">Sair</a>
 		</div>
 	</nav>
 	<!-- fim Menu mobile-->
