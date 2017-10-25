@@ -73,7 +73,7 @@
 								<div class="content-wrap">
 									<!-- LOGIN -->
 									<section id="login">
-										<form action="" method="POST">
+										<form action="verificar_anunciante.php" method="POST">
                                             <div class="col-md-12" style="margin-top: 10%">
                                                 <h2 align="center">Login</h2>
                                                 <div class="form-group">
@@ -83,7 +83,7 @@
                                                     Senha <input type="password" name="senha" placeholder="Senha" class="form-control" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="submit" name="logar" value="Entrar" class="form-control btn btn-outro">
+                                                    <input type="submit" name="log_anunciante" value="Entrar" class="form-control btn btn-outro">
                                                 </div>
                                             </div>
 										</form>
@@ -91,7 +91,7 @@
 									
 									<!-- CADASTRO -->
 									<section id="investidor">
-										<form action="" method="POST">
+										<form action="verificar_anunciante.php" method="POST">
 											<div class="col-md-6">
 												<div class="form-group">
 													Nome <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
@@ -185,7 +185,7 @@
 											    </label>
 											</div>
 											<input type="hidden" name="categoria_usuario" value="2">
-											<input class="form-control btn-outro" type="submit" name="enviar_investidor" value="Enviar">
+											<input class="form-control btn-outro" type="submit" name="cad_anunciante" value="Enviar">
 											</div>
 										</form>
 									</section>
