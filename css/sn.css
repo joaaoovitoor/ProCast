@@ -54,7 +54,7 @@
 	margin-bottom: 15px !important;
 }
 .banner{
-	background: url(../img/banner_sn.jpg);
+	background: url(../img/banner_sn.jpg) no-repeat;
 	margin-bottom: 3%;
 }
 .banner h1{

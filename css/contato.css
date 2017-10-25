@@ -39,7 +39,7 @@
 	border:none !important;
 }
 .banner{
-	background: url(../img/banner_contato.png);
+	background: url(../img/banner_contato.png) no-repeat;
 	margin-bottom: 3%;
 }
 .banner h1{
