@@ -5822,11 +5822,5 @@ ALTER TABLE video ADD constraint fk_usuario_video foreign key(id_usuario) refere
 ALTER TABLE agenda ADD constraint fk_usuario_agenda foreign key(id_usuario) references usuario(id_usuario);
 ALTER TABLE mensagem ADD constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario);
 ALTER TABLE mensagem ADD constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario);
-ALTER TABLE anunciante ADD constraint fk_estado foreign key (estado) references estado(id);
-ALTER TABLE anunciante ADD constraint fk_cidade foreign key (cidade) references cidade(id);
-
-
-
-
-
-
+ALTER TABLE anunciante ADD constraint fk_estado_an foreign key (estado) references estado(id);
+ALTER TABLE anunciante ADD constraint fk_cidade_an foreign key (cidade) references cidade(id);
