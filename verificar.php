@@ -52,7 +52,7 @@
 		$nome=$_POST['nome'];
 		$sobrenome=$_POST['sobrenome'];
 		$nick=$_POST['nick'];
-		$apikey="RGAPI-10f77fcc-511f-483a-86d6-2bd9e94a3d32";		
+		$apikey="RGAPI-d3ff6b79-05a8-44b3-896d-b3d735534c7f";		
  		$nickcod = rawurlencode($nick);
  		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
  		
@@ -193,7 +193,7 @@
 		{
 			$cnpj="Não informado";
 		}
-		if (!empty($nome)&&!empty($sobrenome)&&!empty($email)&&!empty($senha)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)) 
+		if (!empty($nome)&&!empty($sobrenome)&&!empty($email)&&!empty($senha)&&!empty($sexo)&&!empty($cpf)&&!empty($estado)&&!empty($cidade)&&!empty($datacerto)&&!empty($telefone)&&!empty($categoria_usuario)) 
 		{
 			$senha=base64_encode($senha);
 			if (strlen($cpf)<14) 
@@ -223,7 +223,7 @@
 					else
 					{
 						//inserindo dados do usuario
-						$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,cidade,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","102",'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+						$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,cidade,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","'.$cidade.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
 						$inserir=mysqli_query($conexao,$sqlin);
 						//iniciando a sessão
 				        if($inserir)

@@ -11,6 +11,7 @@
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/pesq_cidade.js"></script>
+		<script src="js/pesq_cidade_inv.js"></script>
 		<!--FONTES-->
 	    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	    <!--ESTILO-->
@@ -251,7 +252,7 @@
 												</div>
 												<div class="form-group">
 													Estado
-													<select name="estado" id="estado" class="form-control">
+													<select name="estado" id="estado_inv" class="form-control">
 														<option value="">Selecione</option>
 														<?php
 															$sqlsel='SELECT * FROM estado;';
@@ -269,7 +270,7 @@
 												</div>
 												<div class="form-group">
 													Cidade
-													<select name="cidade" id="cidade" class="form-control">
+													<select name="cidade" id="cidade_inv" class="form-control">
 													  <option>Escolha primeiro um estado</option>
 													</select>
 												</div>
@@ -280,7 +281,7 @@
 													 CPF <input type="text" class="form-control" name="cpf" placeholder="CPF" id="cpf2" required>
 												</div>
 												<div class="form-group">
-													Data de nascimento<input type="text" class="form-control" name="dta_nascimento" placeholder="dd/mm/aaaa" id="data" required>
+													Data de nascimento<input type="text" class="form-control" name="dta_nascimento" placeholder="dd/mm/aaaa" id="data2" required>
 												</div>
 											</div>
 											<div class="col-md-12">

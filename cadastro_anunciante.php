@@ -14,8 +14,12 @@
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/pesq_cidade.js"></script>
 	</head>
 	<body>
+		<?php
+			include('conexao.php');
+		?>
 		<nav class="nav-menu hidden-xs hidden-sm"  style="background-color:#333 !important;">
 		<a href="index.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-9">
@@ -104,77 +108,43 @@
 												</div>
 												<div class="form-group">
 													E-mail<input type="email" name="email" placeholder="E-mail" required class="form-control" maxlength="30">
+												</div>
+												<div class="form-group">
+													Telefone <input type="text" class="form-control" name="telefone" placeholder="(dd) 00000-0000" id="telefone" required>
 												</div>												
 											</div>
 											<div class="col-md-6">
                                                 <div class="form-group">
 													 Nome da Empresa <input type="text" class="form-control" name="nome_empresa" placeholder="Nome da Empresa" maxlength="25" required>
 												</div>
+												<div class="form-group">
+													CPF <input type="text" class="form-control" name="cpf" placeholder="CPF" id="cpf" required>
+												</div>
                                                 <div class="form-group">
 													CNPJ <input type="text" maxlength="18" class="form-control" name="cnpj" placeholder="CNPJ" id="cnpj" required>
 												</div>
 												<div class="form-group">
 													Estado
-													<select name="estado" class="form-control">
-														<option value="ac">Acre</option> 
-														<option value="al">Alagoas</option> 
-														<option value="am">Amazonas</option> 
-														<option value="ap">Amapá</option> 
-														<option value="ba">Bahia</option> 
-														<option value="ce">Ceará</option> 
-														<option value="df">Distrito Federal</option> 
-														<option value="es">Espírito Santo</option> 
-														<option value="go">Goiás</option> 
-														<option value="ma">Maranhão</option> 
-														<option value="mt">Mato Grosso</option> 
-														<option value="ms">Mato Grosso do Sul</option> 
-														<option value="mg">Minas Gerais</option> 
-														<option value="pa">Pará</option> 
-														<option value="pb">Paraíba</option> 
-														<option value="pr">Paraná</option> 
-														<option value="pe">Pernambuco</option> 
-														<option value="pi">Piauí</option> 
-														<option value="rj">Rio de Janeiro</option> 
-														<option value="rn">Rio Grande do Norte</option> 
-														<option value="ro">Rondônia</option> 
-														<option value="rs">Rio Grande do Sul</option> 
-														<option value="rr">Roraima</option> 
-														<option value="sc">Santa Catarina</option> 
-														<option value="se">Sergipe</option> 
-														<option value="sp">São Paulo</option> 
-														<option value="to">Tocantins</option> 
+													<select name="estado" id="estado" class="form-control">
+														<option value="">Selecione</option>
+														<?php
+															$sqlsel='SELECT * FROM estado;';
+															$resul=mysqli_query($conexao,$sqlsel);
+															while ($con=mysqli_fetch_array($resul))
+															{
+																echo
+																('
+																	<option value="'.$con['id'].'">'.$con['nome'].'</option>
+																');
+															}
+														?>
+														 
 													</select>
 												</div>
                                                 <div class="form-group">
 													Cidade
-													<select name="cidade" class="form-control">
-														<option value="ac">Acre</option> 
-														<option value="al">Alagoas</option> 
-														<option value="am">Amazonas</option> 
-														<option value="ap">Amapá</option> 
-														<option value="ba">Bahia</option> 
-														<option value="ce">Ceará</option> 
-														<option value="df">Distrito Federal</option> 
-														<option value="es">Espírito Santo</option> 
-														<option value="go">Goiás</option> 
-														<option value="ma">Maranhão</option> 
-														<option value="mt">Mato Grosso</option> 
-														<option value="ms">Mato Grosso do Sul</option> 
-														<option value="mg">Minas Gerais</option> 
-														<option value="pa">Pará</option> 
-														<option value="pb">Paraíba</option> 
-														<option value="pr">Paraná</option> 
-														<option value="pe">Pernambuco</option> 
-														<option value="pi">Piauí</option> 
-														<option value="rj">Rio de Janeiro</option> 
-														<option value="rn">Rio Grande do Norte</option> 
-														<option value="ro">Rondônia</option> 
-														<option value="rs">Rio Grande do Sul</option> 
-														<option value="rr">Roraima</option> 
-														<option value="sc">Santa Catarina</option> 
-														<option value="se">Sergipe</option> 
-														<option value="sp">São Paulo</option> 
-														<option value="to">Tocantins</option> 
+													<select name="cidade" id="cidade" class="form-control">
+													  <option>Escolha primeiro um estado</option>
 													</select>
 												</div>
 											</div>

@@ -5666,11 +5666,18 @@ CREATE TABLE admin(
 );
 
 CREATE TABLE anunciante(
+	dta_criacao_conta datetime,
 	id_anunciante int auto_increment primary key,
 	nome_anunciante varchar (30) not null,
+	sobrenome varchar (100) not null,
 	cnpj varchar(18) not null,
-	data_criacao_anunciante DATETIME,
-	ramo varchar(30) not null
+	cpf varchar (16),
+	nome_empresa varchar(50) not null,
+	estado int(2) not null,
+	cidade int(2) not null,
+	senha varchar(100) not null,
+	email varchar (50) not null,
+	telefone char(15) not null	
 );
 
 CREATE TABLE categoria_noticia(
@@ -5815,6 +5822,8 @@ ALTER TABLE video ADD constraint fk_usuario_video foreign key(id_usuario) refere
 ALTER TABLE agenda ADD constraint fk_usuario_agenda foreign key(id_usuario) references usuario(id_usuario);
 ALTER TABLE mensagem ADD constraint fk_usuario_enviar foreign key(id_enviar) references usuario(id_usuario);
 ALTER TABLE mensagem ADD constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario);
+ALTER TABLE anunciante ADD constraint fk_estado foreign key (estado) references estado(id);
+ALTER TABLE anunciante ADD constraint fk_cidade foreign key (cidade) references cidade(id);
 
 
 
