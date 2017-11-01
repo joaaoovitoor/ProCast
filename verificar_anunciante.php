@@ -39,7 +39,7 @@
 			{
 				$sqlsel='select * from anunciante where email="'.$email.'";';
 				$resul=mysqli_query($conexao,$sqlsel);
-				//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
+				//verificando se já existe aquele email cadastrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
 				if(mysqli_num_rows($resul))
 				{
 					echo('<script>alert("Email já cadastrado!");</script>');
@@ -52,7 +52,7 @@
 					if(mysqli_num_rows($resul))
 					{
 						echo('<script>alert("CPF já cadastrado!");</script>');
-						echo('<script>window.location="cadastro.php";</script>');
+						echo('<script>window.location="cadastro_anunciante.php";</script>');
 					}
 					else
 					{
@@ -65,7 +65,7 @@
 							session_start();
 							$_SESSION['email']=$email;
 					        echo('<script>alert("Cadastrado com sucesso");</script>');
-							echo('<script>window.location="anuncio.php";</script>');
+							echo('<script>window.location="perfil_anunciante.php";</script>');
 						}
 						else
 						{
@@ -105,7 +105,7 @@
 						//armazenando o email na sessão para usar posteriormente, para identificar o usuário
 						$_SESSION['email']=$email;
 						echo('<script>alert("Logado com sucesso!");</script>');
-						echo('<script>window.location="anuncio.php";</script>');
+						echo('<script>window.location="perfil_anunciante.php";</script>');
 					}
 					else
 					{

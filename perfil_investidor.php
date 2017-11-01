@@ -1,4 +1,10 @@
-
+<?php
+	include('verificar_logado.php');
+    if($con['categoria_usuario']==1)
+    {
+    	header('location:perfil_jogador.php');
+    }
+?>
 <html lang="pt-br">
 	<head>
         <title>Perfil</title>

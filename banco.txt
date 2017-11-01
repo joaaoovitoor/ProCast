@@ -5709,9 +5709,12 @@ CREATE TABLE comentario(
 
 CREATE TABLE anuncio(
 	id_anuncio int auto_increment primary key,
-	imagem_anuncio varchar(30) not null,
+	tipo char(1) not null,
 	nome_anuncio varchar(25) not null,
-	data_criacao_anuncio DATETIME,
+	link varchar(100) not null,
+	descricao varchar(150) not null,
+	imagem_anuncio varchar(30),
+	data_criacao_anuncio TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	id_anunciante int
 );
 

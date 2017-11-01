@@ -80,7 +80,7 @@
 input[type='file'] {
   display: none !important;
 }
-label {
+.arquivo{
   background-color: #02314c;
   border-radius: 5px;
   color: #f2f4f2;

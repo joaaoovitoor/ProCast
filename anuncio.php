@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(isset($_SESSION['email'])){
+        $email_usuario=$_SESSION['email'];
+        include('conexao.php');
+        $sqlsel='select * from anunciante where email="'.$email_usuario.'";';
+        $resul=mysqli_query($conexao,$sqlsel);
+        $con=mysqli_fetch_array($resul);
+    }
+    else{
+        header('location:destruir.php');    
+    }
+?>
 <html lang="pt-br">
 	<head>
         <title>Meus Anúncios</title>
@@ -37,14 +50,14 @@
 								<div class='list-name'>
 									Nome do Anúncio
 								</div>
+								<div class='list-rooms'>
+									Link: www.google.com.br
+								</div>
 								<div class='list-landmark'>
 									Data de Criação: 23/10/2017
 								</div>
 								<div class='list-location'>
 									Data de expiração: 03/11/2017
-								</div>
-								<div class='list-rooms'>
-									Visualizações: 147mil
 								</div>
 								<div class='list-price'>
 									Custo: R$ 59,99
@@ -69,14 +82,14 @@
 								<div class='list-name'>
 									Nome do Anúncio
 								</div>
+								<div class='list-rooms'>
+									Link: www.google.com.br
+								</div>
 								<div class='list-landmark'>
 									Data de Criação: 23/10/2017
 								</div>
 								<div class='list-location'>
 									Data de expiração: 03/11/2017
-								</div>
-								<div class='list-rooms'>
-									Visualizações: 147mil
 								</div>
 								<div class='list-price'>
 									Custo: R$ 59,99

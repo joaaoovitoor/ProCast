@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(isset($_SESSION['email'])){
+        $email_usuario=$_SESSION['email'];
+        include('conexao.php');
+        $sqlsel='select * from anunciante where email="'.$email_usuario.'";';
+        $resul=mysqli_query($conexao,$sqlsel);
+        $con=mysqli_fetch_array($resul);
+    }
+    else{
+        header('location:destruir.php');    
+    }
+?>
 <html lang="pt-br">
 	<head>
         <title>Perfil</title>
@@ -29,31 +42,31 @@
         		<div class="col-md-offset-1 col-md-10">
         			<div class="panel sombra bg_branco">
 						<div class="panel-body">
-							<h1 class="fonte_azul_claro text-center x1"><strong>Joãozinho</strong></h1>
-        			<h4 class="fonte_azul_claro text-center"><strong>Microsoft</strong></h4>
+							<h1 class="fonte_azul_claro text-center x1"><strong><?php echo $con['nome_anunciante'];?></strong></h1>
+        					<h4 class="fonte_azul_claro text-center"><strong><?php echo $con['nome_empresa'];?></strong></h4>
 						</div>
 					</div>
 	        		<form action="" method="POST">
 						<div class="col-md-6">
 							<div class="form-group">
-								Nome <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
+								Nome <input value="<?php echo $con['nome_anunciante'];?>" type="text" class="form-control" name="nome" maxlength="15" required>
 							</div>
 							<div class="form-group">
-								Sobrenome <input type="text" class="form-control" name="sobrenome" placeholder="Sobrenome" maxlength="15" required>
+								Sobrenome <input value="<?php echo $con['sobrenome'];?>" type="text" class="form-control" name="sobrenome"  maxlength="15" required>
 							</div>
 							<div class="form-group">
-								Senha <input type="password" name="senha" placeholder="Senha" class="form-control" maxlength="20" required>
+								Senha <input value="<?php echo $con['senha'];?>" type="password" name="senha" class="form-control" maxlength="20" required>
 							</div>
 							<div class="form-group">
-								E-mail<input type="email" name="email" placeholder="E-mail" required class="form-control" maxlength="30">
+								E-mail<input value="<?php echo $con['email'];?>" type="email" name="email" class="form-control" maxlength="30" required>
 							</div>												
 						</div>
 						<div class="col-md-6">
 	                        <div class="form-group">
-								 Nome da Empresa <input type="text" class="form-control" name="nome_empresa" placeholder="Nome da Empresa" maxlength="25" required>
+								 Nome da Empresa <input value="<?php echo $con['nome_empresa'];?>" type="text" class="form-control" name="nome_empresa" maxlength="25" required>
 							</div>
 	                        <div class="form-group">
-								CNPJ <input type="text" maxlength="18" class="form-control" name="cnpj" placeholder="CNPJ" id="cnpj" required>
+								CNPJ <input value="<?php echo $con['cnpj'];?>" type="text" maxlength="18" class="form-control" name="cnpj" id="cnpj" required>
 							</div>
 							<div class="form-group">
 								Estado
@@ -73,10 +86,13 @@
 				</div>
         	</div>
         </div>
-        
-       
         <?php
-        include('rodape.html');
+        	include('conexao.php');
+        	$sqlsel=('SELECT * FROM anunciante WHERE email="'.$email_usuario.'";');
+			$resul=mysqli_query($conexao,$sqlsel);
+			$con=mysqli_fetch_array($resul);
+        	
+        	include('rodape.html');
         ?>
         <!--Validação-->
         <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
