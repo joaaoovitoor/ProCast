@@ -20,7 +20,6 @@
 			include('link_head.html');
 		?>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 	</head>
 	<body>
 	<?php
@@ -40,7 +39,7 @@
 			        			else{
 			        				$cam='img/perfil_icon.png';
 			        			}
-			        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"></label>');
+			        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"><p class="text-center">Clique para escolher uma nova foto</p></label>');
 			        		?>
 			        	</div>
 						<div class="text-center col-xs-12">
@@ -609,5 +608,12 @@
 
 	})();
 	</script>
+	<script type="text/javascript">
+			$(".arq2").hover(function() {
+			  $(this).children("p").show();
+			}, function() {
+			  $(this).children("p").hide();
+			});
+		</script>
     </body>
 </html>
