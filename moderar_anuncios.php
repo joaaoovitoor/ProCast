@@ -15,6 +15,7 @@
 	<head>
 		<title>Anúncios</title>
         <link rel="stylesheet" href="css/moderar_an.css">
+
 		<?php
 			include('link_head.html');
 		?>
@@ -106,22 +107,23 @@
 										$altura=250;
 										if(!preg_match('/^image\/(?:png|jpg|jpeg)$/i', $dimensoes['mime']))
 										{
-											echo('<script>window.alert("Envie imagem no formato png,jpg ou jpeg");window.location="moderar_anuncios.php";</script>');
+											
+											echo '<script>swal("Opa, algo deu errado!", "Envie imagem no formato png,jpg ou jpeg", "error");</script>';
 											exit();
 										}
 										if ($tamanho > $arquivo)
 										{
-											echo('<script>window.alert("Excedeu o tamanho máximo do arquivo");window.location="moderar_anuncios.php";</script>');
+											echo '<script>swal("Opa, algo deu errado!", "Excedeu o tamanho máximo do arquivo", "error");</script>';
 											exit;
 										}
 										if($dimensoes[0] < $largura) 
 										{
-											echo('<script>window.alert("A largura deve ser exatamente '.$largura.' pixels");window.location="moderar_anuncios.php";</script>');
+											echo '<script>swal("Opa, algo deu errado!", "A altura deve ser exatamente '.$largura.' pixels", "error");</script>';
 											exit;
 										}
 										if($dimensoes[1] < $altura)
 										{
-											echo('<script>window.alert("A altura deve ser exatamente '.$altura.' pixels");window.location="moderar_anuncios.php";</script>');
+											echo '<script>swal("Opa, algo deu errado!", "A altura deve ser exatamente '.$altura.' pixels", "error");</script>';
 											exit;
 										}
 										preg_match("/\.(png|jpg|jpeg){1}$/i", $anuncio["name"], $ext);
@@ -132,10 +134,10 @@
 										$sqlin='INSERT INTO anuncio (tipo,nome_anuncio,link,descricao,id_anunciante,anuncio,status) VALUES ("'.$tipo.'" , "'.$nome_anuncio.'" , "'.$link.'" , "'.$descricao.'" , "'.$id_anunciante.'" , "'.$nome_imagem.'", "'.$status.'")';
 										mysqli_query($conexao,$sqlin);
 										
-										echo('<script>window.alert("Anúncio enviado com sucesso! Aguarde a aprovação dos administradores. ");window.location="anuncio.php";</script>');
+										echo '<script>swal("Parabéns, anúncio enviado com sucesso!", "Aguarde a aprovação dos administradores.", "success");</script>';
 									}
 									else{
-										echo('<script>window.alert("Imagem não selecionada!");window.location="moderar_anuncios.php";</script>');
+										echo '<script>swal("Opa, algo deu errado!", "Experimente selecionar uma imagem", "error");</script>';
 									}
 									
 								}
@@ -145,9 +147,11 @@
 				</div>
 			</div>
 		</div>
+		
 		<?php
 			include('rodape.html');
 		?>
+		        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>            
 	</body>

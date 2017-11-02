@@ -44,7 +44,7 @@
         			<h2><strong>1. Visão geral</strong></h2>
 					<h4>Conhecendo nossas políticas</h4>
 					<p>
-						Nossas Políticas de Publicidade dão instruções sobre os tipos de conteúdo de publicidade permitidos. Quando os anunciantes fazem um pedido, cada anúncio é analisado segundo essas políticas. Se você acredita que seu anúncio foi reprovado por engano, <a href="contato">fale conosco</a>.
+						Nossas Políticas de Publicidade dão instruções sobre os tipos de conteúdo de publicidade permitidos. Quando os anunciantes fazem um pedido, cada anúncio é analisado segundo essas políticas. Se você acredita que seu anúncio foi reprovado por engano, <a href="contato.php">fale conosco</a>.
 					</p>
 					<h2><strong>2. O processo de análise de anúncio</strong></h2>
 					<p>
@@ -65,7 +65,7 @@
 					</p>
 					<h4>Contestar a decisão</h4>
 					<p> 
-						Se você considerar um erro a reprovação de seu anúncio, conteste a decisão cliqando <a href="contato.php">aqui</a>.
+						Se você considerar um erro a reprovação de seu anúncio, conteste a decisão clicando <a href="contato.php">aqui</a>.
 					</p>
 					<h2><strong>4. Conteúdo proibido</strong></h2>
 					<h4>1. Padrões da Comunidade</h4>

@@ -33,7 +33,8 @@
                 <div class="row">
                     <h1 class="text-center  fonte_branca texto_sombra"><strong>Anúncios</strong></h1> 
                     <p class="text-center  fonte_branca texto_sombra">
-                    Controle todos seus anúncios já feitos na plataforma
+                    Controle todos seus anúncios já feitos na plataforma<br>
+                    Em caso de dúvida entre em <a href="contato.php">contato</a>
                     </p>
                 </div>
             </div>
@@ -42,6 +43,8 @@
         <div class="container-fluid">
         	<div class="row">
         		<div class="col-md-offset-1 col-md-10">
+        			<h2 align="center"><strong>Anúncios feitos na plataforma</strong></h2>
+        			<h4 align="center">Não esqueça de se atualizar sobre as <a href="politicas.php"> políticas de anúncio.</a></h4>
         		 	<?php
 			        	$sqlsel=('SELECT * FROM anuncio WHERE id_anunciante='.$con['id_anunciante'].' ORDER BY data_criacao_anuncio;');
 			        	$resul=mysqli_query($conexao,$sqlsel);
