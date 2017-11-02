@@ -87,11 +87,6 @@
         	</div>
         </div>
         <?php
-        	include('conexao.php');
-        	$sqlsel=('SELECT * FROM anunciante WHERE email="'.$email_usuario.'";');
-			$resul=mysqli_query($conexao,$sqlsel);
-			$con=mysqli_fetch_array($resul);
-        	
         	include('rodape.html');
         ?>
         <!--Validação-->

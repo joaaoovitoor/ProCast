@@ -1,4 +1,5 @@
 <?php
+	ob_start();
     session_start();
     if(isset($_SESSION['email'])){
         $email_usuario=$_SESSION['email'];
@@ -37,72 +38,89 @@
                 </div>
             </div>
         </div>
+       
         <div class="container-fluid">
         	<div class="row">
         		<div class="col-md-offset-1 col-md-10">
+        		 	<?php
+			        	$sqlsel=('SELECT * FROM anuncio WHERE id_anunciante='.$con['id_anunciante'].' ORDER BY data_criacao_anuncio;');
+			        	$resul=mysqli_query($conexao,$sqlsel);
+							if (mysqli_num_rows($resul)>0)
+							{
+								while ($con=mysqli_fetch_array($resul)) 
+								{
+					?>
 					<div class='list-card'>
 						<div class="col-md-5">
-							<div class='list-label' style="background-color: #1fc055;">ATIVO</div>
-							<img src='img/publi1.png'>
+							
+							<div class='list-label' 
+							<?php
+								if ($con['status']==0){
+									echo 'style="background-color: #1abde6;"> AGUARDANDO APROVAÇÃO';
+								}
+								else if ($con['status']==1){
+									echo 'style="background-color: #1fc055;"> APROVADO';
+								}
+								else{
+									echo 'style="background-color: #ff4540;"> REPROVADO';
+								}
+							?>
+							</div>
+							<img src='uploads/<?php echo $con['anuncio'];?>'>
 						</div>
 						<div class="col-md-3">
 							<div class='list-details'>
 								<div class='list-name'>
-									Nome do Anúncio
+									Nome do Anúncio: <?php echo $con['nome_anuncio'];?>
 								</div>
 								<div class='list-rooms'>
-									Link: www.google.com.br
+									Link: <?php echo $con['link'];?>
 								</div>
 								<div class='list-landmark'>
-									Data de Criação: 23/10/2017
+									Data de Criação: <?php echo $con['data_criacao_anuncio'];?>
 								</div>
 								<div class='list-location'>
-									Data de expiração: 03/11/2017
+									Data de expiração: -
 								</div>
 								<div class='list-price'>
-									Custo: R$ 59,99
+									<?php 
+										if($con['tipo']==1){
+											echo '1 semana por R$9,99';
+										}elseif ($con['tipo']==2){
+											echo '15 dias por R$16,99';
+										}else{
+											echo '1 mês por R$29,99';										
+										}
+									?>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-2">
-							<p><a href="#" class="btn btn-default" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</a></p>
-							<p><a href="#" class="btn btn-default" role="button"><i class="fa fa-flag" aria-hidden="true"></i> Reanunciar</a></p>
-							<p><a href="#" class="btn btn-default" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i> Excluir</a></p>
-
+							<form action="#" method="POST">
+								<input type="hidden" name="id_anuncio" value="<?php echo($con['id_anuncio']);?>">
+								<p><button class="btn btn-default"><i class="fa fa-flag" aria-hidden="true"></i> Reanunciar</button></p>
+								<p><button class="btn btn-danger" name="excluir"><i class="fa fa-trash-o" aria-hidden="true"></i> Excluir</button></p>
+							</form>
 						</div>
+						
 					</div>
-					<!--ff4540-->
-					<div class='list-card'>
-						<div class="col-md-5">
-							<div class='list-label' style="background-color: #ff4540;">EXPIRADO</div>
-							<img src='img/oque.png'>
-						</div>
-						<div class="col-md-3">
-							<div class='list-details'>
-								<div class='list-name'>
-									Nome do Anúncio
-								</div>
-								<div class='list-rooms'>
-									Link: www.google.com.br
-								</div>
-								<div class='list-landmark'>
-									Data de Criação: 23/10/2017
-								</div>
-								<div class='list-location'>
-									Data de expiração: 03/11/2017
-								</div>
-								<div class='list-price'>
-									Custo: R$ 59,99
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<p><a href="#" class="btn btn-default" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</a></p>
-							<p><a href="#" class="btn btn-default" role="button"><i class="fa fa-flag" aria-hidden="true"></i> Reanunciar</a></p>
-							<p><a href="#" class="btn btn-default" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i> Excluir</a></p>
-
-						</div>
-					</div>
+					<?php
+							}
+						}
+						else
+						{
+							echo '<h3 align="center"><img src="img/triste.png"><br>Nenhum Anúncio</h3>';
+						}
+						
+						if(isset($_POST['excluir']))
+						{
+							$id_anuncio=$_POST['id_anuncio'];
+							$sqlex=('DELETE FROM anuncio WHERE id_anuncio='.$id_anuncio.';');
+							mysqli_query($conexao,$sqlex);
+							header('location:anuncio.php');
+							exit();
+						}
+					?>
 				</div>
         	</div>
         </div>

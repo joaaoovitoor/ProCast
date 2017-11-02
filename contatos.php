@@ -1,5 +1,6 @@
 <?php 
-	include("menu-admin.html");
+	include('menu-admin.html');
+	include('conexao.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,7 +67,6 @@
 					</nav>
 					<div class="content-wrap">
 					<!-- Nova mensagem -->
-						
 					<section id="section-linebox-1">
 						<h1 class="text-center"> Nova mensagem</h1>
 						<div class="container-fluid">
@@ -133,22 +133,58 @@
 							</div>
 						</div>
 					</section>
-					<!-- Mensagens arquivadas -->
+					<!-- Mensagens reebidas -->
 					<section id="section-linebox-3">
 						<div class="container-fluid">
+							<?php
+								$sqlsel='SELECT * FROM contato ORDER BY data_contato';
+								$resul=mysqli_query($conexao,$sqlsel);
+								
+								if (mysqli_num_rows($resul)>0)
+								{
+									while ($con=mysqli_fetch_array($resul)) 
+									{
+										$sqlusuario='SELECT email FROM usuario WHERE id_usuario='.$con['id_usuario'].';';
+										$resul1=mysqli_query($conexao,$sqlusuario);
+										$con1=mysqli_fetch_array($resul1);
+							?>
 							<div class="row">
 								<div class="col-md-12 mensagem_enviada">
-									<p style="font-size: 16px;"><strong>Remetente:</strong> iago@freitas.com.br</p>
-									<p style="font-size: 16px;"><strong>Motivo:</strong> Agradecimento</p>
-									<p style="font-size: 16px;"><strong>Titulo:</strong> Muito obrigado Desenvolvedores !</p>
-									<p style="font-size: 16px;"><strong>Mensagem:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet ipsum ut odio pulvinar, sit amet viverra dolor dictum. Ut hendrerit tincidunt eros, ac suscipit odio egestas quis. Maecenas varius orci et volutpat sollicitudin. Proin eget lorem diam. Nam elementum enim eu mauris dapibus vulputate. Pellentesque ultrices sollicitudin dolor ut facilisis. Cras eu dolor non orci tincidunt hendrerit. Vivamus aliquam gravida quam, vel egestas nisi ultrices ac. Phasellus ac nibh orci. Vestibulum tortor metus, molestie quis hendrerit nec, varius ac nibh. Mauris vitae est nec ante fermentum tempus suscipit ut mauris. </p>
+									<p style="font-size: 16px;"><strong>Data: </strong><?php echo $con['data_contato'];?></p>
+									<p style="font-size: 16px;"><strong>Remetente: </strong><?php echo $con1['email'];?></p>
+									<p style="font-size: 16px;"><strong>Assunto: </strong>
+									<?php 
+										if($con['assunto']==1){
+											echo 'Dicas';
+										}elseif ($con['assunto']==2){
+											echo 'Problemas';										
+										}elseif ($con['assunto']==3){
+											echo 'Reclamações';										
+										}elseif ($con['assunto']==4){
+											echo 'Propostas';
+										}else{
+											echo 'Elogios';										
+										}
+									?>
+									</p>
+									<p style="font-size: 16px;"><strong>Título: </strong><?php echo $con['motivo'];?></p>
+									<p style="font-size: 16px;"><strong>Mensagem: </strong><?php echo $con['descricao_contato'];?></p>
 									<div class="botao" style="padding-bottom: 10px;">
 										<button class="btn btn-procast"><i class="fa fa-close"></i> Arquivar</button> <button class="btn btn-default"><i class="fa fa-share"></i> Responder </button>
 									</div>
 								</div>
 							</div>
+							<?php
+									}
+								}
+								else
+								{
+									echo 'Nenhuma mensagem';
+								}
+							?>
 						</div>
 					</section>
+					<!--Mensagens Arquivadas-->
 					<section id="section-linebox-4">
 						<div class="container-fluid">
 							<div class="row">
@@ -162,7 +198,7 @@
 									</div>
 								</div>
 							</div>
-								<div class="row">
+							<div class="row">
 								<div class="col-md-12 mensagem_enviada">
 									<p style="font-size: 16px;"><strong>Para:</strong> iago@freitas.com.br</p>
 									<p style="font-size: 16px;"><strong>Motivo:</strong> Agradecimento</p>
@@ -172,6 +208,7 @@
 										<button class="btn btn-danger"><i class="fa fa-trash"></i> Excluir de forma permanente </button>
 									</div>
 								</div>
+							</div>
 						</div>
 					</section>
 				</div>

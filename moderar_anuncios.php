@@ -74,15 +74,16 @@
 								
 								<div class="col-md-3 mg_tp">
 									<label for='selecao-arquivo' class="arquivo"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Selecionar um arquivo </label>
-									<input id="selecao-arquivo" type="file" name="foto">
+									<input id="selecao-arquivo" type="file" name="anuncio">
 								</div>
 								<div class="col-md-9 mg_tp">
-									<h4>Mídia <span class="fonte_cinza_claro">(Largura: 360px/ Altura: 205px  )</span></h4>
+									<h4>Mídia <span class="fonte_cinza_claro">(Largura: 360px/ Altura: 250px  )</span></h4>
 								</div>
 								<div class="col-md-12 mg_tp">
 									<button type="submit" class="btn btn-block bg_azul_escuro btn-lg fonte_branca" name="enviar" > Anunciar </button>
 								</div>
 								<input type="hidden" class="validate" name="id_anunciante" value="<?php echo($con['id_anunciante']);?>">
+								<input type="hidden" class="validate" name="status" value="0">
 							</form>
 							<?php
 								include('conexao.php');
@@ -93,47 +94,48 @@
 									$link=$_POST['link'];
 									$descricao=$_POST['descricao'];
 									$id_anunciante=$_POST['id_anunciante'];
-									$foto=$_FILES['foto'];
-									$tamanho=$_FILES["foto"]["size"];
-									$arquivo=1024000;
+									$status=$_POST['status'];
+									$anuncio=$_FILES['anuncio'];
+									$tamanho=$_FILES['anuncio']['size'];
+									$arquivo=30000;
 									
-									if (!empty($foto["name"]))
+									if (!empty($anuncio["name"]))
 									{
-										$dimensoes=getimagesize($foto["tmp_name"]);
-										$largura=1200;
-										$altura=800;
+										$dimensoes=getimagesize($anuncio["tmp_name"]);
+										$largura=360;
+										$altura=250;
 										if(!preg_match('/^image\/(?:png|jpg|jpeg)$/i', $dimensoes['mime']))
 										{
-											echo('<script>window.alert("Envie imagem no formato png,jpg ou jpeg");</script>');
+											echo('<script>window.alert("Envie imagem no formato png,jpg ou jpeg");window.location="moderar_anuncios.php";</script>');
 											exit();
 										}
 										if ($tamanho > $arquivo)
 										{
-											echo('<script>window.alert("Excedeu o tamanho máximo do arquivo");</script>');
+											echo('<script>window.alert("Excedeu o tamanho máximo do arquivo");window.location="moderar_anuncios.php";</script>');
 											exit;
 										}
-										if($dimensoes[0] > $largura) 
+										if($dimensoes[0] < $largura) 
 										{
-											echo('<script>window.alert("A largura da imagem não deve ultrapassar '.$largura.' pixels");</script>');
+											echo('<script>window.alert("A largura deve ser exatamente '.$largura.' pixels");window.location="moderar_anuncios.php";</script>');
 											exit;
 										}
-										if($dimensoes[1] > $altura)
+										if($dimensoes[1] < $altura)
 										{
-											echo('<script>window.alert("A altura da imagem não deve ultrapassar '.$altura.' pixels");</script>');
+											echo('<script>window.alert("A altura deve ser exatamente '.$altura.' pixels");window.location="moderar_anuncios.php";</script>');
 											exit;
 										}
-										preg_match("/\.(png|jpg|jpeg){1}$/i", $foto["name"], $ext);
+										preg_match("/\.(png|jpg|jpeg){1}$/i", $anuncio["name"], $ext);
 										$nome_imagem = uniqid("")."." . $ext[1];
 										$caminho_imagem = "uploads/" . $nome_imagem;
-										move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+										move_uploaded_file($anuncio["tmp_name"], $caminho_imagem);
 										
-										$sqlin='INSERT INTO anuncio (tipo,nome_anuncio,link,descricao,id_anunciante,foto) VALUES ("'.$tipo.'" , "'.$nome_anuncio.'" , "'.$link.'" , "'.$descricao.'" , "'.$id_anunciante.'" , "'.$nome_imagem.'")';
+										$sqlin='INSERT INTO anuncio (tipo,nome_anuncio,link,descricao,id_anunciante,anuncio,status) VALUES ("'.$tipo.'" , "'.$nome_anuncio.'" , "'.$link.'" , "'.$descricao.'" , "'.$id_anunciante.'" , "'.$nome_imagem.'", "'.$status.'")';
 										mysqli_query($conexao,$sqlin);
 										
-										echo('<script>window.alert("Anúncio enviado com sucesso! Aguarde a aprovação dos administradores. ");window.location="cadastro.php";</script>');
+										echo('<script>window.alert("Anúncio enviado com sucesso! Aguarde a aprovação dos administradores. ");window.location="anuncio.php";</script>');
 									}
 									else{
-										echo('<script>window.alert("Imagem não selecionada!");</script>');
+										echo('<script>window.alert("Imagem não selecionada!");window.location="moderar_anuncios.php";</script>');
 									}
 									
 								}

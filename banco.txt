@@ -5713,8 +5713,9 @@ CREATE TABLE anuncio(
 	nome_anuncio varchar(25) not null,
 	link varchar(100) not null,
 	descricao varchar(150) not null,
-	imagem_anuncio varchar(30),
+	imagem varchar(100),
 	data_criacao_anuncio TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	status char (1) not null,
 	id_anunciante int
 );
 
