@@ -52,7 +52,7 @@
 		$nome=$_POST['nome'];
 		$sobrenome=$_POST['sobrenome'];
 		$nick=$_POST['nick'];
-		$apikey="RGAPI-1c1929a9-1ad2-4cbc-a604-b70fbce83e72";		
+		$apikey="RGAPI-d5c13d87-3d9a-4e48-8e94-702509d2b0b3";		
  		$nickcod = rawurlencode($nick);
  		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
  		

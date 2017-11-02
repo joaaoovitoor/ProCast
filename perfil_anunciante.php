@@ -1,4 +1,5 @@
 <?php
+	ob_start();
     session_start();
     if(isset($_SESSION['email'])){
         $email_usuario=$_SESSION['email'];
@@ -97,6 +98,16 @@
 						<p><button type="submit" class="btn btn-default" name="alterar"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</button></p>
 						<p><button type="submit" class="btn btn-default" name="excluir"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</button></p>
 					</form>
+					<?php
+						if(isset($_POST['excluir'])){
+							$sqlex='DELETE FROM anuncio WHERE id_anunciante="'.$con['id_anunciante'].'";';
+							mysqli_query($conexao,$sqlex);
+							$sqlex_usu='DELETE FROM anunciante WHERE id_anunciante="'.$con['id_anunciante'].'";';
+							session_destroy();
+							mysqli_query($conexao,$sqlex_usu);
+							header('location:index.php');
+						}
+					?>
 				</div>
         	</div>
         </div>

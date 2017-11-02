@@ -174,6 +174,7 @@
 								<div class="col-md-2">
 									<p align="center"><i class="fa fa-check fa-5x"></i><br>Aprovado</p>
 								</div>
+							</div>
 							<?php
 									}
 								}
@@ -182,7 +183,6 @@
 									echo '<p align="center"><img src="img/triste.png"><br>Nenhum Anúncio</p>';
 								}
 							?>
-							</div>
 						</div>
 					</div>
 				</section>
@@ -238,6 +238,7 @@
 								<div class="col-md-2">
 									<p align="center"><i class="fa fa-times fa-5x"></i><br>Reprovado</p>
 								</div>
+							</div>
 							<?php
 									}
 								}
@@ -246,13 +247,13 @@
 									echo '<p align="center"><img src="img/triste.png"><br>Nenhum Anúncio</p>';
 								}
 							?>
-							</div>
 						</div>
 					</div>
 				</section>
 				</div>
 			</div>
 		</section>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script src="js/cbpFWTabs.js"></script>
 		<script src="js/modernizr.custom.js"></script>
 		<script>
