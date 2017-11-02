@@ -101,11 +101,20 @@
 					<?php
 						if(isset($_POST['excluir'])){							
 							$sqlex='DELETE FROM anuncio WHERE id_anunciante='.$con['id_anunciante'].';';
-							mysqli_query($conexao,$sqlex);
+							$excluir_anu=mysqli_query($conexao,$sqlex);
 							$sqlex_usu='DELETE FROM anunciante WHERE id_anunciante='.$con['id_anunciante'].';';
-							mysqli_query($conexao,$sqlex_usu);
-							session_destroy();
-							header('location:index.php');
+							$excluir_conta=mysqli_query($conexao,$sqlex_usu);
+                            if($excluir_anu && excluir_conta)
+                            {
+                                echo('<script>alert("Conta excluída!");</script>');
+                                session_destroy();
+                                echo('<script>window.location="index.php";</script>');
+                            }
+                            else
+                            {
+                                echo('<script>alert("Erro ao excluir conta!");</script>');
+                                echo('<script>window.location="perfil_investidor.php";</script>');
+                            }
 						}
 					?>
 				</div>
