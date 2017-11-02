@@ -19,6 +19,7 @@
   		<link rel="stylesheet" href="css/anunciante.css">
   		<script src="js/bootstrap.js"></script>
 	    <script src="js/jquery.js"></script>
+	    <script src="js/pesq_cidade.js"></script>
 		<?php
 			include('link_head.html');
 		?>
@@ -70,18 +71,31 @@
 							</div>
 							<div class="form-group">
 								Estado
-								<select name="estado" class="form-control">
-									<option value="ac">Acre</option>
+								<select name="estado" id="estado" class="form-control">
+									<option value="">Selecione</option>
+									<?php
+										$sqlsel='SELECT * FROM estado;';
+										$resul=mysqli_query($conexao,$sqlsel);
+										while ($con=mysqli_fetch_array($resul))
+										{
+											echo
+											('
+												<option value="'.$con['id'].'">'.$con['nome'].'</option>
+											');
+										}
+									?>
+									 
 								</select>
 							</div>
 	                        <div class="form-group">
 								Cidade
-								<select name="cidade" class="form-control">
-									<option value="ac">Acre</option>
+								<select name="cidade" id="cidade" class="form-control">
+								  <option>Escolha primeiro um estado</option>
 								</select>
 							</div>
 						</div>
-						<p><a href="#" class="btn btn-default" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</a></p>
+						<p><button type="submit" class="btn btn-default" name="alterar"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</button></p>
+						<p><button type="submit" class="btn btn-default" name="excluir"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</button></p>
 					</form>
 				</div>
         	</div>

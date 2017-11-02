@@ -14,6 +14,9 @@
 					<a class="menu-item " href="anuncio.php">Meus anúncios </a>
 			</li>
 			<li class="item item-log">
+					<a class="menu-item " href="politicas.php">Políticas </a>
+			</li>
+			<li class="item item-log">
 					<a class="menu-item" href="destruir.php">Sair <i hidden="true" class="fa fa-sign-in fa-1x icone">  </i></a>
 			</li>
 		</ul>
@@ -34,6 +37,9 @@
 		</div>
 		<div class="row item-mobile">
 			<a href="anuncio.php">Meus Anúncios</a>
+		</div>
+		<div class="row item-mobile">
+			<a href="politicas.php">Políticas</a>
 		</div>
 	</nav>
 	<!-- fim Menu mobile-->

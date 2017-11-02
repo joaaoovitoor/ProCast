@@ -7,6 +7,9 @@
 .anuncio{
 	background: url(../img/banner_anuncio.jpg) no-repeat;
 }
+.politica{
+	background: url(../img/banner_politica.jpg) no-repeat;
+}
 .banner{
 	position: relative;
 	-webkit-background-size: cover;

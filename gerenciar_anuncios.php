@@ -103,7 +103,7 @@
 											echo('<script>window.alert("Anúncio Aprovado");window.location="gerenciar_anuncios.php";</script>');
 											exit();
 										}
-										if(isset($_POST['reaprovar']))
+										if(isset($_POST['reprovar']))
 										{
 											$id_anuncio=$_POST['id_anuncio'];
 											$sqlalt=('UPDATE anuncio set status="2" WHERE id_anuncio='.$id_anuncio.';');
