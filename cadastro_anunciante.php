@@ -17,9 +17,6 @@
 		<script src="js/pesq_cidade.js"></script>
 	</head>
 	<body>
-		<?php
-			include('conexao.php');
-		?>
 		<nav class="nav-menu hidden-xs hidden-sm"  style="background-color:#333 !important;">
 		<a href="index.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
 			<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-9">
@@ -59,7 +56,9 @@
 		  });
 		});
 	</script>
-
+		<?php
+			include('conexao.php');
+		?>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 hidden-xs hidden-sm " style="margin-top: 2%">

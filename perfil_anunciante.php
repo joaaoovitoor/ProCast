@@ -77,11 +77,11 @@
 									<?php
 										$sqlsel='SELECT * FROM estado;';
 										$resul=mysqli_query($conexao,$sqlsel);
-										while ($con=mysqli_fetch_array($resul))
+										while ($con2=mysqli_fetch_array($resul))
 										{
 											echo
 											('
-												<option value="'.$con['id'].'">'.$con['nome'].'</option>
+												<option value="'.$con2['id'].'">'.$con2['nome'].'</option>
 											');
 										}
 									?>
@@ -99,12 +99,12 @@
 						<p><button type="submit" class="btn btn-default" name="excluir"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</button></p>
 					</form>
 					<?php
-						if(isset($_POST['excluir'])){
-							$sqlex='DELETE FROM anuncio WHERE id_anunciante="'.$con['id_anunciante'].'";';
+						if(isset($_POST['excluir'])){							
+							$sqlex='DELETE FROM anuncio WHERE id_anunciante='.$con['id_anunciante'].';';
 							mysqli_query($conexao,$sqlex);
-							$sqlex_usu='DELETE FROM anunciante WHERE id_anunciante="'.$con['id_anunciante'].'";';
-							session_destroy();
+							$sqlex_usu='DELETE FROM anunciante WHERE id_anunciante='.$con['id_anunciante'].';';
 							mysqli_query($conexao,$sqlex_usu);
+							session_destroy();
 							header('location:index.php');
 						}
 					?>
