@@ -1,5 +1,6 @@
-<?php 
+	<?php 
 	include('menu-admin.html');
+	include ('conexao.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +42,6 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								include ('conexao.php');
 								$sqlsel='SELECT * FROM anuncio WHERE status="0"';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
@@ -89,8 +89,8 @@
 								<div class="col-md-2">
 									<form action="#" method="POST">
 										<input type="hidden" name="id_anuncio" value="<?php echo($con['id_anuncio']);?>">
-										<p><button name="aprovar" type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>APROVAR</button></p>
-										<p><button name="reprovar" type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>REPROVAR</button></p>
+										<p><button name="aprovar" type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>APROVAR</button></p>
+										<p><button name="reprovar" type="submit" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>REPROVAR</button></p>
 									</form>
 								</div>
 							</div>
@@ -127,7 +127,6 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								include ('conexao.php');
 								$sqlsel='SELECT * FROM anuncio WHERE status="1"';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
@@ -192,7 +191,6 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								include ('conexao.php');
 								$sqlsel='SELECT * FROM anuncio WHERE status="2"';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
