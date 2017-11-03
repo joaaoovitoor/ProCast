@@ -1,3 +1,6 @@
+<?php 
+    include('verificar_logado.php');
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -5,7 +8,6 @@
         <link rel="stylesheet" href="css/home.css">
 		<?php
 			include('link_head.html');
-            include('verificar_logado.php');
 		?>
 	</head>
 	<body>
