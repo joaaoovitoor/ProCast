@@ -53,7 +53,7 @@
 					echo('<script>window.location="cadastro_anunciante.php";</script>');
 					exit();
 				}
-				//verificando se já existe aquele email cadstrado como anunciante
+				//verificando se já existe aquele email cadstrado como usuario
 				elseif(mysqli_num_rows($resulus))
 				{
 					echo('<script>alert("Email já cadastrado!");</script>');
