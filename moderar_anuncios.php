@@ -1,4 +1,5 @@
 <?php
+	ob_start();
     session_start();
     if(isset($_SESSION['email'])){
         $email_usuario=$_SESSION['email'];
@@ -133,7 +134,6 @@
 										
 										$sqlin='INSERT INTO anuncio (tipo,nome_anuncio,link,descricao,id_anunciante,anuncio,status) VALUES ("'.$tipo.'" , "'.$nome_anuncio.'" , "'.$link.'" , "'.$descricao.'" , "'.$id_anunciante.'" , "'.$nome_imagem.'", "'.$status.'")';
 										mysqli_query($conexao,$sqlin);
-										
 										echo '<script>swal("Parabéns, anúncio enviado com sucesso!", "Aguarde a aprovação dos administradores.", "success");</script>';
 									}
 									else{
@@ -147,12 +147,11 @@
 				</div>
 			</div>
 		</div>
-		
 		<?php
 			include('rodape.html');
 		?>
-		        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>            
 	</body>
 </html>

@@ -5730,12 +5730,12 @@ CREATE TABLE denuncia(
 
 CREATE TABLE contato(
 	id_contato int auto_increment primary key,
-	assunto int not null,
-	data_contato DATETIME,
-	motivo varchar(20) not null,
-	descricao_contato varchar(1000) not null,
+	assunto int (1) not null,
+	data_contato TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	titulo varchar(30) not null,
+	imagem_contato varchar(100)
+	descricao varchar(1000) not null,
 	id_usuario int,
-	imagem_contato varchar(50)
 );
 
 

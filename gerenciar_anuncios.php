@@ -1,4 +1,4 @@
-	<?php 
+<?php 
 	include('menu-admin.html');
 	include ('conexao.php');
 ?>
@@ -31,9 +31,36 @@
 			<div class="tabs tabs-style-linebox">
 				<nav>
 					<ul>
-						<li><a href="#1"><span>Anúncios em andamento</span></a></li>
-						<li><a href="#2"><span>Anúncios aprovados</span></a></li>
-						<li><a href="#2"><span>Anúncios reprovados</span></a></li>
+						<li><a href="#1"><span>Anúncios em andamento</span>
+							<span class="badge">
+							<?php
+								$sql='SELECT * FROM anuncio WHERE status="0";';
+								$resul=mysqli_query($conexao,$sql);
+								$quantidade_pendente=mysqli_num_rows($resul);
+								echo $quantidade_pendente;
+							?>
+							</span>
+						</a></li>
+						<li><a href="#2"><span>Anúncios aprovados</span>
+							<span class="badge">
+							<?php
+								$sql='SELECT * FROM anuncio WHERE status="1";';
+								$resul=mysqli_query($conexao,$sql);
+								$quantidade_pendente=mysqli_num_rows($resul);
+								echo $quantidade_pendente;
+							?>
+							</span>
+						</a></li>
+						<li><a href="#2"><span>Anúncios reprovados</span>
+							<span class="badge">
+							<?php
+								$sql='SELECT * FROM anuncio WHERE status="2";';
+								$resul=mysqli_query($conexao,$sql);
+								$quantidade_pendente=mysqli_num_rows($resul);
+								echo $quantidade_pendente;
+							?>
+							</span>
+						</a></li>
 					</ul>
 				</nav>
 				<div class="content-wrap">
@@ -46,38 +73,38 @@
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
-									while ($con=mysqli_fetch_array($resul)) 
+									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
-										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con['id_anunciante'].'';
+										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con_anuncio['id_anunciante'].'';
 										$resul2=mysqli_query($conexao,$sqlsel2);
 										$consulta_anunciante=mysqli_fetch_array($resul2);
 							?>
 							<div class='list-card'>
 								<div class="col-md-5">
-									<img src='uploads/<?php echo $con['anuncio'];?>'>
+									<img src='uploads/<?php echo $con_anuncio['anuncio'];?>'>
 								</div>
 								<div class="col-md-3">
 									<div class='list-details'>
 										<div class='list-name'>
-											Nome do Anúncio: <?php echo $con['nome_anuncio'];?>
+											Nome do Anúncio: <?php echo $con_anuncio['nome_anuncio'];?>
 										</div>
 										<div class='list-rooms'>
-											<p>Link: <?php echo $con['link'];?></p>
+											<p>Link: <?php echo $con_anuncio['link'];?></p>
 											<p>Empresa: <?php echo $consulta_anunciante['nome_empresa'];?></p>
 											<p>CNPJ: <?php echo $consulta_anunciante['cnpj'];?></p>
 											<p>Nome anunciante: <?php echo $consulta_anunciante['nome_anunciante'].' '.$consulta_anunciante['sobrenome'];?></p>
 										</div>
 										<div class='list-landmark'>
-											Data de Criação: <?php echo $con['data_criacao_anuncio'];?>
+											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
 										</div>
 										<div class='list-location'>
 											Data de expiração: -
 										</div>
 										<div class='list-price'>
 											Plano: <?php 
-												if($con['tipo']==1){
+												if($con_anuncio['tipo']==1){
 													echo '1 semana por R$9,99';
-												}elseif ($con['tipo']==2){
+												}elseif ($con_anuncio['tipo']==2){
 													echo '15 dias por R$16,99';
 												}else{
 													echo '1 mês por R$29,99';										
@@ -88,7 +115,7 @@
 								</div>
 								<div class="col-md-2">
 									<form action="#" method="POST">
-										<input type="hidden" name="id_anuncio" value="<?php echo($con['id_anuncio']);?>">
+										<input type="hidden" name="id_anuncio" value="<?php echo($con_anuncio['id_anuncio']);?>">
 										<p><button name="aprovar" type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>APROVAR</button></p>
 										<p><button name="reprovar" type="submit" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>REPROVAR</button></p>
 									</form>
@@ -131,38 +158,38 @@
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
-									while ($con=mysqli_fetch_array($resul)) 
+									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
-										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con['id_anunciante'].'';
+										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con_anuncio['id_anunciante'].'';
 										$resul2=mysqli_query($conexao,$sqlsel2);
 										$consulta_anunciante=mysqli_fetch_array($resul2);
 							?>
 							<div class='list-card'>
 								<div class="col-md-5">
-									<img src='uploads/<?php echo $con['anuncio'];?>'>
+									<img src='uploads/<?php echo $con_anuncio['anuncio'];?>'>
 								</div>
 								<div class="col-md-3">
 									<div class='list-details'>
 										<div class='list-name'>
-											Nome do Anúncio: <?php echo $con['nome_anuncio'];?>
+											Nome do Anúncio: <?php echo $con_anuncio['nome_anuncio'];?>
 										</div>
 										<div class='list-rooms'>
-											<p>Link: <?php echo $con['link'];?></p>
+											<p>Link: <?php echo $con_anuncio['link'];?></p>
 											<p>Empresa: <?php echo $consulta_anunciante['nome_empresa'];?></p>
 											<p>CNPJ: <?php echo $consulta_anunciante['cnpj'];?></p>
 											<p>Nome anunciante: <?php echo $consulta_anunciante['nome_anunciante'].' '.$consulta_anunciante['sobrenome'];?></p>
 										</div>
 										<div class='list-landmark'>
-											Data de Criação: <?php echo $con['data_criacao_anuncio'];?>
+											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
 										</div>
 										<div class='list-location'>
 											Data de expiração: -
 										</div>
 										<div class='list-price'>
 											Plano: <?php 
-												if($con['tipo']==1){
+												if($con_anuncio['tipo']==1){
 													echo '1 semana por R$9,99';
-												}elseif ($con['tipo']==2){
+												}elseif ($con_anuncio['tipo']==2){
 													echo '15 dias por R$16,99';
 												}else{
 													echo '1 mês por R$29,99';										
@@ -195,38 +222,38 @@
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
-									while ($con=mysqli_fetch_array($resul)) 
+									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
-										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con['id_anunciante'].'';
+										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con_anuncio['id_anunciante'].'';
 										$resul2=mysqli_query($conexao,$sqlsel2);
 										$consulta_anunciante=mysqli_fetch_array($resul2);
 							?>
 							<div class='list-card'>
 								<div class="col-md-5">
-									<img src='uploads/<?php echo $con['anuncio'];?>'>
+									<img src='uploads/<?php echo $con_anuncio['anuncio'];?>'>
 								</div>
 								<div class="col-md-3">
 									<div class='list-details'>
 										<div class='list-name'>
-											Nome do Anúncio: <?php echo $con['nome_anuncio'];?>
+											Nome do Anúncio: <?php echo $con_anuncio['nome_anuncio'];?>
 										</div>
 										<div class='list-rooms'>
-											<p>Link: <?php echo $con['link'];?></p>
+											<p>Link: <?php echo $con_anuncio['link'];?></p>
 											<p>Empresa: <?php echo $consulta_anunciante['nome_empresa'];?></p>
 											<p>CNPJ: <?php echo $consulta_anunciante['cnpj'];?></p>
 											<p>Nome anunciante: <?php echo $consulta_anunciante['nome_anunciante'].' '.$consulta_anunciante['sobrenome'];?></p>
 										</div>
 										<div class='list-landmark'>
-											Data de Criação: <?php echo $con['data_criacao_anuncio'];?>
+											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
 										</div>
 										<div class='list-location'>
 											Data de expiração: -
 										</div>
 										<div class='list-price'>
 											Plano: <?php 
-												if($con['tipo']==1){
+												if($con_anuncio['tipo']==1){
 													echo '1 semana por R$9,99';
-												}elseif ($con['tipo']==2){
+												}elseif ($con_anuncio['tipo']==2){
 													echo '15 dias por R$16,99';
 												}else{
 													echo '1 mês por R$29,99';										
@@ -253,7 +280,6 @@
 				</div>
 			</div>
 		</section>
-		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script src="js/cbpFWTabs.js"></script>
 		<script src="js/modernizr.custom.js"></script>
 		<script>

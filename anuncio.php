@@ -50,7 +50,7 @@
 			        	$resul=mysqli_query($conexao,$sqlsel);
 							if (mysqli_num_rows($resul)>0)
 							{
-								while ($con=mysqli_fetch_array($resul)) 
+								while ($con_anu=mysqli_fetch_array($resul)) 
 								{
 					?>
 					<div class='list-card'>
@@ -58,10 +58,10 @@
 							
 							<div class='list-label' 
 							<?php
-								if ($con['status']==0){
+								if ($con_anu['status']==0){
 									echo 'style="background-color: #1abde6;"> AGUARDANDO APROVAÇÃO';
 								}
-								else if ($con['status']==1){
+								else if ($con_anu['status']==1){
 									echo 'style="background-color: #1fc055;"> APROVADO';
 								}
 								else{
@@ -69,27 +69,27 @@
 								}
 							?>
 							</div>
-							<img src='uploads/<?php echo $con['anuncio'];?>'>
+							<img src='uploads/<?php echo $con_anu['anuncio'];?>'>
 						</div>
 						<div class="col-md-3">
 							<div class='list-details'>
 								<div class='list-name'>
-									Nome do Anúncio: <?php echo $con['nome_anuncio'];?>
+									Nome do Anúncio: <?php echo $con_anu['nome_anuncio'];?>
 								</div>
 								<div class='list-rooms'>
-									Link: <?php echo $con['link'];?>
+									Link: <?php echo $con_anu['link'];?>
 								</div>
 								<div class='list-landmark'>
-									Data de Criação: <?php echo $con['data_criacao_anuncio'];?>
+									Data de Criação: <?php echo $con_anu['data_criacao_anuncio'];?>
 								</div>
 								<div class='list-location'>
 									Data de expiração: -
 								</div>
 								<div class='list-price'>
 									<?php 
-										if($con['tipo']==1){
+										if($con_anu['tipo']==1){
 											echo '1 semana por R$9,99';
-										}elseif ($con['tipo']==2){
+										}elseif ($con_anu['tipo']==2){
 											echo '15 dias por R$16,99';
 										}else{
 											echo '1 mês por R$29,99';										
@@ -100,7 +100,7 @@
 						</div>
 						<div class="col-md-2">
 							<form action="#" method="POST">
-								<input type="hidden" name="id_anuncio" value="<?php echo($con['id_anuncio']);?>">
+								<input type="hidden" name="id_anuncio" value="<?php echo($con_anu['id_anuncio']);?>">
 								<p><button class="btn btn-default"><i class="fa fa-flag" aria-hidden="true"></i> Reanunciar</button></p>
 								<p><button class="btn btn-danger" name="excluir"><i class="fa fa-trash-o" aria-hidden="true"></i> Excluir</button></p>
 							</form>

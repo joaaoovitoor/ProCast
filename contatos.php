@@ -61,7 +61,16 @@
 						<ul>
 							<li><a href="#section-linebox-1"><span>Nova mensagem</span></a></li>
 							<li><a href="#section-linebox-2"><span>Mensagens Enviadas</span></a></li>
-							<li><a href="#section-linebox-3"><span>Mensagens Recebidas <span class="badge">4</span></span></a></li>
+							<li><a href="#section-linebox-3"><span>Mensagens Recebidas 
+							<span class="badge">
+							<?php
+								$sql='SELECT * FROM contato;';
+								$resul=mysqli_query($conexao,$sql);
+								$quantidade_pendente=mysqli_num_rows($resul);
+								echo $quantidade_pendente;
+							?>
+							</span>
+							</span></a></li>
 							<li><a href="#section-linebox-4"><span>Mensagens Arquivadas</span></a></li>
 						</ul>
 					</nav>
@@ -179,7 +188,7 @@
 								}
 								else
 								{
-									echo 'Nenhuma mensagem';
+									echo '<h3 align="center"><img src="img/triste.png"><br>Nenhuma mensagem</h3>';
 								}
 							?>
 						</div>
