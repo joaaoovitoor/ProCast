@@ -4,9 +4,20 @@
     if(isset($_SESSION['email'])){
         $email_usuario=$_SESSION['email'];
         include('conexao.php');
-        $sqlsel='select * from anunciante where email="'.$email_usuario.'";';
+        //verificando se ele é usuário
+        $sqlsel='select * from usuario where email="'.$email_usuario.'";';
         $resul=mysqli_query($conexao,$sqlsel);
-        $con=mysqli_fetch_array($resul);
+        if(mysqli_num_rows($resul)>0)
+        {
+        	header("location: destruir.php");
+        }
+        //se ele realmente for anunciante, cairá neste else
+        else
+        {
+	        $sqlsel='select * from anunciante where email="'.$email_usuario.'";';
+	        $resul=mysqli_query($conexao,$sqlsel);
+	        $con=mysqli_fetch_array($resul);
+	    }
     }
     else{
         header('location:destruir.php');    
@@ -77,11 +88,11 @@
 									<?php
 										$sqlsel='SELECT * FROM estado;';
 										$resul=mysqli_query($conexao,$sqlsel);
-										while ($con=mysqli_fetch_array($resul))
+										while ($con2=mysqli_fetch_array($resul))
 										{
 											echo
 											('
-												<option value="'.$con['id'].'">'.$con['nome'].'</option>
+												<option value="'.$con2['id'].'">'.$con2['nome'].'</option>
 											');
 										}
 									?>
@@ -99,13 +110,22 @@
 						<p><button type="submit" class="btn btn-default" name="excluir"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</button></p>
 					</form>
 					<?php
-						if(isset($_POST['excluir'])){
-							$sqlex='DELETE FROM anuncio WHERE id_anunciante="'.$con['id_anunciante'].'";';
-							mysqli_query($conexao,$sqlex);
-							$sqlex_usu='DELETE FROM anunciante WHERE id_anunciante="'.$con['id_anunciante'].'";';
-							session_destroy();
-							mysqli_query($conexao,$sqlex_usu);
-							header('location:index.php');
+						if(isset($_POST['excluir'])){							
+							$sqlex='DELETE FROM anuncio WHERE id_anunciante='.$con['id_anunciante'].';';
+							$excluir_anu=mysqli_query($conexao,$sqlex);
+							$sqlex_usu='DELETE FROM anunciante WHERE id_anunciante='.$con['id_anunciante'].';';
+							$excluir_conta=mysqli_query($conexao,$sqlex_usu);
+                            if($excluir_anu && excluir_conta)
+                            {
+                                echo('<script>alert("Conta excluída!");</script>');
+                                session_destroy();
+                                echo('<script>window.location="index.php";</script>');
+                            }
+                            else
+                            {
+                                echo('<script>alert("Erro ao excluir conta!");</script>');
+                                echo('<script>window.location="perfil_investidor.php";</script>');
+                            }
 						}
 					?>
 				</div>

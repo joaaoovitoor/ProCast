@@ -13,10 +13,34 @@
         $senha=base64_encode($senha);
         if(!empty($email)&&!empty($senha))
         {
+        	$sqlsela='select senha from admin where email="'.$email.'";';
+        	$resula=mysqli_query($conexao,$sqlsela);
         	//resgatando a senha correspondente ao email digitado
 	        $sqlsel='select senha from usuario where email="'.$email.'";';
 			$resul=mysqli_query($conexao,$sqlsel);
-			if(mysqli_num_rows($resul))
+        	//verificando se o usuário é admin
+        	if(mysqli_num_rows($resula))
+        	{
+        		while ($con=mysqli_fetch_array($resula)) 
+				{
+					//comparando a senha do login com a senha do banco
+					if($senha==$con['senha'])
+					{
+						//iniciando a sessão
+    					session_start();
+						//armazenando o email na sessão para usar posteriormente, para identificar o usuário
+						$_SESSION['email']=$email;
+						echo('<script>alert("Logado com sucesso!");</script>');
+						echo('<script>window.location="admin.php";</script>');
+					}
+					else
+					{
+						echo('<script>alert("Senha inválida");</script>');
+						echo('<script>window.location="login.php";</script>');
+					}
+				}
+        	}
+			elseif(mysqli_num_rows($resul))
 			{
 				//se o email retornar alguma linha de registro (essa linha está contendo a senha) é pq ele existe
 				while ($con=mysqli_fetch_array($resul)) 
@@ -52,7 +76,7 @@
 		$nome=$_POST['nome'];
 		$sobrenome=$_POST['sobrenome'];
 		$nick=$_POST['nick'];
-		$apikey="RGAPI-d5c13d87-3d9a-4e48-8e94-702509d2b0b3";		
+		$apikey="RGAPI-25898d6b-890c-43d7-8c52-09d74bfff743";		
  		$nickcod = rawurlencode($nick);
  		$urljogo = @file_get_contents("https://br1.api.riotgames.com/lol/summoner/v3/summoners/by-name/$nickcod?api_key=$apikey");
  		
@@ -114,8 +138,29 @@
 				{
 					$sqlsel='select * from usuario where email="'.$email.'";';
 					$resul=mysqli_query($conexao,$sqlsel);
+					
+					$sqlselad='select * from admin where email="'.$email.'";';
+					$resulad=mysqli_query($conexao,$sqlselad);
+
+					$sqlselan='select * from anunciante where email="'.$email.'";';
+					$resulan=mysqli_query($conexao,$sqlselan);
+
+					//verificando se já existe aquele email cadstrado como admin
+					if(mysqli_num_rows($resulad))
+					{
+						echo('<script>alert("Email já cadastrado!");</script>');
+						echo('<script>window.location="cadastro.php";</script>');
+						exit();
+					}
+					//verificando se já existe aquele email cadstrado como anunciante
+					elseif(mysqli_num_rows($resulan))
+					{
+						echo('<script>alert("Email já cadastrado!");</script>');
+						echo('<script>window.location="cadastro.php";</script>');
+						exit();
+					}
 					//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
-					if(mysqli_num_rows($resul))
+					elseif(mysqli_num_rows($resul))
 					{
 						echo('<script>alert("Email já cadastrado!");</script>');
 						echo('<script>window.location="cadastro.php";</script>');
@@ -205,8 +250,29 @@
 			{
 				$sqlsel='select * from usuario where email="'.$email.'";';
 				$resul=mysqli_query($conexao,$sqlsel);
+
+				$sqlselad='select * from admin where email="'.$email.'";';
+				$resulad=mysqli_query($conexao,$sqlselad);
+
+				$sqlselan='select * from anunciante where email="'.$email.'";';
+				$resulan=mysqli_query($conexao,$sqlselan);
+
+				//verificando se já existe aquele email cadstrado como admin
+				if(mysqli_num_rows($resulad))
+				{
+					echo('<script>alert("Email já cadastrado!");</script>');
+					echo('<script>window.location="cadastro.php";</script>');
+					exit();
+				}
+				//verificando se já existe aquele email cadstrado como anunciante
+				elseif(mysqli_num_rows($resulan))
+				{
+					echo('<script>alert("Email já cadastrado!");</script>');
+					echo('<script>window.location="cadastro.php";</script>');
+					exit();
+				}
 				//verificando se já existe aquele email cadstrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
-				if(mysqli_num_rows($resul))
+				elseif(mysqli_num_rows($resul))
 				{
 					echo('<script>alert("Email já cadastrado!");</script>');
 					echo('<script>window.location="cadastro.php";</script>');

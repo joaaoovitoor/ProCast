@@ -39,8 +39,29 @@
 			{
 				$sqlsel='select * from anunciante where email="'.$email.'";';
 				$resul=mysqli_query($conexao,$sqlsel);
+				
+				$sqlselad='select * from admin where email="'.$email.'";';
+				$resulad=mysqli_query($conexao,$sqlselad);
+
+				$sqlselus='select * from usuario where email="'.$email.'";';
+				$resulus=mysqli_query($conexao,$sqlselus);
+
+				//verificando se já existe aquele email cadstrado como admin
+				if(mysqli_num_rows($resulad))
+				{
+					echo('<script>alert("Email já cadastrado!");</script>');
+					echo('<script>window.location="cadastro_anunciante.php";</script>');
+					exit();
+				}
+				//verificando se já existe aquele email cadstrado como usuario
+				elseif(mysqli_num_rows($resulus))
+				{
+					echo('<script>alert("Email já cadastrado!");</script>');
+					echo('<script>window.location="cadastro_anunciante.php";</script>');
+					exit();
+				}
 				//verificando se já existe aquele email cadastrado,num_rows=numero de linhas, se o comando retornar alguma linha de registro é pq já há esse email cadastrado
-				if(mysqli_num_rows($resul))
+				elseif(mysqli_num_rows($resul))
 				{
 					echo('<script>alert("Email já cadastrado!");</script>');
 					echo('<script>window.location="cadastro_anunciante.php";</script>');
