@@ -9,7 +9,7 @@
         $resul=mysqli_query($conexao,$sqlsel);
         if(mysqli_num_rows($resul)>0)
         {
-            header("location: destruir.php");
+            header("location: perfil_anunciante.php");
         }
         //se ele realmente for anunciante, cairá neste else
         else
