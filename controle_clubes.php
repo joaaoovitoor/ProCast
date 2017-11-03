@@ -1,3 +1,6 @@
+<?php
+	include('verificar_logado.php');
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
