@@ -1,4 +1,5 @@
 <?php 
+	include('verificar_admin.php');
 	include("menu-admin.html");
 ?>
 <html>

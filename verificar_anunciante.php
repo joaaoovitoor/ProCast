@@ -18,7 +18,7 @@
 		}
 		if (!empty($cnpj))
 		{
-			$sqlsel='select * from usuario where cnpj="'.$cnpj.'";';
+			$sqlsel='select * from anunciante where cnpj="'.$cnpj.'";';
 			$resul=mysqli_query($conexao,$sqlsel);
 			if(mysqli_num_rows($resul))
 			{
