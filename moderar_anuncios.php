@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-	ob_start();
-=======
     ob_start();
->>>>>>> 0025d9692b85ae00f950a316881742d06fd811f9
     session_start();
     if(isset($_SESSION['email'])){
         $email_usuario=$_SESSION['email'];
