@@ -146,7 +146,7 @@
 					<section id="section-linebox-3">
 						<div class="container-fluid">
 							<?php
-								$sqlsel='SELECT * FROM contato ORDER BY data_contato';
+								$sqlsel='SELECT * FROM contato ORDER BY data_contato DESC';
 								$resul=mysqli_query($conexao,$sqlsel);
 								
 								if (mysqli_num_rows($resul)>0)
@@ -161,7 +161,7 @@
 								<div class="col-md-12 mensagem_enviada">
 									<p style="font-size: 16px;"><strong>Data: </strong><?php echo $con['data_contato'];?></p>
 									<p style="font-size: 16px;"><strong>Remetente: </strong><?php echo $con1['email'];?></p>
-									<p style="font-size: 16px;"><strong>Assunto: </strong>
+									<p style="font-size: 16px;"><strong>Motivo: </strong>
 									<?php 
 										if($con['assunto']==1){
 											echo 'Dicas';
@@ -177,7 +177,12 @@
 									?>
 									</p>
 									<p style="font-size: 16px;"><strong>Título: </strong><?php echo $con['motivo'];?></p>
-									<p style="font-size: 16px;"><strong>Mensagem: </strong><?php echo $con['descricao_contato'];?></p>
+									<p style="font-size: 16px;"><strong>Mensagem: </strong><?php echo $con['descricao'];?></p>
+									<?php 
+										if($con['print']!=NULL){
+											echo '<p style="font-size: 16px;"><strong>Imagem: </strong><a href=uploads/'.$con['print'].' target="blank">'.$con['print'].'</a></p>';
+										}
+									?>
 									<div class="botao" style="padding-bottom: 10px;">
 										<button class="btn btn-procast"><i class="fa fa-close"></i> Arquivar</button> <button class="btn btn-default"><i class="fa fa-share"></i> Responder </button>
 									</div>

@@ -19,7 +19,7 @@
 				<div class="row">
 					<h1 class="text-center fonte_branca texto_sombra"><strong>Contate-nos</strong></h1>	
 					<p class="text-center fonte_branca texto_sombra">
-						Queremos te ouvir! Nos informe sobre elogios, sugestões e críticas.<br> Sua opinião é importante para nós!
+						Queremos te ouvir! Nos informe sobre elogios, dúvidas, sugestões e críticas.<br> Sua opinião é importante para nós!
 					</p>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 						<div class="panel-body">
 							<form action="#" method="POST" enctype="multipart/form-data">
 								<div class="col-md-6">
-									<input type="text" name="motivo" class="form-control input-lg" placeholder="Título da mensagem">
+									<input type="text" name="motivo" maxlength="30" class="form-control input-lg" placeholder="Título da mensagem" required>
 								</div>
 								<div class="col-md-6">
 									<select name="assunto" class="form-control input-lg">
@@ -48,7 +48,7 @@
 									</select>
 								</div>
 								<div class="col-md-12 mg_tp">
-									<textarea name="descricao_contato" rows="10" maxlength="1000" class="form-control" placeholder="Escreva sua mensagem"></textarea>
+									<textarea name="descricao" rows="10" maxlength="1000" class="form-control" placeholder="Escreva sua mensagem" required></textarea>
 								</div>
 								<div class="col-md-12">
 									<p class="help-block mg_tp">Envie um print se necessário</p>
@@ -70,23 +70,25 @@
 			{
 				$motivo=$_POST['motivo'];
 				$assunto=$_POST['assunto'];
-				$descricao_contato=$_POST['descricao_contato'];
-				//se nada estiver vazio
-				if(!empty($motivo) && !empty($assunto) && !empty($descricao_contato))
+				$descricao=$_POST['descricao'];
+				//se o assunto estiver vazio
+				if(!empty($assunto))
 				{
+					//se não existir imagem
+					if(!isset($_FILES['print'])==false)
+					{
+						
+						$sqlin=('INSERT INTO contato(assunto,motivo,descricao,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao.'",'.$con['id_usuario'].');');
+						
+					}
 					//se existir imagem
-					if(isset($_FILES['print']))
+					else
 					{
 						$extensao=strtolower(substr($_FILES['print']['name'], -4));
 						$novo_nome=md5(time().$con['id_usuario']).$extensao;
 						$diretorio="uploads/";
 						move_uploaded_file($_FILES['print']['tmp_name'], $diretorio.$novo_nome);
-						$sqlin=('INSERT INTO contato(assunto,motivo,descricao_contato,imagem_contato,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao_contato.'","'.$novo_nome.'",'.$con['id_usuario'].');');
-					}
-					//se não existir imagem
-					else
-					{
-						$sqlin=('INSERT INTO contato(assunto,motivo,descricao_contato,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao_contato.'",'.$con['id_usuario'].');');
+						$sqlin=('INSERT INTO contato(assunto,motivo,descricao,print,id_usuario) VALUES("'.$assunto.'","'.$motivo.'","'.$descricao.'","'.$novo_nome.'",'.$con['id_usuario'].');');
 					}
 					$inserir=mysqli_query($conexao,$sqlin);
 					if($inserir)
