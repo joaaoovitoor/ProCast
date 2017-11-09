@@ -1,5 +1,16 @@
 <?php 
 	include("menu-admin.html");
+
+	if(isset($_POST['enviar']))
+	{
+		require_once("classes/AddNoticia.php");
+	}
+	if(isset($_POST['enviar_categoria']))
+	{
+		require_once("classes/AddCategoria.php");
+
+	}
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +28,7 @@
 		<meta charset="UTF-8"/>
 	</head>
 	<body>
+	
 		<section>
 			<div class="container-fluid">
 				<div class="row">
@@ -26,14 +38,16 @@
 				</div>
 			</div>
 		</section>
+		
 		<br/>
+		
 		<section>
 			<div class="tabs tabs-style-linebox">
 				<nav>
 					<ul>
 						<li><a href="#section-linebox-1"><span>Nova notícia</span></a></li>
-						<li><a href="#section-linebox-2"><span>Notícias criadas</span></a></li>
-						<li><a href="#section-linebox-3"><span>Notícias arquivadas</span></a></li>
+						<li><a href="#section-linebox-2"><span>Notícias criadas <span class="badge"><?php  require_once("classes/quantidade_noticias.php");?></span></span></a></li>
+						<li><a href="#section-linebox-4"><span>Categorias</span></a></li>
 					</ul>
 				</nav>
 				<div class="content-wrap">
@@ -43,14 +57,38 @@
 						<h1 class="text-center"> Nova notícia</h1>
 						<div class="container-fluid">
 							<div class="row">
-								<form method="POST" action="#">
+								<form method="POST" action="#" enctype="multipart/form-data">
 									<div class="form-group col-md-12">
 										<h4>Titulo da notícia:</h4>
-										<input type="text" name="titulo_noticia" placeholder="Motivo da mensagem" class="form-control">
+										<input type="text" name="titulo_noticia" placeholder="Ex:Novo torneio" class="form-control">
+									</div>
+									<div class="form-group col-md-12">
+										<h4>lide da notícia:</h4>
+										<input type="text" name="lide" placeholder="Informações oque a notíca trata" class="form-control">
+									</div>
+									<div class="form-group col-md-12">
+										<h4>Categoria:</h4>
+										<select class="form-control" name="categoria">
+											<?php
+												$con = mysqli_connect('localhost','root','','dbprocast');
+												$select = "SELECT * FROM categoria_noticia";
+												$sql_sel = mysqli_query($con,$select);
+
+												if($sql_sel)
+												{
+													while ($row = mysqli_fetch_array($sql_sel)) 
+													{
+											?>
+														<option value="<?php echo $row['categoria_noticia']; ?>"><p color="black"><?php echo $row['categoria_noticia'];?></p></option>
+											<?php
+													}
+												}
+											?>
+										</select>
 									</div>
 									<div class="form-group col-md-12">
 										<h4>Inserir imagem:</h4>
-										<input type="file" name="imagem" class="btn btn-default">
+										<input type="file" name="foto" class="btn btn-default">
 									</div>
 									<div class="form-group col-md-12">
 										<h4>Notícia:</h4>
@@ -63,63 +101,37 @@
 							</div>	
 						</div>
 					</section>
+					
 					<!-- Mensagens criadas -->
 					<section id="section-linebox-2">
-						<div class="row">
-						  <div class="col-sm-12 col-md-12">
-						    <div class="thumbnail">
-						      <img src="..." alt="...">
-						      <div class="caption">
-						        <h3>Thumbnail label</h3>
-						        <p style="font-size: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod lorem orci, a commodo nulla tempor vel. Aliquam sed pellentesque mi, id porttitor nunc. Aliquam eget ullamcorper nibh. Mauris elementum porttitor nunc vel imperdiet. Proin pharetra mauris in dolor bibendum, in efficitur urna facilisis. Sed quis est et lacus malesuada vulputate. Etiam facilisis tortor quis nisl interdum semper. Sed velit mi, tristique nec nisl ac, viverra accumsan augue. Nam feugiat leo ut ornare consectetur. Vestibulum ornare cursus justo, ac molestie eros lacinia ut. Fusce pulvinar efficitur elit quis aliquet. Nam maximus orci sed arcu consequat, et mollis risus eleifend. Mauris condimentum odio et fringilla euismod. </p>
-						        <p><a href="#" class="btn btn-procast" role="button"><i class="fa fa-close"></i> Arquivar</a> <a href="#" class="btn btn-default" role="button"><i class="fa fa-pencil"></i> Editar notícia</a> </p>
-						      </div>
-						    </div>
-						  </div>
-						</div>
-
-						<div class="row">
-						  <div class="col-sm-12 col-md-12">
-						    <div class="thumbnail">
-						      <img src="..." alt="...">
-						      <div class="caption">
-						        <h3>Thumbnail label</h3>
-						        <p style="font-size: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod lorem orci, a commodo nulla tempor vel. Aliquam sed pellentesque mi, id porttitor nunc. Aliquam eget ullamcorper nibh. Mauris elementum porttitor nunc vel imperdiet. Proin pharetra mauris in dolor bibendum, in efficitur urna facilisis. Sed quis est et lacus malesuada vulputate. Etiam facilisis tortor quis nisl interdum semper. Sed velit mi, tristique nec nisl ac, viverra accumsan augue. Nam feugiat leo ut ornare consectetur. Vestibulum ornare cursus justo, ac molestie eros lacinia ut. Fusce pulvinar efficitur elit quis aliquet. Nam maximus orci sed arcu consequat, et mollis risus eleifend. Mauris condimentum odio et fringilla euismod. </p>
-						        <p><a href="#" class="btn btn-procast" role="button"><i class="fa fa-close"></i> Arquivar</a> <a href="#" class="btn btn-default" role="button"><i class="fa fa-pencil"></i> Editar notícia</a> </p>
-						      </div>
-						    </div>
-						  </div>
-						</div>
-						<div class="row">
-						  <div class="col-sm-12 col-md-12">
-						    <div class="thumbnail">
-						      <img src="..." alt="...">
-						      <div class="caption">
-						        <h3>Thumbnail label</h3>
-						        <p style="font-size: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod lorem orci, a commodo nulla tempor vel. Aliquam sed pellentesque mi, id porttitor nunc. Aliquam eget ullamcorper nibh. Mauris elementum porttitor nunc vel imperdiet. Proin pharetra mauris in dolor bibendum, in efficitur urna facilisis. Sed quis est et lacus malesuada vulputate. Etiam facilisis tortor quis nisl interdum semper. Sed velit mi, tristique nec nisl ac, viverra accumsan augue. Nam feugiat leo ut ornare consectetur. Vestibulum ornare cursus justo, ac molestie eros lacinia ut. Fusce pulvinar efficitur elit quis aliquet. Nam maximus orci sed arcu consequat, et mollis risus eleifend. Mauris condimentum odio et fringilla euismod. </p>
-						        <p><a href="#" class="btn btn-procast" role="button"><i class="fa fa-close"></i> Arquivar</a> <a href="#" class="btn btn-default" role="button"><i class="fa fa-pencil"></i> Editar notícia</a> </p>
-						      </div>
-						    </div>
-						  </div>
-						</div>
-
+						<?php
+							require_once("classes/VerNoticia.php");
+						?>
 					</section>
 
-					<!-- Mensagens arquivadas -->
-					<section id="section-linebox-3">
-						<div class="row">
-						  <div class="col-sm-12 col-md-12">
-						    <div class="thumbnail">
-						      <img src="..." alt="...">
-						      <div class="caption">
-						        <h3>Thumbnail label</h3>
-						        <p style="font-size: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod lorem orci, a commodo nulla tempor vel. Aliquam sed pellentesque mi, id porttitor nunc. Aliquam eget ullamcorper nibh. Mauris elementum porttitor nunc vel imperdiet. Proin pharetra mauris in dolor bibendum, in efficitur urna facilisis. Sed quis est et lacus malesuada vulputate. Etiam facilisis tortor quis nisl interdum semper. Sed velit mi, tristique nec nisl ac, viverra accumsan augue. Nam feugiat leo ut ornare consectetur. Vestibulum ornare cursus justo, ac molestie eros lacinia ut. Fusce pulvinar efficitur elit quis aliquet. Nam maximus orci sed arcu consequat, et mollis risus eleifend. Mauris condimentum odio et fringilla euismod. </p>
-						        <p><a href="#" class="btn btn-default" role="button"><i class="fa fa-pencil"></i> Restaurar notícia</a> <a href="#" class="btn btn-danger" role="button"><i class="fa fa-trash"></i> Excluir permanentemente</a></p>
-						      </div>
-						    </div>
-						  </div>
-						</div>
+
+					
+					
+					<section id="section-linebox-4">
+						<form method="POST" action="#">
+							<h1 align="center">Nova categoria</h1>
+									<div class="form-group col-md-12">
+										<h4>Nome:</h4>
+										<input type="text" name="nome" placeholder="Nome da categoria" class="form-control">
+									</div>
+									<div class="form-group col-md-12">
+										<h4>Descrição:</h4>
+										<input type="text" name="descri" placeholder="Assunto da categoria" class="form-control">
+									</div>
+									<div class="form-group">
+										<input type="submit" name="enviar_categoria" class="btn btn-procast btn-block" value="Cadastrar">
+									</div>
+								</form>
+								<?php
+									require_once("classes/verCategoria.php");
+								?>
 					</section>
+					
 				</div>
 			</div>
 		</section>
