@@ -25,7 +25,7 @@
 	<?php
         include('menu2.php');
     ?>
-	<div class="banner-perfil perfil">s
+	<div class="banner-perfil perfil">
 		<div class="container-fluid">
 			<div class="row">
 				<!-- CARD COM INFORMAÇÕES - GRANDE -->
@@ -45,20 +45,26 @@
 						<div class="text-center col-xs-12">
 			        		<form action="#" method="POST" enctype="multipart/form-data">
 			        			<input type="file" name="anexo" id="anexo">
-			        			<button type="submit" class="btn btn_foto">Mudar foto de perfil</button>
+			        			<button type="submit" class="btn btn_foto">Confirmar envio de foto</button>
 	                        </form>
 			        	</div>
 			        	<?php
 			        		if (isset($_FILES['anexo']))
 	                        {
-	                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+	                        	$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
 	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
 	                            $diretorio="uploads/";
-	                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
-	                            $sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
-	                            mysqli_query($conexao,$sqlup);
-	                            echo('<script>window.location="perfil_jogador.php";</script>');
-
+	                        	if(move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome))
+	                        	{
+	                        		$sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+		                            mysqli_query($conexao,$sqlup);
+		                            echo('<script>window.location="perfil_jogador.php";</script>');
+	                        	}
+	                        	else
+	                        	{
+	                        		echo('<script>swal("Primeiro escolha uma nova foto", "Para escolher uma foto nova clique sobre a antiga", "error");</script>');
+	                        	}
+	                            
 	                        }
 			        	?>
 
