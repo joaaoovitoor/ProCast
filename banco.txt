@@ -5685,11 +5685,6 @@ CREATE TABLE categoria_noticia(
 	categoria_noticia char(20) not null
 );
 
-CREATE TABLE conquista(
-	id_conquista int auto_increment primary key,
-	descricao varchar(200) not null
-);
-
 CREATE TABLE noticia(
 	id_noticia int auto_increment primary key,
 	dta_publicacao DATETIME not null,
@@ -5733,7 +5728,7 @@ CREATE TABLE contato(
 	assunto int (1) not null,
 	data_contato TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	titulo varchar(30) not null,
-	imagem_contato varchar(100)
+	imagem_contato varchar(100),
 	descricao varchar(1000) not null,
 	id_usuario int,
 );
