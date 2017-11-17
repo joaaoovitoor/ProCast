@@ -5730,7 +5730,7 @@ CREATE TABLE contato(
 	titulo varchar(30) not null,
 	imagem_contato varchar(100),
 	descricao varchar(1000) not null,
-	id_usuario int,
+	id_usuario int
 );
 
 
