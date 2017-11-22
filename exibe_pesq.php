@@ -6,6 +6,8 @@
 		$funcao=$_POST['funcao'];
 
 		$dt_at=date("Y"); 
+		$dt_hj="-".date("m-d"); 
+		echo('<script>alert("'.$dt_at.$dt_hj.'");</script>');
 
 		if ($idade=='1') {
 			$dt_at=$dt_at-15;
@@ -30,23 +32,23 @@
 		if (empty($estado)&&!empty($idade)&&empty($funcao)) 
 		{
 			if ($idade=='1') {
-			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'";');
+			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.$dt_hj.'";');
 			}
 			elseif ($idade=='2') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'");');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_hj.$dt_at.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
 			}
 			elseif ($idade=='3') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'");');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_hj.$dt_at.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
 			}
 			elseif ($idade=='4') {
 			
-			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'");');
+			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_hj.$dt_at.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
 			}
 			elseif ($idade=='5'){
 				
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'";');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_hj.$dt_at.'";');
 			}
 		}
 
@@ -171,12 +173,12 @@
 		$resul = mysqli_query($conexao,$sqlsel);
 		if(mysqli_num_rows($resul))
 		{
-			while ($con=mysqli_fetch_array($resul))
+			while ($conresul=mysqli_fetch_array($resul))
 			{
-				$sqlsel2='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_1'].';';
+				$sqlsel2='SELECT * FROM funcao WHERE id_funcao='.$conresul['funcao_1'].';';
 				$resul=mysqli_query($conexao,$sqlsel2);
 				$con2=mysqli_fetch_array($resul);
-				$sqlsel3='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_2'].';';
+				$sqlsel3='SELECT * FROM funcao WHERE id_funcao='.$conresul['funcao_2'].';';
 				$resul=mysqli_query($conexao,$sqlsel3);
 				$con3=mysqli_fetch_array($resul);
 				echo
