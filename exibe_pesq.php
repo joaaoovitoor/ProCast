@@ -200,7 +200,7 @@
 			                        </form>
 			                    </div>
 			                    <div class="media-body">
-			                        <h3 class="media-heading">'.$conresul['nick'].'</h3>
+			                        <a href="ver_jogador.php?pesq='.$conresul['nick'].'"><h3 class="media-heading">'.$conresul['nick'].'</h3></a>
 				                    <h5>'.$conresul['nome'].' '.$conresul['sobrenome'].'</h5>
 				                    <p>Função primária: '.$con2['nome_funcao'].'</p>
 				                    <p>Função primária: '.$con3['nome_funcao'].'</p>

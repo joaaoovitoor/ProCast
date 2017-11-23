@@ -197,7 +197,6 @@
 							}
 						?>
 	                    </p>
-	                    <p>POSICIONAMENTO: Alguma Coisa</p>
 		            </div>
 				</div>
 			</div>

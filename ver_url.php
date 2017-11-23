@@ -1,8 +1,10 @@
 <?php
-	
-	include('api.php');
-
-	$urlrank = file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.$con['id_nick'].'?api_key='.$apikey.'');
+	$nick_pesq=urldecode($_GET['pesq']);
+	echo $nick_pesq;
+	$sqlnick=('SELECT id_nick FROM usuario WHERE nick="'.$nick_pesq.'";');
+	$resul=mysqli_query($conexao,$sqlnick);
+	$conpesq=mysqli_fetch_array($resul);
+	$urlrank = file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.urlencode($conpesq['id_nick']).'?api_key='.$apikey.'');
 	//pegando resultado do JSON
 	$filas = explode('},',$urlrank);
 	$totalfilas=count($filas);

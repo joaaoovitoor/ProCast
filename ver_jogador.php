@@ -1,7 +1,7 @@
 <?php
 	include('verificar_logado.php');
 
-	$cod="xNegão RX";
+	$cod=urldecode($_GET['pesq']);
 	$sqlper=('SELECT * FROM usuario WHERE nick="'.$cod.'";');
 	$resul_perf=mysqli_query($conexao,$sqlper);
 	$dados_perf=mysqli_fetch_array($resul_perf);
@@ -91,7 +91,8 @@
 							?>
 		                    </p>
 		                   <?php 
-								//include('teste_url.php');
+		                   		include('api.php');
+								include('ver_url.php');
 							?>
 			            </div>
 			        </div>
@@ -124,10 +125,9 @@
 				<nav>
 					<ul>
 						<li><a href="#1"><span>Clube</span></a></li>
-						<li><a href="#2"><span>Conquistas</span></a></li>
-						<li><a href="#3"><span>Agenda</span></a></li>
-						<li><a href="#4"><span>Vídeos</span></a></li>
-						<li><a href="#5"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></a></li>
+						<li><a href="#2"><span>Agenda</span></a></li>
+						<li><a href="#3"><span>Vídeos</span></a></li>
+						<li><a href="#4"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></a></li>
 					</ul>
 				</nav>
 				<div class="content-wrap">
@@ -173,58 +173,6 @@
 						echo 'Usuário não participa de nenhum clube!';
 					}
 					?>
-				</section>
-				<!--MENU - CONQUISTAS-->
-				<section id="2">
-					<div class="container-fluid">
-						<h4 align="center">Progresso</h4>
-						<div class="progress">
-						  <div class="progress-bar bg-progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-						    62%
-						  </div>
-						</div>
-						<br>
-						<!--Início do card conquista-->
-					    <div class="qa-message-list" id="wallmessages">
-		    				<div class="message-item" id="m16">
-								<div class="message-inner">
-									<div class="avatar pull-left"><img src="img/medalha.png"></div>
-									<div class="user-detail">
-										<h5 class="handle">Nome da conquista</h5>
-										<div class="post-meta">
-											<div class="asker-meta">
-												<span class="qa-message-what"></span>
-												<span class="qa-message-when">
-													<span class="qa-message-when-data">Descrição da conquista desconhecida que eu não sei ainda. </span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Fim do card conquista-->
-						<!--Início do card conquista-->
-					    <div class="qa-message-list" id="wallmessages">
-		    				<div class="message-item" id="m16">
-								<div class="message-inner">
-									<div class="avatar pull-left"><img src="img/medalha.png"></div>
-									<div class="user-detail">
-										<h5 class="handle">Nome da conquista</h5>
-										<div class="post-meta">
-											<div class="asker-meta">
-												<span class="qa-message-what"></span>
-												<span class="qa-message-when">
-													<span class="qa-message-when-data">Descrição da conquista desconhecida que eu não sei ainda. </span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Fim do card conquista-->
-					</div>
 				</section>
 				<!--MENU - AGENDA-->
 				<section id="3">
