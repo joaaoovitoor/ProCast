@@ -120,6 +120,15 @@
 			<div class="row">
 				<?php
 			        include('exibe_pesq.php');
+			        if (isset($_POST['convidar'])) {
+			        	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con.';';
+			        	$resul=mysqli_query($conexao,$sqlsel);
+						$con_cl=mysqli_fetch_array($resul);
+						echo('<script>alert('.$conresul['id_usuario'].$con.$con_cl['id_clube'].');</script>');
+			        	//$sqlin='INSERT INTO convite (id_jogador,id_investidor,id_clube,view,status) VALUES ('.$conresul['id_usuario'].','.$con.','.$con_cl['id_clube'].',"F","F");';
+			        	$resul=mysqli_query($conexao,$sqlin);
+						
+			        }
 			    ?>
         	</div>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>

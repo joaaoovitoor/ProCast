@@ -5803,6 +5803,17 @@ CREATE TABLE mensagem(
 	id_enviar int(11) not null,
 	id_receber int(11) not null
 );
+CREATE TABLE convite(
+  id_convite int auto_increment primary key,
+  id_jogador int(11) not null,
+  id_investidor int(11) not null,
+  id_clube int(11) not null,
+  view char(1) not null,
+  status char(1) not null
+);
+ALTER TABLE convite ADD constraint fk_jogador_convite foreign key(id_jogador) references usuario(id_usuario);
+ALTER TABLE convite ADD constraint fk_investidor_convite foreign key(id_investidor) references usuario(id_usuario);
+ALTER TABLE convite ADD constraint fk_clube_convite foreign key(id_clube) references clube(id_clube);
 ALTER TABLE usuario ADD constraint fk_funcao_1 foreign key (funcao_1) references funcao(id_funcao);
 ALTER TABLE usuario ADD constraint fk_funcao_2 foreign key (funcao_2) references funcao(id_funcao);
 ALTER TABLE usuario ADD constraint fk_estado foreign key (estado) references estado(id);

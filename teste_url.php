@@ -1,6 +1,6 @@
 <?php
 	
-	$apikey="RGAPI-25898d6b-890c-43d7-8c52-09d74bfff743";
+	$apikey="RGAPI-c4d0ca60-4699-4345-9814-176b7caffee4";
 
 	$urlrank = file_get_contents('https://br1.api.riotgames.com/lol/league/v3/positions/by-summoner/'.$con['id_nick'].'?api_key='.$apikey.'');
 	//pegando resultado do JSON

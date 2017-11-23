@@ -7,7 +7,7 @@
 
 		$dt_at=date("Y"); 
 		$dt_hj="-".date("m-d"); 
-		echo('<script>alert("'.$dt_at.$dt_hj.'");</script>');
+		
 
 		if ($idade=='1') {
 			$dt_at=$dt_at-15;
@@ -32,23 +32,23 @@
 		if (empty($estado)&&!empty($idade)&&empty($funcao)) 
 		{
 			if ($idade=='1') {
-			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.$dt_hj.'";');
+			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento>="'.$dt_at.$dt_hj.'";');
 			}
 			elseif ($idade=='2') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_hj.$dt_at.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
 			}
 			elseif ($idade=='3') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_hj.$dt_at.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
 			}
 			elseif ($idade=='4') {
 			
-			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_hj.$dt_at.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
+			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
 			}
 			elseif ($idade=='5'){
 				
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_hj.$dt_at.'";');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.$dt_hj.'";');
 			}
 		}
 
@@ -181,18 +181,27 @@
 				$sqlsel3='SELECT * FROM funcao WHERE id_funcao='.$conresul['funcao_2'].';';
 				$resul=mysqli_query($conexao,$sqlsel3);
 				$con3=mysqli_fetch_array($resul);
+				if($conresul['foto_perfil']){
+			       	$cam='uploads/'.$conresul['foto_perfil'];
+			    }
+			    else{
+			    	$cam='img/perfil_icon.png';
+			    }
 				echo
 				('
 					<div class="col-md-offset-2 col-md-8">
 						<div class="cartao-equipe">
 			                <div class="media">
 			                    <div class="media-left">
-			                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-			                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
+
+			                        <img class="media-object img-circle profile-img" src="'.$cam.'">
+			                        <form action="pesquisa.php" method="POST">
+			                        <button class="btn btn-default name="convidar" type="submit"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Convidar</button>
+			                        </form>
 			                    </div>
 			                    <div class="media-body">
-			                        <h3 class="media-heading">'.$con['nick'].'</h3>
-				                    <h5>'.$con['nome'].' '.$con['sobrenome'].'</h5>
+			                        <h3 class="media-heading">'.$conresul['nick'].'</h3>
+				                    <h5>'.$conresul['nome'].' '.$conresul['sobrenome'].'</h5>
 				                    <p>Função primária: '.$con2['nome_funcao'].'</p>
 				                    <p>Função primária: '.$con3['nome_funcao'].'</p>
 			                    </div>
