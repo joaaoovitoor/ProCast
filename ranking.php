@@ -1,7 +1,4 @@
-﻿<?php
-	include('verificar_logado.php');
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 	<head>
 		<title>Ranking</title>
@@ -29,6 +26,7 @@
 				<div class="col-sm-3 col-md-3"></div>
 <?php 
 	include('conexao.php');
+	include('verificar_logado.php');
 	
 	$sqlsel1 = "SELECT * FROM colocacao ORDER BY colocacao DESC LIMIT 3;";
 	$resul1 = mysqli_query($conexao,$sqlsel1);
