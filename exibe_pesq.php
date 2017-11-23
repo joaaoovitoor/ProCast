@@ -32,30 +32,30 @@
 		if (empty($estado)&&!empty($idade)&&empty($funcao)) 
 		{
 			if ($idade=='1') {
-			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento>="'.$dt_at.$dt_hj.'";');
+			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento>="'.$dt_at.$dt_hj.'" AND categoria_usuario=1;');
 			}
 			elseif ($idade=='2') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1);');
 			}
 			elseif ($idade=='3') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1);');
 			}
 			elseif ($idade=='4') {
 			
-			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'");');
+			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1);');
 			}
 			elseif ($idade=='5'){
 				
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.$dt_hj.'";');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.$dt_hj.'" AND categoria_usuario=1;');
 			}
 		}
 
 		//estado
 		elseif (!empty($estado)&&empty($idade)&&empty($funcao)) 
 		{
-			$sqlsel=('SELECT * FROM usuario WHERE estado='.$estado.';');
+			$sqlsel=('SELECT * FROM usuario WHERE estado='.$estado.' AND categoria_usuario=1;');
 		}	
 
 		//estado e idade
@@ -63,63 +63,63 @@
 		{
 			if ($idade=='1')
 			{
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.';');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.' AND categoria_usuario=1;');
 			}
 			elseif ($idade=='2') 
 			{
 				$dt_at=$dt_at-16;
 				$dt_at2=$dt_at-19;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='3') 
 			{
 				$dt_at=$dt_at-20;
 				$dt_at2=$dt_at-23;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='4') 
 			{
 				$dt_at=$dt_at-24;
 				$dt_at2=$dt_at-27;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='5')
 			{
 				$dt_at=$dt_at-28;
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.';');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.' AND categoria_usuario=1;');
 			}
 		}
 
 
 		//função e idade
-		elseif (!empty($estado)&&!empty($idade)&&empty($funcao)) 
+		elseif (empty($estado)&&!empty($idade)&&!empty($funcao)) 
 		{
 			if ($idade=='1')
 			{
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.';');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='2') 
 			{
 				$dt_at=$dt_at-16;
 				$dt_at2=$dt_at-19;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='3') 
 			{
 				$dt_at=$dt_at-20;
 				$dt_at2=$dt_at-23;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='4') 
 			{
 				$dt_at=$dt_at-24;
 				$dt_at2=$dt_at-27;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='5')
 			{
 				$dt_at=$dt_at-28;
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.';');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
 			}
 		}
 
@@ -134,11 +134,11 @@
 		elseif (!empty($estado)&&!empty($idade)&&!empty($funcao)) 
 		{
 			if ($idade=='1') {
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND estado='.$estado.';');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='2') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='3') {
 				
@@ -146,11 +146,11 @@
 			}
 			elseif ($idade=='4') {
 			
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.');');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1);');
 			}
 			elseif ($idade=='5'){
 				
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND estado='.$estado.';');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND estado='.$estado.' ;');
 			}
 		}
 
@@ -158,7 +158,7 @@
 		//função
 		elseif (empty($estado)&&empty($idade)&&!empty($funcao)) 
 		{
-			$sqlsel=('SELECT * FROM usuario WHERE funcao_1='.$funcao.';');
+			$sqlsel=('SELECT * FROM usuario WHERE funcao_1='.$funcao.' AND categoria_usuario=1;');
 		}
 
 
@@ -166,21 +166,21 @@
 		else
 		{
 			echo('<script>alert("Filtros vazios! Veja outros jogadores");</script>');
-			$sqlsel=('SELECT * FROM usuario;');
+			$sqlsel=('SELECT * FROM usuario WHERE categoria_usuario=1;');
 		}
 		
 		//resultados
-		$resul = mysqli_query($conexao,$sqlsel);
-		if(mysqli_num_rows($resul))
+		$resulpesq = mysqli_query($conexao,$sqlsel);
+		if(mysqli_num_rows($resulpesq)>0)
 		{
-			while ($conresul=mysqli_fetch_array($resul))
+			while ($conresul=mysqli_fetch_array($resulpesq))
 			{
-				$sqlsel2='SELECT * FROM funcao WHERE id_funcao='.$conresul['funcao_1'].';';
-				$resul=mysqli_query($conexao,$sqlsel2);
-				$con2=mysqli_fetch_array($resul);
-				$sqlsel3='SELECT * FROM funcao WHERE id_funcao='.$conresul['funcao_2'].';';
-				$resul=mysqli_query($conexao,$sqlsel3);
-				$con3=mysqli_fetch_array($resul);
+				$sqlsel2='SELECT nome_funcao FROM funcao WHERE id_funcao='.$conresul['funcao_1'].';';
+				$resul2=mysqli_query($conexao,$sqlsel2);
+				$con2=mysqli_fetch_array($resul2);
+				$sqlsel3='SELECT nome_funcao FROM funcao WHERE id_funcao='.$conresul['funcao_2'].';';
+				$resul3=mysqli_query($conexao,$sqlsel3);
+				$con3=mysqli_fetch_array($resul3);
 				if($conresul['foto_perfil']){
 			       	$cam='uploads/'.$conresul['foto_perfil'];
 			    }

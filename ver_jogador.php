@@ -8,7 +8,7 @@
 ?>
 <html lang="pt-br">
 	<head>
-        <title>Perfil</title>
+        <title><?php echo $cod ?></title>
 	    <!--MENU PERFIL-->
 	    <link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />

@@ -36,7 +36,7 @@
 				      <label class="sr-only" for="inlineFormInputGroup">Pesquisa</label>
 				      <div class="input-group mb-2 mb-sm-0">
 				        <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
-				        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Pesquisa">
+				        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Pesquisa" name="campopesquisa">
 				      </div>
 				    </div>
 				</div>
