@@ -35,7 +35,7 @@
         			<h2 align="center"><strong>Anúncios feitos na plataforma</strong></h2>
         			<h4 align="center">Não esqueça de se atualizar sobre as <a href="politicas.php"> políticas de anúncio.</a></h4>
         		 	<?php
-			        	$sqlsel=('SELECT * FROM anuncio WHERE id_anunciante='.$con['id_anunciante'].' ORDER BY data_criacao_anuncio;');
+			        	$sqlsel=('SELECT * FROM anuncio WHERE id_anunciante='.$con['id_anunciante'].' ORDER BY data_criacao_anuncio DESC;');
 			        	$resul=mysqli_query($conexao,$sqlsel);
 							if (mysqli_num_rows($resul)>0)
 							{
