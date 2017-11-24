@@ -63,7 +63,7 @@
 	border:none !important;
 }
 .banner{
-	background: url(../img/banner_noticia.jpg);
+	background: url(../img/banner_noticia.jpg) no-repeat;
 	margin-bottom: 3%;
 }
 .banner h1{
