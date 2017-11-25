@@ -20,7 +20,7 @@
                     <strong>Notícias</strong>
                 </h1>
                 <p class="text-center fonte_branca texto_sombra">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam
+                    Fique informado sobre todas as novidades do mundo de e-sports<br>Basta escolher a categoria e aproveitar!
                 </p>
             </div>
         </div>

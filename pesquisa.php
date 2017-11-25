@@ -22,7 +22,7 @@
                 <div class="row">
                     <h1 class="text-center  fonte_branca texto_sombra"><strong>Pesquisa</strong></h1> 
                     <p class="text-center  fonte_branca texto_sombra">
-                       Encontre clubes e jogadores
+                       Encontre jogadores para o seu clube!
                     </p>
                 </div>
             </div>
