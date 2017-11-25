@@ -10,7 +10,6 @@
 		?>
 		<title>Pesquisa</title>
 		<link rel="stylesheet" href="css/pesquisa.css" type="text/css"/>
-		<link rel="stylesheet" href="css/perfil/perfil.css" type="text/css"/>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script src="js/pesq_filtr.js"></script>
@@ -19,12 +18,12 @@
 		<?php
 			include('menu2.php');
 		?>
-		<div class="banner pesquisa">
+		<div class="banner">
             <div class="container-fluid">
                 <div class="row">
                     <h1 class="text-center  fonte_branca texto_sombra"><strong>Pesquisa</strong></h1> 
                     <p class="text-center  fonte_branca texto_sombra">
-                       Encontre clubes e jogadores
+                       Encontre jogadores para o seu clube!
                     </p>
                 </div>
             </div>
