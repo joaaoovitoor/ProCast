@@ -8,7 +8,7 @@
 					<a class="menu-item " href="verificar_perfil.php" >Perfil </a>
 			</li>
 			<li class="item item-log">
-					<a class="menu-item " href="clube_jogador.php">Clube </a>
+					<a class="menu-item " href="verificar_user_clube.php">Clube </a>
 			</li>
 			<li class="item item-log">
 					<a class="menu-item " href="ranking.php">Ranking </a>
@@ -37,7 +37,7 @@
 			
 		</div>
 		<div class="row item-mobile">
-			<a href="clube_jogador.php">Clubes</a>
+			<a href="verificar_user_clube.php">Clubes</a>
 			
 		</div>
 		<div class="row item-mobile">
