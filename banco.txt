@@ -5654,6 +5654,7 @@ CREATE TABLE usuario(
 	cidade int(2) not null,
 	telefone char(15) not null,
 	descricao text,
+  clube int,
 	dta_criacao_conta DATETIME
 );
 
@@ -5808,7 +5809,6 @@ CREATE TABLE convite(
   id_jogador int(11) not null,
   id_investidor int(11) not null,
   id_clube int(11) not null,
-  view char(1) not null,
   status char(1) not null
 );
 ALTER TABLE convite ADD constraint fk_jogador_convite foreign key(id_jogador) references usuario(id_usuario);
@@ -5818,6 +5818,7 @@ ALTER TABLE usuario ADD constraint fk_funcao_1 foreign key (funcao_1) references
 ALTER TABLE usuario ADD constraint fk_funcao_2 foreign key (funcao_2) references funcao(id_funcao);
 ALTER TABLE usuario ADD constraint fk_estado foreign key (estado) references estado(id);
 ALTER TABLE usuario ADD constraint fk_cidade foreign key (cidade) references cidade(id);
+ALTER TABLE usuario ADD constraint fk_cl foreign key (clube) references clube(id_clube);
 ALTER TABLE noticia ADD constraint fk_categoria_noticia foreign key (id_categoria_noticia) references categoria_noticia(id_categoria_noticia);
 ALTER TABLE comentario ADD constraint fk_comentario_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE anuncio ADD constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante);

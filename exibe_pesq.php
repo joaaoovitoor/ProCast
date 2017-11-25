@@ -187,6 +187,12 @@
 			    else{
 			    	$cam='img/perfil_icon.png';
 			    }
+			    $sqlsel='SELECT * FROM estado WHERE id='.$conresul['estado'].';';
+				$resul=mysqli_query($conexao,$sqlsel);
+				$con_es=mysqli_fetch_array($resul);	
+				$sqlsel='SELECT * FROM cidade WHERE id='.$conresul['cidade'].';';
+				$resul=mysqli_query($conexao,$sqlsel);
+				$con_cd=mysqli_fetch_array($resul);	
 				echo
 				('
 					<div class="col-md-offset-2 col-md-8">
@@ -197,6 +203,7 @@
 			                        <img class="media-object img-circle profile-img" src="'.$cam.'">
 			                        <form action="pesquisa.php" method="POST">
 			                        <input type="hidden" name="id_jog" value="'.$conresul['id_usuario'].'"/>
+			                        
 			                        <button class="btn btn-default" name="convidar" type="submit"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Convidar</button>
 			                        </form>
 			                    </div>
@@ -205,6 +212,7 @@
 				                    <h5>'.$conresul['nome'].' '.$conresul['sobrenome'].'</h5>
 				                    <p>Função primária: '.$con2['nome_funcao'].'</p>
 				                    <p>Função secundária: '.$con3['nome_funcao'].'</p>
+				                    <p>'.$con_cd['nome'].' - '.$con_es['nome'].'</p>
 			                    </div>
 			                </div>
 			            </div>

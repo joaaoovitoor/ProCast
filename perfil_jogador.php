@@ -220,23 +220,41 @@
 				<div class="content-wrap">
 				<!--MENU - CLUBE-->
 				<section id="1">
-		            <?php for($v=1;$v<7;$v++){ ?>
-		            <div class="cartao-equipe">
-		                <div class="media">
-		                    <div class="media-left">
-		                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-		                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-		                    </div>
-		                    <div class="media-body">
-		                        <h3 class="media-heading">Nick carinha</h3>
-		                        <h5>Nome carinha</h5>
-		                        <p>Função primária: Atirador</p>
-		                        <p>Função primária: Meio</p> 
-		                        <p>Posição: Alguma coisa</p>
-		                    </div>
-		                </div>
-		            </div>
-		            <?php }; ?>
+		            <?php
+		            	$sqlsel='SELECT * FROM usuario WHERE email="'.$email_usuario.'";';
+						$resul=mysqli_query($conexao,$sqlsel);
+						$ctrl=mysqli_fetch_array($resul);
+						$sqlsel='SELECT * FROM usuario WHERE clube='.$ctrl['clube'].';';
+						$resul=mysqli_query($conexao,$sqlsel);
+						while ($ctrl=mysqli_fetch_array($resul))
+						{
+							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_1'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							$f1=mysqli_fetch_array($resul);
+							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_2'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							$f2=mysqli_fetch_array($resul);
+							echo
+							('
+								<div class="cartao-equipe">
+					                <div class="media">
+					                    <div class="media-left">
+					                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
+					                        <a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a>
+					                    </div>
+					                    <div class="media-body">
+					                        <h3 class="media-heading">'.$ctrl['nick'].'</h3>
+					                        <h5>'.$ctrl['nome'].' '.$ctrl['sobrenome'].'</h5>
+					                        <p>Função primária: '.$f1['nome_funcao'].'</p>
+					                        <p>Função primária: '.$f2['nome_funcao'].'</p> 
+					                    </div>
+					                </div>
+					            </div>
+							');
+						}
+					?>
+		            
+		            
 				</section>
 				<!--MENU - CONVITES-->
 				<section id="2">
@@ -244,31 +262,65 @@
 						<div class="cartao-equipe">
 			                <div class="media">
 			                    	<?php
-										$sqlsel='SELECT * FROM convite WHERE id_jogador='.$con['id_usuario'].';';
+										$sqlsel='SELECT * FROM convite WHERE (id_jogador='.$con['id_usuario'].') AND (status="F");';
 										$resul=mysqli_query($conexao,$sqlsel);
-										while ($con_co=mysqli_fetch_array($resul))
+										if (mysqli_num_rows($resul)) {
+											while ($con_co=mysqli_fetch_array($resul))
+											{
+												$sqlsel='SELECT * FROM clube WHERE id_clube='.$con_co['id_clube'].';';
+												$resul=mysqli_query($conexao,$sqlsel);
+												$con_cl=mysqli_fetch_array($resul);	
+												$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$con_co['id_investidor'].';';
+												$resul=mysqli_query($conexao,$sqlsel);
+												$con_inv=mysqli_fetch_array($resul);
+												$sqlsel='SELECT * FROM estado WHERE id='.$con_inv['estado'].';';
+												$resul=mysqli_query($conexao,$sqlsel);
+												$con_es=mysqli_fetch_array($resul);	
+												$sqlsel='SELECT * FROM cidade WHERE id='.$con_inv['cidade'].';';
+												$resul=mysqli_query($conexao,$sqlsel);
+												$con_cd=mysqli_fetch_array($resul);	
+												echo
+												('
+													<div class="media-left">
+														<img class="media-object img-circle profile-img" src="img/fotinha.png">
+								                        <a href="perfil_jogador.php?ac='.$con_co['id_convite'].'" class="btn btn-default "><i class="fa fa-check" aria-hidden="true"></i> Aceitar</a>
+							                    	</div>
+								                    	<div class="media-body">
+								                        <h3 class="media-heading">Clube '.$con_cl['nome_clube'].'</h3>
+								                        <h5>Investidor '.$con_inv['nome'].' '.$con_inv['sobrenome'].'</h5>
+								                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> '.$con_cd['nome'].' - '.$con_es['nome'].'</p>
+								                        <p>'.$con_cl['descricao_clube'].'</p>
+								                    </div>
+														
+												');	
+											}
+										}
+										else
 										{
+											echo
+											('
+												<h1 class="text-center"><i class="fa fa-frown-o" aria-hidden="true"></i></h1>
+												<h3 class="text-center">Você ainda não possui nenhum convite</h3>
+												<h5 class="text-center"><a href="home.php">Contrate um plano para se divulgar! Aumente suas chances de ser convidado</a></h5>
+	
+											');
+										}
+										if (isset($_GET['ac'])) {
+											$id_ac=$_GET['ac'];
+											$sqlsel='SELECT * FROM convite WHERE id_convite='.$id_ac.';';
+											$resul=mysqli_query($conexao,$sqlsel);
+											$con_co=mysqli_fetch_array($resul);	
 											$sqlsel='SELECT * FROM clube WHERE id_clube='.$con_co['id_clube'].';';
 											$resul=mysqli_query($conexao,$sqlsel);
 											$con_cl=mysqli_fetch_array($resul);	
-											$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$con_co['id_investidor'].';';
-											$resul=mysqli_query($conexao,$sqlsel);
-											$con_inv=mysqli_fetch_array($resul);
-											echo
-											('
-												<div class="media-left">
-													<img class="media-object img-circle profile-img" src="img/fotinha.png">
-							                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Aceitar</button>
-						                    	</div>
-							                    	<div class="media-body">
-							                        <h3 class="media-heading">Clube '.$con_cl['nome_clube'].'</h3>
-							                        <h5>Investidor '.$con_inv['nome'].' '.$con_inv['sobrenome'].'</h5>
-							                        <p>Função primária: Atirador</p>
-							                        <p>Função primária: Meio</p> 
-							                        <p>Posição: Alguma coisa</p>
-							                    </div>
-													
-											');	
+											$sqlup='UPDATE convite set status="V" WHERE id_convite='.$id_ac.';';
+											mysqli_query($conexao,$sqlup);
+											$sqlup='UPDATE usuario set clube='.$con_cl['id_clube'].' WHERE id_usuario='.$con_co['id_jogador'].';';
+											mysqli_query($conexao,$sqlup);
+											if(mysqli_query($conexao,$sqlup))
+											{
+												echo('<script>alert("Parabéns! Agora você faz parte do clube '.$con_cl['nome_clube'].'");</script>');
+											}
 										}
 										
 									?>

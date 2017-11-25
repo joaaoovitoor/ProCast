@@ -105,24 +105,25 @@
 	    </div>
 	    
 			<!--Card com Informações-->
+			<div class="container-fluid">
 			<div class="row">
 				<?php
 			        include('exibe_pesq.php');
 			        if (isset($_POST['convidar'])) {
 						$id_jog=$_POST['id_jog'];
-						//echo('<script>alert("'.$email_usuario.'");</script>');
 						$sqlsel='SELECT * FROM usuario WHERE email="'.$email_usuario.'";';
 			        	$resul=mysqli_query($conexao,$sqlsel);
 						$con_cl=mysqli_fetch_array($resul);	
 			        	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con_cl['id_usuario'].';';
 			        	$resul=mysqli_query($conexao,$sqlsel);
 						$con_cl2=mysqli_fetch_array($resul);		
-			        	$sqlin='INSERT INTO convite (id_jogador,id_investidor,id_clube,view,status) VALUES ('.$id_jog.','.$con_cl['id_usuario'].','.$con_cl2['id_clube'].',"F","F");';
+			        	$sqlin='INSERT INTO convite (id_jogador,id_investidor,id_clube,status) VALUES ('.$id_jog.','.$con_cl['id_usuario'].','.$con_cl2['id_clube'].',"F");';
 			        	$resul=mysqli_query($conexao,$sqlin);
 						
 			        }
 			    ?>
         	</div>
+        </div>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<?php
 	 	include('rodape.html');
