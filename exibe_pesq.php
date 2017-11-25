@@ -196,7 +196,8 @@
 
 			                        <img class="media-object img-circle profile-img" src="'.$cam.'">
 			                        <form action="pesquisa.php" method="POST">
-			                        <button class="btn btn-default name="convidar" type="submit"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Convidar</button>
+			                        <input type="hidden" name="id_jog" value="'.$conresul['id_usuario'].'"/>
+			                        <button class="btn btn-default" name="convidar" type="submit"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Convidar</button>
 			                        </form>
 			                    </div>
 			                    <div class="media-body">
@@ -208,13 +209,14 @@
 			                </div>
 			            </div>
 		            </div>
+		           
 				');
 			}
 		}
 		else{
 			echo('<script>alert("Perfil não encontrado!");</script>');
 		}
-		unset($con);
+		
 
 	}
 	

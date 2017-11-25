@@ -1,5 +1,6 @@
 <?php
 	include('verificar_logado.php');
+	
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
@@ -31,7 +32,7 @@
         <div class="container-fluid">
 			<!--Caixa de Pesquisa-->
         	<div class="row">
-				<div class="col-md-offset-2 col-md-8 espaco">
+				<div class="col-md-offset-1 col-md-10 espaco">
 					<div class="col-auto">
 				      <label class="sr-only" for="inlineFormInputGroup">Pesquisa</label>
 				      <div class="input-group mb-2 mb-sm-0">
@@ -44,88 +45,80 @@
 			<!--Filtros-->
 			<form action="" method="POST" name="filtros">
 				<div class="row">
-	        		<div class="col-md-offset-2 col-md-2 espaco">
-	        			<div class="form-group">
-							Idade
-							<select name="idade" id="idade" class="form-control">
-								<option value="0">Selecione a idade</option>
-								<option value="1">Até 15 anos</option>
-								<option value="2">De 16 a 19 anos</option>
-								<option value="3">De 20 a 23 anos</option>
-								<option value="4">De 24 a 27 anos</option>
-								<option value="5">28+ anos</option>
-							</select>
-						</div>
-	        		</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							Estado
-							<select name="estado" id="estado" class="form-control">
-								<option value="0">Selecione um estado</option>
+					<div class="col-md-offset-1 col-md-10">
+		        		<div class="col-md-4 espaco">
+		        			<div class="form-group">
+								Idade
+								<select name="idade" id="idade" class="form-control">
+									<option value="0">Selecione a idade</option>
+									<option value="1">Até 15 anos</option>
+									<option value="2">De 16 a 19 anos</option>
+									<option value="3">De 20 a 23 anos</option>
+									<option value="4">De 24 a 27 anos</option>
+									<option value="5">28+ anos</option>
+								</select>
+							</div>
+		        		</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								Estado
+								<select name="estado" id="estado" class="form-control">
+									<option value="0">Selecione um estado</option>
+										<?php
+											$sqlsel='SELECT * FROM estado;';
+											$resul=mysqli_query($conexao,$sqlsel);
+											while ($con=mysqli_fetch_array($resul))
+											{
+												echo
+												('
+													<option value="'.$con['id'].'">'.$con['nome'].'</option>
+												');
+											}
+										?>
+								</select>
+							</div>
+		        		</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								Função
+								<select name="funcao" id="funcao" class="form-control">
+									<option value="0">Selecione uma função</option>
 									<?php
-										$sqlsel='SELECT * FROM estado;';
+										$sqlsel='SELECT * FROM funcao;';
 										$resul=mysqli_query($conexao,$sqlsel);
 										while ($con=mysqli_fetch_array($resul))
 										{
 											echo
 											('
-												<option value="'.$con['id'].'">'.$con['nome'].'</option>
+												<option value="'.$con['id_funcao'].'">'.$con['nome_funcao'].'</option>
 											');
 										}
 									?>
-							</select>
-						</div>
-	        		</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							Função
-							<select name="funcao" id="funcao" class="form-control">
-								<option value="0">Selecione uma função</option>
-								<?php
-									$sqlsel='SELECT * FROM funcao;';
-									$resul=mysqli_query($conexao,$sqlsel);
-									while ($con=mysqli_fetch_array($resul))
-									{
-										echo
-										('
-											<option value="'.$con['id_funcao'].'">'.$con['nome_funcao'].'</option>
-										');
-									}
-								?>
-							</select>
-						</div>
-	        		</div>
-					<div class="col-md-2">
-						<div class="form-group">
-							Elo
-							<select name="elo" id="elo" class="form-control">
-								<option value="0">Selecione um elo</option>
-								<option value="b">Bronze</option>
-								<option value="prt">Prata</option>
-								<option value="o">Ouro</option>
-								<option value="pla">Platina</option>
-								<option value="di">Diamante</option>
-								<option value="m">Mestre</option>
-								<option value="de">Desafiante</option>
-							</select>
-						</div>
-	        		</div>
-	        		<div class="col-md-offset-8 col-md-2">
-	        			<button type="submit" id="pesquisar" name="pesquisar" class="btn btn-block bg_azul_escuro">Filtrar</button>
-	        		</div>
+								</select>
+							</div>
+		        		</div>
+		        		<div class="col-md-offset-10 col-md-2">
+		        			<button type="submit" id="pesquisar" name="pesquisar" class="btn btn-block bg_azul_escuro">Filtrar</button>
+		        		</div>
+		        	</div>
 	        	</div>
 	        </form>
 	    </div>
+	    
 			<!--Card com Informações-->
 			<div class="row">
 				<?php
 			        include('exibe_pesq.php');
 			        if (isset($_POST['convidar'])) {
-			        	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con.';';
+						$id_jog=$_POST['id_jog'];
+						//echo('<script>alert("'.$email_usuario.'");</script>');
+						$sqlsel='SELECT * FROM usuario WHERE email="'.$email_usuario.'";';
 			        	$resul=mysqli_query($conexao,$sqlsel);
-						$con_cl=mysqli_fetch_array($resul);
-						echo('<script>alert('.$conresul['id_usuario'].$con.$con_cl['id_clube'].');</script>');
-			        	//$sqlin='INSERT INTO convite (id_jogador,id_investidor,id_clube,view,status) VALUES ('.$conresul['id_usuario'].','.$con.','.$con_cl['id_clube'].',"F","F");';
+						$con_cl=mysqli_fetch_array($resul);	
+			        	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con_cl['id_usuario'].';';
+			        	$resul=mysqli_query($conexao,$sqlsel);
+						$con_cl2=mysqli_fetch_array($resul);		
+			        	$sqlin='INSERT INTO convite (id_jogador,id_investidor,id_clube,view,status) VALUES ('.$id_jog.','.$con_cl['id_usuario'].','.$con_cl2['id_clube'].',"F","F");';
 			        	$resul=mysqli_query($conexao,$sqlin);
 						
 			        }

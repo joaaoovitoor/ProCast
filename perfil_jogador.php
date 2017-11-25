@@ -210,7 +210,7 @@
 				<nav>
 					<ul>
 						<li><a href="#1"><span>Clube</span></a></li>
-						<li><a href="#2"><span>Conquistas</span></a></li>
+						<li><a href="#2"><span>Convites</span></a></li>
 						<li><a href="#3"><span>Agenda</span></a></li>
 						<li><a href="#4"><span>Vídeos</span></a></li>
 						<li><a href="#5"><span>Mensagens</span></a></li>
@@ -238,56 +238,43 @@
 		            </div>
 		            <?php }; ?>
 				</section>
-				<!--MENU - CONQUISTAS-->
+				<!--MENU - CONVITES-->
 				<section id="2">
 					<div class="container-fluid">
-						<h4 align="center">Seu progresso</h4>
-						<div class="progress">
-						  <div class="progress-bar bg-progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-						    62%
-						  </div>
-						</div>
+						<div class="cartao-equipe">
+			                <div class="media">
+			                    	<?php
+										$sqlsel='SELECT * FROM convite WHERE id_jogador='.$con['id_usuario'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										while ($con_co=mysqli_fetch_array($resul))
+										{
+											$sqlsel='SELECT * FROM clube WHERE id_clube='.$con_co['id_clube'].';';
+											$resul=mysqli_query($conexao,$sqlsel);
+											$con_cl=mysqli_fetch_array($resul);	
+											$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$con_co['id_investidor'].';';
+											$resul=mysqli_query($conexao,$sqlsel);
+											$con_inv=mysqli_fetch_array($resul);
+											echo
+											('
+												<div class="media-left">
+													<img class="media-object img-circle profile-img" src="img/fotinha.png">
+							                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Aceitar</button>
+						                    	</div>
+							                    	<div class="media-body">
+							                        <h3 class="media-heading">Clube '.$con_cl['nome_clube'].'</h3>
+							                        <h5>Investidor '.$con_inv['nome'].' '.$con_inv['sobrenome'].'</h5>
+							                        <p>Função primária: Atirador</p>
+							                        <p>Função primária: Meio</p> 
+							                        <p>Posição: Alguma coisa</p>
+							                    </div>
+													
+											');	
+										}
+										
+									?>
+			                </div>
+		            	</div>
 						<br>
-						<!--Início do card conquista-->
-					    <div class="qa-message-list" id="wallmessages">
-		    				<div class="message-item" id="m16">
-								<div class="message-inner">
-									<div class="avatar pull-left"><img src="img/medalha.png"></div>
-									<div class="user-detail">
-										<h5 class="handle">Nome da conquista</h5>
-										<div class="post-meta">
-											<div class="asker-meta">
-												<span class="qa-message-what"></span>
-												<span class="qa-message-when">
-													<span class="qa-message-when-data">Descrição da conquista desconhecida que eu não sei ainda. </span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Fim do card conquista-->
-						<!--Início do card conquista-->
-					    <div class="qa-message-list" id="wallmessages">
-		    				<div class="message-item" id="m16">
-								<div class="message-inner">
-									<div class="avatar pull-left"><img src="img/medalha.png"></div>
-									<div class="user-detail">
-										<h5 class="handle">Nome da conquista</h5>
-										<div class="post-meta">
-											<div class="asker-meta">
-												<span class="qa-message-what"></span>
-												<span class="qa-message-when">
-													<span class="qa-message-when-data">Descrição da conquista desconhecida que eu não sei ainda. </span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--Fim do card conquista-->
 					</div>
 				</section>
 				<!--MENU - AGENDA-->
