@@ -1,13 +1,8 @@
 *{
 	font-family: 'Nunito', sans-serif;
 }
-.pesquisa{
-	background: url(../img/banner_pesquisa.jpg) no-repeat !important;
-}
-.criar_clube{
-	background: url(../img/banner_criar_clube.jpg) no-repeat !important;
-}
 .banner{
+	background: url(../img/banner_pesquisa.jpg) no-repeat;
 	position: relative;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -19,14 +14,13 @@
 	color: #f2f4f2;
 	margin-bottom: 3%;
 }
-
 .banner h1{
 	margin-top: 10%;
 	margin-bottom: 2%;
 	font-size: 4.5em;
 }
 .banner p{
-	margin-bottom: 7%;
+	margin-bottom: 10%;
 }
 .texto_sombra{
 	text-shadow: 2px 2px 7px #333;
