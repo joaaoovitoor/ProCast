@@ -224,6 +224,12 @@
 		            	$sqlsel='SELECT * FROM usuario WHERE email="'.$email_usuario.'";';
 						$resul=mysqli_query($conexao,$sqlsel);
 						$ctrl=mysqli_fetch_array($resul);
+						if(empty($ctrl['clube']))
+						{
+							echo "Você não participa de nenhum clube! Fique de olho nas propostas na aba Convite!";
+						}
+						else
+						{
 						$sqlsel='SELECT * FROM usuario WHERE clube='.$ctrl['clube'].';';
 						$resul=mysqli_query($conexao,$sqlsel);
 						while ($ctrl=mysqli_fetch_array($resul))
@@ -252,6 +258,7 @@
 					            </div>
 							');
 						}
+					}
 					?>
 		            
 		            
