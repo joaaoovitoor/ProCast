@@ -1,5 +1,9 @@
 <?php
 	include('verificar_logado.php');
+	if($con['categoria_usuario']==1)
+    {
+    	header('location:home.php');
+    }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
