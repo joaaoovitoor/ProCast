@@ -33,12 +33,7 @@
 			        <div class="cartao-grande spc-cartao">
 			        	<div class="col-md-offset-4 col-md-4">
 			        		<?php
-			        			if($con['foto_perfil']){
-			        				$cam='uploads/'.$con['foto_perfil'];
-			        			}
-			        			else{
-			        				$cam='img/perfil_icon.png';
-			        			}
+			        			$cam='uploads/'.$con['foto_perfil'];
 			        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"><p class="text-center">Clique para escolher uma nova foto</p></label>');
 			        		?>
 			        	</div>
@@ -58,7 +53,7 @@
 	                        	{
 	                        		$sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
 		                            mysqli_query($conexao,$sqlup);
-		                            echo('<script>window.location="perfil_jogador.php";</script>');
+		                            echo('<script>window.location="verificar_perfil.php";</script>');
 	                        	}
 	                        	else
 	                        	{
@@ -121,7 +116,7 @@
 									{
 										$sqlup='update usuario set descricao="'.$_POST['descricao'].'" where id_usuario='.$con['id_usuario'].';';
 										mysqli_query($conexao,$sqlup);
-	                           			echo('<script>window.location="perfil_jogador.php";</script>');
+	                           			echo('<script>window.location="verificar_perfil.php";</script>');
 									}
 									else
 									{
@@ -221,44 +216,41 @@
 				<!--MENU - CLUBE-->
 				<section id="1">
 		            <?php
-		            	$sqlsel='SELECT * FROM usuario WHERE email="'.$email_usuario.'";';
-						$resul=mysqli_query($conexao,$sqlsel);
-						$ctrl=mysqli_fetch_array($resul);
-						if(empty($ctrl['clube']))
+						if(empty($con['clube']))
 						{
 							echo "Você não participa de nenhum clube! Fique de olho nas propostas na aba Convite!";
 						}
 						else
 						{
-						$sqlsel='SELECT * FROM usuario WHERE clube='.$ctrl['clube'].';';
-						$resul=mysqli_query($conexao,$sqlsel);
-						while ($ctrl=mysqli_fetch_array($resul))
-						{
-							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_1'].';';
+							$sqlsel='SELECT * FROM usuario WHERE clube='.$con['clube'].' AND categoria_usuario=1;';
 							$resul=mysqli_query($conexao,$sqlsel);
-							$f1=mysqli_fetch_array($resul);
-							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_2'].';';
-							$resul=mysqli_query($conexao,$sqlsel);
-							$f2=mysqli_fetch_array($resul);
-							echo
-							('
-								<div class="cartao-equipe">
-					                <div class="media">
-					                    <div class="media-left">
-					                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-					                        <a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a>
-					                    </div>
-					                    <div class="media-body">
-					                        <h3 class="media-heading">'.$ctrl['nick'].'</h3>
-					                        <h5>'.$ctrl['nome'].' '.$ctrl['sobrenome'].'</h5>
-					                        <p>Função primária: '.$f1['nome_funcao'].'</p>
-					                        <p>Função primária: '.$f2['nome_funcao'].'</p> 
-					                    </div>
-					                </div>
-					            </div>
-							');
+							while ($ctrl=mysqli_fetch_array($resul))
+							{
+								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_1'].';';
+								$resul1=mysqli_query($conexao,$sqlsel);
+								$f1=mysqli_fetch_array($resul1);
+								$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_2'].';';
+								$resul2=mysqli_query($conexao,$sqlsel);
+								$f2=mysqli_fetch_array($resul2);
+								echo
+								('
+									<div class="cartao-equipe">
+						                <div class="media">
+						                    <div class="media-left">
+						                        <img class="media-object img-circle profile-img" src="uploads/'.$ctrl['foto_perfil'].'">
+						                        <a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a>
+						                    </div>
+						                    <div class="media-body">
+						                        <h3 class="media-heading">'.$ctrl['nick'].'</h3>
+						                        <h5>'.$ctrl['nome'].' '.$ctrl['sobrenome'].'</h5>
+						                        <p>Função primária: '.$f1['nome_funcao'].'</p>
+						                        <p>Função primária: '.$f2['nome_funcao'].'</p> 
+						                    </div>
+						                </div>
+						            </div>
+								');
+							}
 						}
-					}
 					?>
 		            
 		            
@@ -327,6 +319,7 @@
 											if(mysqli_query($conexao,$sqlup))
 											{
 												echo('<script>alert("Parabéns! Agora você faz parte do clube '.$con_cl['nome_clube'].'");</script>');
+												echo('<script>window.location="verificar_perfil.php";</script>');
 											}
 										}
 										
@@ -625,7 +618,7 @@
 							//edita
 							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", nick="'.$nick.'", funcao_1="'.$funcao_1.'", funcao_2="'.$funcao_2.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE email="'.$email_usuario.'" ;');
 							mysqli_query($conexao,$sqledt);
-							header('location:perfil_jogador.php');
+							header('location:verificar_perfil.php');
 							exit();	
 						}
 					?>

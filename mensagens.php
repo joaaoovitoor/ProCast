@@ -7,6 +7,7 @@
 		<?php
             include('link_head.html');
         ?>
+        <title>Mensagens</title>
 	    <link rel="stylesheet" href="css/email.css">
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	</head>

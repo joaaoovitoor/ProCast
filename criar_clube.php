@@ -101,11 +101,16 @@
 					}
 					if($inserir)
 					{
-						echo ('<script>window.alert("Clube criado com sucesso!");window.location.href="clube_investidor.php";</script>');
+						$sqlclub='SELECT id_clube FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+						$resul=mysqli_query($conexao,$sqlclub);
+						$conclube=mysqli_fetch_array($resul);
+						$sqlup='UPDATE usuario SET clube='.$conclube['id_clube'].' WHERE id_usuario='.$con['id_usuario'].';';
+						mysqli_query($conexao,$sqlup);
+						echo ('<script>window.alert("Clube criado com sucesso!");window.location.href="pesquisa.php";</script>');
 					}
 					else
 					{
-						echo ('<script>window.alert("Erro ao criar Clube!'.$teste.'");window.location.href="criar_clube.php";</script>');
+						echo ('<script>window.alert("Erro ao criar Clube!");window.location.href="criar_clube.php";</script>');
 					}
 
 				}
