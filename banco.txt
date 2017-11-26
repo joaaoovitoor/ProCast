@@ -5681,10 +5681,12 @@ CREATE TABLE anunciante(
 	telefone char(15) not null	
 );
 
-CREATE TABLE categoria_noticia(
-	id_categoria_noticia int auto_increment primary key,
-	categoria_noticia char(20) not null
+CREATE TABLE categoria_noticia (
+  	id_categoria int(11) auto_increment primary key,
+  	nome varchar(255) NOT NULL,
+  	descri varchar(255) NOT NULL
 );
+INSERT INTO categoria_noticia (`id_categoria`, `nome`, `descri`) VALUES (27, 'Jogos', 'Categoria que trata sobre jogos');
 
 CREATE TABLE noticia(
 	id_noticia int auto_increment primary key,
@@ -5835,3 +5837,6 @@ ALTER TABLE mensagem ADD constraint fk_usuario_enviar foreign key(id_enviar) ref
 ALTER TABLE mensagem ADD constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario);
 ALTER TABLE anunciante ADD constraint fk_estado_an foreign key (estado) references estado(id);
 ALTER TABLE anunciante ADD constraint fk_cidade_an foreign key (cidade) references cidade(id);
+
+-- senha:Procast2017! --
+INSERT INTO admin(nome,sobrenome,email,senha) VALUES ("Admin","Principal","admin@admin","UHJvY2FzdDIwMTch"); 
