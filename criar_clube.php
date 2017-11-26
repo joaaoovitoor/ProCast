@@ -47,14 +47,15 @@
 							<input id='anexo' type='file' name="anexo"/>
 					</div>
 				</div>
-			</div>
-			<div class="row">
+				<div class="row">
 				<div class="col-md-offset-1 col-md-10">
 					<div class="form-group">
 						<input type="submit" name="enviar" value="Criar" class="form-control btn btn-outro">
 					</div>
 				</div>
 			</div>
+			</div>
+			
 		</form>
 
 		<?php  
