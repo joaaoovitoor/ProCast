@@ -32,30 +32,30 @@
 		if (empty($estado)&&!empty($idade)&&empty($funcao)) 
 		{
 			if ($idade=='1') {
-			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento>="'.$dt_at.$dt_hj.'" AND categoria_usuario=1;');
+			$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento>="'.$dt_at.$dt_hj.'" AND categoria_usuario=1 AND clube IS NULL;');
 			}
 			elseif ($idade=='2') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='3') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='4') {
 			
-			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1);');
+			$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.$dt_hj.'" AND dta_nascimento>="'.$dt_hj.$dt_at2.'" AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='5'){
 				
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.$dt_hj.'" AND categoria_usuario=1;');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.$dt_hj.'" AND categoria_usuario=1 AND clube IS NULL;');
 			}
 		}
 
 		//estado
 		elseif (!empty($estado)&&empty($idade)&&empty($funcao)) 
 		{
-			$sqlsel=('SELECT * FROM usuario WHERE estado='.$estado.' AND categoria_usuario=1;');
+			$sqlsel=('SELECT * FROM usuario WHERE estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL;');
 		}	
 
 		//estado e idade
@@ -63,30 +63,30 @@
 		{
 			if ($idade=='1')
 			{
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.' AND categoria_usuario=1;');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL;');
 			}
 			elseif ($idade=='2') 
 			{
 				$dt_at=$dt_at-16;
 				$dt_at2=$dt_at-19;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='3') 
 			{
 				$dt_at=$dt_at-20;
 				$dt_at2=$dt_at-23;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='4') 
 			{
 				$dt_at=$dt_at-24;
 				$dt_at2=$dt_at-27;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='5')
 			{
 				$dt_at=$dt_at-28;
-				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.' AND categoria_usuario=1;');
+				$sqlsel=('SELECT * FROM usuario WHERE dta_nascimento<="'.$dt_at.'" AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL;');
 			}
 		}
 
@@ -96,30 +96,30 @@
 		{
 			if ($idade=='1')
 			{
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='2') 
 			{
 				$dt_at=$dt_at-16;
 				$dt_at2=$dt_at-19;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='3') 
 			{
 				$dt_at=$dt_at-20;
 				$dt_at2=$dt_at-23;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='4') 
 			{
 				$dt_at=$dt_at-24;
 				$dt_at2=$dt_at-27;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='5')
 			{
 				$dt_at=$dt_at-28;
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 		}
 
@@ -134,11 +134,11 @@
 		elseif (!empty($estado)&&!empty($idade)&&!empty($funcao)) 
 		{
 			if ($idade=='1') {
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='2') {
 				
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='3') {
 				
@@ -146,7 +146,7 @@
 			}
 			elseif ($idade=='4') {
 			
-				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1);');
+				$sqlsel=('SELECT * FROM usuario WHERE (dta_nascimento<="'.$dt_at.'" AND dta_nascimento>="'.$dt_at2.'" AND funcao_1='.$funcao.' AND estado='.$estado.' AND categoria_usuario=1 AND clube IS NULL);');
 			}
 			elseif ($idade=='5'){
 				
@@ -158,7 +158,7 @@
 		//função
 		elseif (empty($estado)&&empty($idade)&&!empty($funcao)) 
 		{
-			$sqlsel=('SELECT * FROM usuario WHERE funcao_1='.$funcao.' AND categoria_usuario=1;');
+			$sqlsel=('SELECT * FROM usuario WHERE (funcao_1='.$funcao.' AND categoria_usuario=1 AND clube IS NULL);');
 		}
 
 
