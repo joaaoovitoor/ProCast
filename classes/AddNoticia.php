@@ -30,32 +30,32 @@
 			{
 				// pegando largura e altura da imagem 
 				$dimensoes = getimagesize($foto["tmp_name"]);// tmp_name e onde a foto ta no PC do usuario
-				$largura = 1200;// largura padrao em pixels
-				$altura = 800;// altura 
+				$largura = 5000;// largura padrao em pixels
+				$altura = 5000;// altura 
 				if(!preg_match('/^image\/(?:gif|bmp|png|jpg|jpeg)$/i', $dimensoes['mime']))// mime nome da imagem e extensao 
 				// preg_match filtra so que eu preciso nesse caso so as extensoes 
-			{
-				echo('<script>window.alert("Tipo de imagem incorreto...");window.location="cadastro.php";</script>');
-				exit;//usado para interromper o script 
-			}
+				{
+					echo('<script>window.alert("Tipo de imagem incorreto...");window.location="gerenciamento_noticias.php";</script>');
+					exit;//usado para interromper o script 
+				}
 
-			if ($tamanho > $arquivo)
-			{	
-				// se o tamanho da imagem for maior que 1 MB
-				echo('<script>window.alert("Excedeu o tamanho max do arquivo...");window.location="cadastro.php";</script>');
-				exit;
-			}
+				if ($tamanho > $arquivo)
+				{	
+					// se o tamanho da imagem for maior que 1 MB
+					echo('<script>window.alert("Excedeu o tamanho max do arquivo...");window.location="cadastro.php";</script>');
+					exit;
+				}
 
 
-			preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);// $ext guarda extensao do arquivo pega somente a extensao da variavel
+				preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);// $ext guarda extensao do arquivo pega somente a extensao da variavel
 
-			$nome_imagem = md5(uniqid(""))."." . $ext[1]; // uniquid embaralha  o nome da imagem aleatoriamente em questao de miliegundos
+				$nome_imagem = md5(uniqid(""))."." . $ext[1]; // uniquid embaralha  o nome da imagem aleatoriamente em questao de miliegundos
 
-			$caminho_imagem = "uploads/" . $nome_imagem;// pasta onde vai ficar as imagens
+				$caminho_imagem = "uploads/" . $nome_imagem;// pasta onde vai ficar as imagens
 
-			move_uploaded_file($foto["tmp_name"], $caminho_imagem);// movendo a imagem do PC do usuario para pasta do servidor
+				move_uploaded_file($foto["tmp_name"], $caminho_imagem);// movendo a imagem do PC do usuario para pasta do servidor
 
-			echo('<script>window.alert("Cadastrado com sucesso...");window.location="gerenciamento_noticias.php";</script>');
+				echo('<script>window.alert("Cadastrado com sucesso...");window.location="gerenciamento_noticias.php";</script>');
 			}
 			else // se 	ESTIVER vazio o campo foto 
 			{

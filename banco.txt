@@ -5681,22 +5681,23 @@ CREATE TABLE anunciante(
 	telefone char(15) not null	
 );
 
+CREATE TABLE noticia (
+  id_noticia int(11) NOT NULL auto_increment primary key,
+  titulo varchar(50) NOT NULL,
+  lide varchar(200) NOT NULL,
+  texto varchar(1000) NOT NULL,
+  imagem_noticia varchar(100) DEFAULT NULL,
+  data date NOT NULL,
+  categoria varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 CREATE TABLE categoria_noticia (
-  	id_categoria int(11) auto_increment primary key,
-  	nome varchar(255) NOT NULL,
-  	descri varchar(255) NOT NULL
-);
+  id_categoria_noticia int(11) NOT NULL,
+  categoria_noticia char(20) NOT NULL,
+  descri varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 INSERT INTO categoria_noticia (`id_categoria`, `nome`, `descri`) VALUES (27, 'Jogos', 'Categoria que trata sobre jogos');
 
-CREATE TABLE noticia(
-	id_noticia int auto_increment primary key,
-	dta_publicacao DATETIME not null,
-	titulo varchar(50) not null,
-	lide varchar(200) not null,
-	texto varchar(1000) not null,
-	imagem_noticia varchar(100),
-	id_categoria_noticia int
-);
 
 CREATE TABLE comentario(
 	id_comentario int auto_increment primary key,
