@@ -56,7 +56,7 @@
                                                 Categoria 1
                                             </p>
                                             <h3 class="text-center fonte_cinza_escuro"><strong>Título da notícia</strong></h3>
-                                            <p class="text-center">Sinopse da notícia</p>
+                                            <p class="text-center">Líde da notícia</p>
                                             <p class="text-center fonte_azul_claro">
                                                 <strong>
                                                 <i class="fa fa-clock-o "></i> 2 anos &nbsp;<i class="fa fa-comment-o "></i> 3 comentários
