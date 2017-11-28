@@ -28,46 +28,30 @@
         <div class="container-fluid">
             <div class="row">
                 <?php include('classes/saidaConteudoNoticia.php');?>
-                <a href="conteudo_noticia.php">
-                    <div class="col-md-4">
-                        <div class="col-md-6">
-                            <img src="img/noticia_conteudo.jpg" class="img-responsive mg_tp mg_bt">
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="fonte_cinza_escuro mg_bt"><strong>E-Sports: Brasil Game Show anuncia campeonato universitário de LOL</strong></h4>
-                        </div>
-                    </div>
-                </a>
-                <a href="conteudo_noticia.php">
-                    <div class="col-md-4">
-                        <div class="col-md-6">
-                            <img src="img/noticia_conteudo.jpg" class="img-responsive mg_tp mg_bt">
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="fonte_cinza_escuro mg_bt"><strong>E-Sports: Brasil Game Show anuncia campeonato universitário de LOL</strong></h4>
-                        </div>
-                    </div>
-                </a>
-                <a href="conteudo_noticia.php">
-                    <div class="col-md-4">
-                        <div class="col-md-6">
-                            <img src="img/noticia_conteudo.jpg" class="img-responsive mg_tp mg_bt">
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="fonte_cinza_escuro mg_bt"><strong>E-Sports: Brasil Game Show anuncia campeonato universitário de LOL</strong></h4>
-                        </div>
-                    </div>
-                </a>
-                <a href="conteudo_noticia.php">
-                    <div class="col-md-4">
-                        <div class="col-md-6">
-                            <img src="img/noticia_conteudo.jpg" class="img-responsive mg_tp mg_bt">
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="fonte_cinza_escuro mg_bt"><strong>E-Sports: Brasil Game Show anuncia campeonato universitário de LOL</strong></h4>
-                        </div>
-                    </div>
-                </a>
+                 <?php
+                    include("conexao.php");
+                    $select = "SELECT * FROM noticia";
+                            $sql_sel = mysqli_query($conexao,$select);
+                            if($sql_sel)
+                            {
+                                while($row = mysqli_fetch_array($sql_sel))
+                                {
+                ?>  
+                                
+                                 <a href="conteudo_noticia.php?ex= <?php echo $row['id_noticia']?>">
+                                    <div class="col-md-4">
+                                        <div class="col-md-6">
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 class="fonte_cinza_escuro mg_bt"><strong><?php  echo $row['lide'];?></strong></h4>
+                                        </div>
+                                    </div>
+                                </a>                
+                            <?php
+                                }
+                            }
+                ?>
                 <div class="panel col-md-4 bg_branco">
                     <div class="panel-body">
                         <h5 class="fonte_cinza_escuro">Publicidade</h5>
