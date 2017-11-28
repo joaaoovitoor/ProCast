@@ -5692,7 +5692,7 @@ CREATE TABLE noticia (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE categoria_noticia (
-  id_categoria_noticia int(11) NOT NULL,
+  id_categoria_noticia int(11) NOT NULL auto_increment primary key,
   categoria_noticia char(20) NOT NULL,
   descri varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -5777,6 +5777,7 @@ CREATE TABLE video(
 	data_video DATETIME not null,
 	descricao_video varchar(300) not null,
 	titulo_video varchar(50) not null,
+  url varchar(200) not null,
 	id_usuario int
 );
 
