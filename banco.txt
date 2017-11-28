@@ -5777,6 +5777,7 @@ CREATE TABLE video(
 	data_video DATETIME not null,
 	descricao_video varchar(300) not null,
 	titulo_video varchar(50) not null,
+  url varchar(200) not null,
 	id_usuario int
 );
 

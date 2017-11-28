@@ -73,13 +73,37 @@
 			            </div>
 			            <div class="clube-cartao">
 			                <div class="row">
-			                    <div class="col-sm-6">
-			                        <span class="coach-name"><p>Clube</p></span>
-			                        <span class="coach-job"><p>Red Canids</p></span>
-			                    </div>
-			                    <div class="col-sm-6">
-			                        <img src="img/logo_redcanids.png" width="100">
-			                    </div>
+			                    
+			                    	<?php 
+			                    		if(!empty($con['clube']))
+			                    		{
+			                    			$sqlsel='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+			                    			$resul=mysqli_query($conexao,$sqlup);
+			                    			$cl=mysqli_fetch_array($resul);
+			                    			echo
+			                    			('
+			                    				<div class="col-sm-6">
+				                    				<span class="coach-name"><p>Clube</p></span>
+				                        			<span class="coach-job"><p>'.$cl['nome_clube'].'</p></span>
+			                        			</div>
+							                    <div class="col-sm-6">
+							                        <img src="uploads/'.$cl['logo_clube'].'" width="100">
+							                    </div>
+			                    			');
+			                    		}
+			                    		else
+			                    		{
+			                    			echo
+			                    			('
+			                    				<div class="col-sm-12">
+				                    				<span class="coach-name"><p>Você ainda não está em um clube</p></span>
+				                        			<span class="coach-job"><p>Fique atento na aba de convites</p></span>
+			                        			</div>
+			                    			');
+			                    		}
+			                    	?>
+			                        
+			                    
 			                </div>
 			            </div>
 			            <div class="descricao">
@@ -355,31 +379,67 @@
 					<input class="form-control azul" type="submit" value="Compartilhar Vídeo" data-toggle="collapse" data-target="#publicacao" aria-expanded="false" aria-controls="collapseExample"><br>
 					<div class="collapse" id="publicacao">
 					<div class="card card-body">
-						<div class="form-group">
-						    <label class="form-control-label" for="formGroupExampleInput">Nome do Vídeo</label>
-							<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nome">
-						</div>
-						<div class="form-group">
-						    <label for="exampleFormControlTextarea1">Descrição</label>
-						    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Faça uma breve descrição do vídeo"></textarea>
-						</div>
-						<div class="form-group">
-						    <label for="exampleFormControlTextarea1">Link</label>
-						    <a href="ajuda.php"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
-						    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-						</div>
-						<br><input class="form-control" type="submit" name="publicar" value="Publicar"><br>
+						<form action="" method="POST">
+							<div class="form-group">
+							    <label class="form-control-label" for="nome">Nome do Vídeo</label>
+								<input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" required="">
+							</div>
+							<div class="form-group">
+							    <label for="desc">Descrição</label>
+							    <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="Faça uma breve descrição do vídeo" required=""></textarea>
+							</div>
+							<div class="form-group">
+							    <label for="link">Link</label>
+							    <a href="ajuda.php"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+							    <textarea class="form-control" name="link" id="link" rows="3" required=""></textarea>
+							</div>
+							<br><input class="form-control" type="submit" name="publicar" value="Publicar"><br>
+						</form>
 					</div>
+					<?php
+						if (isset($_POST['publicar'])) 
+						{
+							$nome=$_POST['nome'];
+							$desc=$_POST['desc'];
+							$link=$_POST['link'];
+							if(!empty($nome)&&!empty($desc)&&!empty($link))
+							{
+								$sqlin='INSERT INTO video (titulo_video,descricao_video,url,id_usuario,data_video) values ("'.$nome.'","'.$desc.'","'.$link.'",'.$con['id_usuario'].',NOW());';
+								if(mysqli_query($conexao,$sqlin)){
+									echo ('<script>window.alert("Vídeo enviado com sucesso!");</script>');
+								}
+							}
+						}
+					?>
 					</div>
 					<div class="card mb-3">
-						<div class="embed-responsive embed-responsive-16by9">
-				  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-6JqoJrM9IM"></iframe>
-				</div>
-						<div class="card-body">
-							<h4 class="card-title">Nome do Vídeo</h4>
-							<p class="card-text">Descrição do Vídeo</p>
-							<p class="card-text"><small class="text-muted">Publicado em:20/08/2017</small></p>
-						</div>
+						<?php
+							$sqlsel='SELECT * FROM video WHERE id_usuario='.$con['id_usuario'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							if (mysqli_num_rows($resul))
+							{
+								while ($vd=mysqli_fetch_array($resul))
+								{
+									echo
+									('
+										<div class="embed-responsive embed-responsive-16by9">
+									  		<iframe class="embed-responsive-item" src="'.$vd['url'].'"></iframe>
+										</div>
+										<div class="card-body">
+											<h4 class="card-title">'.$vd['titulo_video'].'</h4>
+											<p class="card-text">'.$vd['descricao_video'].'</p>
+											<p class="card-text"><small class="text-muted">Publicado em: '.$vd['data_video'].'</small></p>
+										</div>
+									');	
+								}
+								
+							}
+							else
+							{
+								echo('jsfsdfs');
+							}
+						?>
+						
 					</div>
 				</section>
 				<!--MENU - MENSAGEM-->
