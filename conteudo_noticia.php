@@ -27,20 +27,7 @@
         <!-- fim banner -->
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="thumbnail sem_borda">
-                        <img src="img/noticia_conteudo.jpg" alt="...">
-                        <div class="caption">
-                            <h2 class="text-center fonte_azul_claro mg_bt"><strong>E-Sports: Brasil Game Show anuncia campeonato universitário de LOL</h2>
-                            <h4 class="text-center fonte_cinza_claro2 mg_bt">Disputa de LoL está confirmada para a Brasil Game Cup (BGC); competição será disputada por quatro times de universidades do Brasil e distribuirá R$ 10 mil entre os vencedores</h4>
-                            <p class="fonte_cinza_escuro text-justify">
-                                &nbsp;A Brasil Game Show anunciou nesta quarta-feira a estreia do primeiro torneio promovido pelo programa universitário, o campeonato Universitário de League of Legends no Brasil Game Cup. O evento vai acontecer entre os dias 11 e 15 de outubro, no Expor Center Norte, em São Paulo e premiará os vencedores com dez mil reais, sendo sete mil para o vencedor e 3 mil para o vice. 
-                                <br>
-                                &nbsp;A UNILol selecionará quatro times com base nos torneis universitários realizados este ano no Brasil. A divulgação acontecerá em setembro. Todas as partidas vão ocorrer no dia 11 e contará com transmissão ao vivo nos canais oficiais da BGC. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <?php include('classes/saidaConteudoNoticia.php');?>
                 <a href="conteudo_noticia.php">
                     <div class="col-md-4">
                         <div class="col-md-6">

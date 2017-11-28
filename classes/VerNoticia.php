@@ -3,9 +3,9 @@
 	{
 		public function getNoticia()
 		{
-			$con = mysqli_connect('localhost','root','','dbprocast');
+			include("conexao.php");
 			$select = "SELECT * FROM noticia";
-			$sql_sel = mysqli_query($con,$select);
+			$sql_sel = mysqli_query($conexao,$select);
 			if($sql_sel)
 			{
 				while($row = mysqli_fetch_array($sql_sel))

@@ -13,9 +13,9 @@
 
 		public function Cadastrar()
 		{
-			$con = mysqli_connect('localhost','root','','dbprocast');
+			include("conexao.php");
 			$insere = "INSERT INTO categoria_noticia(categoria_noticia, descri) VALUES('".$this->nome."','".$this->descri."');";
-			mysqli_query($con,$insere);
+			mysqli_query($conexao,$insere);
 		}
 	}
 
