@@ -5823,7 +5823,6 @@ ALTER TABLE usuario ADD constraint fk_funcao_2 foreign key (funcao_2) references
 ALTER TABLE usuario ADD constraint fk_estado foreign key (estado) references estado(id);
 ALTER TABLE usuario ADD constraint fk_cidade foreign key (cidade) references cidade(id);
 ALTER TABLE usuario ADD constraint fk_cl foreign key (clube) references clube(id_clube);
-ALTER TABLE noticia ADD constraint fk_categoria_noticia foreign key (id_categoria_noticia) references categoria_noticia(id_categoria_noticia);
 ALTER TABLE comentario ADD constraint fk_comentario_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE anuncio ADD constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante);
 ALTER TABLE denuncia ADD constraint fk_denuncia_usuario foreign key (id_usuario) references usuario(id_usuario);
