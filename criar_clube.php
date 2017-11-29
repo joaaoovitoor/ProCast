@@ -39,11 +39,11 @@
 					<div class="col-md-offset-1 col-md-8 col-sm-offset-1 col-sm-8 col-xs-offset-1 col-xs-6">
 						
 						<div class="form-group">
-							Nome do clube <input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="15" required>
+							Nome do clube <input type="text" class="form-control" name="nome" placeholder="Nome" required>
 						</div>
 						<div class="form-group">
 			                Descrição
-			                <textarea class="form-control" rows="6" placeholder="Descreva sobre seu clube" name="descricao"></textarea>
+			                <textarea class="form-control" rows="6" placeholder="Descreva sobre seu clube" name="descricao" maxlength="250"></textarea>
 			            </div>
 					</div>
 					<div class="col-md-3 col-sm-3">
@@ -77,7 +77,7 @@
 				{
 					$nome = $_POST['nome'];
 					$descricao = $_POST['descricao'];
-					if(!isset($_FILES['anexo'])==false)
+					if(isset($_FILES['anexo'])==false)
 					{
 						if(empty($nome) or empty($descricao))
 						{

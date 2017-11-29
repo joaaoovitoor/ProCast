@@ -5755,11 +5755,11 @@ CREATE TABLE colocacao(
 
 CREATE TABLE clube(
 	id_clube int auto_increment primary key,
-	logo_clube varchar(50),
-	nome_clube varchar(20) not null,
+	logo_clube varchar(100),
+	nome_clube varchar(50) not null,
 	dta_criacao date not null,
 	numero_jogadores int(3),
-	descricao_clube varchar(1000) not null,
+	descricao_clube varchar(250) not null,
 	numero_vitorias_clube varchar(4),
 	id_usuario int
 );

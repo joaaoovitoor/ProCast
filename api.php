@@ -1,3 +1,3 @@
 <?php
-	$apikey="RGAPI-d37c0c0d-fb57-427b-b227-c46dc4ba180e";
+	$apikey="RGAPI-652ca7c7-ccd4-46ce-ae9d-acd0d95a5e30";
 ?>
