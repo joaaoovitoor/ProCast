@@ -27,15 +27,13 @@
         </div>
         <!-- fim banner -->
         <!-- tabs -->
-        <div>
+       
           <!-- Nav tabs -->
             <ul class="nav nav-tabs not sem_borda col-md-offset-4" role="tablist">
-                <li role="presentation" class="active"><a href="#categoria1" class="sem_borda fonte_cinza_claro tabs_menu" aria-controls="categoria1" role="tab" data-toggle="tab">Categoria 1</a></li>
-                <li role="presentation"><a href="#categoria2" class="sem_borda fonte_cinza_claro tabs_menu" aria-controls="categoria2" role="tab" data-toggle="tab">Categoria 2</a></li>
-                <li role="presentation"><a href="#categoria3" class="sem_borda fonte_cinza_claro tabs_menu" aria-controls="categoria3" role="tab" data-toggle="tab">Categoria 3</a></li>
-                <li role="presentation"><a href="#categoria4" class="sem_borda fonte_cinza_claro tabs_menu" aria-controls="categoria4" role="tab" data-toggle="tab">Categoria 4</a></li>
+                <?php include('classes/conteudoCategoria.php') ?>
             </ul>
             <!-- Tab paineis -->
+
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="categoria1">
                     <!-- Conteudo tab -->
@@ -52,39 +50,9 @@
                     </div>
                     <!-- fim conteudo tab -->
                 </div>
-                <div role="tabpanel" class="tab-pane" id="categoria2">
-                    <!-- conteudo tab -->
-                    <div class="container-fluid not">
-                        <nav>
-                            <ul class="pager">
-                                <li class="previous"><a href="#" class="borda_cinza fonte_cinza_escuro"><span aria-hidden="true">&larr;</span> Anterior</a></li>
-                                <li class="next"><a href="#" class="borda_cinza fonte_cinza_escuro">Próximo <span aria-hidden="true">&rarr;</span></a></li>
-                            </ul>
-                        </nav>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="img/noticias.jpg" alt="...">
-                                    <div class="caption">
-                                        <p class="label text-right bg_cinza_escuro">
-                                            Categoria 2
-                                        </p>
-                                        <h3 class="text-center fonte_cinza_escuro"><strong>Título da notícia</strong></h3>
-                                        <p class="text-center">Sinopse da notícia</p>
-                                        <p class="text-center fonte_azul_claro">
-                                            <strong>
-                                            <i class="fa fa-clock-o "></i> 2 anos &nbsp;<i class="fa fa-comment-o "></i> 3 comentários
-                                            </strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- fim conteudo tab -->
-                </div>
             </div>
-        </div>
+    
+
         <!-- fim tabs -->
         <?php
             include('rodape.html');

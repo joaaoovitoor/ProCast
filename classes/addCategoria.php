@@ -13,18 +13,18 @@
 
 		public function Cadastrar()
 		{
-<<<<<<< HEAD
+
 			include("conexao.php");
 			$insere = "INSERT INTO categoria_noticia(categoria_noticia, descri) VALUES('".$this->nome."','".$this->descri."');";
 			mysqli_query($conexao,$insere);
-=======
+
 			$con = mysqli_connect('localhost','root','','dbprocast');
 			$insere = "INSERT INTO categoria_noticia(categoria_noticia,descri) VALUES('".$this->nome."','".$this->descri."');";
 			if(mysqli_query($con,$insere))
 			{
 				echo ('<script>window.alert("Categoria criada!");</script>');
 			}
->>>>>>> 271d0426fc6162c0c30aa01766103f8b99eed9c0
+
 		}
 	}
 
