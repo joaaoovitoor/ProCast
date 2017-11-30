@@ -51,9 +51,9 @@
                     <img src="img/perfil_icon.png" class="img-responsive img-circle">
                 </div>
                 <?php if (isset($_POST['comentar'])) 
-    {
-        include('classes/addComentario.php');
-    } ?>
+                {
+                    include('classes/addComentario.php');
+                } ?>
                 <form action="#" method="POST">
                     <div class="col-md-7">
                         <textarea name="comentario" rows="5" maxlength="1000" class="form-control" placeholder="Escreva seu comentário"></textarea>
@@ -61,28 +61,7 @@
                     </div>
                 </form>
             </div>
-            <div class="row mg_tp mg_bt">
-                <div class="col-md-offset-1 col-md-1">
-                    <img src="img/perfil_icon.png" class="img-responsive img-circle">
-                </div>
-                <div class="col-md-6">
-                    <h5 class="fonte_azul_claro"><strong>Nome do usuário</strong></h5>
-                    <p>
-                        LoremIpsum360 ° é um gerador on-line falso texto livre. Ele oferece um simulador de texto completo para gerar texto de substituição ou texto alternativo para seus modelos. Possui textos aleatórios diferentes em latim e cirílico para gerar exemplos de textos em diferentes línguas. 
-                    </p>
-                </div>
-            </div>
-            <div class="row mg_tp mg_bt">
-                <div class="col-md-offset-1 col-md-1">
-                    <img src="img/perfil_icon.png" class="img-responsive img-circle">
-                </div>
-                <div class="col-md-6">
-                    <h5 class="fonte_azul_claro"><strong>Nome do usuário</strong></h5>
-                    <p>
-                        LoremIpsum360 ° é um gerador on-line falso texto livre. Ele oferece um simulador de texto completo para gerar texto de substituição ou texto alternativo para seus modelos. Possui textos aleatórios diferentes em latim e cirílico para gerar exemplos de textos em diferentes línguas. 
-                    </p>
-                </div>
-            </div>
+            <?php include('classes/verComentario.php'); ?>
         </div>
         <?php
             include('rodape.html');
