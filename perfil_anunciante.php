@@ -70,7 +70,7 @@
 								<select name="estado" id="estado" class="form-control">
 									<?php
 										//estado do cara
-										$sql_estado='SELECT nome FROM estado WHERE id_estado='.$con['estado'].';';
+										$sql_estado='SELECT nome FROM estado WHERE id='.$con['estado'].';';
 										$resul_estado=mysqli_query($conexao,$sql_estado);
 										$con_estado=mysqli_fetch_array($resul_estado);
 										echo ('<option value="'.$con['estado'].'" selected>'.$con_estado['nome'].'</option>');
