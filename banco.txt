@@ -5703,7 +5703,8 @@ CREATE TABLE comentario(
 	id_comentario int auto_increment primary key,
 	texto_comentario varchar(150) not null,
 	id_usuario int,
-	data_comentario DATETIME
+	data_comentario DATETIME,
+	id_noticia int(11)
 );
 
 CREATE TABLE anuncio(
