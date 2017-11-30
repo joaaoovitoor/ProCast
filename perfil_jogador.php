@@ -242,7 +242,12 @@
 		            <?php
 						if(empty($con['clube']))
 						{
-							echo "Você não participa de nenhum clube! Fique de olho nas propostas na aba Convite!";
+							echo 
+							('
+								<h1 class="text-center"><img src="img/triste.png"></h1>
+								<h3 class="text-center">Você ainda não está em nenhum clube</h3>
+								<h5 class="text-center">Fique atento aos convites na aba ao lado</h5>
+							');
 						}
 						else
 						{
@@ -322,7 +327,7 @@
 										{
 											echo
 											('
-												<h1 class="text-center"><i class="fa fa-frown-o" aria-hidden="true"></i></h1>
+												<h1 class="text-center"><img src="img/triste.png"></h1>
 												<h3 class="text-center">Você ainda não possui nenhum convite</h3>
 												<h5 class="text-center"><a href="home.php">Contrate um plano para se divulgar! Aumente suas chances de ser convidado</a></h5>
 	
@@ -465,7 +470,13 @@
 							}
 							else
 							{
-								echo('jsfsdfs');
+								echo
+								('
+									<h1 class="text-center"><img src="img/triste.png"></h1>
+									<h3 class="text-center">Você ainda não possui nenhum vídeo</h3>
+									<h5 class="text-center">Clique em compartilhar vídeo</h5>
+
+								');
 							}
 						?>
 						
@@ -473,75 +484,62 @@
 				</section>
 				<!--MENU - MENSAGEM-->
 				<section id="5">
-					<div class="message-item" id="m16">
-						<div class="message-inner">
-							<div class="message-head clearfix">
-								<div class="avatar pull-left"><img src="img/perfil_icon.png" class="img-circle" width="40px"></div>
-								<div class="user-detail">
-									<h5 class="handle">Nome do carinha</h5>
-									<div class="post-meta">
-										<div class="asker-meta">
-											<span class="qa-message-what"></span>
-											<span class="qa-message-when">
-												<span class="qa-message-when-data">Dia 20/08/2017</span>
-											</span>
+					<?php 
+						$sqlsel='SELECT * FROM mensagem WHERE id_receber='.$con['id_usuario'].' AND view="F";';
+						$resul=mysqli_query($conexao,$sqlsel);
+						if(mysqli_num_rows($resul))
+						{
+							while($con_msg=mysqli_fetch_array($resul))
+							{
+								$sqlsel='select * from usuario where id_usuario="'.$con_msg['id_enviar'].'";';
+                                $resul2=mysqli_query($conexao,$sqlsel);
+                                $con_nick=mysqli_fetch_array($resul2);
+					?>
+							<a href=<?php echo('"conteudo_msg.php?msg='.$con_msg['id_mensagem'].'"'); ?>>
+								<div class="message-item" id="m16">
+									<div class="message-inner">
+										<div class="message-head clearfix">
+											<div class="avatar pull-left"><img src=<?php echo('"uploads/'.$con_nick['foto_perfil'].'"'); ?> class="img-circle" width="40px"></div>
+											<div class="user-detail">
+												<h5 class="handle"><?php echo($con_nick['nick']); ?></h5>
+												<div class="post-meta">
+													<div class="asker-meta">
+														<span class="qa-message-what"></span>
+														<span class="qa-message-when">
+															<span class="qa-message-when-data"><?php echo($con_msg['data']); ?></span>
+														</span>
+													</div>
+												</div>
+												<p>
+													<div class="qa-message-content">
+														<?php
+															echo($con_msg['mensagem']);
+														?>
+													</div>
+												</p>
+											</div>
 										</div>
+										
 									</div>
 								</div>
-							</div>
-							<div class="qa-message-content">
-								Oi, tudo bom?
-							</div>
-						</div>
-					</div>
-					<!--Fim da mensagem-->
-					<!--Início da mensagem-->
-					<div class="message-item" id="m16">
-						<div class="message-inner">
-							<div class="message-head clearfix">
-								<div class="avatar pull-left"><img src="img/perfil_icon.png" class="img-circle" width="40px"></div>
-								<div class="user-detail">
-									<h5 class="handle">Nome do carinha</h5>
-									<div class="post-meta">
-										<div class="asker-meta">
-											<span class="qa-message-what"></span>
-											<span class="qa-message-when">
-												<span class="qa-message-when-data">Dia 20/08/2017</span>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="qa-message-content">
-								Beleza?
-							</div>
-						</div>
-					</div>
-					<!--Fim da mensagem-->
-					<!--Início da mensagem-->
-					<div class="message-item" id="m16">
-						<div class="message-inner">
-							<div class="message-head clearfix">
-								<div class="avatar pull-left"><img src="img/perfil_icon.png" class="img-circle" width="40px"></div>
-								<div class="user-detail">
-									<h5 class="handle">Nome do carinha</h5>
-									<div class="post-meta">
-										<div class="asker-meta">
-											<span class="qa-message-what"></span>
-											<span class="qa-message-when">
-												<span class="qa-message-when-data">Dia 20/08/2017</span>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="qa-message-content">
-								Eai?
-							</div>
-						</div>
-					</div>
-					<!--Fim da mensagem-->
+							</a>
+					<?php
+							}
+						}
+						else
+						{
+							echo
+							('
+								<h1 class="text-center"><img src="img/triste.png"></h1>
+								<h3 class="text-center">Você não possui nenhuma mensagem não lida</h3>
+
+							');
+						}
+						
+					?>
 				</section>
+					
+					<!--Fim da mensagem-->
 				<!--MENU - ALTERAR-->
 				<section id="6">
 				    <!--Formulário para alterar-->
