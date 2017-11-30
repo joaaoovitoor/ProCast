@@ -35,21 +35,7 @@
             <!-- Tab paineis -->
 
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="categoria1">
-                    <!-- Conteudo tab -->
-                    <div class="container-fluid not">
-                        <nav>
-                            <ul class="pager">
-                                <li class="previous"><a href="#" class="borda_azul fonte_azul_claro"><span aria-hidden="true">&larr;</span> Anterior</a></li>
-                                <li class="next"><a href="#" class="borda_azul fonte_azul_claro">Próximo <span aria-hidden="true">&rarr;</span></a></li>
-                            </ul>
-                        </nav>
-                        <div class="row">
-                           <?php include('classes/saidaNoticias.php');?>
-                        </div>
-                    </div>
-                    <!-- fim conteudo tab -->
-                </div>
+                <?php include('classes/saidaNoticias.php');?>
             </div>
     
 
