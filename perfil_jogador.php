@@ -361,22 +361,104 @@
 				<!--MENU - AGENDA-->
 				<section id="3">
 					<div class="cartao-equipe">
-		                <div class="media">
-		                    <div class="media-left">
-		                        <blockquote>
-									<h5>Autor: <a href="#">Alguém</a></h5>
-									<p>Dia: 05/04/2017</p>
-									<p>Horário: 17:30</p>
-								</blockquote>
-		                    </div>
-		                    <div class="media-body">
-		                        <h3>Título do Evento</h3>
-		                        <h4>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-		                        </h4>
-		                    </div>
-		                </div>
+						<input class="form-control azul" type="submit" value="Novo Evento" data-toggle="collapse" data-target="#evento" aria-expanded="false" aria-controls="collapseExample"><br>
+						<div class="collapse" id="evento">
+							<div class="card card-body">
+								<form action="#" method="POST">
+									<div class="form-group col-md-12">
+									    <label for="titulo_evento">Título do Evento</label>
+									    <input type="text" name="titulo_evento" class="form-control" id="titulo_evento"  required="" placeholder="Título do evento">
+									</div>
+									<div class="form-group col-md-6">
+									    <label class="form-control-label" for="data">Data do Evento</label>
+										<input type="text" name="data" class="form-control" id="data"  required="" placeholder="dd/mm/aaaa">
+									</div>
+									<div class="form-group col-md-6">
+									    <label class="form-control-label" for="horario">Horário do Evento</label>
+										<input type="text" name="horario" class="form-control" id="horario"  required="" placeholder="hh:mm">
+									</div>
+									<div class="form-group col-md-12">
+									    <label for="desc">Descrição</label>
+									    <textarea class="form-control" id="descricao_evento" name="descricao_evento" rows="3" placeholder="Faça uma breve descrição do evento" required=""></textarea>
+									</div>
+									<div class="col-md-12">
+										<input class="form-control" type="submit" name="agendar" value="Agendar"><br>
+									</div>
+								</form>
+							</div>
+						</div>
+						<?php
+							if (isset($_POST['agendar'])) {
+								$titulo=$_POST['titulo_evento'];
+								$data=$_POST['data'];
+								$horario=$_POST['horario'];
+								$descricao_agd=$_POST['descricao_evento'];
+								if(!empty($titulo)&&!empty($data)&&!empty($horario)&&!empty($descricao_agd))
+								{
+									$data=explode('/', $data);
+									if($data[0]>31 || $data[0]<1 || $data[1]>12 || $data[1]<1)
+									{
+										echo ('<script>window.alert("Data Inválida");</script>');
+											header('location:perfil_jogador.php');
+									}
+									else
+									{
+										$data2=$data[2].$data[1].$data[0];
+										$sqlin='INSERT INTO agenda (hora,data,evento,descricao_evento,id_usuario) VALUES ("'.$horario.'","'.$data2.'","'.$titulo.'","'.$descricao_agd.'",'.$con['id_usuario'].');';
+										if(mysqli_query($conexao,$sqlin))
+										{
+											echo ('<script>window.alert("Evento agendado com sucesso!");</script>');
+											header('location:perfil_jogador.php');
+										}
+										else
+										{
+											echo ('<script>window.alert("SVKSDVJD!");</script>');
+											header('location:perfil_jogador.php');
+										}
+									}
+								}
+								else
+								{
+									echo ('<script>window.alert("Preencha todos os campos!");</script>');
+								}
+							}
+							$sqlsel='SELECT * FROM agenda WHERE id_usuario='.$con['id_usuario'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							if (mysqli_num_rows($resul))
+							{
+								while ($ag=mysqli_fetch_array($resul))
+								{
+									$data=explode('-', $ag['data']);
+									echo 
+									('
+										<div class="media">
+						                    <div class="media-left">
+						                        <blockquote>
+													<h5>Autor: <a href="ver_jogador.php?pesq='.$con['nick'].'" target="blank">'.$con['nome'].'</a></h5>
+													<p>Dia: <br>'.$data[2].'-'.$data[1].'-'.$data[0].'</p>
+													<p>Horário: '.$ag['hora'].'</p>
+												</blockquote>
+						                    </div>
+						                    <div class="media-body">
+						                        <h3>'.$ag['evento'].'</h3>
+						                        <h4>Descrição: '.$ag['descricao_evento'].'</h4>
+						                    </div>
+						                </div>
+									');	
+								}
+							}
+							else
+							{
+								echo
+								('
+									<h1 class="text-center"><img src="img/triste.png"></h1>
+									<h3 class="text-center">Você ainda não possui nenhum evento agendado</h3>
+									<h5 class="text-center">Clique em Novo evento</h5>
+
+								');
+							}	
+						?>
+		                
 		            </div>   
 				</section>
 				<!--MENU - VÍDEO-->
