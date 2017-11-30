@@ -410,11 +410,6 @@
 											echo ('<script>window.alert("Evento agendado com sucesso!");</script>');
 											header('location:perfil_jogador.php');
 										}
-										else
-										{
-											echo ('<script>window.alert("SVKSDVJD!");</script>');
-											header('location:perfil_jogador.php');
-										}
 									}
 								}
 								else
@@ -422,7 +417,7 @@
 									echo ('<script>window.alert("Preencha todos os campos!");</script>');
 								}
 							}
-							$sqlsel='SELECT * FROM agenda WHERE id_usuario='.$con['id_usuario'].';';
+							$sqlsel='SELECT * FROM agenda WHERE id_usuario='.$con['id_usuario'].' ORDER BY data DESC;';
 							$resul=mysqli_query($conexao,$sqlsel);
 							if (mysqli_num_rows($resul))
 							{
@@ -440,8 +435,17 @@
 												</blockquote>
 						                    </div>
 						                    <div class="media-body">
-						                        <h3>'.$ag['evento'].'</h3>
-						                        <h4>Descrição: '.$ag['descricao_evento'].'</h4>
+						                    	<div class="col-md-10">
+													<h3>'.$ag['evento'].'</h3>
+							                        <h4>Descrição: </h4>
+							                        <p>'.$ag['descricao_evento'].'</p>
+						                    	</div>
+						                    	<div class="col-md-1 text-right">
+						                    		<a href="perfil_jogador.php?excvt='.$ag['id_agenda'].'" class="btn-lg btn-default text-center"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						                    	</div>
+						                    	<div class="col-md-1">
+						                    		<a data-toggle="modal" class="btn-lg btn-default text-center" data-target="#alterar_evt"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+						                    	</div>						                        
 						                    </div>
 						                </div>
 									');	
@@ -457,6 +461,34 @@
 
 								');
 							}	
+							if (isset($_GET['excvt'])) {
+								$id_ex=$_GET['excvt'];
+								$sqlex='DELETE FROM agenda WHERE id_agenda='.$id_ex.';';
+								if(mysqli_query($conexao,$sqlex))
+								{
+									echo ('<script>window.alert("Evento excluído com sucesso!");</script>');
+									header('location:perfil_jogador.php');
+								}
+							}
+							echo ('
+							<div class="modal fade" id="alterar_evt" tabindex="-1" role="dialog" aria-labelledby="descLabel">
+								<div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      	<div class="modal-header">
+								        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        	<h4 class="modal-title" id="descLabel">Sobre você</h4>
+								      	</div>
+									    <div class="modal-body">
+									    	<form action="#" method="POST">
+									      		<textarea name="descricao" rows="5" class="form-control" placeholder="Digite aqui algo sobre você"></textarea>
+									    </div>
+									    <div class="modal-footer">
+									        	<button type="submit" class="btn btn-block azul">Salvar Mudanças</button>
+									        </form>
+									    </div>
+								    </div>
+								</div>
+							</div>');
 						?>
 		                
 		            </div>   
