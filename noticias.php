@@ -47,25 +47,7 @@
                             </ul>
                         </nav>
                         <div class="row">
-                            <div class="col-sm-6 col-md-4">
-                                <a href="conteudo_noticia.php">
-                                    <div class="thumbnail">
-                                        <img src="img/noticias.jpg" alt="...">
-                                        <div class="caption">
-                                            <p class="label text-right bg_cinza_escuro">
-                                                Categoria 1
-                                            </p>
-                                            <h3 class="text-center fonte_cinza_escuro"><strong>Título da notícia</strong></h3>
-                                            <p class="text-center">Sinopse da notícia</p>
-                                            <p class="text-center fonte_azul_claro">
-                                                <strong>
-                                                <i class="fa fa-clock-o "></i> 2 anos &nbsp;<i class="fa fa-comment-o "></i> 3 comentários
-                                                </strong>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                           <?php include('classes/saidaNoticias.php');?>
                         </div>
                     </div>
                     <!-- fim conteudo tab -->
