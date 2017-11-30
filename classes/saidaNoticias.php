@@ -27,7 +27,10 @@
                                     <p class="text-center"> <?php  echo $row['lide'];?></p>
                                     <p class="text-center fonte_azul_claro">
                                         <strong>
-                                            <i class="fa fa-clock-o "></i> 2 anos &nbsp;<i class="fa fa-comment-o "></i> 3 comentários
+                                            <i class="fa fa-clock-o "></i> <?php  echo $row['data'];?> &nbsp;<i class="fa fa-comment-o "></i> <?php $comentariosTotal = mysqli_query($conexao, "SELECT *   FROM comentario WHERE id_noticia=".$row['id_noticia'].";");
+                                            $total = mysqli_num_rows($comentariosTotal);
+                                            echo $total;
+                                            ?>
                                         </strong>
                                     </p>
                                 </div>
