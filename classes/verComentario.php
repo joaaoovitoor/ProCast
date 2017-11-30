@@ -1,4 +1,4 @@
-34<?php
+<?php
 	include("conexao.php");
 	$id_noticia = $_GET['ex'];
 	$resul = mysqli_query($conexao,"SELECT * FROM comentario WHERE id_noticia = ".$id_noticia.";");
