@@ -1,5 +1,6 @@
     <?php
     include('verificar_logado.php');
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,6 +50,10 @@
                 <div class="col-md-1">
                     <img src="img/perfil_icon.png" class="img-responsive img-circle">
                 </div>
+                <?php if (isset($_POST['comentar'])) 
+    {
+        include('classes/addComentario.php');
+    } ?>
                 <form action="#" method="POST">
                     <div class="col-md-7">
                         <textarea name="comentario" rows="5" maxlength="1000" class="form-control" placeholder="Escreva seu comentário"></textarea>
