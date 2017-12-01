@@ -40,31 +40,42 @@
 	        		<form action="" method="POST">
 						<div class="col-md-6">
 							<div class="form-group">
-								Nome <input value="<?php echo $con['nome_anunciante'];?>" type="text" class="form-control" name="nome" maxlength="15" required>
+								Nome <input value="<?php echo $con['nome_anunciante'];?>" type="text" class="form-control" name="nome_edt" maxlength="15" required>
 							</div>
 							<div class="form-group">
-								Sobrenome <input value="<?php echo $con['sobrenome'];?>" type="text" class="form-control" name="sobrenome"  maxlength="15" required>
+								Sobrenome <input value="<?php echo $con['sobrenome'];?>" type="text" class="form-control" name="sobrenome_edt"  maxlength="15" required>
 							</div>
 							<div class="form-group">
-								Senha <input value="<?php echo $con['senha'];?>" type="password" name="senha" class="form-control" maxlength="20" required>
+								Senha <input value="<?php echo base64_decode($con['senha']);?>" type="password" name="senha_edt" class="form-control" maxlength="20" required>
 							</div>
 							<div class="form-group">
-								E-mail<input value="<?php echo $con['email'];?>" type="email" name="email" class="form-control" maxlength="30" required>
-							</div>												
+								Telefone <input value="<?php echo $con['telefone'];?>" type="text" id="telefone" name="telefone_edt" class="form-control" maxlength="20" required>
+							</div>
+							<div class="form-group">
+								E-mail<input value="<?php echo $con['email'];?>" type="email" class="form-control" readonly>
+							</div>
 						</div>
 						<div class="col-md-6">
-	                        <div class="form-group">
-								 Nome da Empresa <input value="<?php echo $con['nome_empresa'];?>" type="text" class="form-control" name="nome_empresa" maxlength="25" required>
+							<div class="form-group">
+								CPF <input value="<?php echo $con['cpf'];?>" type="text"  class="form-control" readonly>
 							</div>
 	                        <div class="form-group">
-								CNPJ <input value="<?php echo $con['cnpj'];?>" type="text" maxlength="18" class="form-control" name="cnpj" id="cnpj" required>
+								 Nome da Empresa <input value="<?php echo $con['nome_empresa'];?>" type="text" class="form-control" readonly>
+							</div>
+	                        <div class="form-group">
+								CNPJ <input value="<?php echo $con['cnpj'];?>" type="text"  class="form-control" readonly>
 							</div>
 							<div class="form-group">
 								Estado
-								<select name="estado" id="estado" class="form-control">
-									<option value="">Selecione</option>
+								<select name="estado_edt" id="estado" class="form-control">
 									<?php
-										$sqlsel='SELECT * FROM estado;';
+										//estado do cara
+										$sql_estado='SELECT nome FROM estado WHERE id='.$con['estado'].';';
+										$resul_estado=mysqli_query($conexao,$sql_estado);
+										$con_estado=mysqli_fetch_array($resul_estado);
+										echo ('<option value="'.$con['estado'].'" selected>'.$con_estado['nome'].'</option>');
+										//outros estados
+										$sqlsel='SELECT * FROM estado WHERE NOT id='.$con['estado'].';';
 										$resul=mysqli_query($conexao,$sqlsel);
 										while ($con2=mysqli_fetch_array($resul))
 										{
@@ -74,17 +85,22 @@
 											');
 										}
 									?>
-									 
 								</select>
 							</div>
 	                        <div class="form-group">
 								Cidade
-								<select name="cidade" id="cidade" class="form-control">
-								  <option>Escolha primeiro um estado</option>
+								<select name="cidade_edt" id="cidade" class="form-control">
+								  <?php
+										//cidade do cara
+										$sql_cidade='SELECT nome FROM cidade WHERE id='.$con['cidade'].';';
+										$resul_cidade=mysqli_query($conexao,$sql_cidade);
+										$con_cidade=mysqli_fetch_array($resul_cidade);
+										echo ('<option value="'.$con['cidade'].'" selected>'.$con_cidade['nome'].'</option>');
+									?>
 								</select>
 							</div>
 						</div>
-						<p><button type="submit" class="btn btn-default" name="alterar"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</button></p>
+						<p><button type="submit" class="btn btn-default" name="editar"><i class="fa fa-pencil" aria-hidden="true"></i> Alterar</button></p>
 						<p><button type="submit" class="btn btn-default" name="excluir"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</button></p>
 					</form>
 					<?php
@@ -104,6 +120,27 @@
                                 echo('<script>alert("Erro ao excluir conta!");</script>');
                                 echo('<script>window.location="perfil_investidor.php";</script>');
                             }
+						}
+						if(isset($_POST['editar']))
+						{
+							//resgata
+							$nome=$_POST['nome_edt'];
+							$sobrenome=$_POST['sobrenome_edt'];
+							$telefone=$_POST['telefone_edt'];
+							$senha=base64_encode($_POST['senha_edt']);
+							$estado=$_POST['estado_edt'];
+							$cidade=$_POST['cidade_edt'];
+							//edita
+							$sqledt=('UPDATE anunciante set nome_anunciante="'.$nome.'", sobrenome="'.$sobrenome.'" , senha="'.$senha.'",  telefone="'.$telefone.'" ,  cidade="'.$cidade.'" ,  estado="'.$estado.'" WHERE id_anunciante='.$con['id_anunciante'].' ;');
+							$editado=mysqli_query($conexao,$sqledt);
+							if($editado)
+							{
+								echo ('<script>window.alert("Dados alterados com sucesso!");window.location.href="perfil_anunciante.php";</script>');
+							}
+							else
+							{	
+								echo ('<script>window.alert("Erro ao Editar Dados!");window.location.href="perfil_anunciante.php";</script>');
+							}	
 						}
 					?>
 				</div>

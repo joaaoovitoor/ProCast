@@ -138,7 +138,7 @@
 			    		}
 					}
 					else{
-						echo 'Você ainda não criou seu clube! <a href="criar_clube.php">Crie seu clube!</a>';
+						echo '<h3 align="center"><img src="img/triste.png"><br>Você ainda não criou seu clube! <a href="criar_clube.php">Crie seu clube!</a></h3>';
 					}
 					?>
 				</section>
@@ -157,7 +157,7 @@
 				 	}
 				 	else
 				 	{
-				 		echo "Nada para exibir";
+				 		echo '<h3 align="center"><img src="img/triste.png"><br>Você não possui um clube ainda</h3>';
 				 	}
 				    ?>
 		            </div>
@@ -194,7 +194,7 @@
 	                   		}
 	                   		else
 	                   		{
-	                   			echo "Nenhum evento!";
+	                   			echo '<h3 align="center"><img src="img/triste.png"><br>Nenhum evento no momento</h3>';
 	                   		}
 	                   ?>
 		                </div>
@@ -275,7 +275,6 @@
 				<section id="5">
 				    <!--Formulário para alterar-->
 					<form action="#" method="post">
-						<input type="hidden" class="validate" name="id_usuario" value="<?php echo($con['id_usuario']);?>">
 						<div class="col-md-6">
 							<div class="form-group">
 								Nome <input type="text" class="form-control" name="nome_edt" value="<?php echo $con['nome'];?>" maxlength="15">
@@ -284,41 +283,31 @@
 								Sobrenome <input type="text" class="form-control" name="sobrenome_edt"  maxlength="15" value="<?php echo $con['sobrenome'];?>">
 							</div>
 							<div class="form-group">
-								E-mail <input type="text" class="form-control" name="email_edt" maxlength="15" value="<?php echo $con['email'];?>">
+								E-mail <input type="text" class="form-control" value="<?php echo $con['email'];?>" readonly=>
 							</div>
 							<div class="form-group">
 								Senha <input type="password" name="senha_edt" maxlength="25" class="form-control" value="<?php echo base64_decode($con['senha']);?>">
 							</div>
 							<div class="form-group">
 								Estado
-								<select name="estado_edt" class="form-control">
-									<option <?php if($con['estado']=='ac'){echo 'selected';}?> value="ac">Acre</option>
-									<option <?php if($con['estado']=='al'){echo 'selected';}?> value="al">Alagoas</option> 
-									<option <?php if($con['estado']=='am'){echo 'selected';}?> value="am">Amazonas</option> 
-									<option <?php if($con['estado']=='ap'){echo 'selected';}?> value="ap">Amapá</option> 
-									<option <?php if($con['estado']=='ba'){echo 'selected';}?> value="ba">Bahia</option> 
-									<option <?php if($con['estado']=='ce'){echo 'selected';}?> value="ce">Ceará</option> 
-									<option <?php if($con['estado']=='df'){echo 'selected';}?> value="df">Distrito Federal</option> 
-									<option <?php if($con['estado']=='es'){echo 'selected';}?> value="es">Espírito Santo</option> 
-									<option <?php if($con['estado']=='go'){echo 'selected';}?> value="go">Goiás</option> 
-									<option <?php if($con['estado']=='ma'){echo 'selected';}?> value="ma">Maranhão</option> 
-									<option <?php if($con['estado']=='mt'){echo 'selected';}?> value="mt">Mato Grosso</option> 
-									<option <?php if($con['estado']=='ms'){echo 'selected';}?> value="ms">Mato Grosso do Sul</option> 
-									<option <?php if($con['estado']=='mg'){echo 'selected';}?> value="mg">Minas Gerais</option> 
-									<option <?php if($con['estado']=='pa'){echo 'selected';}?> value="pa">Pará</option> 
-									<option <?php if($con['estado']=='pb'){echo 'selected';}?> value="pb">Paraíba</option> 
-									<option <?php if($con['estado']=='pr'){echo 'selected';}?> value="pr">Paraná</option> 
-									<option <?php if($con['estado']=='pe'){echo 'selected';}?> value="pe">Pernambuco</option> 
-									<option <?php if($con['estado']=='pi'){echo 'selected';}?> value="pi">Piauí</option> 
-									<option <?php if($con['estado']=='rj'){echo 'selected';}?> value="rj">Rio de Janeiro</option> 
-									<option <?php if($con['estado']=='rn'){echo 'selected';}?> value="rn">Rio Grande do Norte</option> 
-									<option <?php if($con['estado']=='ro'){echo 'selected';}?> value="ro">Rondônia</option> 
-									<option <?php if($con['estado']=='rs'){echo 'selected';}?> value="rs">Rio Grande do Sul</option> 
-									<option <?php if($con['estado']=='rr'){echo 'selected';}?> value="rr">Roraima</option> 
-									<option <?php if($con['estado']=='sc'){echo 'selected';}?> value="sc">Santa Catarina</option> 
-									<option <?php if($con['estado']=='se'){echo 'selected';}?> value="se">Sergipe</option> 
-									<option <?php if($con['estado']=='sp'){echo 'selected';}?> value="sp">São Paulo</option> 
-									<option <?php if($con['estado']=='to'){echo 'selected';}?> value="to">Tocantins</option> 
+								<select name="estado_edt" id="estado" class="form-control">
+									<?php
+										//estado do cara
+										$sql_estado='SELECT nome FROM estado WHERE id='.$con['estado'].';';
+										$resul_estado=mysqli_query($conexao,$sql_estado);
+										$con_estado=mysqli_fetch_array($resul_estado);
+										echo ('<option value="'.$con['estado'].'" selected>'.$con_estado['nome'].'</option>');
+										//outros estados
+										$sqlsel='SELECT * FROM estado WHERE NOT id='.$con['estado'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										while ($con2=mysqli_fetch_array($resul))
+										{
+											echo
+											('
+												<option value="'.$con2['id'].'">'.$con2['nome'].'</option>
+											');
+										}
+									?>
 								</select>
 							</div>
 						</div>
@@ -402,16 +391,14 @@
 						if(isset($_POST['editar']))
 						{
 							//resgata
-							$id_usuario=$_POST['id_usuario'];
 							$nome=$_POST['nome_edt'];
 							$sobrenome=$_POST['sobrenome_edt'];
 							$senha=base64_encode($_POST['senha_edt']);
-							$email=$_POST['email_edt'];
 							$estado=$_POST['estado_edt'];
 							$telefone=$_POST['telefone_edt'];
 							$descricao=$_POST['descricao_edt'];
 							//edita
-							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE email="'.$email_usuario.'" ;');
+							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", senha="'.$senha.'",  estado="'.$estado.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE id_usuario='.$con['id_usuario'].' ;');
 							$editado=mysqli_query($conexao,$sqledt);
 							if($editado)
 							{

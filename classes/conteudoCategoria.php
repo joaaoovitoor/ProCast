@@ -1,14 +1,13 @@
 <?php
 	include('conexao.php');
 	$resul = mysqli_query($conexao, "SELECT * FROM categoria_noticia");
+	$i=0;
 	while ($categoria = mysqli_fetch_array($resul)) 
 	{
 	?>
-		
-            <li role="presentation" class="active"><a href="#<?php  echo $categoria['categoria_noticia']?>" class="sem_borda fonte_cinza_claro tabs_menu" aria-controls="<?php  echo $categoria['categoria_noticia']?>" role="tab" data-toggle="tab"><?php  echo $categoria['categoria_noticia']?></a></li>
-            
-     
+		<li <?=$i==0?'class="active"':null?>><a data-toggle="tab" href="#categoria-<?php  echo $categoria['id_categoria_noticia']?>"><?php  echo $categoria['categoria_noticia']?></a></li>
 	<?php
+		$i++;
 	}
 
 ?>
