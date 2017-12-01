@@ -60,11 +60,11 @@
 								<form method="POST" action="#" enctype="multipart/form-data">
 									<div class="form-group col-md-12">
 										<h4>Titulo da notícia:</h4>
-										<input type="text" name="titulo_noticia" placeholder="Ex:Novo torneio" class="form-control">
+										<input type="text" name="titulo_noticia" placeholder="Ex:Novo torneio" class="form-control" maxlength="50">
 									</div>
 									<div class="form-group col-md-12">
 										<h4>lide da notícia:</h4>
-										<input type="text" name="lide" placeholder="Informações oque a notíca trata" class="form-control">
+										<input type="text" name="lide" placeholder="Informações oque a notíca trata" class="form-control" maxlength="200">
 									</div>
 									<div class="form-group col-md-12">
 										<h4>Categoria:</h4>
@@ -92,7 +92,7 @@
 									</div>
 									<div class="form-group col-md-12">
 										<h4>Notícia:</h4>
-										<textarea class="form-control" rows="10" name="noticia" placeholder="Digite a noticia"></textarea>
+										<textarea class="form-control" rows="10" name="noticia" placeholder="Digite a noticia" maxlength="1000"></textarea>
 									</div>
 									<div class="form-group">
 										<input type="submit" name="enviar" class="btn btn-procast btn-block" value="Publicar">
