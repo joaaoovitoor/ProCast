@@ -16,6 +16,7 @@
   		<link rel="stylesheet" href="css/perfil/perfil.css">
   		<script src="js/bootstrap.js"></script>
 	    <script src="js/jquery.js"></script>
+	    <script src="js/pesq_cidade.js"></script>
 		<?php
 			include('link_head.html');
 		?>
@@ -658,7 +659,6 @@
 				<section id="6">
 				    <!--Formulário para alterar-->
 					<form action="#" method="post">
-						<input type="hidden" class="validate" name="id_usuario" value="<?php echo($con['id_usuario']);?>">
 						<div class="col-md-6">
 							<div class="form-group">
 								Nome <input type="text" class="form-control" name="nome_edt" value="<?php echo $con['nome'];?>" maxlength="15">
@@ -670,24 +670,48 @@
 								Nick <input type="text" class="form-control" name="nick_edt" maxlength="15" value="<?php echo $con['nick'];?>">
 							</div>
 							<div class="form-group">
-							Função primária
-							<select name="funcao_1_edt" class="form-control">
-							  <option <?php if($con['funcao_1']=='a'){echo 'selected';}?> value="a">Atirador</option>
-							  <option <?php if($con['funcao_1']=='c'){echo 'selected';}?> value="c">Caçador</option>
-							  <option <?php if($con['funcao_1']=='m'){echo 'selected';}?> value="m">Meio</option>
-							  <option <?php if($con['funcao_1']=='s'){echo 'selected';}?> value="s">Suporte</option>
-							  <option  <?php if($con['funcao_1']=='t'){echo 'selected';}?> value="t">Topo</option>
-							</select>
+								Função primária
+								<select name="funcao1_edt" class="form-control">
+								<?php
+									//função do cara
+									$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_1'].';';
+									$resul=mysqli_query($conexao,$sqlsel);
+									$con2=mysqli_fetch_array($resul);
+									echo ('<option value="'.$con['funcao_1'].'" selected>'.$con2['nome_funcao'].'</option>');
+									//outras funções
+									$sql_funcao='SELECT * FROM funcao WHERE NOT id_funcao='.$con['funcao_1'].';';
+									$resul_funcao=mysqli_query($conexao,$sql_funcao);
+									while ($con_funcao=mysqli_fetch_array($resul_funcao))
+									{
+										echo
+										('
+											<option value="'.$con_funcao['id_funcao'].'">'.$con_funcao['nome_funcao'].'</option>
+										');
+									}
+								?>
+								</select>
 							</div>
 							<div class="form-group">
-							Função secundária
-							<select name="funcao_2_edt" class="form-control">
-							  <option <?php if($con['funcao_2']=='a'){echo 'selected';}?> value="a">Atirador</option>
-							  <option <?php if($con['funcao_2']=='c'){echo 'selected';}?> value="c">Caçador</option>
-							  <option <?php if($con['funcao_2']=='m'){echo 'selected';}?> value="m">Meio</option>
-							  <option <?php if($con['funcao_2']=='s'){echo 'selected';}?> value="s">Suporte</option>
-							  <option  <?php if($con['funcao_2']=='t'){echo 'selected';}?> value="t">Topo</option>
-							</select>
+								Função secundária
+								<select name="funcao2_edt" class="form-control">
+								<?php
+									//função do cara
+									$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_2'].';';
+									$resul=mysqli_query($conexao,$sqlsel);
+									$con2=mysqli_fetch_array($resul);
+									echo ('<option value="'.$con['funcao_2'].'" selected>'.$con2['nome_funcao'].'</option>');
+									//outras funções
+									$sql_funcao='SELECT * FROM funcao WHERE NOT id_funcao='.$con['funcao_2'].';';
+									$resul_funcao=mysqli_query($conexao,$sql_funcao);
+									while ($con_funcao=mysqli_fetch_array($resul_funcao))
+									{
+										echo
+										('
+											<option value="'.$con_funcao['id_funcao'].'">'.$con_funcao['nome_funcao'].'</option>
+										');
+									}
+								?>
+								</select>
 							</div>
 							<div class="form-group">
 								Senha <input type="password" name="senha_edt" value="senha" maxlength="25" class="form-control">
@@ -706,40 +730,9 @@
 								readonly>
 							</div>
 							<div class="form-group">
-								E-mail<input type="email" name="email_edt" value="<?php echo $con['email'];?>" class="form-control" maxlength="30">
+								E-mail<input type="email" name="email_edt" value="<?php echo $con['email'];?>" class="form-control" readonly>
 							</div>
-							<div class="form-group">
-								Estado
-								<select name="estado_edt" class="form-control">
-									<option <?php if($con['estado']=='ac'){echo 'selected';}?> value="ac">Acre</option>
-									<option <?php if($con['estado']=='al'){echo 'selected';}?> value="al">Alagoas</option> 
-									<option <?php if($con['estado']=='am'){echo 'selected';}?> value="am">Amazonas</option> 
-									<option <?php if($con['estado']=='ap'){echo 'selected';}?> value="ap">Amapá</option> 
-									<option <?php if($con['estado']=='ba'){echo 'selected';}?> value="ba">Bahia</option> 
-									<option <?php if($con['estado']=='ce'){echo 'selected';}?> value="ce">Ceará</option> 
-									<option <?php if($con['estado']=='df'){echo 'selected';}?> value="df">Distrito Federal</option> 
-									<option <?php if($con['estado']=='es'){echo 'selected';}?> value="es">Espírito Santo</option> 
-									<option <?php if($con['estado']=='go'){echo 'selected';}?> value="go">Goiás</option> 
-									<option <?php if($con['estado']=='ma'){echo 'selected';}?> value="ma">Maranhão</option> 
-									<option <?php if($con['estado']=='mt'){echo 'selected';}?> value="mt">Mato Grosso</option> 
-									<option <?php if($con['estado']=='ms'){echo 'selected';}?> value="ms">Mato Grosso do Sul</option> 
-									<option <?php if($con['estado']=='mg'){echo 'selected';}?> value="mg">Minas Gerais</option> 
-									<option <?php if($con['estado']=='pa'){echo 'selected';}?> value="pa">Pará</option> 
-									<option <?php if($con['estado']=='pb'){echo 'selected';}?> value="pb">Paraíba</option> 
-									<option <?php if($con['estado']=='pr'){echo 'selected';}?> value="pr">Paraná</option> 
-									<option <?php if($con['estado']=='pe'){echo 'selected';}?> value="pe">Pernambuco</option> 
-									<option <?php if($con['estado']=='pi'){echo 'selected';}?> value="pi">Piauí</option> 
-									<option <?php if($con['estado']=='rj'){echo 'selected';}?> value="rj">Rio de Janeiro</option> 
-									<option <?php if($con['estado']=='rn'){echo 'selected';}?> value="rn">Rio Grande do Norte</option> 
-									<option <?php if($con['estado']=='ro'){echo 'selected';}?> value="ro">Rondônia</option> 
-									<option <?php if($con['estado']=='rs'){echo 'selected';}?> value="rs">Rio Grande do Sul</option> 
-									<option <?php if($con['estado']=='rr'){echo 'selected';}?> value="rr">Roraima</option> 
-									<option <?php if($con['estado']=='sc'){echo 'selected';}?> value="sc">Santa Catarina</option> 
-									<option <?php if($con['estado']=='se'){echo 'selected';}?> value="se">Sergipe</option> 
-									<option <?php if($con['estado']=='sp'){echo 'selected';}?> value="sp">São Paulo</option> 
-									<option <?php if($con['estado']=='to'){echo 'selected';}?> value="to">Tocantins</option> 
-								</select>
-							</div>
+							
 							<div class="form-group">
 								CPF <input type="text" class="form-control" value="<?php echo $con['cpf'];?>" readonly>
 							</div>
@@ -747,10 +740,44 @@
 								Data de nascimento<input type="text" class="form-control" value="<?php echo $con['dta_nascimento'];?>" readonly>
 							</div>
 							<div class="form-group">
-								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
+								Estado
+								<select name="estado_edt" id="estado" class="form-control">
+									<?php
+										//estado do cara
+										$sql_estado='SELECT nome FROM estado WHERE id='.$con['estado'].';';
+										$resul_estado=mysqli_query($conexao,$sql_estado);
+										$con_estado=mysqli_fetch_array($resul_estado);
+										echo ('<option value="'.$con['estado'].'" selected>'.$con_estado['nome'].'</option>');
+										//outros estados
+										$sqlsel='SELECT * FROM estado WHERE NOT id='.$con['estado'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										while ($con2=mysqli_fetch_array($resul))
+										{
+											echo
+											('
+												<option value="'.$con2['id'].'">'.$con2['nome'].'</option>
+											');
+										}
+									?>
+								</select>
+							</div>
+							<div class="form-group">
+								Cidade
+								<select name="cidade_edt" id="cidade" class="form-control">
+								  <?php
+										//cidade do cara
+										$sql_cidade='SELECT nome FROM cidade WHERE id='.$con['cidade'].';';
+										$resul_cidade=mysqli_query($conexao,$sql_cidade);
+										$con_cidade=mysqli_fetch_array($resul_cidade);
+										echo ('<option value="'.$con['cidade'].'" selected>'.$con_cidade['nome'].'</option>');
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-12">
+							<div class="form-group">
+								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
+							</div>
 							<div class="form-group">
 				                Sobre mim
 				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você" name="descricao_edt" maxlength="200"><?php echo $con['descricao'];?></textarea>

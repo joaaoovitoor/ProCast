@@ -67,7 +67,7 @@
 							</div>
 							<div class="form-group">
 								Estado
-								<select name="estado" id="estado" class="form-control">
+								<select name="estado_edt" id="estado" class="form-control">
 									<?php
 										//estado do cara
 										$sql_estado='SELECT nome FROM estado WHERE id='.$con['estado'].';';
@@ -75,7 +75,7 @@
 										$con_estado=mysqli_fetch_array($resul_estado);
 										echo ('<option value="'.$con['estado'].'" selected>'.$con_estado['nome'].'</option>');
 										//outros estados
-										$sqlsel='SELECT * FROM estado;';
+										$sqlsel='SELECT * FROM estado WHERE NOT id='.$con['estado'].';';
 										$resul=mysqli_query($conexao,$sqlsel);
 										while ($con2=mysqli_fetch_array($resul))
 										{
@@ -89,8 +89,14 @@
 							</div>
 	                        <div class="form-group">
 								Cidade
-								<select name="cidade" id="cidade" class="form-control">
-								  <option>Escolha primeiro um estado</option>
+								<select name="cidade_edt" id="cidade" class="form-control">
+								  <?php
+										//cidade do cara
+										$sql_cidade='SELECT nome FROM cidade WHERE id='.$con['cidade'].';';
+										$resul_cidade=mysqli_query($conexao,$sql_cidade);
+										$con_cidade=mysqli_fetch_array($resul_cidade);
+										echo ('<option value="'.$con['cidade'].'" selected>'.$con_cidade['nome'].'</option>');
+									?>
 								</select>
 							</div>
 						</div>
@@ -122,13 +128,19 @@
 							$sobrenome=$_POST['sobrenome_edt'];
 							$telefone=$_POST['telefone_edt'];
 							$senha=base64_encode($_POST['senha_edt']);
-							//$estado=$_POST['estado_edt'];
-							//$cidade=$_POST['telefone_edt'];
+							$estado=$_POST['estado_edt'];
+							$cidade=$_POST['cidade_edt'];
 							//edita
-							$sqledt=('UPDATE anunciante set nome_anunciante="'.$nome.'", sobrenome="'.$sobrenome.'" , senha="'.$senha.'",  telefone="'.$telefone.'" WHERE id_anunciante='.$con['id_anunciante'].' ;');
-							mysqli_query($conexao,$sqledt);
-							header('location:perfil_anunciante.php');
-							exit();	
+							$sqledt=('UPDATE anunciante set nome_anunciante="'.$nome.'", sobrenome="'.$sobrenome.'" , senha="'.$senha.'",  telefone="'.$telefone.'" ,  cidade="'.$cidade.'" ,  estado="'.$estado.'" WHERE id_anunciante='.$con['id_anunciante'].' ;');
+							$editado=mysqli_query($conexao,$sqledt);
+							if($editado)
+							{
+								echo ('<script>window.alert("Dados alterados com sucesso!");window.location.href="perfil_anunciante.php";</script>');
+							}
+							else
+							{	
+								echo ('<script>window.alert("Erro ao Editar Dados!");window.location.href="perfil_anunciante.php";</script>');
+							}	
 						}
 					?>
 				</div>

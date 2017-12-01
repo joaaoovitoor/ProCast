@@ -31,7 +31,7 @@
 				<nav>
 					<ul>
 						<li><a href="#section-linebox-1"><span>Minha Conta</span></a></li>
-						<li><a href="#section-linebox-2"><span>Adcionar Admin</span></a></li>
+						<li><a href="#section-linebox-2"><span>Adicionar Admin</span></a></li>
 					</ul>
 				</nav>
 				<div class="content-wrap">
