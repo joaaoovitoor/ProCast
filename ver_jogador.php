@@ -214,7 +214,7 @@
 				   <form action="#" method="POST">
 				   		<div class="form-group">
 				   			Motivo:
-				   			<select name="motivo">
+				   			<select name="motivo" class="form-control">
 				   				<option value="1">Informações falsas</option>
 				   				<option value="2">Vídeos de outra autoria</option>
 				   				<option value="3">Conteúdo inadequado</option>
@@ -223,7 +223,7 @@
 				   		</div>
 				   		<div class="form-group">
 				   			Descreva a denúncia:<br>
-				   			<textarea name="desc_denuncia" cols="100" rows="3" placeholder="Escreva aqui sobre os motivos da denúncia" style="resize: none;" required=""></textarea>
+				   			<textarea class="form-control" name="desc_denuncia" cols="100" rows="3" placeholder="Escreva aqui sobre os motivos da denúncia" style="resize: none;" required=""></textarea>
 				   		</div>
 				   		<div class="form-group">
 				   			<input class="form-control azul" type="submit" name="denunciar" value="Denunciar" style="width: 200px;">
