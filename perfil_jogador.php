@@ -234,7 +234,7 @@
 						<li><a href="#3"><span>Agenda</span></a></li>
 						<li><a href="#4"><span>Vídeos</span></a></li>
 						<li><a href="#5"><span>Mensagens</span></a></li>
-						<li><a href="#6"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+						<li><a href="#6"><span>Dados</span></a></li>
 					</ul>
 				</nav>
 				<div class="content-wrap">
@@ -667,7 +667,7 @@
 								Sobrenome <input type="text" class="form-control" name="sobrenome_edt"  maxlength="15" value="<?php echo $con['sobrenome'];?>">
 							</div>
 							<div class="form-group">
-								Nick <input type="text" class="form-control" name="nick_edt" maxlength="15" value="<?php echo $con['nick'];?>">
+								Nick <input type="text" class="form-control" value="<?php echo $con['nick'];?>" readonly>
 							</div>
 							<div class="form-group">
 								Função primária
@@ -782,12 +782,11 @@
 				                Sobre mim
 				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você" name="descricao_edt" maxlength="200"><?php echo $con['descricao'];?></textarea>
 				            </div>
-							<input class="form-control azul" type="submit" name="editar" value="Editar"><br>
-						</div>
-					</form>
-						<div class="col-md-12">
+							<p><input class="form-control azul" type="submit" name="editar" value="Editar"></p>
+							<p><input class="form-control azul" type="submit" name="atualizar_nick" value="Atualizar Nick"></p>
 							<input class="form-control azul" type="submit" name="excluir" value="Excluir" data-toggle="modal" data-target="#confirmar" >
 						</div>
+					</form>
 						
 						<!--Confirmar excluir-->
 						<div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -832,22 +831,33 @@
 						if(isset($_POST['editar']))
 						{
 							//resgata
-							$id_usuario=$_POST['id_usuario'];
 							$nome=$_POST['nome_edt'];
 							$sobrenome=$_POST['sobrenome_edt'];
-							$nick=$_POST['nick_edt'];
-							$funcao_1=$_POST['funcao_1_edt'];
-							$funcao_2=$_POST['funcao_2_edt'];
+							$funcao_1=$_POST['funcao1_edt'];
+							$funcao_2=$_POST['funcao2_edt'];
 							$senha=base64_encode($_POST['senha_edt']);
-							$email=$_POST['email_edt'];
 							$estado=$_POST['estado_edt'];
+							$cidade=$_POST['cidade_edt'];
 							$telefone=$_POST['telefone_edt'];
 							$descricao=$_POST['descricao_edt'];
-							//edita
-							$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", nick="'.$nick.'", funcao_1="'.$funcao_1.'", funcao_2="'.$funcao_2.'", senha="'.$senha.'", email="'.$email.'", estado="'.$estado.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE email="'.$email_usuario.'" ;');
-							mysqli_query($conexao,$sqledt);
-							header('location:verificar_perfil.php');
-							exit();	
+							//confere funções iguais
+							if ($funcao_1==$funcao_2) {
+								echo('<script>alert("As funções devem ser diferentes");</script>');
+								echo('<script>window.location="cadastro.php";</script>');
+								exit();
+							}else{
+								//edita
+								$sqledt=('UPDATE usuario set nome="'.$nome.'", sobrenome="'.$sobrenome.'", funcao_1="'.$funcao_1.'", funcao_2="'.$funcao_2.'", senha="'.$senha.'",  estado="'.$estado.'", cidade="'.$cidade.'", telefone="'.$telefone.'", descricao="'.$descricao.'" WHERE id_usuario='.$con['id_usuario'].' ;');
+								$editado=mysqli_query($conexao,$sqledt);
+								if($editado)
+								{
+									echo ('<script>window.alert("Dados alterados com sucesso!");window.location.href="perfil_jogador.php";</script>');
+								}
+								else
+								{	
+									echo ('<script>window.alert("Erro ao Editar Dados!");window.location.href="perfil_jogador.php";</script>');
+								}	
+							}
 						}
 					?>
 				</section>
