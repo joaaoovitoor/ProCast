@@ -99,7 +99,7 @@
 									<li><a href="#3"><span>Torneio</span></a></li>
 									<li><a href="#4"><span>Vídeos</span></a></li>
 									<li><a href="#5"><span>Fotos</span></a></li>
-									<li><a href="#6"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+									<li><a href="#6"><span>Dados</span></a></li>
 								</ul>
 							</nav>
 							<div class="content-wrap">

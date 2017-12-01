@@ -95,7 +95,7 @@
 						<li><a href="#2"><span>Clube</span></a></li>
 						<li><a href="#3"><span>Agenda</span></a></li>
 						<li><a href="#4"><span>Mensagens</span></a></li>
-						<li><a href="#5"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+						<li><a href="#5"><span>Dados</span></a></li>
 					</ul>
 				</nav>
 				<div class="content-wrap">
