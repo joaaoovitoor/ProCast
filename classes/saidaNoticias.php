@@ -16,7 +16,7 @@
                 {
                 ?>
                    <div class="col-sm-6 col-md-4">
-                        <a href="conteudo_noticia.php?ex= <?php echo $row['id_noticia']?>">
+                        <a href="conteudo_noticia.php?ex=<?php echo $row['id_noticia']?>">
                             <div class="thumbnail">
                                 <img src="<?php echo ('uploads/'.$row['imagem_noticia']) ?>" alt="Imagem ilustrativa da notícia">
                                 <div class="caption">

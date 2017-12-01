@@ -1,5 +1,4 @@
 <?php
-
     $noticia = $_GET['ex'];
 	include("conexao.php");
 	$select = "SELECT * FROM noticia WHERE id_noticia = '".$noticia."'";

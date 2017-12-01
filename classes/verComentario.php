@@ -19,7 +19,7 @@
 			?>	
 			<div class="row mg_tp mg_bt">
                 <div class="col-md-offset-1 col-md-1">
-                    <img src="img/perfil_icon.png" class="img-responsive img-circle">
+                    <img src=<?php echo('"uploads/'.$usuario['foto_perfil'].'"'); ?> class="perf img-circle">
                 </div>
                 <div class="col-md-6">
                     <h5 class="fonte_azul_claro"><strong><?php echo $usuario['nome']?></strong></h5>

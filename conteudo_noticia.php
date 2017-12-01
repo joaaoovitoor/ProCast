@@ -48,7 +48,12 @@
             <div class="row">
                 <h3>Comentários</h3>
                 <div class="col-md-1">
-                    <img src="img/perfil_icon.png" class="img-responsive img-circle">
+                    <?php
+                        $sqlsel='SELECT * FROM usuario;';
+                        $resul=mysqli_query($conexao,$sqlsel);
+                        $con_us=mysqli_fetch_array($resul);
+                        echo('<img src="uploads/'.$con_us['foto_perfil'].'" class="perf img-circle">');
+                    ?>
                 </div>
                 <?php if (isset($_POST['comentar'])) 
                 {
