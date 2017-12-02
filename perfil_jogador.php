@@ -14,7 +14,6 @@
   		<script src="js/modernizr.custom.js"></script>
   		<!--ESTILO PERFIL-->
   		<link rel="stylesheet" href="css/perfil/perfil.css">
-  		<script src="js/bootstrap.js"></script>
 	    <script src="js/jquery.js"></script>
 	    <script src="js/pesq_cidade.js"></script>
 		<?php
@@ -41,7 +40,7 @@
 						<div class="text-center col-xs-12">
 			        		<form action="#" method="POST" enctype="multipart/form-data">
 			        			<input type="file" name="anexo" id="anexo">
-			        			<button type="submit" class="btn btn_foto">Confirmar envio de foto</button>
+			        			<button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique no cículo acima e selecione a foto que deseja. Após isso, clique neste botão!">Confirmar envio de foto</button>
 	                        </form>
 			        	</div>
 			        	<?php
@@ -63,12 +62,12 @@
 	                            
 	                        }
 			        	?>
-
 			            <div class="row">
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
 			                    <div class="informacoes">
-			                        Nick<br><?php echo $con['nick'];?>
+			                        <p>Nick</p><p><?php echo $con['nick'];?></p>
+			                        <a href="mudarnick.php?idnick=<?php echo($con['id_nick'].'&nick='.$con['nick']) ?>"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Ao mudar de Nick dentro do jogo, clique aqui para atualiza-lo!">Atualizar Nick</button></p></a>
 			                    </div>
 			                </div>
 			            </div>
@@ -78,7 +77,7 @@
 			                    	<?php 
 			                    		if(!empty($con['clube']))
 			                    		{
-			                    			$sqlsel='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+			                    			$sqlup='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
 			                    			$resul=mysqli_query($conexao,$sqlup);
 			                    			$cl=mysqli_fetch_array($resul);
 			                    			echo
@@ -716,6 +715,9 @@
 							<div class="form-group">
 								Senha <input type="password" name="senha_edt" value="senha" maxlength="25" class="form-control">
 							</div>
+							<div class="form-group">
+								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
+							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
@@ -773,17 +775,16 @@
 									?>
 								</select>
 							</div>
+							<div class="form-group">
+								Status da conta: <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
+							</div>
 						</div>
 						<div class="col-md-12">
-							<div class="form-group">
-								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
-							</div>
 							<div class="form-group">
 				                Sobre mim
 				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você" name="descricao_edt" maxlength="200"><?php echo $con['descricao'];?></textarea>
 				            </div>
 							<p><input class="form-control azul" type="submit" name="editar" value="Editar"></p>
-							<p><input class="form-control azul" type="submit" name="atualizar_nick" value="Atualizar Nick"></p>
 							<input class="form-control azul" type="submit" name="excluir" value="Excluir" data-toggle="modal" data-target="#confirmar" >
 						</div>
 					</form>
@@ -870,32 +871,36 @@
 		include('rodape.html');
 	?>
 	<!--Validação-->
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
-    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-    <!--Modal-->
-    <script>
-	    $('#myModal').on('shown.bs.modal', function () {
-		  $('#myInput').focus()
-		})
-	</script>
-	<!-- Menu perfil -->
-	<script src="js/cbpFWTabs.js"></script>
-	<script>
-	(function() {
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	    <!--Modal-->
+	    <script>
+		    $('#myModal').on('shown.bs.modal', function () {
+			  $('#myInput').focus()
+			})
+		</script>
+		<!-- Menu perfil -->
+		<script src="js/cbpFWTabs.js"></script>
+		<script>
+		(function() {
 
-	[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-		new CBPFWTabs( el );
-	});
+		[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+			new CBPFWTabs( el );
+		});
 
-	})();
-	</script>
-	<script type="text/javascript">
-			$(".arq2").hover(function() {
-			  $(this).children("p").show();
-			}, function() {
-			  $(this).children("p").hide();
-			});
+		})();
+		</script>
+		<script type="text/javascript">
+				$(".arq2").hover(function() {
+				  $(this).children("p").show();
+				}, function() {
+				  $(this).children("p").hide();
+				});
+		</script>
+		<script>
+			  $('[data-toggle="tooltip"]').tooltip();
 		</script>
     </body>
 </html>

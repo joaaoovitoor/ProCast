@@ -5682,21 +5682,21 @@ CREATE TABLE anunciante(
 );
 
 CREATE TABLE noticia (
-  id_noticia int(11) NOT NULL auto_increment primary key,
-  titulo varchar(50) NOT NULL,
-  lide varchar(200) NOT NULL,
-  texto varchar(1000) NOT NULL,
+  id_noticia int(11) not null auto_increment primary key,
+  titulo varchar(50) not null,
+  lide varchar(200) not null,
+  texto varchar(1000) not null,
   imagem_noticia varchar(100) DEFAULT NULL,
-  data date NOT NULL,
-  categoria varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  data date not null,
+  categoria varchar(255) not null
+);
 
 CREATE TABLE categoria_noticia (
-  id_categoria_noticia int(11) NOT NULL auto_increment primary key,
-  categoria_noticia char(20) NOT NULL,
-  descri varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-INSERT INTO categoria_noticia (`id_categoria`, `nome`, `descri`) VALUES (27, 'Jogos', 'Categoria que trata sobre jogos');
+  id_categoria_noticia int(11) not null auto_increment primary key,
+  categoria_noticia char(20) not null,
+  descri varchar(255) not null
+);
+INSERT INTO categoria_noticia (`categoria_noticia`, `descri`) VALUES ('Jogos', 'Categoria que trata sobre jogos');
 
 
 CREATE TABLE comentario(
