@@ -68,6 +68,9 @@
 			                    <div class="informacoes">
 			                        <p>Nick</p><p><?php echo $con['nick'];?></p>
 			                        <a href="mudarnick.php?idnick=<?php echo($con['id_nick'].'&nick='.$con['nick']) ?>"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Ao mudar de Nick dentro do jogo, clique aqui para atualiza-lo!">Atualizar Nick</button></p></a>
+			                        <?php if($con['status_pagamento']=="F"){ ?>
+			                        <a href="boleto/boleto.php" target="_blank"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Você ainda não pagou seu boleto! Clique aqui para gera-lo! Se você já o pagou, aguarde 4 dias úteis!">Gerar boleto!</button></p></a>
+			                        <?php } ?>
 			                    </div>
 			                </div>
 			            </div>
@@ -811,7 +814,7 @@
 								</select>
 							</div>
 							<div class="form-group">
-								Status da conta: <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
+								Status da conta: <input type="text" class="form-control" name="status" value="<?php if($con['status_pagamento']=="F"){ echo "Pagamento pendente!";}else{echo 'Pagamento realizado!';} ?>" readonly>
 							</div>
 						</div>
 						<div class="col-md-12">
