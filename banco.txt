@@ -5686,7 +5686,7 @@ CREATE TABLE noticia (
   	id_noticia int(11) not null auto_increment primary key,
   	titulo varchar(50) not null,
   	lide varchar(200) not null,
-  	texto varchar(1000) not null,
+  	texto text not null,
   	imagem_noticia varchar(100) DEFAULT NULL,
   	data date not null,
   	categoria varchar(255) not null

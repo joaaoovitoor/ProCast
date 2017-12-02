@@ -55,7 +55,7 @@
 
 				move_uploaded_file($foto["tmp_name"], $caminho_imagem);// movendo a imagem do PC do usuario para pasta do servidor
 
-				echo('<script>window.alert("Cadastrado com sucesso...");window.location="gerenciamento_noticias.php";</script>');
+				
 			}
 			else // se 	ESTIVER vazio o campo foto 
 			{
@@ -65,7 +65,10 @@
 
             $sqlin='INSERT INTO noticia(titulo,lide,texto,imagem_noticia,data,categoria)VALUES ("'.$this->titulo.'","'.$this->lide.'","'.$this->texto.'","'.$nome_imagem.'","'.date("y.m.d").'","'.$this->categoria.'");';
 
-       		 mysqli_query($conexao,$sqlin);
+       		 if(mysqli_query($conexao,$sqlin))
+       		 {
+       		 	echo('<script>window.alert("Cadastrado com sucesso...");window.location="gerenciamento_noticias.php";</script>');
+       		 }
  
 		}
 	}

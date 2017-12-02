@@ -92,7 +92,7 @@
 									</div>
 									<div class="form-group col-md-12">
 										<h4>Notícia:</h4>
-										<textarea class="form-control" rows="10" name="noticia" placeholder="Digite a noticia" maxlength="1000"></textarea>
+										<textarea class="form-control" rows="10" name="noticia" placeholder="Digite a noticia" maxlength="29000"></textarea>
 									</div>
 									<div class="form-group">
 										<input type="submit" name="enviar" class="btn btn-procast btn-block" value="Publicar">
