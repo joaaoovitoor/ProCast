@@ -5654,8 +5654,9 @@ CREATE TABLE usuario(
 	cidade int(2) not null,
 	telefone char(15) not null,
 	descricao text,
-  clube int,
-	dta_criacao_conta DATETIME
+  	clube int,
+	dta_criacao_conta DATETIME,
+	status_pagamento int default="F"
 );
 
 CREATE TABLE admin(
