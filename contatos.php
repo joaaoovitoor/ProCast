@@ -231,6 +231,7 @@
 									if(mysqli_query($conexao,$sqlup))
 									{
 										echo('<script>alert("Arquivada com sucesso!");</script>');
+										header('location:contatos.php');
 
 									}
 								}
@@ -271,7 +272,7 @@
 									?>
 									<div class="botao" style="padding-bottom: 10px;">
 										<a class="btn btn-warning" href="contatos.php?arq=<?php echo($con['id_contato']); ?>"><i class="fa fa-folder-open" aria-hidden="true"></i> Arquivar</a>
-										<a class="btn btn-danger" href="contatos.php?apg=<?php echo($con['id_contato']); ?>"><i class="fa fa-close"></i> Apagar</a>
+										<a class="btn btn-danger" href="contatos.php?apg=<?php echo($con['id_contato']); ?>"><i class="fa fa-trash"></i> Apagar</a>
 										<a class="btn btn-default" href="contatos.php?msg=<?php echo($con['env']); ?>"><i class="fa fa-share"></i> Responder </a>
 										<a class="btn btn-procast" href="contatos.php?idx=<?php echo($con['id_contato']); ?>"><i class="fa fa-plus-circle "></i> Index</a>
 									</div>
@@ -288,6 +289,7 @@
 									$idx=$_GET['idx'];
 									$sqlup='update contato set elogio="V" where id_contato='.$idx.';';
 									mysqli_query($conexao,$sqlup);
+									header('location:contatos.php');
 								}
 							?>
 						</div>
@@ -295,28 +297,53 @@
 					<!--Mensagens Arquivadas-->
 					<section id="section-linebox-4">
 						<div class="container-fluid">
+							<?php
+								$sqlsel='SELECT * FROM contato WHERE arq="V" ORDER BY data_contato DESC;';
+								$resul=mysqli_query($conexao,$sqlsel);
+								
+								if (mysqli_num_rows($resul)>0)
+								{
+									while ($con=mysqli_fetch_array($resul)) 
+									{
+							?>
 							<div class="row">
 								<div class="col-md-12 mensagem_enviada">
-									<p style="font-size: 16px;"><strong>Remetente:</strong> iago@freitas.com.br</p>
-									<p style="font-size: 16px;"><strong>Motivo:</strong> Agradecimento</p>
-									<p style="font-size: 16px;"><strong>Titulo:</strong> Muito obrigado Desenvolvedores !</p>
-									<p style="font-size: 16px;"><strong>Mensagem:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet ipsum ut odio pulvinar, sit amet viverra dolor dictum. Ut hendrerit tincidunt eros, ac suscipit odio egestas quis. Maecenas varius orci et volutpat sollicitudin. Proin eget lorem diam. Nam elementum enim eu mauris dapibus vulputate. Pellentesque ultrices sollicitudin dolor ut facilisis. Cras eu dolor non orci tincidunt hendrerit. Vivamus aliquam gravida quam, vel egestas nisi ultrices ac. Phasellus ac nibh orci. Vestibulum tortor metus, molestie quis hendrerit nec, varius ac nibh. Mauris vitae est nec ante fermentum tempus suscipit ut mauris. </p>
+									<p style="font-size: 16px;"><strong>Remetente:</strong> <?php echo $con['env'];?></p>
+									<p style="font-size: 16px;"><strong>Destinatário:</strong> <?php echo $con['rec'];?></p>
+									<p style="font-size: 16px;"><strong>Motivo:</strong>
+										<?php 
+											$sqlsel2='SELECT * FROM cat_contato WHERE id_cat_contato='.$con['assunto'].';';
+											$resul2=mysqli_query($conexao,$sqlsel2);
+											$con_cat=mysqli_fetch_array($resul2);
+											echo($con_cat['descricao']);
+										?>
+									</p>
+									<p style="font-size: 16px;"><strong>Titulo:</strong> <?php echo $con['titulo'];?></p>
+									<p style="font-size: 16px;"><strong>Mensagem:</strong> <?php echo $con['descricao'];?> </p>
+									<?php 
+										if($con['imagem_contato']!=NULL){
+											echo '<p style="font-size: 16px;"><strong>Imagem: </strong><a href=uploads/'.$con['imagem_contato'].' target="blank">'.$con['imagem_contato'].'</a></p>';
+										}
+									?>
 									<div class="botao" style="padding-bottom: 10px;">
-										 <button class="btn btn-danger"><i class="fa fa-trash"></i> Excluir de forma permanente </button>
+										<a class="btn btn-danger" href="contatos.php?apg=<?php echo($con['id_contato']); ?>"><i class="fa fa-trash"></i> Apagar</a>
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-12 mensagem_enviada">
-									<p style="font-size: 16px;"><strong>Para:</strong> iago@freitas.com.br</p>
-									<p style="font-size: 16px;"><strong>Motivo:</strong> Agradecimento</p>
-									<p style="font-size: 16px;"><strong>Titulo:</strong> Muito obrigado usuário !</p>
-									<p style="font-size: 16px;"><strong>Mensagem:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet ipsum ut odio pulvinar, sit amet viverra dolor dictum. Ut hendrerit tincidunt eros, ac suscipit odio egestas quis. Maecenas varius orci et volutpat sollicitudin. Proin eget lorem diam. Nam elementum enim eu mauris dapibus vulputate. Pellentesque ultrices sollicitudin dolor ut facilisis. Cras eu dolor non orci tincidunt hendrerit. Vivamus aliquam gravida quam, vel egestas nisi ultrices ac. Phasellus ac nibh orci. Vestibulum tortor metus, molestie quis hendrerit nec, varius ac nibh. Mauris vitae est nec ante fermentum tempus suscipit ut mauris. </p>
-									<div class="botao" style="padding-bottom: 10px;">
-										<button class="btn btn-danger"><i class="fa fa-trash"></i> Excluir de forma permanente </button>
-									</div>
-								</div>
-							</div>
+							<?php
+									}
+								}
+								else
+								{
+									echo '<h3 align="center"><img src="img/triste.png"><br>Nenhuma mensagem</h3>';
+								}
+								if (isset($_GET['apg'])) {
+									$apg=$_GET['apg'];
+									$sqlex='DELETE FROM contato WHERE id_contato='.$apg.';';
+									mysqli_query($conexao,$sqlex);
+									header('location:contatos.php');
+								}
+							?>
 						</div>
 					</section>
 				</div>
