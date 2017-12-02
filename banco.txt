@@ -5730,12 +5730,14 @@ CREATE TABLE denuncia(
 
 CREATE TABLE contato(
 	id_contato int auto_increment primary key,
-	assunto int (1) not null,
+	assunto int not null,
 	data_contato TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	titulo varchar(30) not null,
 	imagem_contato varchar(100),
 	descricao varchar(1000) not null,
-	id_usuario int
+  arq char(1),
+  rec int,
+	env int
 );
 
 
@@ -5816,6 +5818,11 @@ CREATE TABLE convite(
   id_clube int(11) not null,
   status char(1) not null
 );
+CREATE TABLE cat_contato(
+  id_cat_contato int auto_increment primary key,
+  descricao varchar(30)
+);
+INSERT INTO cat_contato (descricao) VALUES ("Dicas"),("Problemas"),("Reclamações"),("Propostas"),("Elogios");
 ALTER TABLE convite ADD constraint fk_jogador_convite foreign key(id_jogador) references usuario(id_usuario);
 ALTER TABLE convite ADD constraint fk_investidor_convite foreign key(id_investidor) references usuario(id_usuario);
 ALTER TABLE convite ADD constraint fk_clube_convite foreign key(id_clube) references clube(id_clube);
@@ -5828,7 +5835,6 @@ ALTER TABLE comentario ADD constraint fk_comentario_usuario foreign key (id_usua
 ALTER TABLE anuncio ADD constraint fk_anuncio_anunciante foreign key (id_anunciante) references anunciante(id_anunciante);
 ALTER TABLE denuncia ADD constraint fk_denuncia_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE denuncia ADD constraint fk_denuncia_denunciante foreign key (id_denunciante) references usuario(id_usuario);
-ALTER TABLE contato ADD constraint fk_contato_usuario foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE colocacao ADD constraint fk_torneio_colocacao foreign key (id_torneio) references torneio(id_torneio);
 ALTER TABLE colocacao ADD constraint fk_usuario_colocacao foreign key (id_usuario) references usuario(id_usuario);
 ALTER TABLE clube ADD constraint fk_usuario_clube foreign key(id_usuario) references usuario(id_usuario);

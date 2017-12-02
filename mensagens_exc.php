@@ -118,7 +118,7 @@
                                             if (isset($_GET['fav_1']))
                                             {
                                                 $fav=$_GET['fav_1'];
-                                                $sqlup='update mensagem set favorito_env="V",excluido_env="F" where id_enviar='.$con['id_usuario'].' AND id_mensagem='.$fav.'';
+                                                $sqlup='update mensagem set favorito_env="V",excluido_env="F" where id_enviar='.$con['id_usuario'].' AND id_mensagem='.$fav.';';
                                                 mysqli_query($conexao,$sqlup);
                                                 $sqlup='update mensagem set favorito_rec="V",excluido_rec="F" where id_receber='.$con['id_usuario'].' AND id_mensagem='.$fav.'';
                                                 mysqli_query($conexao,$sqlup);

@@ -1,6 +1,6 @@
 <?php 
-	include('menu-admin.html');
-	include('conexao.php');
+	include('verificar_admin.php');
+	include("menu-admin.html");
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,21 +80,55 @@
 						<h1 class="text-center"> Nova mensagem</h1>
 						<div class="container-fluid">
 							<div class="row">
-								<form method="POST" action="#">
+								<form method="POST" action="#" enctype="multipart/form-data">
 									<div class="form-group col-md-6">
 										<h4>Titulo da mensagem:</h4>
 										<input type="text" name="titulo_mensagem" placeholder="Título da mensagem" class="form-control">
 									</div>
 									<div class="form-group col-md-6">
-										<h4>Motivo da mensagem:</h4>
-										<input type="text" name="motivo_mensagem" placeholder="Motívo da mensagem" class="form-control">
+										<h4>Selecione um assunto:</h4>
+										<select name="assunto" class="form-control">
+											<option value="0" class="disabled">Selecione um assunto</option>
+											<?php
+												$sqlsel='SELECT * FROM cat_contato;';
+												$resul=mysqli_query($conexao,$sqlsel);
+												while ($controler=mysqli_fetch_array($resul)) {
+													echo
+													('
+														<option value="'.$controler['id_cat_contato'].'">'.$controler['descricao'].'</option>
+													');
+												}
+											?>
+										</select>
 									</div>
 									<div class="form-group col-md-12">
 										<h4>Destinatário:</h4>
-										<input type="mail" name="destino" class="form-control" placeholder="Digite o email aqui">
+										<?php
+											if (isset($_GET['msg'])) {
+												$id=$_GET['msg'];
+												$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$id.';';
+												$resul=mysqli_query($conexao,$sqlsel);
+												$controler=mysqli_fetch_array($resul);
+												echo
+												('
+													<input type="email" name="destino" class="form-control" value="'.$controler['email'].'" >
+												');
+											}
+											else
+											{
+												echo
+												('
+													<input type="email" name="destino" class="form-control" placeholder="Digite o email aqui">
+												');
+											}
+										?>
+										
 									</div>
 									<div class="form-group col-md-12">
 										<textarea class="form-control" rows="10" name="mensagem" placeholder="Digite sua mensagem"></textarea>
+									</div>
+									<div class="form-group col-md-4">
+										<input type="file" class="form-control" name="anexo" id="anexo">
 									</div>
 									<div class="form-group">
 										<input type="submit" name="enviar" class="btn btn-block btn-procast" value="Enviar mensagem">
@@ -102,44 +136,100 @@
 								</form>
 							</div>	
 						</div>
-						
+						<?php
+							if (isset($_POST['enviar'])) 
+							{
+								$titulo=$_POST['titulo_mensagem'];
+								$assunto=$_POST['assunto'];
+								$destino=$_POST['destino'];
+								$mensagem=$_POST['mensagem'];
+								if (!empty($titulo)&&!empty($assunto)&&!empty($destino)&&!empty($mensagem))
+								{
+									$sqlsel='select * from usuario where email="'.$destino.'";';
+				                    $resul=mysqli_query($conexao,$sqlsel);
+				                    if(mysqli_num_rows($resul))
+                    				{
+                    					$con2=mysqli_fetch_array($resul);
+                    					if (isset($_FILES['anexo']))
+				                        {
+				                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+				                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+				                            $diretorio="uploads/";
+				                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+				                            //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
+				                            $sqlin='INSERT INTO contato(assunto,data_contato,titulo,imagem_contato,descricao,rec,env) VALUES ('.$assunto.',NOW(),"'.$titulo.'","'.$novo_nome.'","'.$mensagem.'",'.$con2['id_usuario'].','.$con['id_admin'].');';
+				                        }
+				                        else
+				                        {
+				                            $sqlin='INSERT INTO contato(assunto,data_contato,titulo,descricao,rec,env) VALUES ('.$assunto.',NOW(),"'.$titulo.'","'.$mensagem.'",'.$con2['id_usuario'].','.$con['id_admin'].');';
+				                        }
+				                        mysqli_query($conexao,$sqlin);
+				                        echo('<script>alert("Mensagem enviada");</script>');
+				                        echo('<script>window.location="rascunhos.php";</script>');
+                    				}
+                    				else
+				                    {
+				                        echo('<script>alert("Destino não cadastrado");</script>');
+				                    }
+
+				                    
+								}
+								else
+								{
+									echo('<script>alert("Preencha todos os campos!");</script>');
+									header('location:contatos.php');
+								}
+							}
+						?>						
 					</section>
 					<!-- Mensagens criadas -->
 					<section id="section-linebox-2">
 						<div class="container-fluid">
-							<div class="row">
-								<div class="col-md-12 mensagem_enviada">
-									<p style="font-size: 16px;"><strong>Para:</strong> iago@freitas.com.br</p>
-									<p style="font-size: 16px;"><strong>Motivo:</strong> Agradecimento</p>
-									<p style="font-size: 16px;"><strong>Titulo:</strong> Muito obrigado usuário !</p>
-									<p style="font-size: 16px;"><strong>Mensagem:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet ipsum ut odio pulvinar, sit amet viverra dolor dictum. Ut hendrerit tincidunt eros, ac suscipit odio egestas quis. Maecenas varius orci et volutpat sollicitudin. Proin eget lorem diam. Nam elementum enim eu mauris dapibus vulputate. Pellentesque ultrices sollicitudin dolor ut facilisis. Cras eu dolor non orci tincidunt hendrerit. Vivamus aliquam gravida quam, vel egestas nisi ultrices ac. Phasellus ac nibh orci. Vestibulum tortor metus, molestie quis hendrerit nec, varius ac nibh. Mauris vitae est nec ante fermentum tempus suscipit ut mauris. </p>
-									<div class="botao" style="padding-bottom: 10px;">
-										<button class="btn btn-procast"><i class="fa fa-close"></i> Arquivar</button>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12 mensagem_enviada">
-									<p style="font-size: 16px;"><strong>Para:</strong> iago@freitas.com.br</p>
-									<p style="font-size: 16px;"><strong>Motivo:</strong> Agradecimento</p>
-									<p style="font-size: 16px;"><strong>Titulo:</strong> Muito obrigado usuário !</p>
-									<p style="font-size: 16px;"><strong>Mensagem:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet ipsum ut odio pulvinar, sit amet viverra dolor dictum. Ut hendrerit tincidunt eros, ac suscipit odio egestas quis. Maecenas varius orci et volutpat sollicitudin. Proin eget lorem diam. Nam elementum enim eu mauris dapibus vulputate. Pellentesque ultrices sollicitudin dolor ut facilisis. Cras eu dolor non orci tincidunt hendrerit. Vivamus aliquam gravida quam, vel egestas nisi ultrices ac. Phasellus ac nibh orci. Vestibulum tortor metus, molestie quis hendrerit nec, varius ac nibh. Mauris vitae est nec ante fermentum tempus suscipit ut mauris. </p>
-									<div class="botao" style="padding-bottom: 10px;">
-										<button class="btn btn-procast"><i class="fa fa-close"></i> Arquivar</button>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12 mensagem_enviada">
-									<p style="font-size: 16px;"><strong>Para:</strong> iago@freitas.com.br</p>
-									<p style="font-size: 16px;"><strong>Motivo:</strong> Agradecimento</p>
-									<p style="font-size: 16px;"><strong>Titulo:</strong> Muito obrigado usuário !</p>
-									<p style="font-size: 16px;"><strong>Mensagem:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet ipsum ut odio pulvinar, sit amet viverra dolor dictum. Ut hendrerit tincidunt eros, ac suscipit odio egestas quis. Maecenas varius orci et volutpat sollicitudin. Proin eget lorem diam. Nam elementum enim eu mauris dapibus vulputate. Pellentesque ultrices sollicitudin dolor ut facilisis. Cras eu dolor non orci tincidunt hendrerit. Vivamus aliquam gravida quam, vel egestas nisi ultrices ac. Phasellus ac nibh orci. Vestibulum tortor metus, molestie quis hendrerit nec, varius ac nibh. Mauris vitae est nec ante fermentum tempus suscipit ut mauris. </p>
-									<div class="botao" style="padding-bottom: 10px;">
-										<button class="btn btn-procast"><i class="fa fa-close"></i> Arquivar</button>
-									</div>
-								</div>
-							</div>
+							<?php
+								$sqlsel='SELECT * FROM contato WHERE id_usuario!='.$con['id_admin'].';';
+								$resul=mysqli_query($conexao,$sqlsel);
+								if (mysqli_num_rows($resul)) 
+								{
+									while ($controler=mysqli_fetch_array($resul))
+									{
+										$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$controler['id_usuario'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										$controler_usuario=mysqli_fetch_array($resul);
+										$sqlsel='SELECT * FROM cat_contato WHERE id_cat_contato='.$controler['assunto'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										$controler_cat=mysqli_fetch_array($resul);
+										echo
+										('
+											<div class="row">
+												<div class="col-md-12 mensagem_enviada">
+													<p style="font-size: 16px;"><strong>Para: </strong> '.$controler_usuario['email'].'</p>
+													<p style="font-size: 16px;"><strong>Motivo:</strong> '.$controler_cat['descricao'].'</p>
+													<p style="font-size: 16px;"><strong>Titulo:</strong> '.$controler['titulo'].'</p>
+													<p style="font-size: 16px;"><strong>Mensagem:</strong> '.$controler['descricao'].'</p>
+													<div class="botao" style="padding-bottom: 10px;">
+														<a class="btn btn-procast" href="contatos.php?up='.$controler['id_contato'].'"><i class="fa fa-close"></i> Arquivar</a>
+													</div>
+												</div>
+											</div>
+										');
+									}
+	
+								}
+								else
+								{
+									echo '<h3 align="center"><img src="img/triste.png"><br>Nenhuma mensagem</h3>';
+								}
+								if (isset($_GET['up'])) {
+									$id_up=$_GET['up'];
+									$sqlup='update contato set arq="V" where id_contato='.$id_up.';';
+									if(mysqli_query($conexao,$sqlup))
+									{
+										echo('<script>alert("Arquivada com sucesso!");</script>');
+
+									}
+								}
+							?>
+
 						</div>
 					</section>
 					<!-- Mensagens reebidas -->

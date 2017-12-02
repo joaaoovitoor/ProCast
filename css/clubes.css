@@ -1,3 +1,7 @@
+.perf{
+	width: 200px;
+	height: 200px !important;
+}
 .bg-procast
 {
 	background-color: #333333;

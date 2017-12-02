@@ -40,11 +40,16 @@
 								<div class="col-md-6">
 									<select name="assunto" class="form-control input-lg">
 										<option value="0" class="disabled">Selecione um assunto</option>
-										<option value="1">Dicas</option>
-										<option value="2">Problemas</option>
-										<option value="3">Reclamações</option>
-										<option value="4">Propostas</option>
-										<option value="5">Elogios</option>
+										<?php
+											$sqlsel='SELECT * FROM cat_contato;';
+											$resul=mysqli_query($conexao,$sqlsel);
+											while ($controler=mysqli_fetch_array($resul)) {
+												echo
+												('
+													<option value="'.$controler['id_cat_contato'].'">'.$controler['descricao'].'</option>
+												');
+											}
+										?>
 									</select>
 								</div>
 								<div class="col-md-12 mg_tp">
