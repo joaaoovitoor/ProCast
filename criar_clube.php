@@ -84,34 +84,31 @@
 				{
 					$nome = $_POST['nome'];
 					$descricao = $_POST['descricao'];
-					if(!isset($_FILES['anexo']))
+					if(isset($_FILES['anexo']))
 					{
-						echo '<script>window.alert("Sem img");</script>';
 						if(empty($nome) or empty($descricao))
 						{
 							echo ('<script>window.alert("Digite todos os dados");</script>');
 						}
 						else
 						{
-							$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("club_icon.png","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
-							$inserir=mysqli_query($conexao,$sqlin);
+							if($_FILES['anexo']['error']==4)
+							{
+								$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("club_icon.png","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
+								$inserir=mysqli_query($conexao,$sqlin);
+							}
+							else
+							{
+								$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+				                $novo_nome=md5(time().$con['id_usuario']).$extensao;
+				                $diretorio="uploads/";
+				                move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+									$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$novo_nome.'","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
+									$inserir=mysqli_query($conexao,$sqlin);
+
+							}
 						}
-					}
-					else{
-						echo '<script>window.alert("Com img");</script>';
-		                $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
-		                $novo_nome=md5(time().$con['id_usuario']).$extensao;
-		                $diretorio="uploads/";
-		                move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
-						if(empty($nome) or empty($descricao))
-						{
-							echo ('<script>window.alert("Digite todos os dados");</script>');
-						}
-						else
-						{
-							$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$novo_nome.'","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
-							$inserir=mysqli_query($conexao,$sqlin);
-						}
+						
 					}
 					if($inserir)
 					{

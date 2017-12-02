@@ -225,15 +225,23 @@
 				   		<div class="form-group">
 				   			Motivo:
 				   			<select name="motivo" class="form-control">
-				   				<option value="1">Informações falsas</option>
-				   				<option value="2">Vídeos de outra autoria</option>
-				   				<option value="3">Conteúdo inadequado</option>
-				   				<option value="4">Comportamento indevido</option>
+				   				<?php
+				   					$sql_mtv='SELECT * FROM tipo_denuncia;';
+				   					$resul=mysqli_query($conexao,$sql_mtv);
+				   					while ($con_mtv=mysqli_fetch_array($resul))
+				   					{
+				   						echo
+				   						('
+											<option value="'.$con_mtv['id_tipo'].'">'.$con_mtv['descricao_denuncia'].'</option>
+				   						');
+				   					}
+
+				   				?>
 				   			</select>
 				   		</div>
 				   		<div class="form-group">
 				   			Descreva a denúncia:<br>
-				   			<textarea class="form-control" name="desc_denuncia" cols="100" rows="3" placeholder="Escreva aqui sobre os motivos da denúncia" style="resize: none;" required=""></textarea>
+				   			<textarea class="form-control" name="desc_denuncia" cols="100" rows="3" placeholder="Escreva aqui sobre os motivos da denúncia" style="resize: none;" required="" maxlength="100"></textarea>
 				   		</div>
 				   		<div class="form-group">
 				   			<input class="form-control azul" type="submit" name="denunciar" value="Denunciar" style="width: 200px;">
@@ -253,17 +261,19 @@
 				   			else
 				   			{
 				   				$sqlden='INSERT INTO denuncia(descricao_denuncia, tipo_denuncia, data_denuncia, id_usuario, id_denunciante) 
-				   				VALUES ("'.$desc_denuncia.'","'.$motivo.'", NOW(),'.$dados_perf['id_usuario'].','.$con['id_usuario'].');';
+				   				VALUES ("'.$desc_denuncia.'",'.$motivo.', NOW(),'.$dados_perf['id_usuario'].','.$con['id_usuario'].');';
 				   				$den=mysqli_query($conexao,$sqlden);
 				   				if($den)
 				   				{
+				   					$id=urlencode($dados_perf['nick']);
 				   					echo('<script>alert("Denuncia realizada com sucesso!");</script>');
-									echo('<script>window.location="ver_jogador.php";</script>');
+									echo('<script>window.location="ver_jogador.php?pesq='.$id.'";</script>');
 				   				}
 				   				else
 				   				{
+				   					$id=urlencode($dados_perf['nick']);
 				   					echo('<script>alert("Erro ao fazer denúncia!");</script>');
-									echo('<script>window.location="ver_jogador.php";</script>');
+									echo('<script>window.location="ver_jogador.php?pesq='.$id.'";</script>');
 				   				}
 				   			}
 				   		}

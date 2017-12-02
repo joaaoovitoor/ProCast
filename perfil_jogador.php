@@ -751,7 +751,7 @@
 								</select>
 							</div>
 							<div class="form-group">
-								Senha <input type="password" name="senha_edt" value="<?php echo base64_decode($con['senha']); ?>"maxlength="25" class="form-control">
+								Senha <input type="password" name="senha_edt" value="<?php echo base64_decode($con['senha']); ?>" maxlength="25" class="form-control">
 							</div>
 							<div class="form-group">
 								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
@@ -823,7 +823,7 @@
 				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você" name="descricao_edt" maxlength="200"><?php echo $con['descricao'];?></textarea>
 				            </div>
 							<p><input class="form-control azul" type="submit" name="editar" value="Editar"></p>
-							<input class="form-control azul" type="submit" name="excluir" value="Excluir" data-toggle="modal" data-target="#confirmar" >
+							<a class="form-control azul text-center" data-toggle="modal" data-target="#confirmar" >Excluir</a>
 						</div>
 					</form>
 						

@@ -5723,12 +5723,16 @@ CREATE TABLE anuncio(
 CREATE TABLE denuncia(
 	id_denuncia int auto_increment primary key,
 	descricao_denuncia varchar(100) not null,
-	tipo_denuncia char(1) not null,
+	tipo_denuncia int not null,
 	data_denuncia DATETIME,
 	id_usuario int,
 	id_denunciante int
 );
-
+CREATE TABLE tipo_denuncia(
+  id_tipo int auto_increment primary key,
+  descricao_denuncia varchar(100) not null
+);
+INSERT INTO tipo_denuncia(descricao_denuncia) VALUES ('Informações falsas'),('Vídeos de outra autoria'),('Conteúdo inadequado'),('Comportamento indevido');
 CREATE TABLE contato(
 	id_contato int auto_increment primary key,
 	assunto int not null,

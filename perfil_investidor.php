@@ -8,18 +8,18 @@
 <html lang="pt-br">
 	<head>
         <title>Perfil</title>
-        <meta charset="utf-8">
 	    <!--MENU PERFIL-->
 	    <link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />
   		<script src="js/modernizr.custom.js"></script>
   		<!--ESTILO PERFIL-->
   		<link rel="stylesheet" href="css/perfil/perfil.css">
-  		<script src="js/bootstrap.js"></script>
 	    <script src="js/jquery.js"></script>
+	    <script src="js/pesq_cidade.js"></script>
 		<?php
 			include('link_head.html');
 		?>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	</head>
 	<body>
 	<?php
@@ -31,7 +31,37 @@
 				<!-- CARD COM INFORMAÇÕES - GRANDE -->
 				<div class="col-md-offset-0 col-md-5 hidden-sm hidden-xs">
 			        <div class="cartao-grande spc-cartao">
-			            <img src="img/perfil_icon.png" class="img-circle">
+			        	<div class="col-md-offset-4 col-md-4">
+			        		<?php
+			        			$cam='uploads/'.$con['foto_perfil'];
+			        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"><p class="text-center">Clique para escolher uma nova foto</p></label>');
+			        		?>
+			        	</div>
+						<div class="text-center col-xs-12">
+			        		<form action="#" method="POST" enctype="multipart/form-data">
+			        			<input type="file" name="anexo" id="anexo">
+			        			<button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique no cículo acima e selecione a foto que deseja. Após isso, clique neste botão!">Confirmar envio de foto</button>
+	                        </form>
+			        	</div>
+			        	<?php
+			        		if (isset($_FILES['anexo']))
+	                        {
+	                        	$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+	                            $diretorio="uploads/";
+	                        	if(move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome))
+	                        	{
+	                        		$sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+		                            mysqli_query($conexao,$sqlup);
+		                            echo('<script>window.location="verificar_perfil.php";</script>');
+	                        	}
+	                        	else
+	                        	{
+	                        		echo('<script>swal("Primeiro escolha uma nova foto", "Para escolher uma foto nova clique sobre a antiga", "error");</script>');
+	                        	}
+	                            
+	                        }
+			        	?>
 			            <div class="row">
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
@@ -489,6 +519,13 @@
 	});
 
 	})();
+	</script>
+	<script type="text/javascript">
+		$(".arq2").hover(function() {
+		  $(this).children("p").show();
+		}, function() {
+		  $(this).children("p").hide();
+		});
 	</script>
     </body>
 </html>
