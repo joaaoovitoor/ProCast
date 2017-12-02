@@ -35,12 +35,7 @@
 			        <div class="cartao-grande spc-cartao">
 			        	<div class="col-md-offset-4 col-md-4">
 			        		<?php
-			        			if($dados_perf['foto_perfil']){
-			        				$cam='uploads/'.$dados_perf['foto_perfil'];
-			        			}
-			        			else{
-			        				$cam='img/perfil_icon.png';
-			        			}
+			        			$cam='uploads/'.$dados_perf['foto_perfil'];
 			        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"></label>');
 			        		?>
 			        	</div>
@@ -56,13 +51,37 @@
 			            </div>
 			            <div class="clube-cartao">
 			                <div class="row">
-			                    <div class="col-sm-6">
-			                        <span class="coach-name"><p>Clube</p></span>
-			                        <span class="coach-job"><p>Red Canids</p></span>
-			                    </div>
-			                    <div class="col-sm-6">
-			                        <img src="img/logo_redcanids.png" width="100">
-			                    </div>
+			                    
+			                    	<?php 
+			                    		if(!empty($dados_perf['clube']))
+			                    		{
+			                    			$sqlup='SELECT * FROM clube WHERE id_clube='.$dados_perf['clube'].';';
+			                    			$resul=mysqli_query($conexao,$sqlup);
+			                    			$cl=mysqli_fetch_array($resul);
+			                    			echo
+			                    			('
+			                    				<div class="col-sm-6">
+				                    				<span class="coach-name"><p>Clube</p></span>
+				                        			<span class="coach-job"><p>'.$cl['nome_clube'].'</p></span>
+			                        			</div>
+							                    <div class="col-sm-6">
+							                        <img src="uploads/'.$cl['logo_clube'].'" width="100">
+							                    </div>
+			                    			');
+			                    		}
+			                    		else
+			                    		{
+			                    			echo
+			                    			('
+			                    				<div class="col-sm-12">
+				                    				<span class="coach-name"><p>Você ainda não está em um clube</p></span>
+				                        			<span class="coach-job"><p>Fique atento na aba de convites</p></span>
+			                        			</div>
+			                    			');
+			                    		}
+			                    	?>
+			                        
+			                    
 			                </div>
 			            </div>
 			            <div class="descricao">
@@ -134,40 +153,31 @@
 				<!--MENU - CLUBE-->
 				<section id="1">
 		            <?php 
-					$sqlclube='SELECT * FROM clube WHERE id_usuario='.$dados_perf['id_usuario'].';';
-					$resulclube = mysqli_query($conexao,$sqlclube);
-					$dados=mysqli_fetch_array($resulclube);
-					$rows=mysqli_num_rows($resulclube);
-					if($rows>0)
-					{
-						$dataexplode = explode("-",$dados['dta_criacao']);
-						$cont=2;
-						for($i=0;$i<3;$i++)
+		            if(!empty($dados_perf['clube']))
+		            {
+						$sqlclube='SELECT * FROM clube WHERE id_clube='.$dados_perf['clube'].';';
+						$resulclube = mysqli_query($conexao,$sqlclube);
+						$dados=mysqli_fetch_array($resulclube);
+						$rows=mysqli_num_rows($resulclube);
+						if($rows>0)
 						{
-							$datainv[$i]=$dataexplode[$cont];
-							$cont--;
+							$dataexplode = explode("-",$dados['dta_criacao']);
+							$cont=2;
+							for($i=0;$i<3;$i++)
+							{
+								$datainv[$i]=$dataexplode[$cont];
+								$cont--;
+							}
+							$datacerto=implode("/", $datainv);
+							?>
+							<div class="cartao-equipe cinza">
+								<img src="uploads/<?php echo($dados['logo_clube']); ?>">
+								<h2><?php echo($dados['nome_clube']); ?></h2>
+								<?php echo($dados['descricao_clube']); ?><br>
+								<small class="text-muted">Data de criação: <?php echo($datacerto); ?></small>
+							</div>
+					    	<?php 	
 						}
-						$datacerto=implode("/", $datainv);
-						echo "Jogadores do seu clube:";
-						for($v=0;$v<$rows;$v++){ 
-						?>
-			            <div class="cartao-equipe">
-			                <div class="media">
-			                    <div class="media-left">
-			                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-			                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-			                    </div>
-			                    <div class="media-body">
-			                        <h3 class="media-heading">Nick carinha</h3>
-			                        <h5>Nome carinha</h5>
-			                        <p>Função primária: Atirador</p>
-			                        <p>Função primária: Meio</p> 
-			                        <p>Posição: Alguma coisa</p>
-			                    </div>
-			                </div>
-			            </div>
-			        <?php 
-			    		}
 					}
 					else{
 						echo 'Usuário não participa de nenhum clube!';

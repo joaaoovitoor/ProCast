@@ -42,13 +42,36 @@
 			            </div>
 			            <div class="clube-cartao">
 			                <div class="row">
-			                    <div class="col-sm-6">
-			                        <span class="coach-name"><p>Clube</p></span>
-			                        <span class="coach-job"><p>Red Canids</p></span>
-			                    </div>
-			                    <div class="col-sm-6">
-			                        <img src="img/logo_redcanids.png" width="100">
-			                    </div>
+			                    
+			                    	<?php 
+			                    		if(!empty($con['clube']))
+			                    		{
+			                    			$sqlup='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+			                    			$resul=mysqli_query($conexao,$sqlup);
+			                    			$cl=mysqli_fetch_array($resul);
+			                    			echo
+			                    			('
+			                    				<div class="col-sm-6">
+				                    				<span class="coach-name"><p>Clube</p></span>
+				                        			<span class="coach-job"><p>'.$cl['nome_clube'].'</p></span>
+			                        			</div>
+							                    <div class="col-sm-6">
+							                        <img src="uploads/'.$cl['logo_clube'].'" width="100">
+							                    </div>
+			                    			');
+			                    		}
+			                    		else
+			                    		{
+			                    			echo
+			                    			('
+			                    				<div class="col-sm-12">
+				                    				<span class="coach-name"><p>Você não criou seu clube</p></span>
+			                        			</div>
+			                    			');
+			                    		}
+			                    	?>
+			                        
+			                    
 			                </div>
 			            </div>
 			            <div class="descricao">
@@ -69,7 +92,29 @@
 					<div class="cartao">
 					 <img src="img/perfil_icon.png" class="img-circle">
                         <p>Nome: <?php echo $con['nome'];?> </p>
-                        <p>Clube: Red Canids</p>
+                        <p>Clube: 
+	                    	<?php 
+	                    		if(!empty($con['clube']))
+	                    		{
+	                    			$sqlup='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+	                    			$resul=mysqli_query($conexao,$sqlup);
+	                    			$cl=mysqli_fetch_array($resul);
+	                    			echo
+	                    			(
+	                    				$cl['nome_clube']
+	                    			);
+	                    		}
+	                    		else
+	                    		{
+	                    			echo
+	                    			('
+	                    				<div class="col-sm-12">
+		                    				<span class="coach-name"><p>Você não criou seu clube</p></span>
+	                        			</div>
+	                    			');
+	                    		}
+	                    	?>
+                    	</p>
 		                <p>SOBRE MIM:
 		                <?php
 		                    if($con['descricao']==NULL){
@@ -102,11 +147,63 @@
 				<!--MENU - JOGADORES-->
 				<section id="1">
 					<?php 
+					//dados do clube
 					$sqlclube='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
 					$resulclube = mysqli_query($conexao,$sqlclube);
 					$dados=mysqli_fetch_array($resulclube);
-					$rows=mysqli_num_rows($resulclube);
-					if($rows>0)
+
+					//dados dos membros do clube
+					$sqlusercb='SELECT * FROM usuario WHERE clube='.$dados['id_clube'].' AND categoria_usuario=1;';
+					$resulusercb=mysqli_query($conexao,$sqlusercb);
+
+					if(mysqli_num_rows($resulclube)>0)
+					{
+						echo "Jogadores do seu clube:";
+						if(mysqli_num_rows($resulusercb)>0)
+						{
+							while($membrosclube=mysqli_fetch_array($resulusercb))
+							{
+								$sqlf1='SELECT nome_funcao FROM funcao WHERE id_funcao='.$membrosclube['funcao_1'].';';
+								$resulf1=mysqli_query($conexao,$sqlf1);
+								$conf1=mysqli_fetch_array($resulf1);
+
+								$sqlf2='SELECT nome_funcao FROM funcao WHERE id_funcao='.$membrosclube['funcao_2'].';';
+								$resulf2=mysqli_query($conexao,$sqlf2);
+								$conf2=mysqli_fetch_array($resulf2);
+							?>
+				            <div class="cartao-equipe">
+				                <div class="media">
+				                    <div class="media-left">
+				                        <img class="media-object img-circle profile-img" src="uploads/<?php echo $membrosclube['foto_perfil']; ?>">
+				                        <a class="btn btn-default " href="escrever_mensagem.php?rm=<?php echo $membrosclube['id_usuario']; ?>"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a>
+				                    </div>
+				                    <div class="media-body">
+				                        <a href="ver_jogador.php?pesq=<?php echo $membrosclube['nick']; ?>"><h3 class="media-heading"><?php echo $membrosclube['nick']; ?></h3></a>
+				                        <h5><?php echo $membrosclube['nome']." ".$membrosclube['sobrenome']; ?></h5>
+				                        <p>Função primária: <?php echo $conf1['nome_funcao']; ?></p>
+				                        <p>Função primária: <?php echo $conf2['nome_funcao']; ?></p> 
+				                    </div>
+				                </div>
+				            </div>
+				        <?php 
+				        	}
+			    		}
+			    		else
+			    		{
+			    			echo '<h3 align="center"><img src="img/triste.png"><br>Seu clube ainda não tem jogadores! <a href="pesquisa.php">Encontre-os!</a></h3>';
+			    		}
+					}
+					else
+					{
+						echo '<h3 align="center"><img src="img/triste.png"><br>Você ainda não criou seu clube! <a href="criar_clube.php">Crie seu clube!</a></h3>';
+					}
+					?>
+				</section>
+				<!--MENU - CLUBE-->
+				<section id="2">
+					<div class="cartao-equipe cinza">
+					<?php 
+					if(mysqli_num_rows($resulclube)>0)
 					{
 						$dataexplode = explode("-",$dados['dta_criacao']);
 						$cont=2;
@@ -116,38 +213,6 @@
 							$cont--;
 						}
 						$datacerto=implode("/", $datainv);
-						echo "Jogadores do seu clube:";
-						for($v=0;$v<$rows;$v++){ 
-						?>
-			            <div class="cartao-equipe">
-			                <div class="media">
-			                    <div class="media-left">
-			                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-			                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-			                    </div>
-			                    <div class="media-body">
-			                        <h3 class="media-heading">Nick carinha</h3>
-			                        <h5>Nome carinha</h5>
-			                        <p>Função primária: Atirador</p>
-			                        <p>Função primária: Meio</p> 
-			                        <p>Posição: Alguma coisa</p>
-			                    </div>
-			                </div>
-			            </div>
-			        <?php 
-			    		}
-					}
-					else{
-						echo '<h3 align="center"><img src="img/triste.png"><br>Você ainda não criou seu clube! <a href="criar_clube.php">Crie seu clube!</a></h3>';
-					}
-					?>
-				</section>
-				<!--MENU - CLUBE-->
-				<section id="2">
-					<div class="cartao-equipe cinza">
-					<?php 
-					if(isset($datacerto))
-					{
 					?>
 						<img src="uploads/<?php echo($dados['logo_clube']); ?>">
 						<h2><?php echo($dados['nome_clube']); ?></h2>
@@ -202,74 +267,59 @@
 				</section>
 				<!--MENU - MENSAGEM-->
 				<section id="4">
-					<div class="message-item" id="m16">
-						<div class="message-inner">
-							<div class="message-head clearfix">
-								<div class="avatar pull-left"><img src="img/perfil_icon.png" class="img-circle" width="40px"></div>
-								<div class="user-detail">
-									<h5 class="handle">Nome do carinha</h5>
-									<div class="post-meta">
-										<div class="asker-meta">
-											<span class="qa-message-what"></span>
-											<span class="qa-message-when">
-												<span class="qa-message-when-data">Dia 20/08/2017</span>
-											</span>
+					<?php 
+						$sqlsel='SELECT * FROM mensagem WHERE id_receber='.$con['id_usuario'].' AND view="F";';
+						$resul=mysqli_query($conexao,$sqlsel);
+						if(mysqli_num_rows($resul))
+						{
+							while($con_msg=mysqli_fetch_array($resul))
+							{
+								$sqlsel='select * from usuario where id_usuario="'.$con_msg['id_enviar'].'";';
+                                $resul2=mysqli_query($conexao,$sqlsel);
+                                $con_nick=mysqli_fetch_array($resul2);
+					?>
+							<a href=<?php echo('"conteudo_msg.php?msg='.$con_msg['id_mensagem'].'"'); ?>>
+								<div class="message-item" id="m16">
+									<div class="message-inner">
+										<div class="message-head clearfix">
+											<div class="avatar pull-left"><img src=<?php echo('"uploads/'.$con_nick['foto_perfil'].'"'); ?> class="img-circle" width="40px"></div>
+											<div class="user-detail">
+												<h5 class="handle"><?php echo($con_nick['nick']); ?></h5>
+												<div class="post-meta">
+													<div class="asker-meta">
+														<span class="qa-message-what"></span>
+														<span class="qa-message-when">
+															<span class="qa-message-when-data"><?php echo($con_msg['data']); ?></span>
+														</span>
+													</div>
+												</div>
+												<p>
+													<div class="qa-message-content">
+														<?php
+															echo($con_msg['mensagem']);
+														?>
+													</div>
+												</p>
+											</div>
 										</div>
+										
 									</div>
 								</div>
-							</div>
-							<div class="qa-message-content">
-								Oi, tudo bom?
-							</div>
-						</div>
-					</div>
-					<!--Fim da mensagem-->
-					<!--Início da mensagem-->
-					<div class="message-item" id="m16">
-						<div class="message-inner">
-							<div class="message-head clearfix">
-								<div class="avatar pull-left"><img src="img/perfil_icon.png" class="img-circle" width="40px"></div>
-								<div class="user-detail">
-									<h5 class="handle">Nome do carinha</h5>
-									<div class="post-meta">
-										<div class="asker-meta">
-											<span class="qa-message-what"></span>
-											<span class="qa-message-when">
-												<span class="qa-message-when-data">Dia 20/08/2017</span>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="qa-message-content">
-								Beleza?
-							</div>
-						</div>
-					</div>
-					<!--Fim da mensagem-->
-					<!--Início da mensagem-->
-					<div class="message-item" id="m16">
-						<div class="message-inner">
-							<div class="message-head clearfix">
-								<div class="avatar pull-left"><img src="img/perfil_icon.png" class="img-circle" width="40px"></div>
-								<div class="user-detail">
-									<h5 class="handle">Nome do carinha</h5>
-									<div class="post-meta">
-										<div class="asker-meta">
-											<span class="qa-message-what"></span>
-											<span class="qa-message-when">
-												<span class="qa-message-when-data">Dia 20/08/2017</span>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="qa-message-content">
-								Eai?
-							</div>
-						</div>
-					</div>
-					<!--Fim da mensagem-->
+							</a>
+					<?php
+							}
+						}
+						else
+						{
+							echo
+							('
+								<h1 class="text-center"><img src="img/triste.png"></h1>
+								<h3 class="text-center">Você não possui nenhuma mensagem não lida</h3>
+
+							');
+						}
+						
+					?>
 				</section>
 				<!--MENU - ALTERAR-->
 				<section id="5">

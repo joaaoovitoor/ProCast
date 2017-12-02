@@ -90,7 +90,9 @@
 							</div>	
 						</div>
 				</section>
-
+			</div>
+		</div>
+	</section>
 		<?php 
 			if(isset($_POST['criar_admin']))
 			{

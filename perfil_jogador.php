@@ -14,7 +14,6 @@
   		<script src="js/modernizr.custom.js"></script>
   		<!--ESTILO PERFIL-->
   		<link rel="stylesheet" href="css/perfil/perfil.css">
-  		<script src="js/bootstrap.js"></script>
 	    <script src="js/jquery.js"></script>
 	    <script src="js/pesq_cidade.js"></script>
 		<?php
@@ -41,7 +40,7 @@
 						<div class="text-center col-xs-12">
 			        		<form action="#" method="POST" enctype="multipart/form-data">
 			        			<input type="file" name="anexo" id="anexo">
-			        			<button type="submit" class="btn btn_foto">Confirmar envio de foto</button>
+			        			<button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique no cículo acima e selecione a foto que deseja. Após isso, clique neste botão!">Confirmar envio de foto</button>
 	                        </form>
 			        	</div>
 			        	<?php
@@ -63,12 +62,12 @@
 	                            
 	                        }
 			        	?>
-
 			            <div class="row">
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
 			                    <div class="informacoes">
-			                        Nick<br><?php echo $con['nick'];?>
+			                        <p>Nick</p><p><?php echo $con['nick'];?></p>
+			                        <a href="mudarnick.php?idnick=<?php echo($con['id_nick'].'&nick='.$con['nick']) ?>"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Ao mudar de Nick dentro do jogo, clique aqui para atualiza-lo!">Atualizar Nick</button></p></a>
 			                    </div>
 			                </div>
 			            </div>
@@ -78,7 +77,7 @@
 			                    	<?php 
 			                    		if(!empty($con['clube']))
 			                    		{
-			                    			$sqlsel='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+			                    			$sqlup='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
 			                    			$resul=mysqli_query($conexao,$sqlup);
 			                    			$cl=mysqli_fetch_array($resul);
 			                    			echo
@@ -175,10 +174,59 @@
 				<!-- CARD COM INFORMAÇÕES - PEQUENO -->
 				<div class="hidden-md hidden-lg">
 					<div class="cartao">
-					 <img src="img/perfil_icon.png" class="img-circle">
+					 	<?php
+		        			$cam='uploads/'.$con['foto_perfil'];
+		        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"><p class="text-center">Clique para escolher uma nova foto</p></label>');
+			        	?>
+			        	<form action="#" method="POST" enctype="multipart/form-data">
+		        			<input type="file" name="anexo" id="anexo">
+		        			<button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique no cículo acima e selecione a foto que deseja. Após isso, clique neste botão!">Confirmar envio de foto</button>
+                        </form>
+                        <?php
+			        		if (isset($_FILES['anexo']))
+	                        {
+	                        	$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+	                            $diretorio="uploads/";
+	                        	if(move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome))
+	                        	{
+	                        		$sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+		                            mysqli_query($conexao,$sqlup);
+		                            echo('<script>window.location="verificar_perfil.php";</script>');
+	                        	}
+	                        	else
+	                        	{
+	                        		echo('<script>swal("Primeiro escolha uma nova foto", "Para escolher uma foto nova clique sobre a antiga", "error");</script>');
+	                        	}
+	                            
+	                        }
+			        	?>
                         <p>Nick: <?php echo $con['nick'];?> </p>
-                        <p>Clube: Red Canids</p>
-		                <p>SOBRE MIM:
+                        <a href="mudarnick.php?idnick=<?php echo($con['id_nick'].'&nick='.$con['nick']) ?>"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Ao mudar de Nick dentro do jogo, clique aqui para atualiza-lo!">Atualizar Nick</button></p></a>
+                        <p>Clube: 
+	                    	<?php 
+	                    		if(!empty($con['clube']))
+	                    		{
+	                    			$sqlup='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+	                    			$resul=mysqli_query($conexao,$sqlup);
+	                    			$cl=mysqli_fetch_array($resul);
+	                    			echo
+	                    			(
+	                    				$cl['nome_clube']
+	                    			);
+	                    		}
+	                    		else
+	                    		{
+	                    			echo
+	                    			('
+	                    				<div class="col-sm-12">
+		                    				<span class="coach-name"><p>Você não criou seu clube</p></span>
+	                        			</div>
+	                    			');
+	                    		}
+	                    	?>
+                    	</p>
+		                <p><strong>Sobre mim:</strong>
 		                <?php
 		                    if($con['descricao']==NULL){
 								echo 'Crie uma descrição<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
@@ -189,32 +237,18 @@
 		                </p>
 	                    <p>Função Primária: 
 	                    <?php 
-							if ($con['funcao_1']=='c'){
-								echo 'Caçador';
-							}elseif ($con['funcao_1']=='m'){
-								echo 'Meio';
-							}elseif ($con['funcao_1']=='s'){
-								echo 'Suporte';
-							}elseif ($con['funcao_1']=='t'){
-								echo 'Topo';
-							}else{
-								echo 'Atirador';
-							}
+							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_1'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							$con2=mysqli_fetch_array($resul);
+							echo($con2['nome_funcao']);
 						?>
 	                    </p>
 	                    <p>Função Secundária: 
 	                    <?php 
-							if ($con['funcao_2']=='c'){
-								echo 'Caçador';
-							}elseif ($con['funcao_2']=='m'){
-								echo 'Meio';
-							}elseif ($con['funcao_2']=='s'){
-								echo 'Suporte';
-							}elseif ($con['funcao_2']=='t'){
-								echo 'Topo';
-							}else{
-								echo 'Atirador';
-							}
+							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_2'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							$con2=mysqli_fetch_array($resul);
+							echo($con2['nome_funcao']);
 						?>
 	                    </p>
 		            </div>
@@ -714,7 +748,10 @@
 								</select>
 							</div>
 							<div class="form-group">
-								Senha <input type="password" name="senha_edt" value="senha" maxlength="25" class="form-control">
+								Senha <input type="password" name="senha_edt" value="<?php echo base64_decode($con['senha']); ?>"maxlength="25" class="form-control">
+							</div>
+							<div class="form-group">
+								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -773,17 +810,16 @@
 									?>
 								</select>
 							</div>
+							<div class="form-group">
+								Status da conta: <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
+							</div>
 						</div>
 						<div class="col-md-12">
-							<div class="form-group">
-								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
-							</div>
 							<div class="form-group">
 				                Sobre mim
 				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você" name="descricao_edt" maxlength="200"><?php echo $con['descricao'];?></textarea>
 				            </div>
 							<p><input class="form-control azul" type="submit" name="editar" value="Editar"></p>
-							<p><input class="form-control azul" type="submit" name="atualizar_nick" value="Atualizar Nick"></p>
 							<input class="form-control azul" type="submit" name="excluir" value="Excluir" data-toggle="modal" data-target="#confirmar" >
 						</div>
 					</form>
@@ -870,32 +906,36 @@
 		include('rodape.html');
 	?>
 	<!--Validação-->
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
-    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-    <!--Modal-->
-    <script>
-	    $('#myModal').on('shown.bs.modal', function () {
-		  $('#myInput').focus()
-		})
-	</script>
-	<!-- Menu perfil -->
-	<script src="js/cbpFWTabs.js"></script>
-	<script>
-	(function() {
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	    <!--Modal-->
+	    <script>
+		    $('#myModal').on('shown.bs.modal', function () {
+			  $('#myInput').focus()
+			})
+		</script>
+		<!-- Menu perfil -->
+		<script src="js/cbpFWTabs.js"></script>
+		<script>
+		(function() {
 
-	[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-		new CBPFWTabs( el );
-	});
+		[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+			new CBPFWTabs( el );
+		});
 
-	})();
-	</script>
-	<script type="text/javascript">
-			$(".arq2").hover(function() {
-			  $(this).children("p").show();
-			}, function() {
-			  $(this).children("p").hide();
-			});
+		})();
+		</script>
+		<script type="text/javascript">
+				$(".arq2").hover(function() {
+				  $(this).children("p").show();
+				}, function() {
+				  $(this).children("p").hide();
+				});
+		</script>
+		<script>
+			  $('[data-toggle="tooltip"]').tooltip();
 		</script>
     </body>
 </html>

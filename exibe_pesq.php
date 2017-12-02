@@ -166,7 +166,7 @@
 		else
 		{
 			echo('<script>alert("Filtros vazios! Veja outros jogadores");</script>');
-			$sqlsel=('SELECT * FROM usuario WHERE categoria_usuario=1;');
+			$sqlsel=('SELECT * FROM usuario WHERE categoria_usuario=1 AND clube IS NULL;');
 		}
 		
 		//resultados
@@ -208,7 +208,7 @@
 			                        </form>
 			                    </div>
 			                    <div class="media-body">
-			                        <a href="ver_jogador.php?pesq='.$conresul['nick'].'" target="blank"><h3 class="media-heading">'.$conresul['nick'].'</h3></a>
+			                        <a href="ver_jogador.php?pesq='.$conresul['nick'].'" target="_blank"><h3 class="media-heading">'.$conresul['nick'].'</h3></a>
 				                    <h5>'.$conresul['nome'].' '.$conresul['sobrenome'].'</h5>
 				                    <p>Função primária: '.$con2['nome_funcao'].'</p>
 				                    <p>Função secundária: '.$con3['nome_funcao'].'</p>

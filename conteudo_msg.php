@@ -19,7 +19,7 @@
                 <div class="row">
                     <h1 class="text-center fonte_branca texto_sombra"><strong>Mensagens</strong></h1> 
                     <p class="text-center fonte_branca texto_sombra">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam
+                        <?php include('texto_banner_msg.php'); ?>
                     </p>
                 </div>
             </div>

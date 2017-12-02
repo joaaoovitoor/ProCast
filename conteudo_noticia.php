@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<?php
+        <link rel="stylesheet" href="css/noticias_cont.css">
+        <?php
             include('link_head.html');
         ?>
-        <link rel="stylesheet" href="css/noticias_cont.css">
 	</head>
 	<body>
         <?php
