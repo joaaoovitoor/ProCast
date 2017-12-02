@@ -289,7 +289,7 @@
 					else
 					{
 						//inserindo dados do usuario
-						$sqlin='insert into usuario(dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,cidade,dta_nascimento,telefone,categoria_usuario) values (NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","'.$cidade.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
+						$sqlin='insert into usuario(foto_perfil,dta_criacao_conta,nome,sobrenome,email,senha,sexo,cpf,cnpj,estado,cidade,dta_nascimento,telefone,categoria_usuario) values ("perfil_icon.png",NOW(),"'.$nome.'","'.$sobrenome.'","'.$email.'","'.$senha.'","'.$sexo.'","'.$cpf.'","'.$cnpj.'","'.$estado.'","'.$cidade.'","'.$datacerto.'","'.$telefone.'","'.$categoria_usuario.'");';
 						$inserir=mysqli_query($conexao,$sqlin);
 						//iniciando a sessão
 				        if($inserir)
