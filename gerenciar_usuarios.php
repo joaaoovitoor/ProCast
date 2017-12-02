@@ -145,7 +145,7 @@
                                                 <li class="list-group-item fundo">Nome: <?php echo $consulta['nome_anunciante']." ".$consulta['sobrenome'];?></li>
                                                 <li class="list-group-item fundo">Tipo de usuário: Anunciante</li>
                                                 <li class="list-group-item fundo">CNPJ: <?php echo $consulta['cnpj'];?></li>
-                                                <li class="list-group-item fundo">Nome da empresa: <?php $consulta['nome_empresa'];?></li>
+                                                <li class="list-group-item fundo">Nome da empresa: <?php echo $consulta['nome_empresa'];?></li>
                                                 <li class="list-group-item fundo">CPF: <?php echo $consulta['cpf'];?></li>
                                                 <li class="list-group-item fundo">E-mail: <?php echo $consulta['email'];?></li>
                                                 <li class="list-group-item fundo">Telefone: <?php echo $consulta['telefone'];?></li>
