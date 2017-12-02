@@ -114,6 +114,8 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 			include('conexao.php');
 			$sqlsel='SELECT * FROM contato WHERE elogio="V";';
 			$resul=mysqli_query($conexao,$sqlsel);
+			if (mysqli_num_rows($resul)) {
+			
 		?>
 	    <div class="container-fluid">
 			<div class="row">
@@ -135,41 +137,39 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 			            </blockquote>
 			          </div>
 			          <!-- Comentário 2 -->
-
+					<?php
+						while ($controler=mysqli_fetch_array($resul)) {
+							$sqlsel='SELECT * FROM usuario WHERE email="'.$controler['env'].'";';
+							$resul2=mysqli_query($conexao,$sqlsel);
+							$controler2=mysqli_fetch_array($resul2);
+						
+					?>
 			          <div class="item">
 			            <blockquote>
 			              <div class="row">
 			                <div class="col-sm-3 text-center">
-			                  <img class="img-circle" src="img/index/img2.jpg" style="width: 100px;height:100px;">
+			                  <img class="img-circle" src="uploads/<?php echo($controler2['foto_perfil']); ?>" style="width: 100px;height:100px;">
 			                </div>
 			                <div class="col-sm-9">
-			                  <p>Sem palavras... Uma ideia simples que revolucionou League of Legends no Brasil</p>
-			                  <small>Diogo Silva</small>
-			                </div>
-			              </div>
-			            </blockquote>
-			          </div>
-			          <!-- Comentário 3 -->
-			          <div class="item">
-			            <blockquote>
-			              <div class="row">
-			                <div class="col-sm-3 text-center">
-			                  <img class="img-circle" src="img/index/img3.jpg" style="width: 100px;height:100px;">
-			                </div>
-			                <div class="col-sm-9">
-			                  <p>Finalmente teremos grandes jogadores e equipes de E-sport no Brasil!</p>
-			                  <small>Carlos Eduardo</small>
+			                  <p><?php echo($controler['descricao']); ?></p>
+			                  <small><?php echo($controler2['nome'].' '.$controler2['sobrenome']); ?></small>
 			                </div>
 			              </div>
 			            </blockquote>
 			          </div>
 			        </div>
+			        <?php
+			        	}
+			        ?>
 			        <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
 			        <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
 			      	</div>                          
 		    	</div>
 		  	</div>
 		</div>
+		<?php
+			}
+		?>
 		<!--RODAPÉ-->
 		<?php
 			include('rodape.html');
