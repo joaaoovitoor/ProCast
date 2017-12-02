@@ -1,6 +1,9 @@
 	<nav class="nav-menu hidden-xs hidden-sm navbar-fixed-top">
 	<a href="home.php"><img src="img/logo_horizontal.png" class="pull-left img-responsive logo" ></a>
-		<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-5">
+		<ul class="ul-menu list-inline text-center unstyle-list col-md-offset-7">
+			<li class="item item-log">
+					 <a class="menu-item " href="home.php">Home </a> 
+			</li>
 			<li class="item item-log">
 					<a class="menu-item " href="noticias.php" >Notícias </a>
 			</li>
@@ -10,9 +13,9 @@
 			<li class="item item-log">
 					<a class="menu-item " href="verificar_user_clube.php">Clube </a>
 			</li>
-			<li class="item item-log">
-					<a class="menu-item " href="ranking.php">Ranking </a>
-			</li>
+			<!--<li class="item item-log">
+					 <a class="menu-item " href="ranking.php">Ranking </a> 
+			</li>-->
 			<li class="item item-log">
 					<a class="menu-item " href="mensagens.php">Mensagens </a>
 			</li>
@@ -29,6 +32,10 @@
 	<!-- Menu mobile-->
 	<nav hidden="true" id="mobile" class="nav-menu-mobile  text-center hidden-md">
 		<div class="row item-mobile">
+			<a href="home.php" >Home </a>
+			
+		</div>
+		<div class="row item-mobile">
 			<a href="noticias.php" >Notícias </a>
 			
 		</div>
@@ -39,10 +46,10 @@
 		<div class="row item-mobile">
 			<a href="verificar_user_clube.php">Clubes</a>
 			
-		</div>
+		</div><!--
 		<div class="row item-mobile">
-			<a href="ranking.php">Ranking</a>
-		</div>
+			 <a href="ranking.php">Ranking</a> 
+		</div>-->
 		<div class="row item-mobile">
 			<a href="mensagens.php">Mensagens</a>
 		</div>

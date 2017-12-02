@@ -10,6 +10,7 @@
 	<head>
 		<title>Criação de Clube</title>
 	    <!--ESTILO-->
+	    
        	<link rel="stylesheet" href="css/clube/estilo.css">
 		<script src="js/jquery.js"></script>
         <link rel="stylesheet" href="css/pesquisa.css">
@@ -77,19 +78,21 @@
 				{
 					$nome = $_POST['nome'];
 					$descricao = $_POST['descricao'];
-					if(isset($_FILES['anexo'])==false)
+					if(!isset($_FILES['anexo']))
 					{
+						echo '<script>window.alert("Sem img");</script>';
 						if(empty($nome) or empty($descricao))
 						{
 							echo ('<script>window.alert("Digite todos os dados");</script>');
 						}
 						else
 						{
-							$sqlin=('INSERT INTO clube(nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
+							$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("club_icon.png","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
 							$inserir=mysqli_query($conexao,$sqlin);
 						}
 					}
 					else{
+						echo '<script>window.alert("Com img");</script>';
 		                $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
 		                $novo_nome=md5(time().$con['id_usuario']).$extensao;
 		                $diretorio="uploads/";

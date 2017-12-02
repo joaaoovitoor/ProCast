@@ -22,12 +22,14 @@
             </div>
         </div>
 		<div class="container-fluid">
+			<?php 
+				include('conexao.php');
+				include('verificar_logado.php');
+			?>
 		<div class="row">
-				<div class="col-sm-3 col-md-3"></div>
+				<div class="col-sm-3 col-md-3">	
+		</div>
 <?php 
-	include('conexao.php');
-	include('verificar_logado.php');
-	
 	$sqlsel1 = "SELECT * FROM colocacao ORDER BY colocacao DESC LIMIT 3;";
 	$resul1 = mysqli_query($conexao,$sqlsel1);
 	$sqlsel2 = "SELECT * FROM colocacao ORDER BY colocacao DESC LIMIT 20 OFFSET 3;";
