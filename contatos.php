@@ -158,20 +158,29 @@
                     					$con2=mysqli_fetch_array($resul);
                     					if (isset($_FILES['anexo']))
 				                        {
-				                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
-				                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
-				                            $diretorio="uploads/";
-				                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
-				                            //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
-				                            $sqlin='INSERT INTO contato(assunto,data_contato,titulo,imagem_contato,descricao,rec,env) VALUES ('.$assunto.',NOW(),"'.$titulo.'","'.$novo_nome.'","'.$mensagem.'",'.$con2['id_usuario'].','.$con['id_admin'].');';
+				                        	if($_FILES['anexo']['error']==4)
+											{
+												$sqlin=('INSERT INTO contato(assunto,data_contato,titulo,descricao,rec,env,arq) VALUES('.$assunto.',NOW(),"'.$titulo.'","'.$mensagem.'","'.$destino.'","admin@admin","F");');
+											}
+											else
+											{
+												$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+					                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+					                            $diretorio="uploads/";
+					                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
+					                            //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
+					                            $sqlin=('INSERT INTO contato(assunto,data_contato,titulo,descricao,rec,env,arq,imagem_contato) VALUES('.$assunto.',NOW(),"'.$titulo.'","'.$mensagem.'","'.$destino.'","admin@admin","F","'.$novo_nome.'");');
+
+											}
+				                            
 				                        }
 				                        else
 				                        {
-				                            $sqlin='INSERT INTO contato(assunto,data_contato,titulo,descricao,rec,env) VALUES ('.$assunto.',NOW(),"'.$titulo.'","'.$mensagem.'",'.$con2['id_usuario'].','.$con['id_admin'].');';
+				                            $sqlin=('INSERT INTO contato(assunto,data_contato,titulo,descricao,rec,env,arq) VALUES('.$assunto.',NOW(),"'.$titulo.'","'.$mensagem.'","'.$destino.'","admin@admin","F");');
 				                        }
 				                        mysqli_query($conexao,$sqlin);
 				                        echo('<script>alert("Mensagem enviada");</script>');
-				                        echo('<script>window.location="rascunhos.php";</script>');
+				                        echo('<script>window.location="contatos.php";</script>');
                     				}
                     				else
 				                    {
@@ -192,51 +201,47 @@
 					<section id="section-linebox-2">
 						<div class="container-fluid">
 							<?php
-								$sqlsel='SELECT * FROM contato WHERE id_usuario!='.$con['id_admin'].';';
+								$sqlsel='SELECT * FROM contato WHERE env="admin@admin" AND arq="F" ORDER BY data_contato DESC;';
 								$resul=mysqli_query($conexao,$sqlsel);
-								if (mysqli_num_rows($resul)) 
+								
+								if (mysqli_num_rows($resul)>0)
 								{
-									while ($controler=mysqli_fetch_array($resul))
+									while ($con=mysqli_fetch_array($resul)) 
 									{
-										$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$controler['id_usuario'].';';
-										$resul=mysqli_query($conexao,$sqlsel);
-										$controler_usuario=mysqli_fetch_array($resul);
-										$sqlsel='SELECT * FROM cat_contato WHERE id_cat_contato='.$controler['assunto'].';';
-										$resul=mysqli_query($conexao,$sqlsel);
-										$controler_cat=mysqli_fetch_array($resul);
-										echo
-										('
-											<div class="row">
-												<div class="col-md-12 mensagem_enviada">
-													<p style="font-size: 16px;"><strong>Para: </strong> '.$controler_usuario['email'].'</p>
-													<p style="font-size: 16px;"><strong>Motivo:</strong> '.$controler_cat['descricao'].'</p>
-													<p style="font-size: 16px;"><strong>Titulo:</strong> '.$controler['titulo'].'</p>
-													<p style="font-size: 16px;"><strong>Mensagem:</strong> '.$controler['descricao'].'</p>
-													<div class="botao" style="padding-bottom: 10px;">
-														<a class="btn btn-procast" href="contatos.php?arq='.$controler['id_contato'].'"><i class="fa fa-close"></i> Arquivar</a>
-													</div>
-												</div>
-											</div>
-										');
+							?>
+							<div class="row">
+								<div class="col-md-12 mensagem_enviada">
+									<p style="font-size: 16px;"><strong>Data: </strong><?php echo $con['data_contato'];?></p>
+									<p style="font-size: 16px;"><strong>Remetente: </strong><?php echo $con['env'];?></p>
+									<p style="font-size: 16px;"><strong>Motivo: </strong>
+									<?php 
+										$sqlsel2='SELECT * FROM cat_contato WHERE id_cat_contato='.$con['assunto'].';';
+										$resul2=mysqli_query($conexao,$sqlsel2);
+										$con_cat=mysqli_fetch_array($resul2);
+										echo($con_cat['descricao']);
+									?>
+									</p>
+									<p style="font-size: 16px;"><strong>Título: </strong><?php echo $con['titulo'];?></p>
+									<p style="font-size: 16px;"><strong>Mensagem: </strong><?php echo $con['descricao'];?></p>
+									<?php 
+										if($con['imagem_contato']!=NULL){
+											echo '<p style="font-size: 16px;"><strong>Imagem: </strong><a href=uploads/'.$con['imagem_contato'].' target="blank">'.$con['imagem_contato'].'</a></p>';
+										}
+									?>
+									<div class="botao" style="padding-bottom: 10px;">
+										<a class="btn btn-warning" href="contatos.php?arq=<?php echo($con['id_contato']); ?>"><i class="fa fa-folder-open" aria-hidden="true"></i> Arquivar</a>
+										<a class="btn btn-danger" href="contatos.php?apg=<?php echo($con['id_contato']); ?>"><i class="fa fa-trash"></i> Apagar</a>
+									</div>
+								</div>
+							</div>
+							<?php
 									}
-	
 								}
 								else
 								{
 									echo '<h3 align="center"><img src="img/triste.png"><br>Nenhuma mensagem</h3>';
 								}
-								if (isset($_GET['arq'])) {
-									$id_up=$_GET['arq'];
-									$sqlup='update contato set arq="V" where id_contato='.$id_up.';';
-									if(mysqli_query($conexao,$sqlup))
-									{
-										echo('<script>alert("Arquivada com sucesso!");</script>');
-										header('location:contatos.php');
-
-									}
-								}
 							?>
-
 						</div>
 					</section>
 					<!-- Mensagens reebidas -->
@@ -337,12 +342,7 @@
 								{
 									echo '<h3 align="center"><img src="img/triste.png"><br>Nenhuma mensagem</h3>';
 								}
-								if (isset($_GET['apg'])) {
-									$apg=$_GET['apg'];
-									$sqlex='DELETE FROM contato WHERE id_contato='.$apg.';';
-									mysqli_query($conexao,$sqlex);
-									header('location:contatos.php');
-								}
+								
 							?>
 						</div>
 					</section>
@@ -360,8 +360,20 @@
 
 		})();
 		</script>
-<?php 
-	include("rodapeadm.html");
-?>
+		<?php 
+			if (isset($_GET['apg'])) {
+				$apg=$_GET['apg'];
+				$sqlex='DELETE FROM contato WHERE id_contato='.$apg.';';
+				mysqli_query($conexao,$sqlex);
+				header('location:contatos.php');
+			}
+			if (isset($_GET['arq'])) {
+				$idarq=$_GET['arq'];
+				$sqlup='update contato set arq="V" where id_contato='.$idarq.';';
+				mysqli_query($conexao,$sqlup);
+				header('location:contatos.php');
+			}
+			include("rodapeadm.html");
+		?>
 	</body>
 </html>

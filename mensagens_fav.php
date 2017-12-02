@@ -29,9 +29,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-3">
                     <div class="panel sombra">
-                        <div class="header_menu  bg_cinza_escuro">
-                            <img src="img/perfil_icon.png" alt="" class="img-circle img-responsive">
-                        </div>  
+                        
                         <?php
                             include('menu_msg.php');
                         ?>                      

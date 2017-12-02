@@ -1,3 +1,6 @@
+<div class="header_menu  bg_cinza_escuro">
+    <img src="uploads/<?php echo($con['foto_perfil']);?>" alt="" class="img-circle perf">
+</div>
 <div class="panel-body bg_cinza_escuro">  	
 	<h4 class="text-center fonte_branca nome_user"><strong>
         <?php
@@ -74,6 +77,11 @@
                                 echo($resul);
                             ?>
                     </span>
+                </li>
+            </a>
+            <a href="mensagens_ctt.php">
+                <li class="list-group-item bg_cinza_escuro sem_borda fonte_branca">
+                    <i class="fa fa-info" aria-hidden="true"></i> Contatos com a plataforma
                 </li>
             </a>
 	</ul>				

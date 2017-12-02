@@ -1,4 +1,7 @@
-
+.perf{
+	width: 120px;
+	height: 120px !important;
+}
 .container-fluid{
 	width: 100%;
 	padding-top: 15px;

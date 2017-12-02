@@ -28,10 +28,7 @@
 		<div class="container-fluid">
 			<div class="row">
  				<div class="col-sm-6 col-md-3">
-    				<div class="panel sombra">
-    					<div class="header_menu  bg_cinza_escuro">
-    						<img src="img/perfil_icon.png" alt="" class="img-circle img-responsive">
-    					</div>  
+    				<div class="panel sombra">  
                         <?php
                             include('menu_msg.php');
                         ?>   					
@@ -62,13 +59,13 @@
                         ?>
     				</div>
                                 <?php
+                                    
+
+                                    //msgs
                                     $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (favorito_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (rascunho="F")) ORDER BY id_mensagem DESC;';
                                     
                                     $resul=mysqli_query($conexao,$sqlsel);
-                                    echo
-                                    ('
-                                        <div class="bg_branco cx_em sombra">
-                                    ');
+                                    
                                     if(mysqli_num_rows($resul))
                                     {
                                         while ($con_msg=mysqli_fetch_array($resul))
