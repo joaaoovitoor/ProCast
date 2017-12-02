@@ -36,8 +36,7 @@
 							    <span class="input-group-btn">
 							     	<button class="btn btn-procast btn-lg" type="submit" name="enviar"> <i class="fa fa-search"></i> Pesquisar usuário</button>
 							    </span>
-							    <input type="text" class="form-control input-lg" placeholder="Digite o nome do clube aqui" name="pesquisa_jog">
-							    <input type="text" class="form-control input-lg" placeholder="Digite o nome do usuário aqui" name="pesquisa_clube">
+							    <input type="text" class="form-control input-lg" placeholder="Digite o nome do usuário aqui" name="pesquisa_jog">
 							</div>
 						</form>
 					</div>
@@ -92,7 +91,7 @@
                                                     <li class="list-group-item fundo">Estado: <?php echo $con_estado['nome']; ?></li>
                                                     <li class="list-group-item fundo">Cidade: <?php echo $con_cidade['nome']; ?></li>
                                                     <li class="list-group-item">
-                                                        <center><p><a href="contatos.php" class="btn btn-default" role="button">Contatar</a> <a href="#" class="btn btn-danger" role="button">Banir</a></p></center>
+                                                        <center><p><a href="contatos.php?msg=<?php echo $con_usuario['id_usuario']; ?>" class="btn btn-default" role="button">Contatar</a> <a href="gerenciar_usuarios.php?exc=<?php echo $con_usuario['id_usuario']; ?>" class="btn btn-danger" role="button">Excluir</a></p></center>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -112,7 +111,9 @@
                                                     <li class="list-group-item fundo">Telefone: <?php echo $con_usuario['telefone']; ?></li>
                                                     <li class="list-group-item fundo">Estado: <?php echo $con_estado['nome']; ?></li>
                                                     <li class="list-group-item fundo">Cidade: <?php echo $con_cidade['nome']; ?></li>
-                                                    <li class="list-group-item"><center><p><a href="contatos.php" class="btn btn-default" role="button">Contatar</a> <a href="#" class="btn btn-danger" role="button">Banir</a></p></center></li>
+                                                    <li class="list-group-item">
+                                                        <center><p><a href="contatos.php?msg=<?php echo $con_usuario['id_usuario']; ?>" class="btn btn-default" role="button">Contatar</a> <a href="gerenciar_usuarios.php?exc=<?php echo $con_usuario['id_usuario']; ?>" class="btn btn-danger" role="button">Excluir</a></p></center>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         <?php 

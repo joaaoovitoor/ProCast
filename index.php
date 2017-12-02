@@ -110,6 +110,11 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 		  <iframe class="embed-responsive-item" style="height: 70%; width: 100%;" src="https://www.youtube.com/embed/llBYMGfNn7Q?rel=0" allowfullscreen></iframe>
 		</div>
 	    <!--COMENTÁRIOS-->
+      <?php
+			include('conexao.php');
+			$sqlsel='SELECT * FROM contato WHERE elogio="V";';
+			$resul=mysqli_query($conexao,$sqlsel);
+		?>
 	    <div class="container-fluid">
 			<div class="row">
 			    <div class="col-md-offset-0 col-md-12 espaconegativo">
@@ -121,17 +126,16 @@ Com a plataforma você tem muito mais chances de ser encontrado e ser convocado 
 			          <div class="item active">
 			            <blockquote>
 			              <div class="row">
-			                <div class="col-sm-3 text-center">
-			                  <img class="img-circle" src="img/index/img1.jpg" style="width: 100px;height:100px;">
-			                </div>
-			                <div class="col-sm-9">
-			                  <p>Simplesmente sensacional! Valeu ProCast, com vocês consegui entrar em uma grande equipe :)</p>
-			                  <small>Ana Laura</small>
+			                <div class="col-sm-12" style="height:110px;">
+
+			                  <h3 class="text-center">Veja o que nossos usuários dizem sobre nós!</h3>
+			                  
 			                </div>
 			              </div>
 			            </blockquote>
 			          </div>
 			          <!-- Comentário 2 -->
+
 			          <div class="item">
 			            <blockquote>
 			              <div class="row">

@@ -64,14 +64,23 @@
 							<li><a href="#section-linebox-3"><span>Mensagens Recebidas 
 							<span class="badge">
 							<?php
-								$sql='SELECT * FROM contato;';
+								$sql='SELECT * FROM contato WHERE rec="admin@admin" AND arq="F" ORDER BY data_contato DESC;';
 								$resul=mysqli_query($conexao,$sql);
 								$quantidade_pendente=mysqli_num_rows($resul);
 								echo $quantidade_pendente;
 							?>
 							</span>
 							</span></a></li>
-							<li><a href="#section-linebox-4"><span>Mensagens Arquivadas</span></a></li>
+							<li><a href="#section-linebox-4"><span>Mensagens Arquivadas
+							<span class="badge">
+							<?php
+								$sql='SELECT * FROM contato WHERE arq="V" ORDER BY data_contato DESC;';
+								$resul=mysqli_query($conexao,$sql);
+								$quantidade_pendente=mysqli_num_rows($resul);
+								echo $quantidade_pendente;
+							?>
+							</span>
+							</span></a></li>
 						</ul>
 					</nav>
 					<div class="content-wrap">
@@ -106,12 +115,9 @@
 										<?php
 											if (isset($_GET['msg'])) {
 												$id=$_GET['msg'];
-												$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$id.';';
-												$resul=mysqli_query($conexao,$sqlsel);
-												$controler=mysqli_fetch_array($resul);
 												echo
 												('
-													<input type="email" name="destino" class="form-control" value="'.$controler['email'].'" >
+													<input type="email" name="destino" class="form-control" value="'.$id.'" >
 												');
 											}
 											else
@@ -207,7 +213,7 @@
 													<p style="font-size: 16px;"><strong>Titulo:</strong> '.$controler['titulo'].'</p>
 													<p style="font-size: 16px;"><strong>Mensagem:</strong> '.$controler['descricao'].'</p>
 													<div class="botao" style="padding-bottom: 10px;">
-														<a class="btn btn-procast" href="contatos.php?up='.$controler['id_contato'].'"><i class="fa fa-close"></i> Arquivar</a>
+														<a class="btn btn-procast" href="contatos.php?arq='.$controler['id_contato'].'"><i class="fa fa-close"></i> Arquivar</a>
 													</div>
 												</div>
 											</div>
@@ -219,8 +225,8 @@
 								{
 									echo '<h3 align="center"><img src="img/triste.png"><br>Nenhuma mensagem</h3>';
 								}
-								if (isset($_GET['up'])) {
-									$id_up=$_GET['up'];
+								if (isset($_GET['arq'])) {
+									$id_up=$_GET['arq'];
 									$sqlup='update contato set arq="V" where id_contato='.$id_up.';';
 									if(mysqli_query($conexao,$sqlup))
 									{
@@ -236,45 +242,38 @@
 					<section id="section-linebox-3">
 						<div class="container-fluid">
 							<?php
-								$sqlsel='SELECT * FROM contato ORDER BY data_contato DESC';
+								$sqlsel='SELECT * FROM contato WHERE rec="admin@admin" AND arq="F" ORDER BY data_contato DESC;';
 								$resul=mysqli_query($conexao,$sqlsel);
 								
 								if (mysqli_num_rows($resul)>0)
 								{
 									while ($con=mysqli_fetch_array($resul)) 
 									{
-										$sqlusuario='SELECT email FROM usuario WHERE id_usuario='.$con['id_usuario'].';';
-										$resul1=mysqli_query($conexao,$sqlusuario);
-										$con1=mysqli_fetch_array($resul1);
 							?>
 							<div class="row">
 								<div class="col-md-12 mensagem_enviada">
 									<p style="font-size: 16px;"><strong>Data: </strong><?php echo $con['data_contato'];?></p>
-									<p style="font-size: 16px;"><strong>Remetente: </strong><?php echo $con1['email'];?></p>
+									<p style="font-size: 16px;"><strong>Remetente: </strong><?php echo $con['env'];?></p>
 									<p style="font-size: 16px;"><strong>Motivo: </strong>
 									<?php 
-										if($con['assunto']==1){
-											echo 'Dicas';
-										}elseif ($con['assunto']==2){
-											echo 'Problemas';										
-										}elseif ($con['assunto']==3){
-											echo 'Reclamações';										
-										}elseif ($con['assunto']==4){
-											echo 'Propostas';
-										}else{
-											echo 'Elogios';										
-										}
+										$sqlsel2='SELECT * FROM cat_contato WHERE id_cat_contato='.$con['assunto'].';';
+										$resul2=mysqli_query($conexao,$sqlsel2);
+										$con_cat=mysqli_fetch_array($resul2);
+										echo($con_cat['descricao']);
 									?>
 									</p>
-									<p style="font-size: 16px;"><strong>Título: </strong><?php echo $con['motivo'];?></p>
+									<p style="font-size: 16px;"><strong>Título: </strong><?php echo $con['titulo'];?></p>
 									<p style="font-size: 16px;"><strong>Mensagem: </strong><?php echo $con['descricao'];?></p>
 									<?php 
-										if($con['print']!=NULL){
-											echo '<p style="font-size: 16px;"><strong>Imagem: </strong><a href=uploads/'.$con['print'].' target="blank">'.$con['print'].'</a></p>';
+										if($con['imagem_contato']!=NULL){
+											echo '<p style="font-size: 16px;"><strong>Imagem: </strong><a href=uploads/'.$con['imagem_contato'].' target="blank">'.$con['imagem_contato'].'</a></p>';
 										}
 									?>
 									<div class="botao" style="padding-bottom: 10px;">
-										<button class="btn btn-procast"><i class="fa fa-close"></i> Arquivar</button> <button class="btn btn-default"><i class="fa fa-share"></i> Responder </button>
+										<a class="btn btn-warning" href="contatos.php?arq=<?php echo($con['id_contato']); ?>"><i class="fa fa-folder-open" aria-hidden="true"></i> Arquivar</a>
+										<a class="btn btn-danger" href="contatos.php?apg=<?php echo($con['id_contato']); ?>"><i class="fa fa-close"></i> Apagar</a>
+										<a class="btn btn-default" href="contatos.php?msg=<?php echo($con['env']); ?>"><i class="fa fa-share"></i> Responder </a>
+										<a class="btn btn-procast" href="contatos.php?idx=<?php echo($con['id_contato']); ?>"><i class="fa fa-plus-circle "></i> Index</a>
 									</div>
 								</div>
 							</div>
@@ -284,6 +283,11 @@
 								else
 								{
 									echo '<h3 align="center"><img src="img/triste.png"><br>Nenhuma mensagem</h3>';
+								}
+								if (isset($_GET['idx'])) {
+									$idx=$_GET['idx'];
+									$sqlup='update contato set elogio="V" where id_contato='.$idx.';';
+									mysqli_query($conexao,$sqlup);
 								}
 							?>
 						</div>

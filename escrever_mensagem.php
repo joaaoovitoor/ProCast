@@ -85,12 +85,20 @@
                     {
                         if (isset($_FILES['anexo']))
                         {
+                            if($_FILES['anexo']['error']==4)
+                        {
+                           $sqlin='INSERT INTO mensagem(assunto,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
+                        }
+                        else{
+
+
                             $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
                             $novo_nome=md5(time().$con['id_usuario']).$extensao;
                             $diretorio="uploads/";
                             move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
                             //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
                             $sqlin='INSERT INTO mensagem(assunto,anexo,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$novo_nome.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
+                            }
                         }
                         else{
                             $sqlin='INSERT INTO mensagem(assunto,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';

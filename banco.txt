@@ -5735,9 +5735,10 @@ CREATE TABLE contato(
 	titulo varchar(30) not null,
 	imagem_contato varchar(100),
 	descricao varchar(1000) not null,
+  elogio char(1),
   arq char(1),
-  rec int,
-	env int
+  rec varchar(100) not null,
+	env varchar(100) not null
 );
 
 
