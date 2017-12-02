@@ -93,5 +93,17 @@ $dadosboleto["cedente"] = "ProCast SA";
 include("include/funcoes_itau.php"); 
 include("include/layout_itau.php");
 
-$dadosboleto["linha_digitavel"];
+//inserindo dados na tabela de pagamento
+
+$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag) VALUES
+(
+	NOW(),
+	"'.$dadosboleto['valor_boleto'].'",
+	"'.$dadosboleto['linha_digitavel'].'",
+	'.$con['id_usuario'].',
+	"'.$con['nome'].' '.$con['sobrenome'].'"
+);';
+
+$inserir=mysqli_query($conexao,$sqlinpag);
+
 ?>

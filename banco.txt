@@ -5656,7 +5656,7 @@ CREATE TABLE usuario(
 	descricao text,
   	clube int,
 	dta_criacao_conta DATETIME,
-	status_pagamento int default="F"
+	status_pagamento char(2) default 'F'
 );
 
 CREATE TABLE admin(
@@ -5683,21 +5683,21 @@ CREATE TABLE anunciante(
 );
 
 CREATE TABLE noticia (
-  id_noticia int(11) not null auto_increment primary key,
-  titulo varchar(50) not null,
-  lide varchar(200) not null,
-  texto varchar(1000) not null,
-  imagem_noticia varchar(100) DEFAULT NULL,
-  data date not null,
-  categoria varchar(255) not null
+  	id_noticia int(11) not null auto_increment primary key,
+  	titulo varchar(50) not null,
+  	lide varchar(200) not null,
+  	texto varchar(1000) not null,
+  	imagem_noticia varchar(100) DEFAULT NULL,
+  	data date not null,
+  	categoria varchar(255) not null
 );
 
 CREATE TABLE categoria_noticia (
-  id_categoria_noticia int(11) not null auto_increment primary key,
-  categoria_noticia char(20) not null,
-  descri varchar(255) not null
+  	id_categoria_noticia int(11) not null auto_increment primary key,
+  	categoria_noticia char(20) not null,
+  	descri varchar(255) not null
 );
-INSERT INTO categoria_noticia (`categoria_noticia`, `descri`) VALUES ('Jogos', 'Categoria que trata sobre jogos');
+INSERT INTO categoria_noticia (categoria_noticia,descri) VALUES ('Jogos', 'Categoria que trata sobre jogos');
 
 
 CREATE TABLE comentario(
@@ -5736,9 +5736,9 @@ CREATE TABLE contato(
 	titulo varchar(30) not null,
 	imagem_contato varchar(100),
 	descricao varchar(1000) not null,
-  elogio char(1),
-  arq char(1),
-  rec varchar(100) not null,
+  	elogio char(1),
+  	arq char(1),
+  	rec varchar(100) not null,
 	env varchar(100) not null
 );
 
@@ -5771,10 +5771,12 @@ CREATE TABLE clube(
 
 CREATE TABLE pagamento(
 	id_pagamento int auto_increment primary key,
-	dta_pagamento DATETIME not null,
+	dta_geracao DATETIME not null,
 	valor_pagamento varchar(10) not null,
-	numero_boleto varchar(50) not null,
-	id_usuario int not null
+	numero_boleto varchar(60) not null,
+	id_usuario int not null,
+	nome_usuario_pag varchar(50) not null,
+	status_pagamento char(2) default 'F'
 );
 
 CREATE TABLE video(
@@ -5782,7 +5784,7 @@ CREATE TABLE video(
 	data_video DATETIME not null,
 	descricao_video varchar(300) not null,
 	titulo_video varchar(50) not null,
-  url varchar(200) not null,
+  	url varchar(200) not null,
 	id_usuario int
 );
 
