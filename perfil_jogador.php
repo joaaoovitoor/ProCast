@@ -713,7 +713,7 @@
 								</select>
 							</div>
 							<div class="form-group">
-								Senha <input type="password" name="senha_edt" value="senha" maxlength="25" class="form-control">
+								Senha <input type="password" name="senha_edt" value="<?php echo base64_decode($con['senha']); ?>"maxlength="25" class="form-control">
 							</div>
 							<div class="form-group">
 								Telefone <input type="text" class="form-control" name="telefone_edt" value="<?php echo $con['telefone'];?>" id="telefone">
