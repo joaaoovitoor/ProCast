@@ -166,7 +166,7 @@
 		else
 		{
 			echo('<script>alert("Filtros vazios! Veja outros jogadores");</script>');
-			$sqlsel=('SELECT * FROM usuario WHERE categoria_usuario=1;');
+			$sqlsel=('SELECT * FROM usuario WHERE categoria_usuario=1 AND clube IS NULL;');
 		}
 		
 		//resultados

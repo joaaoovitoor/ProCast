@@ -174,10 +174,59 @@
 				<!-- CARD COM INFORMAÇÕES - PEQUENO -->
 				<div class="hidden-md hidden-lg">
 					<div class="cartao">
-					 <img src="img/perfil_icon.png" class="img-circle">
+					 	<?php
+		        			$cam='uploads/'.$con['foto_perfil'];
+		        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"><p class="text-center">Clique para escolher uma nova foto</p></label>');
+			        	?>
+			        	<form action="#" method="POST" enctype="multipart/form-data">
+		        			<input type="file" name="anexo" id="anexo">
+		        			<button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique no cículo acima e selecione a foto que deseja. Após isso, clique neste botão!">Confirmar envio de foto</button>
+                        </form>
+                        <?php
+			        		if (isset($_FILES['anexo']))
+	                        {
+	                        	$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+	                            $diretorio="uploads/";
+	                        	if(move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome))
+	                        	{
+	                        		$sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+		                            mysqli_query($conexao,$sqlup);
+		                            echo('<script>window.location="verificar_perfil.php";</script>');
+	                        	}
+	                        	else
+	                        	{
+	                        		echo('<script>swal("Primeiro escolha uma nova foto", "Para escolher uma foto nova clique sobre a antiga", "error");</script>');
+	                        	}
+	                            
+	                        }
+			        	?>
                         <p>Nick: <?php echo $con['nick'];?> </p>
-                        <p>Clube: Red Canids</p>
-		                <p>SOBRE MIM:
+                        <a href="mudarnick.php?idnick=<?php echo($con['id_nick'].'&nick='.$con['nick']) ?>"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Ao mudar de Nick dentro do jogo, clique aqui para atualiza-lo!">Atualizar Nick</button></p></a>
+                        <p>Clube: 
+	                    	<?php 
+	                    		if(!empty($con['clube']))
+	                    		{
+	                    			$sqlup='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+	                    			$resul=mysqli_query($conexao,$sqlup);
+	                    			$cl=mysqli_fetch_array($resul);
+	                    			echo
+	                    			(
+	                    				$cl['nome_clube']
+	                    			);
+	                    		}
+	                    		else
+	                    		{
+	                    			echo
+	                    			('
+	                    				<div class="col-sm-12">
+		                    				<span class="coach-name"><p>Você não criou seu clube</p></span>
+	                        			</div>
+	                    			');
+	                    		}
+	                    	?>
+                    	</p>
+		                <p><strong>Sobre mim:</strong>
 		                <?php
 		                    if($con['descricao']==NULL){
 								echo 'Crie uma descrição<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
@@ -188,32 +237,18 @@
 		                </p>
 	                    <p>Função Primária: 
 	                    <?php 
-							if ($con['funcao_1']=='c'){
-								echo 'Caçador';
-							}elseif ($con['funcao_1']=='m'){
-								echo 'Meio';
-							}elseif ($con['funcao_1']=='s'){
-								echo 'Suporte';
-							}elseif ($con['funcao_1']=='t'){
-								echo 'Topo';
-							}else{
-								echo 'Atirador';
-							}
+							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_1'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							$con2=mysqli_fetch_array($resul);
+							echo($con2['nome_funcao']);
 						?>
 	                    </p>
 	                    <p>Função Secundária: 
 	                    <?php 
-							if ($con['funcao_2']=='c'){
-								echo 'Caçador';
-							}elseif ($con['funcao_2']=='m'){
-								echo 'Meio';
-							}elseif ($con['funcao_2']=='s'){
-								echo 'Suporte';
-							}elseif ($con['funcao_2']=='t'){
-								echo 'Topo';
-							}else{
-								echo 'Atirador';
-							}
+							$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$con['funcao_2'].';';
+							$resul=mysqli_query($conexao,$sqlsel);
+							$con2=mysqli_fetch_array($resul);
+							echo($con2['nome_funcao']);
 						?>
 	                    </p>
 		            </div>

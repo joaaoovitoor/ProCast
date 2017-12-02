@@ -4,6 +4,12 @@
     {
     	header('location:home.php');
     }
+    $sqlvercb='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+    $resulcb=mysqli_query($conexao,$sqlvercb);
+    if(mysqli_num_rows($resulcb)>0)
+    {
+    	header('location:verificar_perfil.php');
+    }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
