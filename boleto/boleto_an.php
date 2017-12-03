@@ -27,17 +27,26 @@
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//
 // DADOS DO BOLETO PARA O SEU CLIENTE
 
-
-include('../verificar_logado.php');
-if($con['categoria_usuario']==1)
-{
-	$valor_cobrado = "8,99"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
-	$dadosboleto["valor_unitario"] = "8,99";
+include('../conexao.php');
+include('../verificar_logado_an.php');
+if (isset($_POST['boleto'])) {
+	$tipo=$_POST['tipo'];
+	# code...
 }
-else
+if($tipo==1)
 {
-	$valor_cobrado = "59,90"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
-	$dadosboleto["valor_unitario"] = "59,90";
+	$valor_cobrado = "9,99"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+	$dadosboleto["valor_unitario"] = "9,99";
+}
+if($tipo==2)
+{
+	$valor_cobrado = "16,99"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+	$dadosboleto["valor_unitario"] = "16,99";
+}
+if($tipo==3)
+{
+	$valor_cobrado = "29,99"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+	$dadosboleto["valor_unitario"] = "29,99";
 }
 
 //trazendo as informações de localização do cliente
@@ -63,7 +72,7 @@ $dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
 $dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
 $dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
 // DADOS DO SEU CLIENTE
-$dadosboleto["sacado"] = $con['nome']." ".$con['sobrenome'];
+$dadosboleto["sacado"] = $con['nome_anunciante']." ".$con['sobrenome'];
 $dadosboleto["endereco1"] = $concid['nome'];
 $dadosboleto["endereco2"] = $conest['nome'];
 // INFORMACOES PARA O CLIENTE
@@ -99,16 +108,16 @@ include("include/layout_itau.php");
 
 //inserindo dados na tabela de pagamento
 
-$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag,tipo_pagamento) VALUES
+$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_an,nome_usuario_pag) VALUES
 (
 	NOW(),
 	"'.$dadosboleto['valor_boleto'].'",
 	"'.$dadosboleto['linha_digitavel'].'",
-	'.$con['id_usuario'].',
-	"'.$con['nome'].' '.$con['sobrenome'].'",
-	"1"
+	'.$con['id_anunciante'].',
+	"'.$con['nome_anunciante'].' '.$con['sobrenome'].'"
 );';
 
 $inserir=mysqli_query($conexao,$sqlinpag);
+
 
 ?>

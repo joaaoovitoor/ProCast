@@ -88,6 +88,10 @@
 							</div>
 						</div>
 						<div class="col-md-2">
+							<form action="boleto/boleto_an.php" method="POST">
+								<input type="hidden" name="tipo" value="<?php echo($con_anu['tipo']);?>">
+								<p><button class="btn btn-info" name="boleto"><i class="fa fa-flag" aria-hidden="true"></i> Boleto</button></p>
+							</form>
 							<form action="#" method="POST">
 								<input type="hidden" name="id_anuncio" value="<?php echo($con_anu['id_anuncio']);?>">
 								<p><button class="btn btn-default"><i class="fa fa-flag" aria-hidden="true"></i> Reanunciar</button></p>

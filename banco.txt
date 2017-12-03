@@ -5722,7 +5722,12 @@ CREATE TABLE anuncio(
 	status char (1) not null,
 	id_anunciante int
 );
-
+CREATE TABLE anuncio_jog(
+  	id_anuncio int(11) not null auto_increment primary key,
+  	id_usuario_an int(11) not null,
+	data_criacao_anuncio TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  	status_pagamento char(2) not null
+);
 CREATE TABLE denuncia(
 	id_denuncia int auto_increment primary key,
 	descricao_denuncia varchar(100) not null,
@@ -5791,16 +5796,16 @@ CREATE TABLE video(
 	data_video DATETIME not null,
 	descricao_video varchar(300) not null,
 	titulo_video varchar(50) not null,
-  url varchar(200) not null,
-  tipo char(1),
+  	url varchar(200) not null,
+  	tipo char(1),
 	id_usuario int
 );
 CREATE TABLE foto(
-  id_foto int auto_increment primary key,
-  data_foto DATETIME not null,
-  legenda_foto varchar(300) not null,
-  foto varchar(300) not null,
-  id_clube int
+  	id_foto int auto_increment primary key,
+  	data_foto DATETIME not null,
+  	legenda_foto varchar(300) not null,
+  	foto varchar(300) not null,
+  	id_clube int
 );
 
 CREATE TABLE agenda(
@@ -5864,6 +5869,7 @@ ALTER TABLE mensagem ADD constraint fk_usuario_enviar foreign key(id_enviar) ref
 ALTER TABLE mensagem ADD constraint fk_usuario_receber foreign key(id_receber) references usuario(id_usuario);
 ALTER TABLE anunciante ADD constraint fk_estado_an foreign key (estado) references estado(id);
 ALTER TABLE anunciante ADD constraint fk_cidade_an foreign key (cidade) references cidade(id);
+ALTER TABLE anuncio_jog ADD constraint fk_usuario_an_jog foreign key (id_usuario_an) references usuario(id_usuario);
 
 -- senha:Procast2017! --
 INSERT INTO admin(nome,sobrenome,email,senha) VALUES ("Admin","Principal","admin@admin","UHJvY2FzdDIwMTch"); 
