@@ -29,6 +29,11 @@
 
 $tipoan=$_POST['tipo_an'];
 include('../verificar_logado.php');
+$sqlsel='SELECT * FROM pagamento WHERE id_usuario='.$con['id_usuario'].';';
+$res=mysqli_query($conexao,$sqlsel);
+if (mysqli_num_rows($res)) {
+	echo('<script>window.location="../home.php";</script>');
+}
 if(empty($tipoan))
 {
 	echo('<script>window.location="../home.php";</script>');
@@ -114,23 +119,25 @@ else
 
 	//inserindo dados na tabela de pagamento
 
-	$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag,tipo_pagamento) VALUES
+	$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag,tipo_pagamento,tipo) VALUES
 	(
 		NOW(),
 		"'.$dadosboleto['valor_boleto'].'",
 		"'.$dadosboleto['linha_digitavel'].'",
 		'.$con['id_usuario'].',
 		"'.$con['nome'].' '.$con['sobrenome'].'",
-		"2"
+		"2",
+		"'.$tipoan.'"
 	);';
 
 	$inserir=mysqli_query($conexao,$sqlinpag);
 
-	$sqlin_an='INSERT INTO anuncio_jog(id_usuario_an,status_pagamento,data_criacao_anuncio) VALUES
+	$sqlin_an='INSERT INTO anuncio_jog(id_usuario_an,status_pagamento,data_criacao_anuncio,tipo) VALUES
 	(
 		'.$con['id_usuario'].',
-		"F",
-		NOW()
+		"0",
+		NOW(),
+		"'.$tipoan.'"
 	);';
 
 	$inserir_an=mysqli_query($conexao,$sqlin_an);

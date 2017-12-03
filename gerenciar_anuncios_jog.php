@@ -15,6 +15,12 @@
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />
 		<meta charset="UTF-8"/>
+		<style type="text/css">
+			.perf{
+				width: 200px;
+				height: 200px;
+			}
+		</style>
 		
 	</head>
 	<body>
@@ -69,52 +75,49 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio WHERE status="0"';
+								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="0"';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
 									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
-										$sqlsel3='SELECT * FROM pagamento_an WHERE id_anuncio='.$con_anuncio['id_anuncio'].'';
-										$resul3=mysqli_query($conexao,$sqlsel3);
-										if (mysqli_num_rows($resul3)>0) 
-										{
-											while ($con3=mysqli_fetch_array($resul3)) 
-											{
-												$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con_anuncio['id_anunciante'].'';
-												$resul2=mysqli_query($conexao,$sqlsel2);
-												$consulta_anunciante=mysqli_fetch_array($resul2);
+									
+										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario_an'].'';
+										$resul2=mysqli_query($conexao,$sqlsel2);
+										$consulta_usuario=mysqli_fetch_array($resul2);
+										$sql_est='SELECT * FROM estado WHERE id='.$consulta_usuario['estado'].'';
+										$res_est=mysqli_query($conexao,$sql_est);
+										$consulta_est=mysqli_fetch_array($res_est);
+										$sql_cid='SELECT * FROM cidade WHERE id='.$consulta_usuario['cidade'].'';
+										$res_cid=mysqli_query($conexao,$sql_cid);
+										$consulta_cid=mysqli_fetch_array($res_cid);
 										
 							?>
 							<div class='list-card'>
 								<div class="col-md-5">
-									<img src='uploads/<?php echo $con_anuncio['anuncio'];?>'>
+									<img src='uploads/<?php echo $consulta_usuario['foto_perfil'];?>' class="perf">
 								</div>
 								<div class="col-md-3">
 									<div class='list-details'>
 										<div class='list-name'>
-											Nome do Anúncio: <?php echo $con_anuncio['nome_anuncio'];?>
+											Nome do anunciado: <?php echo $consulta_usuario['nome'].' '.$consulta_usuario['sobrenome'];?>
+										</div>
+										<div class='list-name'>
+											CPF: <?php echo $consulta_usuario['cpf'];?>
 										</div>
 										<div class='list-rooms'>
-											<p>Link: <?php echo $con_anuncio['link'];?></p>
-											<p>Empresa: <?php echo $consulta_anunciante['nome_empresa'];?></p>
-											<p>CNPJ: <?php echo $consulta_anunciante['cnpj'];?></p>
-											<p>Nome anunciante: <?php echo $consulta_anunciante['nome_anunciante'].' '.$consulta_anunciante['sobrenome'];?></p>
+											<p>Estado: <?php echo $consulta_est['nome'];?></p>
+											<p>Cidade: <?php echo $consulta_cid['nome'];?></p>
 										</div>
 										<div class='list-landmark'>
 											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
 										</div>
-										<div class='list-location'>
-											Data de expiração: -
-										</div>
 										<div class='list-price'>
 											Plano: <?php 
 												if($con_anuncio['tipo']==1){
-													echo '1 semana por R$9,99';
+													echo '1 semana por R$9,90';
 												}elseif ($con_anuncio['tipo']==2){
-													echo '15 dias por R$16,99';
-												}else{
-													echo '1 mês por R$29,99';										
+													echo '14 dias por R$19,90';
 												}
 											?>
 										</div>
@@ -122,7 +125,8 @@
 								</div>
 								<div class="col-md-2">
 									<form action="#" method="POST">
-										<input type="hidden" name="id_anuncio" value="<?php echo($con_anuncio['id_anuncio']);?>">
+										<input type="hidden" name="id_usuario" value="<?php echo $consulta_usuario['id_usuario']; ?>">
+										
 										<p><button name="aprovar" type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>APROVAR</button></p>
 										<p><button name="reprovar" type="submit" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>REPROVAR</button></p>
 									</form>
@@ -132,27 +136,26 @@
 							
 										if(isset($_POST['aprovar']))
 										{
-											$id_anuncio=$_POST['id_anuncio'];
-											$sqlalt=('UPDATE anuncio set status="1" WHERE id_anuncio='.$id_anuncio.';');
+											$id_usuario_an=$_POST['id_usuario'];
+											$sqlalt=('UPDATE anuncio_jog set status_pagamento="T" WHERE id_usuario_an='.$id_usuario_an.';');
 											mysqli_query($conexao,$sqlalt);
-											$sqlalt=('UPDATE pagamento_an set status_pagamento="T" WHERE id_anuncio='.$id_anuncio.';');
+											$sqlalt=('UPDATE pagamento set status_pagamento="T" WHERE id_usuario='.$id_usuario_an.';');
 											mysqli_query($conexao,$sqlalt);
-											echo('<script>window.alert("Anúncio Aprovado");window.location="gerenciar_anuncios.php";</script>');
+											echo('<script>window.alert("Anúncio Aprovado");window.location="gerenciar_anuncios_jog.php";</script>');
 											exit();
 										}
 										if(isset($_POST['reprovar']))
 										{
-											$id_anuncio=$_POST['id_anuncio'];
-											$sqlalt=('UPDATE anuncio set status="2" WHERE id_anuncio='.$id_anuncio.';');
+											$id_usuario_an=$_POST['id_usuario_an'];
+											$sqlalt=('UPDATE anuncio_jog set status_pagamento="F" WHERE id_usuario_an='.$id_usuario_an.';');
 											mysqli_query($conexao,$sqlalt);
-											$sqlalt=('UPDATE pagamento_an set status_pagamento="F" WHERE id_anuncio='.$id_anuncio.';');
+											$sqlalt=('UPDATE pagamento set status_pagamento="F" WHERE id_usuario='.$id_usuario_an.';');
 											mysqli_query($conexao,$sqlalt);
-											echo('<script>window.alert("Anúncio Reprovado");window.location="gerenciar_anuncios.php";</script>');
+											echo('<script>window.alert("Anúncio Reprovado");window.location="gerenciar_anuncios_jog.php";</script>');
 											exit();
 										}
 									
 									}
-								}}
 								}
 								else
 								{
@@ -167,30 +170,39 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio WHERE status="1"';
+								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="T"';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
 									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
-										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con_anuncio['id_anunciante'].'';
+									
+										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario_an'].'';
 										$resul2=mysqli_query($conexao,$sqlsel2);
-										$consulta_anunciante=mysqli_fetch_array($resul2);
+										$consulta_usuario=mysqli_fetch_array($resul2);
+										$sql_est='SELECT * FROM estado WHERE id='.$consulta_usuario['estado'].'';
+										$res_est=mysqli_query($conexao,$sql_est);
+										$consulta_est=mysqli_fetch_array($res_est);
+										$sql_cid='SELECT * FROM cidade WHERE id='.$consulta_usuario['cidade'].'';
+										$res_cid=mysqli_query($conexao,$sql_cid);
+										$consulta_cid=mysqli_fetch_array($res_cid);
 							?>
 							<div class='list-card'>
-								<div class="col-md-5">
-									<img src='uploads/<?php echo $con_anuncio['anuncio'];?>'>
-								</div>
 								<div class="col-md-3">
+									<img src='uploads/<?php echo $consulta_usuario['foto_perfil'];?>' class="perf">
+								</div>
+								<div class="col-md-5">
+								<div class="col-md-7">
 									<div class='list-details'>
 										<div class='list-name'>
-											Nome do Anúncio: <?php echo $con_anuncio['nome_anuncio'];?>
+											Nome do anunciado: <?php echo $consulta_usuario['nome'].' '.$consulta_usuario['sobrenome'];?>
+										</div>
+										<div class='list-name'>
+											CPF: <?php echo $consulta_usuario['cpf'];?>
 										</div>
 										<div class='list-rooms'>
-											<p>Link: <?php echo $con_anuncio['link'];?></p>
-											<p>Empresa: <?php echo $consulta_anunciante['nome_empresa'];?></p>
-											<p>CNPJ: <?php echo $consulta_anunciante['cnpj'];?></p>
-											<p>Nome anunciante: <?php echo $consulta_anunciante['nome_anunciante'].' '.$consulta_anunciante['sobrenome'];?></p>
+											<p>Estado: <?php echo $consulta_est['nome'];?></p>
+											<p>Cidade: <?php echo $consulta_cid['nome'];?></p>
 										</div>
 										<div class='list-landmark'>
 											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
@@ -198,11 +210,9 @@
 										<div class='list-price'>
 											Plano: <?php 
 												if($con_anuncio['tipo']==1){
-													echo '1 semana por R$9,99';
+													echo '1 semana por R$9,90';
 												}elseif ($con_anuncio['tipo']==2){
-													echo '15 dias por R$16,99';
-												}else{
-													echo '1 mês por R$29,99';										
+													echo '14 dias por R$19,90';
 												}
 											?>
 										</div>
@@ -210,7 +220,7 @@
 								</div>
 								<div class="col-md-2">
 									<p align="center"><i class="fa fa-check fa-5x"></i><br>Aprovado</p>
-									<p align="center"><a href="gerenciar_anuncios.php?exc=<?php echo($con_anuncio['id_anuncio']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
+									<p align="center"><a href="gerenciar_anuncios.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
 								</div>
 							</div>
 							<?php
@@ -222,11 +232,12 @@
 								}
 								if (isset($_GET['exc'])) {
 									$exc=$_GET['exc'];
-									$sqlex=('DELETE FROM anuncio WHERE id_anuncio='.$exc.';');
+									$sqlex=('DELETE FROM anuncio_jog WHERE id_usuario_an='.$exc.';');
 									mysqli_query($conexao,$sqlex);
-									$sqlex=('DELETE FROM pagamento_an WHERE id_anuncio='.$exc.';');
-									mysqli_query($conexao,$sqlex);
-									echo('<script>window.alert("Anúncio Excluído");window.location="gerenciar_anuncios.php";</script>');
+									$sqlex=('DELETE FROM pagamento WHERE id_usuario='.$exc.';');
+									if(mysqli_query($conexao,$sqlex)){
+									echo('<script>window.alert("Anúncio Excluído");window.location="gerenciar_anuncios_jog.php";</script>');
+								}
 								}
 							?>
 						</div>
@@ -237,45 +248,49 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio WHERE status="2"';
+								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="F"';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
 									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
-										$sqlsel2='SELECT * FROM anunciante WHERE id_anunciante='.$con_anuncio['id_anunciante'].'';
+									
+										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario_an'].'';
 										$resul2=mysqli_query($conexao,$sqlsel2);
-										$consulta_anunciante=mysqli_fetch_array($resul2);
+										$consulta_usuario=mysqli_fetch_array($resul2);
+										$sql_est='SELECT * FROM estado WHERE id='.$consulta_usuario['estado'].'';
+										$res_est=mysqli_query($conexao,$sql_est);
+										$consulta_est=mysqli_fetch_array($res_est);
+										$sql_cid='SELECT * FROM cidade WHERE id='.$consulta_usuario['cidade'].'';
+										$res_cid=mysqli_query($conexao,$sql_cid);
+										$consulta_cid=mysqli_fetch_array($res_cid);
 							?>
 							<div class='list-card'>
-								<div class="col-md-5">
-									<img src='uploads/<?php echo $con_anuncio['anuncio'];?>'>
-								</div>
 								<div class="col-md-3">
+									<img src='uploads/<?php echo $consulta_usuario['foto_perfil'];?>' class="perf">
+								</div>
+								<div class="col-md-5">
+								<div class="col-md-7">
 									<div class='list-details'>
 										<div class='list-name'>
-											Nome do Anúncio: <?php echo $con_anuncio['nome_anuncio'];?>
+											Nome do anunciado: <?php echo $consulta_usuario['nome'].' '.$consulta_usuario['sobrenome'];?>
+										</div>
+										<div class='list-name'>
+											CPF: <?php echo $consulta_usuario['cpf'];?>
 										</div>
 										<div class='list-rooms'>
-											<p>Link: <?php echo $con_anuncio['link'];?></p>
-											<p>Empresa: <?php echo $consulta_anunciante['nome_empresa'];?></p>
-											<p>CNPJ: <?php echo $consulta_anunciante['cnpj'];?></p>
-											<p>Nome anunciante: <?php echo $consulta_anunciante['nome_anunciante'].' '.$consulta_anunciante['sobrenome'];?></p>
+											<p>Estado: <?php echo $consulta_est['nome'];?></p>
+											<p>Cidade: <?php echo $consulta_cid['nome'];?></p>
 										</div>
 										<div class='list-landmark'>
 											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
 										</div>
-										<div class='list-location'>
-											Data de expiração: -
-										</div>
 										<div class='list-price'>
 											Plano: <?php 
 												if($con_anuncio['tipo']==1){
-													echo '1 semana por R$9,99';
+													echo '1 semana por R$9,90';
 												}elseif ($con_anuncio['tipo']==2){
-													echo '15 dias por R$16,99';
-												}else{
-													echo '1 mês por R$29,99';										
+													echo '14 dias por R$19,90';
 												}
 											?>
 										</div>
@@ -283,7 +298,7 @@
 								</div>
 								<div class="col-md-2">
 									<p align="center"><i class="fa fa-times fa-5x"></i><br>Reprovado</p>
-									<p align="center"><a href="gerenciar_anuncios.php?exc=<?php echo($con_anuncio['id_anuncio']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
+									<p align="center"><a href="gerenciar_anuncios.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
 								</div>
 							</div>
 							<?php
@@ -293,10 +308,11 @@
 								{
 									echo '<p align="center"><img src="img/triste.png"><br>Nenhum Anúncio</p>';
 								}
+								
 							?>
 						</div>
 					</div>
-				</section>
+				</section
 				</div>
 			</div>
 		</section>

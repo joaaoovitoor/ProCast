@@ -113,10 +113,15 @@
 .carousel-control.left,.carousel-control.right{
  	background:none;
 }
+.vj{
+	margin-top: 10%;
+}
+.anun{
+	margin-top: 3%;
+}
 .carousel{
-	padding-bottom: 5%;
-	padding-top: 2%;
 	background: url(../img/home/jogador_bg.jpg);
+	height: 350px !important;
 }
 .card_preco{
 	padding: 0;

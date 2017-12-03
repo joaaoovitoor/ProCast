@@ -21,7 +21,7 @@
                 <h1 class="text-center fonte_branca texto_sombra">
                     <strong>Aumente suas chances de ser um profissional!</strong>
                 </h1>
-                <a href="noticias.php" class="btn btn-lg fonte_branca btn_camp bg_grad col-sm-offset-5 col-xs-offset-4"><strong>Mais Informações</strong></a>
+                
             </div>
         </div>
         <!--NOTICIAS-->
@@ -130,46 +130,38 @@
             <!--SLIDESHOW-->
 
         </div> 
-                    <div id="slide-anuncio" class="carousel slide" data-ride="carousel">
-                <h2 class="text-center fonte_branca"><strong>Jogadores e clubes destaque</strong></h2>
-                <ol class="carousel-indicators">
-                    <li data-target="#slide-anuncio" data-slide-to="0" class="active"></li>
-                    <li data-target="#slide-anuncio" data-slide-to="1"></li>
-                    <li data-target="#slide-anuncio" data-slide-to="2"></li>
-                </ol>
+                    <div id="slide-anuncio" class="carousel slide " data-ride="carousel">
                 <!--slides-->
-                <div class="carousel-inner" role="listbox">
+                <div class="carousel-inner " role="listbox">
                     <div class="item active">
                         <div class="row">
-                            <div class="col-xs-offset-4 col-md-offset-2 col-md-2">
-                                <img src="img/home/jogador.jpg" class="img-responsive img-circle user">
-                            </div>
-                            <div class="col-xs-offset-4 col-md-offset-0 col-md-8">
-                                <h3 class="fonte_branca"><strong>Conheça Cleber José</strong></h3>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Idade:</strong> 19 anos </p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-knight" aria-hidden="true"></span> Posição:</strong> Suporte </p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Ranking:</strong> 135º</p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-knight" aria-hidden="true"></span> Elo: </strong> Platina II <img src="img/home/elos/platina.png" alt=""></p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Clube:</strong> Sem clube</p>
-                            </div>
+                            <h2 class="fonte_branca vj text-center">Veja as melhores ofertas de nossos parceiros!</h2>
                         </div>
                     </div>
+                    <?php
+                        $sqlsel='SELECT * FROM anuncio WHERE status="1"';
+                        $resul=mysqli_query($conexao,$sqlsel);
+                        if (mysqli_num_rows($resul)>0)
+                        {
+                            while ($con_anuncio=mysqli_fetch_array($resul)) 
+                            {
+                    ?>
                     <div class="item">
-                        <div class="row">
-                            <div class="col-xs-offset-4 col-md-offset-2 col-md-2">
-                                <img src="img/home/red.jpg" class="img-responsive img-circle user">
+                        <div class="row anun">
+                            <div class="col-xs-offset-4 col-md-offset-2 col-md-4">
+                                <a href="<?php echo($con_anuncio['link']) ?>" target="blank"><img src="uploads/<?php echo($con_anuncio['anuncio']) ?>" alt="" class="img-responsive"></a> 
                             </div>
-                            <div class="col-xs-offset-4 col-md-offset-0 col-md-8">
-                                <h3 class="fonte_branca"><strong> Conheça o clube Red Canids</strong></h3>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Topo:</strong> Cleber </p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Caçador:</strong> Francisco </p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Meio:</strong> José</p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Atirador: </strong> Roberto </p>
-                                <p class="fonte_branca"><strong><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Suporte: </strong> Wesley </p>
+                            <div class="col-xs-offset-4 col-md-offset-0 col-md-6 ">
+                                <h3 class="fonte_branca"><strong> <?php echo($con_anuncio['nome_anuncio']) ?></strong></h3>
+                                <p class="fonte_branca"> <?php echo($con_anuncio['descricao']) ?> </p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?php
+                        }
+                    }
+                ?>
                 <!--controles-->
                 <a class="left carousel-control sem_bg" href="#slide-anuncio" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left sem_bg fonte_branca" aria-hidden="true"></span>

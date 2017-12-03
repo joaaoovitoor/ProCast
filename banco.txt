@@ -5726,6 +5726,7 @@ CREATE TABLE anuncio_jog(
   	id_anuncio int(11) not null auto_increment primary key,
   	id_usuario_an int(11) not null,
 	data_criacao_anuncio TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    tipo char(1),
   	status_pagamento char(2) not null
 );
 CREATE TABLE denuncia(
@@ -5788,6 +5789,8 @@ CREATE TABLE pagamento(
 	numero_boleto varchar(60) not null,
 	id_usuario int not null,
 	nome_usuario_pag varchar(50) not null,
+  tipo_pagamento char(1),
+  tipo char,
 	status_pagamento char(2) default 'F'
 );
 CREATE TABLE pagamento_an(

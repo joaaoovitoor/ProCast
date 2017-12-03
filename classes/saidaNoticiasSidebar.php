@@ -25,17 +25,24 @@
 					}
 				}
 			}
+			$sqlsel='SELECT * FROM anuncio WHERE status="1" LIMIT 3';
+			$resul=mysqli_query($conexao,$sqlsel);
+			if (mysqli_num_rows($resul)>0)
+			{
+				while ($con_anuncio=mysqli_fetch_array($resul)) 
+				{
 			?>
 			<div class="col-md-4">
 					<div class="panel col-md-12 bg_branco">
 					    <div class="panel-body">
 					        <h5 class="fonte_cinza_escuro">Publicidade</h5>
-					        <div class="col-xs-6">
-					           <a href="https://www.game7.com.br/" target="blank"><img src="img/publi1.png" alt="" class="img-responsive"></a> 
-					        </div>
-					        <div class="col-xs-6">
-					           <a href="https://www.game7.com.br/" target="blank"><img src="img/publi1.png" alt="" class="img-responsive"></a> 
+					        <div class="col-xs-12">
+					           <a href="<?php echo($con_anuncio['link']) ?>" target="blank"><img src="uploads/<?php echo($con_anuncio['anuncio']) ?>" alt="" class="img-responsive"></a> 
 					        </div>
 					    </div>
 					</div>
 				</div>
+			<?php
+				}
+			}
+			?>
