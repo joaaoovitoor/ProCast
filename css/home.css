@@ -1,10 +1,13 @@
 *{
 	font-family: 'Nunito', sans-serif;
 }
-
+.altr{
+	height: 244px !important;
+}
 .container-fluid{
 	width: 100%;
 }
+
 .bg_grad{
 	background:linear-gradient(to right, #02314c, #1a5a9b) !important;
 }
@@ -94,6 +97,7 @@
 }
 .noticia{
 	padding: 1%;
+	height: 373px !important;
 }
 .noticia:hover{
 	box-shadow: 3px 3px 5px #e5e0e5;

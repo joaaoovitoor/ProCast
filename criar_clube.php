@@ -94,7 +94,7 @@
 						{
 							if($_FILES['anexo']['error']==4)
 							{
-								$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("club_icon.png","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
+								$sqlin=('INSERT INTO clube(logo_clube,nome_clube,dta_criacao,descricao_clube,id_usuario) VALUES("club_icon.jpg","'.$nome.'",NOW(),"'.$descricao.'",'.$con['id_usuario'].');');
 								$inserir=mysqli_query($conexao,$sqlin);
 							}
 							else

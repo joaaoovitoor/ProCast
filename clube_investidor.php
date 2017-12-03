@@ -1,5 +1,10 @@
 <?php
 	include('verificar_logado.php');
+	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
+	$resul=mysqli_query($conexao,$sqlsel);
+	if (mysqli_num_rows($resul)<=0) {
+		echo('<script>alert("Você não possui clube!");window.location="criar_clube.php";</script>');
+	}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -81,7 +86,7 @@
 			            </div>
 			            <div class="descricao">
 			                    <?php 
-			                    	$dataexplode = explode("-",$con2['dta_criacao']);
+			                    	$dataexplode=explode("-",$con2['dta_criacao']);
 									$cont=2;
 									for($i=0;$i<3;$i++)
 									{
@@ -95,9 +100,6 @@
 			                    ?>
 			                    <p><strong>Data de criação:</strong> <?php echo $datacerto; ?></p>
 			                    <p><strong>Jogadores:</strong> <?php echo $numjog; ?> </p>
-			                    <p><strong>Partidas jogadas:</strong> 0 </p> 
-			                    <p><strong>Vitórias:</strong> 0 </p> 
-			                    <p><strong>Derrotas:</strong> 0 </p> 
 			            </div>
 			        </div>
 				</div>

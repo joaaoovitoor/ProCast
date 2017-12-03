@@ -34,20 +34,22 @@
            <div class="row">
                 <h2 class="text-center fonte_cinza_escuro"><strong>Veja as principais notícias sobre e-sports</strong></h2>
                  <?php
+                 for ($i=1; $i <4 ; $i++) { 
                     while ($controle=mysqli_fetch_array($res)) {
  
                 ?>
-                <a href="conteudo_noticia">
+                <a href="conteudo_noticia.php?ex=<?php echo $controle['id_noticia']?>">
                     <div class="col-md-4">
                         <div class="panel panel-default noticia mg_tp">
-                            <img src="uploads/" class="img-responsive">
-                            <h4 class="text-center fonte_cinza_escuro"><strong>e-Sports ganham o apoio da Coca-Cola no Brasil</strong></h4>
-                            <p class="text-center">Os e-atletas da Team One terão mais um logo em sua camisa: Fanta Guaraná.</p>
-                            <p class="text-center fonte_azul_claro"><a href=""><strong>Continuar Lendo</strong></a></p>
+                            <img src="uploads/<?php echo($controle['imagem_noticia']); ?>" class="altr">
+                            <h4 class="text-center fonte_cinza_escuro"><strong><?php echo($controle['titulo']); ?></strong></h4>
+                            <p class="text-center"><?php echo($controle['lide']); ?></p>
+                            <p class="text-center fonte_azul_claro"><a href="conteudo_noticia.php?ex=<?php echo $controle['id_noticia']?>"><strong>Continuar Lendo</strong></a></p>
                         </div> 
                     </div>
                 </a>
             <?php
+                        }
                     }
                 }
             ?>

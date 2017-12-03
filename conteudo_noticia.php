@@ -8,6 +8,11 @@
         <?php
             include('link_head.html');
         ?>
+        <style>
+            .ctd{
+                overflow-wrap: break-word;
+            }
+        </style>
 	</head>
 	<body>
         <?php
@@ -29,18 +34,6 @@
             <div class="row">
                 <?php include('classes/saidaConteudoNoticia.php');?>
                 <?php include('classes/saidaNoticiasSidebar.php');?>
-                
-                <div class="panel col-md-4 bg_branco">
-                    <div class="panel-body">
-                        <h5 class="fonte_cinza_escuro">Publicidade</h5>
-                        <div class="col-xs-6">
-                           <a href="https://www.game7.com.br/" target="blank"><img src="img/publi1.png" alt="" class="img-responsive"></a> 
-                        </div>
-                        <div class="col-xs-6">
-                           <a href="https://www.game7.com.br/" target="blank"><img src="img/publi1.png" alt="" class="img-responsive"></a> 
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container-fluid not">

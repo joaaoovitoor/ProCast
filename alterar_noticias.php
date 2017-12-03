@@ -1,7 +1,7 @@
 <?php 
 	include("menu-admin.html");	
 	$id = $_GET['alt'];
-	$conexao = mysqli_connect('localhost','root','','dbprocast');
+	include('conexao.php');
 ?>
 <!DOCTYPE html>
 <html>
