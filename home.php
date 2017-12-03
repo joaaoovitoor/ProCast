@@ -26,38 +26,31 @@
         </div>
         <!--NOTICIAS-->
         <div class="container-fluid">
+            <?php
+                $sqlsel='SELECT * FROM noticia order by data desc;';
+                $res=mysqli_query($conexao,$sqlsel);
+                if (mysqli_num_rows($res)) {
+            ?>
            <div class="row">
                 <h2 class="text-center fonte_cinza_escuro"><strong>Veja as principais notícias sobre e-sports</strong></h2>
+                 <?php
+                    while ($controle=mysqli_fetch_array($res)) {
+ 
+                ?>
                 <a href="conteudo_noticia">
                     <div class="col-md-4">
                         <div class="panel panel-default noticia mg_tp">
-                            <img src="img/home/fanta_pat.jpg" class="img-responsive">
+                            <img src="uploads/" class="img-responsive">
                             <h4 class="text-center fonte_cinza_escuro"><strong>e-Sports ganham o apoio da Coca-Cola no Brasil</strong></h4>
                             <p class="text-center">Os e-atletas da Team One terão mais um logo em sua camisa: Fanta Guaraná.</p>
                             <p class="text-center fonte_azul_claro"><a href=""><strong>Continuar Lendo</strong></a></p>
                         </div> 
                     </div>
                 </a>
-                <a href="conteudo_noticia">
-                    <div class="col-md-4">
-                        <div class="panel panel-default noticia mg_tp">
-                            <img src="img/home/fanta_pat.jpg" class="img-responsive">
-                            <h4 class="text-center fonte_cinza_escuro"><strong>e-Sports ganham o apoio da Coca-Cola no Brasil</strong></h4>
-                            <p class="text-center">Os e-atletas da Team One terão mais um logo em sua camisa: Fanta Guaraná.</p>
-                            <p class="text-center fonte_azul_claro"><a href=""><strong>Continuar Lendo</strong></a></p>
-                        </div> 
-                    </div>
-                </a>
-                 <a href="conteudo_noticia">
-                    <div class="col-md-4">
-                        <div class="panel panel-default noticia mg_tp">
-                            <img src="img/home/fanta_pat.jpg" class="img-responsive">
-                            <h4 class="text-center fonte_cinza_escuro"><strong>e-Sports ganham o apoio da Coca-Cola no Brasil</strong></h4>
-                            <p class="text-center">Os e-atletas da Team One terão mais um logo em sua camisa: Fanta Guaraná.</p>
-                            <p class="text-center fonte_azul_claro"><a href=""><strong>Continuar Lendo</strong></a></p>
-                        </div> 
-                    </div>
-                </a>
+            <?php
+                    }
+                }
+            ?>
             </div>
             <div class="row bg_branco anunc">
                 <div class="col-md-offset-3 col-md-6 text-center">
