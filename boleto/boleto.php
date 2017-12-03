@@ -27,7 +27,7 @@
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//
 // DADOS DO BOLETO PARA O SEU CLIENTE
 
-include('../conexao.php');
+
 include('../verificar_logado.php');
 if($con['categoria_usuario']==1)
 {
@@ -99,13 +99,14 @@ include("include/layout_itau.php");
 
 //inserindo dados na tabela de pagamento
 
-$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag) VALUES
+$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag,tipo_pagamento) VALUES
 (
 	NOW(),
 	"'.$dadosboleto['valor_boleto'].'",
 	"'.$dadosboleto['linha_digitavel'].'",
 	'.$con['id_usuario'].',
-	"'.$con['nome'].' '.$con['sobrenome'].'"
+	"'.$con['nome'].' '.$con['sobrenome'].'",
+	"1"
 );';
 
 $inserir=mysqli_query($conexao,$sqlinpag);

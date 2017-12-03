@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="css/index/slideshow.css" />
 	    <!--ESTILO-->
 	    <link rel="stylesheet" href="css/index/estilo.css">
+	    <link rel="stylesheet" href="css/perfil/perfil.css">
 		<?php
 			include('link_head.html');
 		?>
@@ -64,24 +65,37 @@
 				<div class="parallax">
 			        <section class="pricing-section bg-6">
 			            <div class="pricing pricing--pema">
+			            	<?php 
+			            		include('conexao.php');
+		                		$sqlsel_anjog='SELECT id_usuario_an FROM anuncio_jog WHERE status_pagamento="T" ORDER BY data_criacao_anuncio DESC LIMIT 3;';
+		                		$resul_anjog=mysqli_query($conexao,$sqlsel_anjog);
+		                		if(mysqli_num_rows($resul_anjog)>0)
+		                		{	
+		                			while($con_an=mysqli_fetch_array($resul_anjog))
+		                			{
+		                				$sqldados_anu='SELECT * FROM usuario WHERE id_usuario='.$con_an['id_usuario_an'].';';
+		                				$resuldados_anu=mysqli_query($conexao,$sqldados_anu);
+		                				$con_dados=mysqli_fetch_array($resuldados_anu);
+		                				$cam='uploads/'.$con_dados['foto_perfil'];
+		                	?>
 			                <div class="pricing__item outro col-xs-offset-3 col-xs-5 col-sm-3 col-md-3">
-			                	<p align="center"><img src="img/perfil_icon.png" class="img-circle img-responsive"></p>
-			                    <h3 class="pricing__title">Yoda</h3>
-			                    <p class="pricing__sentence">Red Canids</p>
-			                    <p align="center"><img src="img/index/1.png" class="img-responsive"></p>
+			                	<p align="center"><img src="<?php echo $cam ?>" class="img-circle img-responsive perfil_img"></p>
+			                    <h3 class="pricing__title"><?php echo $con_dados['nick'] ?></h3>
+			                    <p class="pricing__sentence"><?php echo $con_dados['nome'] ?></p>
+			                   	<p class="pricing__sentence"><?php echo $con_dados['descricao'] ?></p>
 			                </div>
-			                <div class="pricing__item outro col-xs-offset-3 col-xs-5 col-sm-3 col-md-3">
+			                <?php 
+		               		    	}
+		                		}
+		                		else{
+		                	?>
+		                	<div class="pricing__item outro col-xs-offset-3 col-xs-5 col-sm-3 col-md-3">
 			                	<p align="center"><img src="img/perfil_icon.png" class="img-circle img-responsive"></p>
-			                    <h3 class="pricing__title">Dioud</h3>
-			                    <p class="pricing__sentence">Red Canids</p>
-			                    <p align="center"><img src="img/index/2.png" class="img-responsive"></p>
+			                    <h3 class="pricing__title">Nenhum anúncio de perfil ou clube</h3>
 			                </div>
-			                <div class="pricing__item outro col-xs-offset-7 col-xs-5 col-sm-3 col-md-3">
-			                	<p align="center"><img src="img/perfil_icon.png" class="img-circle img-responsive"></p>
-			                    <h3 class="pricing__title">Kami</h3>
-			                    <p class="pricing__sentence">Pain Gaming</p>
-			                	<p align="center"><img src="img/index/3.png" class="img-responsive"></p>
-			                </div>
+		                	<?php
+		                		}
+			                ?>
 			            </div>
 			        </section>
 			    </div>
