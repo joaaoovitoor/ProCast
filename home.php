@@ -19,9 +19,9 @@
             <div class="container-fluid">
                 <h3 class="text-center fonte_branca texto_sombra"><strong>Entre para um clube e</strong></h3>
                 <h1 class="text-center fonte_branca texto_sombra">
-                    <strong>Participe de nossos torneios</strong>
+                    <strong>Aumente suas chances de ser um profissional!</strong>
                 </h1>
-                <a href="conteudo_noticia.php" class="btn btn-lg fonte_branca btn_camp bg_grad col-sm-offset-5 col-xs-offset-4"><strong>Mais Informações</strong></a>
+                <a href="noticias.php" class="btn btn-lg fonte_branca btn_camp bg_grad col-sm-offset-5 col-xs-offset-4"><strong>Mais Informações</strong></a>
             </div>
         </div>
         <!--NOTICIAS-->
@@ -61,7 +61,7 @@
                         <strong>Quer ter mais visibilidade? Tornar-se um profissional? Anuncie-se agora mesmo!</strong>
                     </h4>
                     <p class="mg_tp">
-                        Por apenas R$ 19,90 você pode ter seu perfil anunciado na home do site, aumentado assim suas chances de ser descoberto.
+                        Por apenas R$ 9,90 você pode ter seu perfil anunciado na home do site, aumentado assim suas chances de ser descoberto.
                     </p>
                 </div>
                 <div class="col-md-offset-1 col-md-3 pri mg_tp">
@@ -75,12 +75,13 @@
                         </div>
                         <ul class="list-group">
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de informações do perfil</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-remove-circle fonte_cinza_claro" aria-hidden="true"></span> Anúncio de programação de partidas</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-remove-circle fonte_cinza_claro" aria-hidden="true"></span> Anúncio de conquistas</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 7 dias</li>
                         </ul>
                         <p class="mg_ld">
-                            <a href="#" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp"><strong>Contratar</strong></a>
+                            <form action="boleto/boleto_an_user.php" method="POST" target="_blank">
+                                <input type="hidden" name="tipo_an" value="1">
+                                <button type="submit" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp" <?php if($con['categoria_usuario']==2){echo 'disabled="disabled"';}?>><strong>Contratar</strong></button>
+                            </form>
                         </p>
                     </div>
                 </div>
@@ -95,12 +96,13 @@
                         </div>
                         <ul class="list-group">
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de informações do perfil</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de programação de partidas</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de conquistas</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 14 dias</li>
                         </ul>
                         <p class="mg_ld">
-                            <a href="#" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp"><strong>Contratar</strong></a>
+                            <form action="boleto/boleto_an_user.php" method="POST" target="_blank">
+                                <input type="hidden" name="tipo_an" value="2">
+                                <button type="submit" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp" <?php if($con['categoria_usuario']==2){echo 'disabled="disabled"';}?>><strong>Contratar</strong></button>
+                            </form>
                         </p>
                     </div>
                 </div>
@@ -114,12 +116,14 @@
                             <p class="text-center fonte_cinza_claro"><strong>Válido somente para clubes</strong></p>
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de nomes dos integrantes do clube</li>
-                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de conquistas do clube</li>
+                            <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Anúncio de nomes dos integrantes e vitórias do clube</li>
                             <li class="list-group-item sem_borda"> <span class="glyphicon glyphicon-ok-circle fonte_azul_claro" aria-hidden="true"></span> Duração de 14 dias</li>
                         </ul>
                         <p class="mg_ld">
-                            <a href="#" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp"><strong>Contratar</strong></a>
+                            <form action="boleto/boleto_an_user.php" method="POST" target="_blank">
+                                <input type="hidden" name="tipo_an" value="3">
+                                <button type="submit" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp" <?php if($con['categoria_usuario']==1){echo 'disabled="disabled"';}?>><strong>Contratar</strong></button>
+                            </form>
                         </p>
                     </div>
                 </div>

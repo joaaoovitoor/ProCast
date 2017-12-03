@@ -884,6 +884,16 @@
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
+								<?php 
+									$sql_anperf='SELECT * FROM anuncio_jog WHERE id_usuario_an='.$con['id_usuario'].' ORDER BY data_criacao_anuncio DESC;';
+									$resul_anperf=mysqli_query($conexao,$sql_anperf);
+									$con_anperf=mysqli_fetch_array($resul_anperf);
+								?>
+				                Anúncio de perfil: <input type="text" class="form-control" name="status" value="<?php if(mysqli_num_rows($resul_anperf)<=0){ echo("Nenhum anúncio solicitado!");}else{ if($con_anperf['status_pagamento']=="F"){ echo "Anúncio solicitado! Pagamento pendente!";}else{echo 'Anúncio solicitado! Pagamento realizado! Seu perfil já está sendo anunciado.';}} ?>" readonly>
+				            </div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
 				                Sobre mim
 				                <textarea class="form-control" rows="3" placeholder="Descreva sobre você" name="descricao_edt" maxlength="200"><?php echo $con['descricao'];?></textarea>
 				            </div>
