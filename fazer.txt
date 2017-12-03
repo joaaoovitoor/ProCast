@@ -1,0 +1,7 @@
+-Clube jogador;
+-Clube investidor;
+-Home;
+-Página de pagamento admin;
+- ver jogador;
+- agenda investidor/clube;
+- pagamento clube;
