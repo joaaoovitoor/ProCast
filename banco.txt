@@ -5788,8 +5788,16 @@ CREATE TABLE video(
 	data_video DATETIME not null,
 	descricao_video varchar(300) not null,
 	titulo_video varchar(50) not null,
-  	url varchar(200) not null,
+  url varchar(200) not null,
+  tipo char(1),
 	id_usuario int
+);
+CREATE TABLE foto(
+  id_foto int auto_increment primary key,
+  data_foto DATETIME not null,
+  legenda_foto varchar(300) not null,
+  foto varchar(300) not null,
+  id_clube int
 );
 
 CREATE TABLE agenda(

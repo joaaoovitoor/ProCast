@@ -1,4 +1,10 @@
 <?php
+	include('verificar_logado.php');
+	include('conexao.php');
+	if ($con['clube']=="") 
+	{
+		echo('<script>alert("Você não possui clube!");window.location="verificar_perfil.php";</script>');
+	}
 	
 ?>
 <!DOCTYPE html>
@@ -31,14 +37,6 @@
                 </div>
             </div>
         </div>
-        <?php 
-        	include('verificar_logado.php');
-			include('conexao.php');
-        	if ($con['clube']=="") 
-			{
-				echo('<script>alert("Você não possui clube!");window.location="verificar_perfil.php";</script>');
-			}
-        ?>
 		<div class="container-fluid">
 			<div class="row">
 				<!-- Cartão com informações -->
