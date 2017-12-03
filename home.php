@@ -27,14 +27,14 @@
         <!--NOTICIAS-->
         <div class="container-fluid">
             <?php
-                $sqlsel='SELECT * FROM noticia order by data desc;';
+                $sqlsel='SELECT * FROM noticia order by data desc LIMIT 3;';
                 $res=mysqli_query($conexao,$sqlsel);
                 if (mysqli_num_rows($res)) {
             ?>
            <div class="row">
                 <h2 class="text-center fonte_cinza_escuro"><strong>Veja as principais notícias sobre e-sports</strong></h2>
                  <?php
-                 for ($i=1; $i <4 ; $i++) { 
+                 
                     while ($controle=mysqli_fetch_array($res)) {
  
                 ?>
@@ -49,7 +49,6 @@
                     </div>
                 </a>
             <?php
-                        }
                     }
                 }
             ?>

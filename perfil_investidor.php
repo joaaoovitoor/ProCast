@@ -286,7 +286,6 @@
 		            </div>
 				</section>
 				<!--MENU - AGENDA-->
-								<!--MENU - AGENDA-->
 				<section id="3">
 					<div class="cartao-equipe">
 						<input class="form-control azul" type="submit" value="Novo Evento" data-toggle="collapse" data-target="#evento" aria-expanded="false" aria-controls="collapseExample"><br>
