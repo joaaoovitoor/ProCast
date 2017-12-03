@@ -11,6 +11,7 @@
         <div class="thumbnail sem_borda">
            <img src="<?php echo ('uploads/'.$row['imagem_noticia']) ?>" alt="Imagem ilustrativa da notícia">
             <div class="caption">
+                <title><?php  echo $row['titulo'];?></title>
                 <h2 class="text-center fonte_azul_claro mg_bt"><strong><?php  echo $row['titulo'];?></h2>
 
                 <h4 class="text-center fonte_cinza_claro2 mg_bt"><?php  echo $row['lide'];?></h4>

@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-        <title>Notícia</title>
         <link rel="stylesheet" href="css/noticias_cont.css">
         <!--UTF-8-->    
         <meta charset="utf-8"/>
