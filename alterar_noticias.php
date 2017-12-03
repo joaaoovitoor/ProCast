@@ -70,10 +70,6 @@
 							</select>
 						</div>
 						<div class="form-group col-md-12">
-							<h4>Inserir imagem:</h4>
-							<input type="file" name="foto" class="btn btn-default" value="<?php echo $editar['imagem_noticia']; ?>" >
-						</div>
-						<div class="form-group col-md-12">
 							<h4>Notícia:</h4>
 							<textarea class="form-control" rows="10" name="noticia" placeholder="Digite a noticia" maxlength="29000"><?php echo $editar['texto']; ?></textarea>
 						</div>
