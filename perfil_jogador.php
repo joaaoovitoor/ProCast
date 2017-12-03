@@ -88,9 +88,10 @@
 			                    				<div class="col-sm-6">
 				                    				<span class="coach-name"><p>Clube</p></span>
 				                        			<span class="coach-job"><p>'.$cl['nome_clube'].'</p></span>
+				                        			<form action="#" method="POST"><p><button type="submit" class="btn btn_foto btn_saircb" data-toggle="tooltip" data-placement="right" title="Clique aqui para sair do clube atual!" name="sair_clube">Sair do clube</button></p></form>
 			                        			</div>
 							                    <div class="col-sm-6">
-							                        <img src="uploads/'.$cl['logo_clube'].'" width="100">
+							                        <img src="uploads/'.$cl['logo_clube'].'" width="200">
 							                    </div>
 			                    			');
 			                    		}
@@ -185,6 +186,7 @@
 		        			<input type="file" name="anexo" id="anexo">
 		        			<button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique no cículo acima e selecione a foto que deseja. Após isso, clique neste botão!">Confirmar envio de foto</button>
                         </form>
+                        
                         <?php
 			        		if (isset($_FILES['anexo']))
 	                        {
@@ -204,9 +206,9 @@
 	                            
 	                        }
 			        	?>
-                        <p>Nick: <?php echo $con['nick'];?> </p>
-                        <a href="mudarnick.php?idnick=<?php echo($con['id_nick'].'&nick='.$con['nick']) ?>"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Ao mudar de Nick dentro do jogo, clique aqui para atualiza-lo!">Atualizar Nick</button></p></a>
-                        <p>Clube: 
+                        <p>Nick: <?php echo $con['nick'];?>
+                        <a href="mudarnick.php?idnick=<?php echo($con['id_nick'].'&nick='.$con['nick']) ?>"><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Ao mudar de Nick dentro do jogo, clique aqui para atualiza-lo!">Atualizar Nick</button></p></a>
+                        <form action="#" method="POST"><p>Clube: 
 	                    	<?php 
 	                    		if(!empty($con['clube']))
 	                    		{
@@ -215,7 +217,7 @@
 	                    			$cl=mysqli_fetch_array($resul);
 	                    			echo
 	                    			(
-	                    				$cl['nome_clube']
+	                    				$cl['nome_clube'].' <button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique aqui para sair do clube atual!" name="sair_clube">Sair do clube</button></p></form>'
 	                    			);
 	                    		}
 	                    		else
@@ -223,12 +225,13 @@
 	                    			echo
 	                    			('
 	                    				<div class="col-sm-12">
-		                    				<span class="coach-name"><p>Você não criou seu clube</p></span>
+		                    				<span class="coach-name"><p>Você ainda não está em um clube</p></span>
+				                        	<span class="coach-job"><p>Fique atento na aba de convites</p></span>
 	                        			</div>
 	                    			');
 	                    		}
 	                    	?>
-                    	</p>
+                    	
 		                <p><strong>Sobre mim:</strong>
 		                <?php
 		                    if($con['descricao']==NULL){
@@ -289,6 +292,37 @@
 						}
 						else
 						{
+							$sqlseli='SELECT * FROM usuario WHERE clube='.$con['clube'].' AND categoria_usuario=2;';
+							$resuli=mysqli_query($conexao,$sqlseli);
+							while ($ctrli=mysqli_fetch_array($resuli))
+							{
+								echo
+								('
+									<div class="cartao-equipe">
+						                <div class="media">
+						                    <div class="media-left">
+						                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/'.$ctrli['foto_perfil'].'">
+						                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrli['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
+						                    </div>
+						                    <div class="media-body">
+						                        <h3 class="media-heading">'.$ctrli['nome'].' '.$ctrli['sobrenome'].'</h3>');
+						                        
+						                        if($ctrli['descricao']==NULL)
+						                        {
+						                        	echo '<h5>Nenhuma descrição!</h5>';
+						                        }
+						                        else
+						                        {
+						                        	echo '<h5>'.$ctrli['descricao'].'<h5>';
+						                        }
+						                        echo ('
+						                        <h5>Usuário Investidor e dono do clube '.$cl['nome_clube'].'</h5>
+						                    </div>
+						                </div>
+						            </div>
+								');
+							}
+
 							$sqlsel='SELECT * FROM usuario WHERE clube='.$con['clube'].' AND categoria_usuario=1;';
 							$resul=mysqli_query($conexao,$sqlsel);
 							while ($ctrl=mysqli_fetch_array($resul))
@@ -304,8 +338,8 @@
 									<div class="cartao-equipe">
 						                <div class="media">
 						                    <div class="media-left">
-						                        <img class="media-object img-circle profile-img" src="uploads/'.$ctrl['foto_perfil'].'">
-						                        <a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a>
+						                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/'.$ctrl['foto_perfil'].'">
+						                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
 						                    </div>
 						                    <div class="media-body">
 						                        <h3 class="media-heading">'.$ctrl['nick'].'</h3>
@@ -850,15 +884,18 @@
 								<?php
 									if(isset($_POST['confirmar']))
 									{
-								    	$sqlsel=('SELECT email,senha FROM usuario WHERE email="'.$email_usuario.'" ;');
-										$email_verificacao=$_POST['email_verificacao'];
-										$senha_verificacao=base64_decode($_POST['senha_verificacao']);
-										if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha']){
-											header ('excluir.php');
-										}else{
+								    	$email_verificacao=$_POST['email_verificacao'];
+										$senha_verificacao=base64_encode($_POST['senha_verificacao']);
+										if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha'])
+										{
+											echo ('<script>window.alert("Dados inválidos!")</script>');
+											header('location:excluir.php');
 										}
-										$resul=mysqli_query($conexao,$sqlsel);
-										$con=mysqli_fetch_array($resul);
+										else
+										{
+											echo('<script>window.alert("Dados inválidos!")</script>');
+											echo('<script>window.location="verificar_perfil.php";</script>');
+										}
 									}
 							    ?>
 						    </div>
@@ -896,6 +933,19 @@
 								{	
 									echo ('<script>window.alert("Erro ao Editar Dados!");window.location.href="perfil_jogador.php";</script>');
 								}	
+							}
+						}
+						if(isset($_POST['sair_clube']))
+						{
+							$sqlsaircb='UPDATE usuario SET clube=NULL WHERE id_usuario='.$con['id_usuario'].';';
+							$saircb=mysqli_query($conexao,$sqlsaircb);
+							if($saircb)
+							{
+								echo ('<script>window.alert("Você saiu do clube!");window.location.href="perfil_jogador.php";</script>');
+							}
+							else
+							{
+								echo ('<script>window.alert("Erro ao sair do clube!");window.location.href="perfil_jogador.php";</script>');
 							}
 						}
 					?>

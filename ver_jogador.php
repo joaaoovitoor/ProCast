@@ -65,7 +65,7 @@
 				                        			<span class="coach-job"><p>'.$cl['nome_clube'].'</p></span>
 			                        			</div>
 							                    <div class="col-sm-6">
-							                        <img src="uploads/'.$cl['logo_clube'].'" width="100">
+							                        <img src="uploads/'.$cl['logo_clube'].'" width="200">
 							                    </div>
 			                    			');
 			                    		}
@@ -74,8 +74,7 @@
 			                    			echo
 			                    			('
 			                    				<div class="col-sm-12">
-				                    				<span class="coach-name"><p>Você ainda não está em um clube</p></span>
-				                        			<span class="coach-job"><p>Fique atento na aba de convites</p></span>
+				                    				<span class="coach-name"><p>Jogaador não possui clube!</p></span>
 			                        			</div>
 			                    			');
 			                    		}
@@ -171,7 +170,7 @@
 							$datacerto=implode("/", $datainv);
 							?>
 							<div class="cartao-equipe cinza">
-								<img src="uploads/<?php echo($dados['logo_clube']); ?>">
+								<img src="uploads/<?php echo($dados['logo_clube']); ?>" width="100%">
 								<h2><?php echo($dados['nome_clube']); ?></h2>
 								<?php echo($dados['descricao_clube']); ?><br>
 								<small class="text-muted">Data de criação: <?php echo($datacerto); ?></small>
@@ -218,7 +217,7 @@
 						</div>
 					</div>
 				</section>
-				<!--MENU - ALTERAR-->
+				<!--MENU - Denuncia-->
 				<section id="5">
 				   <div class="text-center">Denunciar jogador</div>
 				   <form action="#" method="POST">

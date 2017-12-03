@@ -41,30 +41,31 @@
 						$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
 			        	$resul=mysqli_query($conexao,$sqlsel);
 			        	$con2=mysqli_fetch_array($resul);
-			        	if($con2['logo_clube']){
-			        		$cam='uploads/'.$con2['logo_clube'];
-			        	}
-			        	else{
-			        		$cam='img/clube_icon.png';
-			        	}
-			        	echo('<label for="anexo" class="arq"><img src="'.$cam.'" class="img-circle img-responsive perfil_img2"></label>');
+			        	$cam='uploads/'.$con2['logo_clube'];
+			        	echo('<label for="anexo" class="arq"><p align="center"><img src="'.$cam.'" class="img-responsive" width="75%"><p><p class="text-center">Clique para escolher uma nova foto</p></label>');
 			        ?>
-			        <div class="text-center col-xs-12">
+			        	<p>
 			        		<form action="#" method="POST" enctype="multipart/form-data">
 			        			<input type="file" name="anexo" id="anexo">
 			        			<button type="submit" class="btn btn_foto">Mudar foto do clube</button>
 	                        </form>
-			        	</div>
+                    	</p>
 			        	<?php
 			        		if (isset($_FILES['anexo']))
 	                        {
 	                            $extensao=strtolower(substr($_FILES['anexo']['name'], -4));
 	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
 	                            $diretorio="uploads/";
-	                            move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome);
-	                            $sqlup='update clube set logo_clube="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
-	                            mysqli_query($conexao,$sqlup);
-	                            echo('<script>window.location="clube_investidor.php";</script>');
+	                            if(move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome))
+	                        	{
+		                            $sqlup='update clube set logo_clube="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+		                            mysqli_query($conexao,$sqlup);
+		                            echo('<script>window.location="clube_investidor.php";</script>');
+	                        	}
+	                        	else
+	                        	{
+	                        		echo('<script>swal("Primeiro escolha uma nova foto", "Para escolher uma foto nova clique sobre a antiga", "error");</script>');
+	                        	}
 
 	                        }
 			        	?>
@@ -72,19 +73,31 @@
 			            <div class="clube-cartao">
 			                <div class="row">
 			                    <div class="col-sm-12">
-			                        <span class="coach-name"><p>Nome do clube</p></span>
-			                        <span class="coach-job"><p>Descriçaõ: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p></span>
+			                        <span class="coach-name"><p><?php echo $con2['nome_clube']; ?></p></span>
+			                        <span class="coach-job"><p>Descrição: <?php echo $con2['descricao_clube']; ?></p></span>
+			                        <a href="pesquisa.php"><p><button type="submit" class="btn btn_foto btn_saircb" data-toggle="tooltip" data-placement="right" title="Clique aqui para buscar jogadores para o seu clube!" name="sair_clube">Buscar jogadores</button></p></a>
 			                    </div>
 			                </div>
 			            </div>
 			            <div class="descricao">
-			                    
-			                    <p><strong>Ranking:</strong> Suporte</p>
-			                    <p><strong>Data de criação:</strong> 05/04/2017</p>
-			                    <p><strong>Jogadores:</strong> 8 </p>
-			                    <p><strong>Partidas jogadas:</strong> 25 </p> 
-			                    <p><strong>Vitórias:</strong> 20 </p> 
-			                    <p><strong>Derrotas:</strong> 5 </p> 
+			                    <?php 
+			                    	$dataexplode = explode("-",$con2['dta_criacao']);
+									$cont=2;
+									for($i=0;$i<3;$i++)
+									{
+										$datainv[$i]=$dataexplode[$cont];
+										$cont--;
+									}
+									$datacerto=implode("/", $datainv);
+									$sqlnumjog='SELECT * FROM usuario WHERE clube='.$con2['id_clube'].' AND categoria_usuario=1;';
+									$resulnumjog=mysqli_query($conexao,$sqlnumjog);
+									$numjog=mysqli_num_rows($resulnumjog);
+			                    ?>
+			                    <p><strong>Data de criação:</strong> <?php echo $datacerto; ?></p>
+			                    <p><strong>Jogadores:</strong> <?php echo $numjog; ?> </p>
+			                    <p><strong>Partidas jogadas:</strong> 0 </p> 
+			                    <p><strong>Vitórias:</strong> 0 </p> 
+			                    <p><strong>Derrotas:</strong> 0 </p> 
 			            </div>
 			        </div>
 				</div>
@@ -96,90 +109,89 @@
 								<ul>
 									<li><a href="#1"><span>Jogadores</span></a></li>
 									<li><a href="#2"><span>Evento</span></a></li>
-									<li><a href="#3"><span>Torneio</span></a></li>
+									<!-- <li><a href="#3"><span>Torneio</span></a></li> -->
 									<li><a href="#4"><span>Vídeos</span></a></li>
 									<li><a href="#5"><span>Fotos</span></a></li>
 									<li><a href="#6"><span>Dados</span></a></li>
 								</ul>
 							</nav>
 							<div class="content-wrap">
-								<!-- MENU - CLUBE -->
+								<!-- MENU - Jogadores -->
 								<section id="1">
-						            <div class="cartao-equipe">
-						                <div class="media">
-						                    <div class="media-left">
-						                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-						                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-						                    </div>
-						                    <div class="media-body">
-						                        <h3 class="media-heading">Nick carinha</h3>
-						                        <h5>Nome carinha</h5>
-						                        <p>Função primária: Atirador</p>
-						                        <p>Função primária: Meio</p> 
-						                        <p>Posição: Alguma coisa</p>
-						                    </div>
-						                </div>
-						            </div>
-						            <div class="cartao-equipe">
-						                <div class="media">
-						                    <div class="media-left">
-						                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-						                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-						                    </div>
-						                    <div class="media-body">
-						                        <h3 class="media-heading">Nick carinha</h3>
-						                        <h5>Nome carinha</h5>
-						                        <p>Função primária: Atirador</p>
-						                        <p>Função primária: Meio</p> 
-						                        <p>Posição: Alguma coisa</p>
-						                    </div>
-						                </div>
-						            </div>
-						            <div class="cartao-equipe">
-						                <div class="media">
-						                    <div class="media-left">
-						                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-						                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-						                    </div>
-						                    <div class="media-body">
-						                        <h3 class="media-heading">Nick carinha</h3>
-						                        <h5>Nome carinha</h5>
-						                        <p>Função primária: Atirador</p>
-						                        <p>Função primária: Meio</p> 
-						                        <p>Posição: Alguma coisa</p>
-						                    </div>
-						                </div>
-						            </div>
-						            <div class="cartao-equipe">
-						                <div class="media">
-						                    <div class="media-left">
-						                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-						                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-						                    </div>
-						                    <div class="media-body">
-						                        <h3 class="media-heading">Nick carinha</h3>
-						                        <h5>Nome carinha</h5>
-						                        <p>Função primária: Atirador</p>
-						                        <p>Função primária: Meio</p> 
-						                        <p>Posição: Alguma coisa</p>
-						                    </div>
-						                </div>
-						            </div>
-						            <div class="cartao-equipe">
-						                <div class="media">
-						                    <div class="media-left">
-						                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-						                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</button>
-						                    </div>
-						                    <div class="media-body">
-						                        <h3 class="media-heading">Nick carinha</h3>
-						                        <h5>Nome carinha</h5>
-						                        <p>Função primária: Atirador</p>
-						                        <p>Função primária: Meio</p> 
-						                        <p>Posição: Alguma coisa</p>
-						                    </div>
-						                </div>
-						            </div>
+						            <?php
+										if(empty($con['clube']))
+										{
+											echo 
+											('
+												<h1 class="text-center"><img src="img/triste.png"></h1>
+												<h3 class="text-center">Seu clube ainda não possui jogadores</h3>
+											');
+										}
+										else
+										{
+											$sqlseli='SELECT * FROM usuario WHERE clube='.$con['clube'].' AND categoria_usuario=2;';
+											$resuli=mysqli_query($conexao,$sqlseli);
+											while ($ctrli=mysqli_fetch_array($resuli))
+											{
+												echo
+												('
+													<div class="cartao-equipe">
+										                <div class="media">
+										                    <div class="media-left">
+										                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/'.$ctrli['foto_perfil'].'">
+										                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrli['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
+										                    </div>
+										                    <div class="media-body">
+										                        <h3 class="media-heading">'.$ctrli['nome'].' '.$ctrli['sobrenome'].'</h3>');
+										                        
+										                        if($ctrli['descricao']==NULL)
+										                        {
+										                        	echo '<h5>Nenhuma descrição!</h5>';
+										                        }
+										                        else
+										                        {
+										                        	echo '<h5>'.$ctrli['descricao'].'<h5>';
+										                        }
+										                        echo ('
+										                        <h5>Usuário Investidor e dono do clube '.$con2['nome_clube'].'</h5>
+										                    </div>
+										                </div>
+										            </div>
+												');
+											}
+
+											$sqlsel='SELECT * FROM usuario WHERE clube='.$con['clube'].' AND categoria_usuario=1;';
+											$resul=mysqli_query($conexao,$sqlsel);
+											while ($ctrl=mysqli_fetch_array($resul))
+											{
+												$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_1'].';';
+												$resul1=mysqli_query($conexao,$sqlsel);
+												$f1=mysqli_fetch_array($resul1);
+												$sqlsel='SELECT * FROM funcao WHERE id_funcao='.$ctrl['funcao_2'].';';
+												$resul2=mysqli_query($conexao,$sqlsel);
+												$f2=mysqli_fetch_array($resul2);
+												echo
+												('
+													<div class="cartao-equipe">
+										                <div class="media">
+										                    <div class="media-left">
+										                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/'.$ctrl['foto_perfil'].'">
+										                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
+										                    </div>
+										                    <div class="media-body">
+										                        <h3 class="media-heading">'.$ctrl['nick'].'</h3>
+										                        <h5>'.$ctrl['nome'].' '.$ctrl['sobrenome'].'</h5>
+										                        <p>Função primária: '.$f1['nome_funcao'].'</p>
+										                        <p>Função primária: '.$f2['nome_funcao'].'</p> 
+										                    </div>
+										                </div>
+										            </div>
+												');
+											}
+										}
+									?>
+						            
+						            
 								</section>
 								<!-- MENU - EVENTO -->
 								<section id="2">
@@ -202,13 +214,13 @@
 									</div>
 								</section>
 								<!-- MENU - TORNEIO -->
-								<section id="3">
+								<!-- <section id="3">
 									<div class="cartao-equipe cinza">
 								      <h2>Card title</h2>
 								      This card has supporting text below as a natural lead-in to additional content.<br>
 								      <small class="text-muted">Last updated 3 mins ago</small>
 						            </div>
-								</section>
+								</section> -->
 								<!-- MENU VÍDEOS -->
 								<section id="4">
 									<input class="form-control azul" type="submit" value="Compartilhar Vídeo" data-toggle="collapse" data-target="#publicacao" aria-expanded="false" aria-controls="collapseExample"><br>
@@ -404,6 +416,12 @@
 
 		})();
 		</script>
-		
+		<script type="text/javascript">
+			$(".arq2").hover(function() {
+			  $(this).children("p").show();
+			}, function() {
+			  $(this).children("p").hide();
+			});
+		</script>
     </body>
 </html>

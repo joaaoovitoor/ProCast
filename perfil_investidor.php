@@ -84,9 +84,10 @@
 			                    				<div class="col-sm-6">
 				                    				<span class="coach-name"><p>Clube</p></span>
 				                        			<span class="coach-job"><p>'.$cl['nome_clube'].'</p></span>
+				                        			<a href="pesquisa.php"><p><button type="submit" class="btn btn_foto btn_saircb" data-toggle="tooltip" data-placement="right" title="Clique aqui para buscar jogadores para o seu clube!" name="sair_clube">Buscar jogadores</button></p></a>
 			                        			</div>
 							                    <div class="col-sm-6">
-							                        <img src="uploads/'.$cl['logo_clube'].'" width="100">
+							                        <img src="uploads/'.$cl['logo_clube'].'" width="200">
 							                    </div>
 			                    			');
 			                    		}
@@ -120,7 +121,33 @@
 				<!-- CARD COM INFORMAÇÕES - PEQUENO -->
 				<div class="hidden-md hidden-lg">
 					<div class="cartao">
-					 <img src="img/perfil_icon.png" class="img-circle">
+					 <?php
+		        			$cam='uploads/'.$con['foto_perfil'];
+		        			echo('<label for="anexo" class="arq2"><img src="'.$cam.'" class="img-circle img-responsive perfil_img"><p class="text-center">Clique para escolher uma nova foto</p></label>');
+			        	?>
+			        	<form action="#" method="POST" enctype="multipart/form-data">
+		        			<input type="file" name="anexo" id="anexo">
+		        			<button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Clique no cículo acima e selecione a foto que deseja. Após isso, clique neste botão!">Confirmar envio de foto</button>
+                        </form>
+                        <?php
+			        		if (isset($_FILES['anexo']))
+	                        {
+	                        	$extensao=strtolower(substr($_FILES['anexo']['name'], -4));
+	                            $novo_nome=md5(time().$con['id_usuario']).$extensao;
+	                            $diretorio="uploads/";
+	                        	if(move_uploaded_file($_FILES['anexo']['tmp_name'], $diretorio.$novo_nome))
+	                        	{
+	                        		$sqlup='update usuario set foto_perfil="'.$novo_nome.'" where id_usuario='.$con['id_usuario'].';';
+		                            mysqli_query($conexao,$sqlup);
+		                            echo('<script>window.location="verificar_perfil.php";</script>');
+	                        	}
+	                        	else
+	                        	{
+	                        		echo('<script>swal("Primeiro escolha uma nova foto", "Para escolher uma foto nova clique sobre a antiga", "error");</script>');
+	                        	}
+	                            
+	                        }
+			        	?>
                         <p>Nome: <?php echo $con['nome'];?> </p>
                         <p>Clube: 
 	                    	<?php 
@@ -131,7 +158,8 @@
 	                    			$cl=mysqli_fetch_array($resul);
 	                    			echo
 	                    			(
-	                    				$cl['nome_clube']
+	                    				$cl['nome_clube'].'
+	                    				<a href="pesquisa.php"><p><button type="submit" class="btn btn_foto btn_saircb" data-toggle="tooltip" data-placement="right" title="Clique aqui para buscar jogadores para o seu clube!" name="sair_clube">Buscar jogadores</button></p></a>'
 	                    			);
 	                    		}
 	                    		else
@@ -204,7 +232,7 @@
 				            <div class="cartao-equipe">
 				                <div class="media">
 				                    <div class="media-left">
-				                        <img class="media-object img-circle profile-img" src="uploads/<?php echo $membrosclube['foto_perfil']; ?>">
+				                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/<?php echo $membrosclube['foto_perfil']; ?>">
 				                        <a class="btn btn-default " href="escrever_mensagem.php?rm=<?php echo $membrosclube['id_usuario']; ?>"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a>
 				                    </div>
 				                    <div class="media-body">
@@ -244,7 +272,7 @@
 						}
 						$datacerto=implode("/", $datainv);
 					?>
-						<img src="uploads/<?php echo($dados['logo_clube']); ?>">
+						<img src="uploads/<?php echo($dados['logo_clube']); ?>" width="75%">
 						<h2><?php echo($dados['nome_clube']); ?></h2>
 						<?php echo($dados['descricao_clube']); ?><br>
 						<small class="text-muted">Data de criação: <?php echo($datacerto); ?></small>
@@ -451,15 +479,20 @@
 								<?php
 									if(isset($_POST['confirmar']))
 									{
-								    	$sqlsel=('SELECT email,senha FROM usuario WHERE email="'.$email_usuario.'" ;');
+								    	
 										$email_verificacao=$_POST['email_verificacao'];
-										$senha_verificacao=base64_decode($_POST['senha_verificacao']);
-										if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha']){
-											header ('excluir.php');
-										}else{
+										$senha_verificacao=base64_encode($_POST['senha_verificacao']);
+										if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha'])
+										{
+											echo ('<script>window.alert("Dados inválidos!")</script>');
+											header('location:excluir.php');
 										}
-										$resul=mysqli_query($conexao,$sqlsel);
-										$con=mysqli_fetch_array($resul);
+										else
+										{
+											echo('<script>window.alert("Dados inválidos!")</script>');
+											echo('<script>window.location="verificar_perfil.php";</script>');
+										}
+										
 									}
 							    ?>
 						    </div>
@@ -500,6 +533,8 @@
 		include('rodape.html');
 	?>
 	<!--Validação-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -526,6 +561,9 @@
 		}, function() {
 		  $(this).children("p").hide();
 		});
+	</script>
+	<script>
+		  $('[data-toggle="tooltip"]').tooltip();
 	</script>
     </body>
 </html>
