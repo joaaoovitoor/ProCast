@@ -361,70 +361,70 @@
 					<div class="container-fluid">
 						<div class="cartao-equipe">
 			                <div class="media">
-			                    	<?php
-										$sqlsel='SELECT * FROM convite WHERE (id_jogador='.$con['id_usuario'].') AND (status="F");';
-										$resul=mysqli_query($conexao,$sqlsel);
-										if (mysqli_num_rows($resul)) {
-											while ($con_co=mysqli_fetch_array($resul))
-											{
-												$sqlsel='SELECT * FROM clube WHERE id_clube='.$con_co['id_clube'].';';
-												$resul=mysqli_query($conexao,$sqlsel);
-												$con_cl=mysqli_fetch_array($resul);	
-												$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$con_co['id_investidor'].';';
-												$resul=mysqli_query($conexao,$sqlsel);
-												$con_inv=mysqli_fetch_array($resul);
-												$sqlsel='SELECT * FROM estado WHERE id='.$con_inv['estado'].';';
-												$resul=mysqli_query($conexao,$sqlsel);
-												$con_es=mysqli_fetch_array($resul);	
-												$sqlsel='SELECT * FROM cidade WHERE id='.$con_inv['cidade'].';';
-												$resul=mysqli_query($conexao,$sqlsel);
-												$con_cd=mysqli_fetch_array($resul);	
-												echo
-												('
-													<div class="media-left">
-														<img class="media-object img-circle profile-img" src="img/fotinha.png">
-								                        <a href="perfil_jogador.php?ac='.$con_co['id_convite'].'" class="btn btn-default "><i class="fa fa-check" aria-hidden="true"></i> Aceitar</a>
-							                    	</div>
-								                    	<div class="media-body">
-								                        <h3 class="media-heading">Clube '.$con_cl['nome_clube'].'</h3>
-								                        <h5>Investidor '.$con_inv['nome'].' '.$con_inv['sobrenome'].'</h5>
-								                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> '.$con_cd['nome'].' - '.$con_es['nome'].'</p>
-								                        <p>'.$con_cl['descricao_clube'].'</p>
-								                    </div>
-														
-												');	
-											}
-										}
-										else
+		                    	<?php
+									$sqlsel='SELECT * FROM convite WHERE (id_jogador='.$con['id_usuario'].') AND (status="F");';
+									$resul=mysqli_query($conexao,$sqlsel);
+									if (mysqli_num_rows($resul)) {
+										while ($con_co=mysqli_fetch_array($resul))
 										{
-											echo
-											('
-												<h1 class="text-center"><img src="img/triste.png"></h1>
-												<h3 class="text-center">Você ainda não possui nenhum convite</h3>
-												<h5 class="text-center"><a href="home.php">Contrate um plano para se divulgar! Aumente suas chances de ser convidado</a></h5>
-	
-											');
-										}
-										if (isset($_GET['ac'])) {
-											$id_ac=$_GET['ac'];
-											$sqlsel='SELECT * FROM convite WHERE id_convite='.$id_ac.';';
-											$resul=mysqli_query($conexao,$sqlsel);
-											$con_co=mysqli_fetch_array($resul);	
 											$sqlsel='SELECT * FROM clube WHERE id_clube='.$con_co['id_clube'].';';
 											$resul=mysqli_query($conexao,$sqlsel);
 											$con_cl=mysqli_fetch_array($resul);	
-											$sqlup='UPDATE convite set status="V" WHERE id_convite='.$id_ac.';';
-											mysqli_query($conexao,$sqlup);
-											$sqlup='UPDATE usuario set clube='.$con_cl['id_clube'].' WHERE id_usuario='.$con_co['id_jogador'].';';
-											mysqli_query($conexao,$sqlup);
-											if(mysqli_query($conexao,$sqlup))
-											{
-												echo('<script>alert("Parabéns! Agora você faz parte do clube '.$con_cl['nome_clube'].'");</script>');
-												echo('<script>window.location="verificar_perfil.php";</script>');
-											}
+											$sqlsel='SELECT * FROM usuario WHERE id_usuario='.$con_co['id_investidor'].';';
+											$resul=mysqli_query($conexao,$sqlsel);
+											$con_inv=mysqli_fetch_array($resul);
+											$sqlsel='SELECT * FROM estado WHERE id='.$con_inv['estado'].';';
+											$resul=mysqli_query($conexao,$sqlsel);
+											$con_es=mysqli_fetch_array($resul);	
+											$sqlsel='SELECT * FROM cidade WHERE id='.$con_inv['cidade'].';';
+											$resul=mysqli_query($conexao,$sqlsel);
+											$con_cd=mysqli_fetch_array($resul);	
+											echo
+											('
+												<div class="media-left">
+													<img class="media-object img-circle profile-img" src="img/fotinha.png">
+							                        <a href="perfil_jogador.php?ac='.$con_co['id_convite'].'" class="btn btn-default "><i class="fa fa-check" aria-hidden="true"></i> Aceitar</a>
+						                    	</div>
+							                    	<div class="media-body">
+							                        <h3 class="media-heading">Clube '.$con_cl['nome_clube'].'</h3>
+							                        <h5>Investidor '.$con_inv['nome'].' '.$con_inv['sobrenome'].'</h5>
+							                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> '.$con_cd['nome'].' - '.$con_es['nome'].'</p>
+							                        <p>'.$con_cl['descricao_clube'].'</p>
+							                    </div>
+													
+											');	
 										}
-										
-									?>
+									}
+									else
+									{
+										echo
+										('
+											<h1 class="text-center"><img src="img/triste.png"></h1>
+											<h3 class="text-center">Você ainda não possui nenhum convite</h3>
+											<h5 class="text-center"><a href="home.php">Contrate um plano para se divulgar! Aumente suas chances de ser convidado</a></h5>
+
+										');
+									}
+									if (isset($_GET['ac'])) {
+										$id_ac=$_GET['ac'];
+										$sqlsel='SELECT * FROM convite WHERE id_convite='.$id_ac.';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										$con_co=mysqli_fetch_array($resul);	
+										$sqlsel='SELECT * FROM clube WHERE id_clube='.$con_co['id_clube'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										$con_cl=mysqli_fetch_array($resul);	
+										$sqlup='UPDATE convite set status="V" WHERE id_convite='.$id_ac.';';
+										mysqli_query($conexao,$sqlup);
+										$sqlup='UPDATE usuario set clube='.$con_cl['id_clube'].' WHERE id_usuario='.$con_co['id_jogador'].';';
+										mysqli_query($conexao,$sqlup);
+										if(mysqli_query($conexao,$sqlup))
+										{
+											echo('<script>alert("Parabéns! Agora você faz parte do clube '.$con_cl['nome_clube'].'");</script>');
+											echo('<script>window.location="verificar_perfil.php";</script>');
+										}
+									}
+									
+								?>
 			                </div>
 		            	</div>
 						<br>
@@ -516,11 +516,40 @@
 						                    		<a href="perfil_jogador.php?excvt='.$ag['id_agenda'].'" class="btn-lg btn-default text-center"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 						                    	</div>
 						                    	<div class="col-md-1">
-						                    		<a data-toggle="modal" class="btn-lg btn-default text-center" data-target="#alterar_evt"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+						                    		<a data-toggle="collapse" data-target="#altevento'.$ag['id_agenda'].'" aria-expanded="false" aria-controls="collapseExample" class="btn-lg btn-default text-center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 						                    	</div>						                        
 						                    </div>
 						                </div>
 									');	
+									echo
+									('
+										<div class="collapse" id="altevento'.$ag['id_agenda'].'">
+											<div class="card card-body">
+												<form action="#" method="POST">
+													<input type="hidden" name="id_evt" value="'.$ag['id_agenda'].'">
+													<div class="form-group col-md-12">
+													    <label for="alt_evento">Título do Evento</label>
+													    <input value="'.$ag['evento'].'" type="text" name="alt_evento" class="form-control" id="alt_evento"  required="" placeholder="Título do evento">
+													</div>
+													<div class="form-group col-md-6">
+													    <label class="form-control-label" for="alt_data">Data do Evento</label>
+														<input value="'.$ag['data'].'" type="text" name="alt_data" class="form-control" id="alt_data" required="" placeholder="dd/mm/aaaa">
+													</div>
+													<div class="form-group col-md-6">
+													    <label class="form-control-label" for="alt_horario">Horário do Evento</label>
+														<input type="text" value="'.$ag['hora'].'" name="alt_horario" class="form-control" id="alt_horario"  required="" placeholder="hh:mm">
+													</div>
+													<div class="form-group col-md-12">
+													    <label for="alt_descricao_evento">Descrição</label>
+													    <textarea class="form-control" id="alt_descricao_evento" name="alt_descricao_evento" rows="3" placeholder="Faça uma breve descrição do evento" required="">'.$ag['descricao_evento'].'</textarea>
+													</div>
+													<div class="col-md-12">
+														<input class="form-control" type="submit" name="alt_agendar" value="Alterar"><br>
+													</div>
+												</form>
+											</div>
+										</div>
+									');
 								}
 							}
 							else
@@ -542,25 +571,27 @@
 									header('location:perfil_jogador.php');
 								}
 							}
-							echo ('
-							<div class="modal fade" id="alterar_evt" tabindex="-1" role="dialog" aria-labelledby="descLabel">
-								<div class="modal-dialog" role="document">
-								    <div class="modal-content">
-								      	<div class="modal-header">
-								        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								        	<h4 class="modal-title" id="descLabel">Sobre você</h4>
-								      	</div>
-									    <div class="modal-body">
-									    	<form action="#" method="POST">
-									      		<textarea name="descricao" rows="5" class="form-control" placeholder="Digite aqui algo sobre você"></textarea>
-									    </div>
-									    <div class="modal-footer">
-									        	<button type="submit" class="btn btn-block azul">Salvar Mudanças</button>
-									        </form>
-									    </div>
-								    </div>
-								</div>
-							</div>');
+							if(isset($_POST['alt_agendar']))
+							{
+								$id_evt=$_POST['id_evt'];
+								$alt_titulo=$_POST['alt_evento'];
+								$alt_data=$_POST['alt_data'];
+								$alt_horario=$_POST['alt_horario'];
+								$alt_descricao_agd=$_POST['alt_descricao_evento'];
+								if(!empty($alt_titulo)&&!empty($alt_data)&&!empty($alt_horario)&&!empty($alt_descricao_agd))
+								{
+									$sqlup='UPDATE agenda SET hora="'.$alt_horario.'",data="'.$alt_data.'",evento="'.$alt_titulo.'",descricao_evento="'.$alt_descricao_agd.'" WHERE id_agenda='.$id_evt.';';
+									if (mysqli_query($conexao,$sqlup)) {
+										echo ('<script>window.alert("Alterado com sucesso!");</script>');
+										header('location:perfil_jogador.php');
+									}
+								}
+								else
+								{
+									echo ('<script>window.alert("Preencha todos os campos!");</script>');
+								}
+
+							}
 						?>
 		                
 		            </div>   
