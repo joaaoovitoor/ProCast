@@ -1,5 +1,4 @@
 <?php
-	include('conexao.php');
     include('verificar_logado.php');
 ?>
 <!DOCTYPE html>
