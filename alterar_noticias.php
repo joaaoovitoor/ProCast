@@ -34,7 +34,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<?php 
-					$consulta = mysqli_query($conexao, 'SELECT * FROM noticia WHERE id_noticia ='.$id.'');
+					$consulta = mysqli_query($conexao, 'SELECT * FROM noticia WHERE id_noticia ='.$id.';');
 					while ($editar = mysqli_fetch_array($consulta)) 
 					{
 					
@@ -74,11 +74,26 @@
 							<textarea class="form-control" rows="10" name="noticia" placeholder="Digite a noticia" maxlength="29000"><?php echo $editar['texto']; ?></textarea>
 						</div>
 						<div class="form-group">
-							<input type="submit" name="enviar" class="btn btn-procast btn-block" value="Alterar">
+							<input type="submit" name="Alterar" class="btn btn-procast btn-block" value="Alterar">
 						</div>
 					</form>
 				</div>
 				<?php
+					}
+					if(isset($_POST['Alterar']))
+					{
+						$novo_titulo = $_POST['titulo_noticia'];
+						$novo_lide = $_POST['lide'];
+						$nova_categoria = $_POST['categoria'];
+						$novo_texto = $_POST['noticia'];
+
+						$insere = "UPDATE noticia 
+						SET titulo = '".$novo_titulo."', lide= '".$novo_lide."', categoria= '".$nova_categoria."', texto= '".$novo_texto."' WHERE id_noticia = ".$id.";";
+						mysqli_query($conexao,$insere);
+						echo('<script type="text/javascript">
+								alert("Modificado com sucesso !");
+								window.location.assign("noticias.php");
+							</script>');
 					}
 				?>
 			</div>	
