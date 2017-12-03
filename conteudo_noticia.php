@@ -1,13 +1,34 @@
-    <?php
+<?php
     include('verificar_logado.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
         <link rel="stylesheet" href="css/noticias_cont.css">
-        <?php
-            include('link_head.html');
-        ?>
+        <!--UTF-8-->    
+        <meta charset="utf-8"/>
+        <script charset="UTF-8"></script>
+        <!--BOOTSTRAP-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="css/txtareacss.css" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!--FONTES-->
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <!--ALERT-->
+         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!--ESTILO MENU--> 
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--ESTILO RODAPÉ-->
+        <link rel="stylesheet" href="css/rodape.css">
+        <!--ÍCONE-->
+        <link rel="shortcut icon" type="image/x-icon" href="img/procast.ico"/>
+        <!--LOADING-->
+        <script src="js/pace.js"></script>
+        <link rel="stylesheet" href="css/pace-theme-minimal.css">
+        
         <style>
             .ctd{
                 overflow-wrap: break-word;

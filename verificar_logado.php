@@ -1,6 +1,7 @@
 <?php
     ob_start();
     session_start();
+    ini_set('default_charset','UTF-8');
     if(isset($_SESSION['email'])){
         $email_usuario=$_SESSION['email'];
         include('conexao.php');

@@ -5,7 +5,8 @@
 	{
 		echo('<script>alert("Você não possui clube!");window.location="verificar_perfil.php";</script>');
 	}
-	
+
+    include('verificar_logado.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,6 +38,12 @@
                 </div>
             </div>
         </div>
+        <?php 
+        	if ($con['clube']=="") 
+			{
+				echo('<script>alert("Você não possui clube!");window.location="verificar_perfil.php";</script>');
+			}
+        ?>
 		<div class="container-fluid">
 			<div class="row">
 				<!-- Cartão com informações -->

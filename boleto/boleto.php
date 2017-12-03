@@ -29,10 +29,16 @@
 
 include('../conexao.php');
 include('../verificar_logado.php');
-if($con['categoria_usuario']==2)
-    {
-    	header('location:boleto_investidor.php');
-    }
+if($con['categoria_usuario']==1)
+{
+	$valor_cobrado = "8,99"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+	$dadosboleto["valor_unitario"] = "8,99";
+}
+else
+{
+	$valor_cobrado = "59,90"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+	$dadosboleto["valor_unitario"] = "59,90";
+}
 
 //trazendo as informações de localização do cliente
 $sqlest='SELECT nome FROM estado WHERE id='.$con['estado'].';';
@@ -48,7 +54,6 @@ $concid=mysqli_fetch_array($resulcid);
 $dias_de_prazo_para_pagamento = 5;
 $taxa_boleto = 2.95;
 $data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
-$valor_cobrado = "8,99"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".",$valor_cobrado);
 $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
 $dadosboleto["nosso_numero"] = '78965147';  // Nosso numero - REGRA: Máximo de 8 caracteres!
@@ -71,7 +76,6 @@ $dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: c
 $dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto BoletoPhp - www.boletophp.com.br";
 // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
 $dadosboleto["quantidade"] = "1";
-$dadosboleto["valor_unitario"] = "8,99";
 $dadosboleto["aceite"] = "";		
 $dadosboleto["especie"] = "R$";
 $dadosboleto["especie_doc"] = "";
