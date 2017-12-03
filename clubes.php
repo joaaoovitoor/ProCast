@@ -1,4 +1,5 @@
 <?php 
+	include('verificar_admin.php');
 	include("menu-admin.html");
 ?>
 <!DOCTYPE html>
@@ -10,6 +11,12 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/clubes.css">
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style type="text/css">
+			.cl{
+				width: 300px;
+				height: 250px !important;
+			}
+		</style>
 	</head>
 	<body>
 		<section>
@@ -42,36 +49,46 @@
 		<section>
 			<div class="container">
 				<div class="row">
+					<?php
+
+						$sqlsel='SELECT * FROM clube;';
+						$res=mysqli_query($conexao,$sqlsel);
+						if (mysqli_num_rows($res)) {
+							while ($con=mysqli_fetch_array($res)) {
+								# code...
+					?>
 					<div class="col-md-4">
 						<div class="thumbnail">
-					      <img src="img/logo.jpg" alt="...">
+					      <img src="uploads/<?php echo($con['logo_clube']); ?>" alt="..." class="cl">
 					      <div class="caption">
-					        <h3>Procast</h3>
-					        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat velit id mi aliquet, vitae imperdiet velit congue. Nunc bibendum diam eget velit tempus venenatis. Morbi efficitur vitae nibh sit amet vehicula. Pellentesque laoreet  </p>
-					        <p><a href="#" class="btn btn-procast" role="button">Detalhes</a> <a href="#" class="btn btn-default" role="button">Editar</a></p>
+					        <h3 class="text-center"><?php echo($con['nome_clube']); ?></h3>
+					        <p class="text-center"><?php echo($con['descricao_clube']); ?></p>
+					        <p class="text-center"><a href="clubes.php?exc=<?php echo($con['id_clube']); ?>" class="btn btn-block btn-danger" role="button">Excluir</a></p>
 					      </div>
 					    </div>
 					</div>
-					<div class="col-md-4">
-						<div class="thumbnail">
-					      <img src="img/logo.jpg" alt="...">
-					      <div class="caption">
-					        <h3>Procast</h3>
-					        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat velit id mi aliquet, vitae imperdiet velit congue. Nunc bibendum diam eget velit tempus venenatis. Morbi efficitur vitae nibh sit amet vehicula. Pellentesque laoreet  </p>
-					        <p><a href="#" class="btn btn-procast" role="button">Detalhes</a> <a href="#" class="btn btn-default" role="button">Editar</a></p>
-					      </div>
-					    </div>
-					</div>
-					<div class="col-md-4">
-						<div class="thumbnail">
-					      <img src="img/logo.jpg" alt="...">
-					      <div class="caption">
-					        <h3>Procast</h3>
-					        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat velit id mi aliquet, vitae imperdiet velit congue. Nunc bibendum diam eget velit tempus venenatis. Morbi efficitur vitae nibh sit amet vehicula. Pellentesque laoreet  </p>
-					        <p><a href="#" class="btn btn-procast" role="button">Detalhes</a> <a href="#" class="btn btn-default" role="button">Editar</a></p>
-					      </div>
-					    </div>
-					</div>
+					<?php
+							}
+						}
+						else
+                        {
+                            echo '<h3 align="center"><img src="img/triste.png"><br>Nenhum Clube</h3>';
+                        }
+                        if (isset($_GET['exc']))
+                        {
+                        	$ex=$_GET['exc'];
+                        	$sqlex='DELETE FROM convite WHERE id_clube='.$ex.';';
+							mysqli_query($conexao,$sqlex);	
+							$sqlup='UPDATE usuario set clube="" WHERE clube='.$ex.';';
+							$sqlex='DELETE FROM clube WHERE id_clube='.$ex.';';
+							if(mysqli_query($conexao,$sqlex))
+							{
+								echo('<script>alert("Clube excluído com sucesso!");</script>');
+								header('location:clubes.php');
+
+							}	
+                        }
+					?>
 				</div>
 			</div>
 		</section>
