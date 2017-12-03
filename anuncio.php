@@ -88,7 +88,8 @@
 							</div>
 						</div>
 						<div class="col-md-2">
-							<form action="boleto/boleto_an.php" method="POST">
+							<form action="boleto/boleto_an.php" method="POST" target="blank">
+								<input type="hidden" name="id_anuncio" value="<?php echo($con_anu['id_anuncio']);?>">
 								<input type="hidden" name="tipo" value="<?php echo($con_anu['tipo']);?>">
 								<p><button class="btn btn-info" name="boleto"><i class="fa fa-flag" aria-hidden="true"></i> Boleto</button></p>
 							</form>
@@ -112,6 +113,8 @@
 						{
 							$id_anuncio=$_POST['id_anuncio'];
 							$sqlex=('DELETE FROM anuncio WHERE id_anuncio='.$id_anuncio.';');
+							mysqli_query($conexao,$sqlex);
+							$sqlex=('DELETE FROM pagamento_an WHERE id_anuncio='.$id_anuncio.';');
 							mysqli_query($conexao,$sqlex);
 							header('location:anuncio.php');
 							exit();

@@ -31,6 +31,7 @@ include('../conexao.php');
 include('../verificar_logado_an.php');
 if (isset($_POST['boleto'])) {
 	$tipo=$_POST['tipo'];
+	$id_anuncio=$_POST['id_anuncio'];
 	# code...
 }
 if($tipo==1)
@@ -61,7 +62,7 @@ $concid=mysqli_fetch_array($resulcid);
 
 //boleto
 $dias_de_prazo_para_pagamento = 5;
-$taxa_boleto = 2.95;
+$taxa_boleto =0;
 $data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
 $valor_cobrado = str_replace(",", ".",$valor_cobrado);
 $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
@@ -107,17 +108,14 @@ include("include/funcoes_itau.php");
 include("include/layout_itau.php");
 
 //inserindo dados na tabela de pagamento
-
-$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_an,nome_usuario_pag) VALUES
-(
-	NOW(),
-	"'.$dadosboleto['valor_boleto'].'",
-	"'.$dadosboleto['linha_digitavel'].'",
-	'.$con['id_anunciante'].',
-	"'.$con['nome_anunciante'].' '.$con['sobrenome'].'"
-);';
-
+$sqlsel='SELECT * FROM pagamento_an WHERE id_anuncio='.$id_anuncio.';';
+$res=mysqli_query($conexao,$sqlsel);
+if (mysqli_num_rows($res)) {
+	
+}
+else{
+$sqlinpag='INSERT INTO pagamento_an(dta_geracao,valor_pagamento,numero_boleto,nome_usuario_pag,id_anuncio,id_usuario) VALUES (NOW(),"'.$dadosboleto['valor_boleto'].'","'.$dadosboleto['linha_digitavel'].'","'.$con['nome_anunciante'].' '.$con['sobrenome'].'",'.$id_anuncio.','.$con['id_anunciante'].');';
 $inserir=mysqli_query($conexao,$sqlinpag);
 
-
+}
 ?>

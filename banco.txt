@@ -5790,6 +5790,16 @@ CREATE TABLE pagamento(
 	nome_usuario_pag varchar(50) not null,
 	status_pagamento char(2) default 'F'
 );
+CREATE TABLE pagamento_an(
+  id_pagamento int auto_increment primary key,
+  dta_geracao DATETIME not null,
+  valor_pagamento varchar(10) not null,
+  numero_boleto varchar(60) not null,
+  id_usuario int not null,
+  nome_usuario_pag varchar(50) not null,
+  id_anuncio int not null,
+  status_pagamento char(2) default 'F'
+);
 
 CREATE TABLE video(
 	id_video int auto_increment primary key,

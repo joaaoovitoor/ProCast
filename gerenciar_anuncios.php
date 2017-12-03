@@ -127,6 +127,8 @@
 											$id_anuncio=$_POST['id_anuncio'];
 											$sqlalt=('UPDATE anuncio set status="1" WHERE id_anuncio='.$id_anuncio.';');
 											mysqli_query($conexao,$sqlalt);
+											$sqlalt=('UPDATE pagamento_an set status_pagamento="T" WHERE id_anuncio='.$id_anuncio.';');
+											mysqli_query($conexao,$sqlalt);
 											echo('<script>window.alert("Anúncio Aprovado");window.location="gerenciar_anuncios.php";</script>');
 											exit();
 										}
