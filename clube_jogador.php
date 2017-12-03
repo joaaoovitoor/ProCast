@@ -1,13 +1,5 @@
 <?php
-	include('verificar_logado.php');
-	include('conexao.php');
-	$sqlsel='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
-	$resul=mysqli_query($conexao,$sqlsel);
-	if (mysqli_num_rows($resul)<=0) 
-	{
-		echo('<script>alert("Você não possui clube!");window.location="perfil_jogador
-			.php";</script>');
-	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -39,6 +31,14 @@
                 </div>
             </div>
         </div>
+        <?php 
+        	include('verificar_logado.php');
+			include('conexao.php');
+        	if ($con['clube']=="") 
+			{
+				echo('<script>alert("Você não possui clube!");window.location="verificar_perfil.php";</script>');
+			}
+        ?>
 		<div class="container-fluid">
 			<div class="row">
 				<!-- Cartão com informações -->
