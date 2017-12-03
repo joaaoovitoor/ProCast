@@ -1,10 +1,8 @@
 <?php
 	include('verificar_logado.php');
-	$sqlsel='SELECT * FROM clube WHERE id_usuario='.$con['id_usuario'].';';
-	$resul=mysqli_query($conexao,$sqlsel);
-	if (mysqli_num_rows($resul)<=0) {
-		echo('<script>alert("Você não possui clube!");window.location="criar_clube
-			.php";</script>');
+	if ($con['clube']=="") 
+	{
+		echo('<script>alert("Você não possui clube!");window.location="criar_clube.php";</script>');
 	}
 ?>
 <!DOCTYPE html>

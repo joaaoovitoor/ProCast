@@ -41,7 +41,7 @@
                 <a href="conteudo_noticia.php?ex=<?php echo $controle['id_noticia']?>">
                     <div class="col-md-4">
                         <div class="panel panel-default noticia mg_tp">
-                            <img src="uploads/<?php echo($controle['imagem_noticia']); ?>" class="altr">
+                            <img src="uploads/<?php echo($controle['imagem_noticia']); ?>" class="altr" width="100%" height="300">
                             <h4 class="text-center fonte_cinza_escuro"><strong><?php echo($controle['titulo']); ?></strong></h4>
                             <p class="text-center"><?php echo($controle['lide']); ?></p>
                             <p class="text-center fonte_azul_claro"><a href="conteudo_noticia.php?ex=<?php echo $controle['id_noticia']?>"><strong>Continuar Lendo</strong></a></p>

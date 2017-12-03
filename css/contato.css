@@ -39,7 +39,16 @@
 	border:none !important;
 }
 .banner{
-	background: url(../img/banner_contato.png) no-repeat;
+	background: url(../img/banner_contato.jpg) no-repeat;
+	position: relative;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	text-align: center;
+	height: 450px;
+	letter-spacing: 2px;
+	filter: alpha(opacity:0.5); 
+	color: #f2f4f2;
 	margin-bottom: 3%;
 }
 .banner h1{
@@ -48,7 +57,7 @@
 	font-size: 4.5em;
 }
 .banner p{
-	margin-bottom: 7%;
+	margin-bottom: 10%;
 }
 .font-25{
 	font-size: 25px;

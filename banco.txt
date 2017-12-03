@@ -5697,8 +5697,11 @@ CREATE TABLE categoria_noticia (
   	categoria_noticia char(20) not null,
   	descri varchar(255) not null
 );
-INSERT INTO categoria_noticia (categoria_noticia,descri) VALUES ('Jogos', 'Categoria que trata sobre jogos');
-
+INSERT INTO categoria_noticia (categoria_noticia,descri) 
+VALUES 
+('Jogos', 'Categoria que trata sobre jogos'),
+('Torneios', 'Categoria que trata sobre torneios de LoL'),
+('Mercado', 'Categoria que trata sobre mercado e-sports');
 
 CREATE TABLE comentario(
 	id_comentario int auto_increment primary key,
