@@ -1,8 +1,8 @@
 <?php
 	include('verificar_logado.php');
-	if($con['categoria_usuario']==1)
+	if($con['categoria_usuario']==1 or $con['clube']=="")
     {
-    	header('location:home.php');
+    	header('location:verificar_perfil.php');
     }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
