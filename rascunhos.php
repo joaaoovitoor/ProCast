@@ -90,7 +90,7 @@
                                                 <div class="panel bg_branco_w mg_bt">
                                                     <div class="panel-body">
                                                         <div class="col-xs-2 col-sm-1">
-                                                            <img src="img/perfil_icon.png" alt="" class="img-circle img_env">
+                                                            <img src="uploads/'.$con_nick['foto_perfil'].'" alt="" class="img-circle img_env">
                                                         </div>
                                                         <div class="col-xs-2 col-md-3">
                                                             <h4 class="fonte_cinza_escuro nome_user"><strong>'.$con_nick['nick'].'</strong></h4>
