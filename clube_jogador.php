@@ -1,5 +1,6 @@
 <?php
-	
+	include('conexao.php');
+    include('verificar_logado.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,8 +33,6 @@
             </div>
         </div>
         <?php 
-        	include('verificar_logado.php');
-			include('conexao.php');
         	if ($con['clube']=="") 
 			{
 				echo('<script>alert("Você não possui clube!");window.location="verificar_perfil.php";</script>');

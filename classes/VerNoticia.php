@@ -19,9 +19,9 @@
 						      <div class="caption">
 						        <h3><?php echo $row['titulo'];?></h3>
 						        <p><?php echo $row['texto']?> </p>
-						        <p>categoria:<?php echo $row['categoria']?> </p>
+						        <p>Categoria:<?php echo $row['categoria']?> </p>
 						        <a class="btn btn-danger  btn-lg" name="excluir" href="classes/excluirNoticia.php?ex=<?php echo($row['id_noticia']); ?>"><span class="glyphicon glyphicon-remove"></span></a>
-						        <a class="btn btn-warning  btn-lg" name="alterar" href="alterar_noticias.php?alt=<?php echo($row['id_noticia']); ?>"><span class="glyphicon glyphicon-remove"></span></a>
+						        <a class="btn btn-warning  btn-lg" name="alterar" href="alterar_noticias.php?alt=<?php echo($row['id_noticia']); ?>"><span class="glyphicon glyphicon-pencil"></span></a>
 						      </div>
 						    </div>
 						  </div>
