@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="css/noticias.css">
 		<?php
 			include('link_head.html');
+
 		?>
+        <script>tinymce.init({ selector:'textarea' });</script>
 	</head>
 	<body>
         <?php

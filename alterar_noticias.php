@@ -9,13 +9,13 @@
 		<title>
 			Gerencimento de notícias
 		</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+				<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/gerenciamento_noticias.css">
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabs.css" />
 		<link rel="stylesheet" type="text/css" href="css/perfil/tabstyles.css" />
 		<script src="js/tinymce/tinymce.min.js"></script>
-  		
+  		<script>tinymce.init({ selector:'textarea' });</script>
 		<meta charset="UTF-8"/>
 	</head>
 	<body>
@@ -75,7 +75,7 @@
 						</div>
 						<div class="form-group col-md-12">
 							<h4>Notícia:</h4>
-							<textarea class="form-control" rows="10" value="<?php echo $editar['texto']; ?>" name="noticia" placeholder="Digite a noticia" maxlength="29000"></textarea>
+							<textarea class="form-control" rows="10" name="noticia" placeholder="Digite a noticia" maxlength="29000"><?php echo $editar['texto']; ?></textarea>
 						</div>
 						<div class="form-group">
 							<input type="submit" name="enviar" class="btn btn-procast btn-block" value="Alterar">
