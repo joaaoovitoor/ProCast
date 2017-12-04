@@ -99,13 +99,14 @@ include("include/layout_itau.php");
 
 //inserindo dados na tabela de pagamento
 
-$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag,tipo_pagamento) VALUES
+$sqlinpag='INSERT INTO pagamento(dta_geracao,valor_pagamento,numero_boleto,id_usuario,nome_usuario_pag,tipo_pagamento,tipo) VALUES
 (
 	NOW(),
 	"'.$dadosboleto['valor_boleto'].'",
 	"'.$dadosboleto['linha_digitavel'].'",
 	'.$con['id_usuario'].',
 	"'.$con['nome'].' '.$con['sobrenome'].'",
+	"1",
 	"1"
 );';
 

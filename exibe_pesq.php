@@ -204,7 +204,7 @@
 			                        <form action="pesquisa.php" method="POST">
 			                        <input type="hidden" name="id_jog" value="'.$conresul['id_usuario'].'"/>
 			                        
-			                        <button class="btn btn-default" name="convidar" type="submit"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Convidar</button>
+			                        <p><button class="btn btn-default" name="convidar" type="submit"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Convidar</button></p>
 			                        </form>
 			                    </div>
 			                    <div class="media-body">

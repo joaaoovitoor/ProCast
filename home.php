@@ -60,7 +60,7 @@
                         <strong>Quer ter mais visibilidade? Tornar-se um profissional? Anuncie-se agora mesmo!</strong>
                     </h4>
                     <p class="mg_tp">
-                        Por apenas R$ 9,90 você pode ter seu perfil anunciado na home do site, aumentado assim suas chances de ser descoberto.
+                        Por apenas R$ 9,90 você pode ter seu perfil anunciado na pagina inicial do site, aumentado assim suas chances de ser descoberto.
                     </p>
                 </div>
                 <div class="col-md-offset-1 col-md-3 pri mg_tp">
@@ -121,7 +121,7 @@
                         <p class="mg_ld">
                             <form action="boleto/boleto_an_user.php" method="POST" target="_blank">
                                 <input type="hidden" name="tipo_an" value="3">
-                                <button type="submit" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp" <?php if($con['categoria_usuario']==1){echo 'disabled="disabled"';}?>><strong>Contratar</strong></button>
+                                <button type="submit" class="btn btn-lg fonte_branca bg_grad_cinza btn_fw mg_tp" disabled="disabled"><strong>Contratar</strong></button>
                             </form>
                         </p>
                     </div>
