@@ -60,7 +60,7 @@
 						<li><a href="#2"><span>Anúncios reprovados</span>
 							<span class="badge">
 							<?php
-								$sql='SELECT * FROM anuncio_jog WHERE status_pagamento="2";';
+								$sql='SELECT * FROM anuncio_jog WHERE status_pagamento="F";';
 								$resul=mysqli_query($conexao,$sql);
 								$quantidade_pendente=mysqli_num_rows($resul);
 								echo $quantidade_pendente;
