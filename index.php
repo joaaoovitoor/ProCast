@@ -76,13 +76,19 @@
 		                				$sqldados_anu='SELECT * FROM usuario WHERE id_usuario='.$con_an['id_usuario_an'].';';
 		                				$resuldados_anu=mysqli_query($conexao,$sqldados_anu);
 		                				$con_dados=mysqli_fetch_array($resuldados_anu);
+
+		                				$sql_funcao='SELECT nome_funcao FROM funcao WHERE id_funcao='.$con_dados['funcao_1'].';';
+		                				$resulfuncao=mysqli_query($conexao,$sql_funcao);
+		                				$con_funcao=mysqli_fetch_array($resulfuncao);
+
 		                				$cam='uploads/'.$con_dados['foto_perfil'];
 		                	?>
 			                <div class="pricing__item outro col-xs-offset-3 col-xs-5 col-sm-3 col-md-3">
 			                	<p align="center"><img src="<?php echo $cam ?>" class="img-circle img-responsive perfil_img"></p>
-			                    <h3 class="pricing__title"><?php echo $con_dados['nick'] ?></h3>
-			                    <p class="pricing__sentence"><?php echo $con_dados['nome'] ?></p>
-			                   	<p class="pricing__sentence"><?php echo $con_dados['descricao'] ?></p>
+			                    <h3 class="pricing__title"><?php echo $con_dados['nick']; ?></h3>
+			                    <p class="pricing__sentence"><?php echo $con_dados['nome']; ?></p>
+			                   	<p class="pricing__sentence"><?php echo $con_dados['descricao']; ?></p>
+			                   	<p class="pricing__sentence">Função: <?php echo $con_funcao['nome_funcao']; ?></p>
 			                </div>
 			                <?php 
 		               		    	}
