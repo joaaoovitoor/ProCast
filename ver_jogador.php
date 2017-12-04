@@ -185,37 +185,84 @@
 				</section>
 				<!--MENU - AGENDA-->
 				<section id="3">
+					<?php
+							$cod=urldecode($_GET['pesq']);
+							$sqlper=('SELECT * FROM usuario WHERE nick="'.$cod.'";');
+							$resul_perf=mysqli_query($conexao,$sqlper);
+							$dados_perf=mysqli_fetch_array($resul_perf);
+							$sqlsel='SELECT * FROM agenda where id_usuario='.$dados_perf['id_usuario'].';';
+							$res=mysqli_query($conexao,$sqlsel);
+							if (mysqli_num_rows($res)) {
+								while ($control=mysqli_fetch_array($res)) {
+									$data=explode('-', $control['data']);
+
+					?>
 					<div class="cartao-equipe">
 		                <div class="media">
 		                    <div class="media-left">
 		                        <blockquote>
-									<h5>Autor: <a href="#">Alguém</a></h5>
-									<p>Dia: 05/04/2017</p>
-									<p>Horário: 17:30</p>
+									<h5>Autor: <?php echo $dados_perf['nick']; ?></h5>
+									<p>Dia: <?php echo $data[2].'-'.$data[1].'-'.$data[0]; ?></p>
+									<p>Horário: <?php echo $control['hora']; ?></p>
 								</blockquote>
 		                    </div>
 		                    <div class="media-body">
-		                        <h3>Título do Evento</h3>
-		                        <h4>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+		                        <h3><?php echo $control['evento']; ?></h3>
+		                        <h4>Descrição: <?php echo $control['descricao_evento']; ?>
 		                        </h4>
 		                    </div>
 		                </div>
-		            </div>   
+		            </div> 
+		            <?php
+		            		}
+							}  
+							else
+							{
+								echo
+								('
+									<h1 class="text-center"><img src="img/triste.png"></h1>
+									<h3 class="text-center">Sem eventos marcados</h3>
+
+								');
+							}
+					?>
 				</section>
 				<!--MENU - VÍDEO-->
 				<section id="4">
+					<?php
+							$cod=urldecode($_GET['pesq']);
+							$sqlper=('SELECT * FROM usuario WHERE nick="'.$cod.'";');
+							$resul_perf=mysqli_query($conexao,$sqlper);
+							$dados_perf=mysqli_fetch_array($resul_perf);
+							$sqlsel='SELECT * FROM video where id_usuario='.$dados_perf['id_usuario'].';';
+							$res=mysqli_query($conexao,$sqlsel);
+							if (mysqli_num_rows($res)) {
+								while ($control=mysqli_fetch_array($res)) {
+									
+					?>
 					<div class="card mb-3">
 						<div class="embed-responsive embed-responsive-16by9">
 				  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-6JqoJrM9IM"></iframe>
 				</div>
 						<div class="card-body">
-							<h4 class="card-title">Nome do Vídeo</h4>
-							<p class="card-text">Descrição do Vídeo</p>
-							<p class="card-text"><small class="text-muted">Publicado em:20/08/2017</small></p>
+							<h4 class="card-title"><?php echo $control['titulo_video']; ?></h4>
+							<p class="card-text"><?php echo $control['descricao_video']; ?></p>
+							<p class="card-text"><small class="text-muted">Publicado em:<?php echo $control['data_video']; ?></small></p>
 						</div>
 					</div>
+					<?php
+		            		}
+							}  
+							else
+							{
+								echo
+								('
+									<h1 class="text-center"><img src="img/triste.png"></h1>
+									<h3 class="text-center">Sem vídeo</h3>
+
+								');
+							}
+					?>
 				</section>
 				<!--MENU - Denuncia-->
 				<section id="5">
