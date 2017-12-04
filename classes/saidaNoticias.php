@@ -12,8 +12,9 @@
                 <?php
                 $select = "SELECT * FROM noticia WHERE categoria ='".$categoriaNoticia['categoria_noticia']."';";
                 $sql_sel = mysqli_query($conexao,$select);
+                if(mysqli_num_rows($sql_sel)>0){
                     while($row = mysqli_fetch_array($sql_sel))
-                {
+                    {
                 ?>
                    <div class="col-sm-6 col-md-4">
                         <a href="conteudo_noticia.php?ex=<?php echo $row['id_noticia']?>">
@@ -38,6 +39,13 @@
                         </a>
                     </div>
                     <?php 
+                        }
+                    }
+                    else{
+                        echo('
+                        <h1 class="text-center"><img src="img/triste.png"></h1>
+                        <h3 class="text-center">Não tem nenhuma notícia nessa categoria</h3>
+                        ');
                     }
                     ?>              
                 </div>

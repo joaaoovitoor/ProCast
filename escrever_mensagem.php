@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
+        <title>Escrever mensagem</title>
 		<?php
             include('link_head.html');
         ?>
@@ -46,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="destinatario">Para</label>
-                            <input type="text" class="form-control" id="destinatario" name="destinatario" placeholder="Nome ou email do usuário de destino">
+                            <input type="text" class="form-control" id="destinatario" name="destinatario" <?php if(isset($_GET['rm'])){echo'value="'.$_GET['rm'].'"';}?>placeholder="Nome ou email do usuário de destino">
                         </div>
                         <div class="form-group">
                             <label for="assunto">Assunto</label>
