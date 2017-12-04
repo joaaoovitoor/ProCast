@@ -302,7 +302,7 @@
 						                <div class="media">
 						                    <div class="media-left">
 						                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/'.$ctrli['foto_perfil'].'">
-						                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrli['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
+						                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrli['email'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
 						                    </div>
 						                    <div class="media-body">
 						                        <h3 class="media-heading">'.$ctrli['nome'].' '.$ctrli['sobrenome'].'</h3>');
@@ -317,6 +317,7 @@
 						                        }
 						                        echo ('
 						                        <h5>Usuário Investidor e dono do clube '.$cl['nome_clube'].'</h5>
+						                        <p>Email: '.$ctrli['email'].'</p>
 						                    </div>
 						                </div>
 						            </div>
@@ -339,11 +340,12 @@
 						                <div class="media">
 						                    <div class="media-left">
 						                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/'.$ctrl['foto_perfil'].'">
-						                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['id_usuario'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
+						                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['email'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
 						                    </div>
 						                    <div class="media-body">
 						                        <h3 class="media-heading">'.$ctrl['nick'].'</h3>
 						                        <h5>'.$ctrl['nome'].' '.$ctrl['sobrenome'].'</h5>
+						                        <p>Email: '.$ctrl['email'].'</p>
 						                        <p>Função primária: '.$f1['nome_funcao'].'</p>
 						                        <p>Função primária: '.$f2['nome_funcao'].'</p> 
 						                    </div>
