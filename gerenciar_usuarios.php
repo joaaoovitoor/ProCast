@@ -60,12 +60,12 @@
                                 if(isset($_POST['enviar']))
                                 {
                                 $nomepesq=$_POST['pesquisa_jog'];
-                                    if(empty($nomepesq))
-                                    {
-                                      echo '<script>alert("Digite o nome de pesquisa!")</script>';
-                                      echo '<script>window.location="gerenciar_usuarios.php";</script>'; 
-                                      exit();
-                                    }
+                                if(empty($nomepesq))
+                                {
+                                  echo '<script>alert("Digite o nome de pesquisa!")</script>';
+                                  echo '<script>window.location="gerenciar_usuarios.php";</script>'; 
+                                  exit();
+                                }
                                 //dados dos usuário   
                                 $sql_usuario='SELECT * FROM usuario WHERE nome LIKE "%'.$nomepesq.'%";';
                                 $resul_usuario=mysqli_query($conexao,$sql_usuario);

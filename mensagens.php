@@ -35,9 +35,9 @@
     				</div>
   				</div>
   				<div class="col-md-9">
-  					<form action="" method="POST" class="no-radius">
+  					<form action="#" method="POST" class="no-radius">
 						<div class="input-group input-group-lg bg_branco sombra mg_bt">
-						  	<input type="text"  name="pesquisa_texto" class="form-control bg_branco_w sem_borda" placeholder="Pesquisar pessoa ou email" aria-describedby="pesquisar">
+						  	<input type="text"  name="pesquisa_texto" class="form-control bg_branco_w sem_borda" placeholder="Pesquisar pelo texto da mensagem" aria-describedby="pesquisar">
 						  	<span class="input-group-btn" id="pesquisar">
 						  		<button type="submit" name="pesquisar_btn" class="btn btn-lg bg_branco_w sem_borda"><span class="glyphicon glyphicon-search fonte_azul_escuro" aria-hidden="true"></span></button>
 						  	</span>
@@ -59,11 +59,22 @@
                         ?>
     				</div>
                                 <?php
-                                    
-
+                                    if(isset($_POST['pesquisar_btn']))
+                                    {
+                                        $resulpesq=$_POST['pesquisa_texto'];
+                                        if(empty($resulpesq))
+                                        {
+                                          echo '<script>alert("Digite o nome de pesquisa!")</script>';
+                                          echo '<script>window.location="mensagens.php";</script>'; 
+                                          exit();
+                                        }
+                                        $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (favorito_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (rascunho="F")) AND (mensagem LIKE "%'.$resulpesq.'%") ORDER BY id_mensagem DESC;';
+                                    }
+                                    else
+                                    {
                                     //msgs
                                     $sqlsel='select * from mensagem where ((id_receber="'.$con['id_usuario'].'") AND (excluido_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (favorito_rec="F")) AND ((id_receber="'.$con['id_usuario'].'") AND (rascunho="F")) ORDER BY id_mensagem DESC;';
-                                    
+                                    }
                                     $resul=mysqli_query($conexao,$sqlsel);
                                     
                                     if(mysqli_num_rows($resul))

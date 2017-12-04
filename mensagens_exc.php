@@ -36,19 +36,11 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <form action="" method="POST" class="no-radius">
-                        <div class="input-group input-group-lg bg_branco sombra mg_bt">
-                            <input type="text"  name="pesquisa_texto" class="form-control bg_branco_w sem_borda" placeholder="Pesquisar pessoa ou email" aria-describedby="pesquisar">
-                            <span class="input-group-btn" id="pesquisar">
-                                <button type="submit" name="pesquisar_btn" class="btn btn-lg bg_branco_w sem_borda"><span class="glyphicon glyphicon-search fonte_azul_escuro" aria-hidden="true"></span></button>
-                            </span>
-                        </div>
-                    </form>
                     <div class="mg_bt">
                         <div>
-                            <button onclick="location.href='escrever_mensagem.php'" class="btn bg_azul_escuro fonte_branca" href="escrever_mensagem.php">Escrever Mensagem <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                            <p><button onclick="location.href='escrever_mensagem.php'" class="btn bg_azul_escuro fonte_branca" href="escrever_mensagem.php">Escrever Mensagem <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></p>
                             <form action="#" method="POST">
-                                <button type="submit" class="btn bg_azul_escuro fonte_branca" name="ext">Limpar Caixa <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                                <p><button type="submit" class="btn bg_azul_escuro fonte_branca" name="ext">Limpar Caixa <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></p>
                             </form>
                         </div>
                         

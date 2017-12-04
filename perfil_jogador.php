@@ -940,7 +940,7 @@
 								</select>
 							</div>
 							<div class="form-group">
-								Status da conta: <input type="text" class="form-control" name="status" value="<?php if($con['status_pagamento']=="F"){ echo "Pagamento pendente!";}else{echo 'Pagamento realizado!';} ?>" readonly>
+								Status da conta: <input type="text" class="form-control" name="status" value="<?php if($con['status_pagamento']=="0" || $con['status_pagamento']=="F" ){ echo "Pagamento pendente!";}else{echo 'Pagamento realizado!';} ?>" readonly>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -950,7 +950,7 @@
 									$resul_anperf=mysqli_query($conexao,$sql_anperf);
 									$con_anperf=mysqli_fetch_array($resul_anperf);
 								?>
-				                Anúncio de perfil: <input type="text" class="form-control" name="status" value="<?php if(mysqli_num_rows($resul_anperf)<=0){ echo("Nenhum anúncio solicitado!");}else{ if($con_anperf['status_pagamento']=="0"){ echo "Anúncio solicitado! Pagamento pendente!";}else{echo 'Anúncio solicitado! Pagamento realizado! Seu perfil já está sendo anunciado.';}} ?>" readonly>
+				                Anúncio de perfil: <input type="text" class="form-control" name="status" value="<?php if(mysqli_num_rows($resul_anperf)<=0){ echo("Nenhum anúncio solicitado!");}else{ if($con_anperf['status_pagamento']=="0"){ echo "Anúncio solicitado: Pagamento pendente!";}elseif($con_anperf['status_pagamento']=="F"){ echo "Anúncio solicitado: Pagamento expirado!";}else{echo 'Anúncio solicitado: Pagamento realizado! Seu perfil já está sendo anunciado.';}} ?>" readonly>
 				            </div>
 						</div>
 						<div class="col-md-12">

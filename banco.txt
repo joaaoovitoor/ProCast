@@ -5789,9 +5789,9 @@ CREATE TABLE pagamento(
 	numero_boleto varchar(60) not null,
 	id_usuario int not null,
 	nome_usuario_pag varchar(50) not null,
-  tipo_pagamento char(1),
-  tipo char,
-	status_pagamento char(2) default 'F'
+  	tipo_pagamento char(1),
+  	tipo char,
+	status_pagamento char(2) default '0'
 );
 CREATE TABLE pagamento_an(
   id_pagamento int auto_increment primary key,
@@ -5827,8 +5827,8 @@ CREATE TABLE agenda(
 	data date,
 	evento varchar(20),
 	descricao_evento varchar(200),
-  cl int,
-  tipo c,
+  	cl int,
+ 	tipo char(2),
 	id_usuario int
 );
 

@@ -37,30 +37,30 @@
 			<div class="tabs tabs-style-linebox">
 				<nav>
 					<ul>
-						<li><a href="#1"><span>Anúncios em andamento</span>
+						<li><a href="#1"><span>Pagamentos em andamento</span>
 							<span class="badge">
 							<?php
-								$sql='SELECT * FROM anuncio_jog WHERE status_pagamento="0";';
+								$sql='SELECT * FROM pagamento WHERE status_pagamento="0" AND tipo_pagamento=1;';
 								$resul=mysqli_query($conexao,$sql);
 								$quantidade_pendente=mysqli_num_rows($resul);
 								echo $quantidade_pendente;
 							?>
 							</span>
 						</a></li>
-						<li><a href="#2"><span>Anúncios aprovados</span>
+						<li><a href="#2"><span>Pagamentos aprovados</span>
 							<span class="badge">
 							<?php
-								$sql='SELECT * FROM anuncio_jog WHERE status_pagamento="T";';
+								$sql='SELECT * FROM pagamento WHERE status_pagamento="T" AND tipo_pagamento=1;';
 								$resul=mysqli_query($conexao,$sql);
 								$quantidade_pendente=mysqli_num_rows($resul);
 								echo $quantidade_pendente;
 							?>
 							</span>
 						</a></li>
-						<li><a href="#2"><span>Anúncios reprovados</span>
+						<li><a href="#2"><span>Pagamentos reprovados</span>
 							<span class="badge">
 							<?php
-								$sql='SELECT * FROM anuncio_jog WHERE status_pagamento="2";';
+								$sql='SELECT * FROM pagamento WHERE status_pagamento="F" AND tipo_pagamento=1;';
 								$resul=mysqli_query($conexao,$sql);
 								$quantidade_pendente=mysqli_num_rows($resul);
 								echo $quantidade_pendente;
@@ -75,14 +75,14 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="0"';
+								$sqlsel='SELECT * FROM pagamento WHERE status_pagamento="0" AND tipo_pagamento=1';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
 									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
 									
-										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario_an'].'';
+										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario'].'';
 										$resul2=mysqli_query($conexao,$sqlsel2);
 										$consulta_usuario=mysqli_fetch_array($resul2);
 										$sql_est='SELECT * FROM estado WHERE id='.$consulta_usuario['estado'].'';
@@ -99,7 +99,7 @@
 								</div>
 								<div class="col-md-3">
 									<?php 
-										$dataexplode = explode("-",$con_anuncio['data_criacao_anuncio']);
+										$dataexplode = explode("-",$con_anuncio['dta_geracao']);
 										$datahora = explode(" ",$dataexplode[2]);
 										$dataexplode[2]= $datahora[0];
 										$cont=2;
@@ -122,17 +122,11 @@
 											<p>Cidade: <?php echo $consulta_cid['nome'];?></p>
 										</div>
 										<div class='list-landmark'>
-											Data de Criação: <?php echo $datacerto;?>
+											Data de geração: <?php echo $datacerto;?>
 										</div>
 										<div class='list-price'>
-											Plano: <?php 
-												if($con_anuncio['tipo']==1){
-													echo '1 semana por R$9,90';
-													$time= strtotime($datacerto."+7 days");
-												}elseif ($con_anuncio['tipo']==2){
-													echo '14 dias por R$19,90';
-													$time= strtotime($datacerto."+14 days");
-												}
+											Prazo de validade: 5 dias <?php 
+												$time= strtotime($datacerto."+5 days");
 											?>
 										</div>
 										<div class="list-landmark">
@@ -154,22 +148,31 @@
 										if(isset($_POST['aprovar']))
 										{
 											$id_usuario_an=$_POST['id_usuario'];
-											$sqlalt=('UPDATE anuncio_jog set status_pagamento="T" WHERE id_usuario_an='.$id_usuario_an.';');
+											$sqlalt=('UPDATE pagamento set status_pagamento="T" WHERE id_usuario='.$id_usuario_an.' AND tipo_pagamento=1;');
 											mysqli_query($conexao,$sqlalt);
-											$sqlalt=('UPDATE pagamento set status_pagamento="T" WHERE id_usuario='.$id_usuario_an.';');
+											$sqlalt=('UPDATE usuario set status_pagamento="T" WHERE id_usuario='.$id_usuario_an.';');
 											mysqli_query($conexao,$sqlalt);
-											echo('<script>window.alert("Anúncio Aprovado");window.location="gerenciar_anuncios_jog.php";</script>');
+											echo('<script>window.alert("Pagamento Aprovado");window.location="gerenciar_pagamentos.php";</script>');
 											exit();
 										}
 										if(isset($_POST['reprovar']))
 										{
-											$id_usuario_an=$_POST['id_usuario_an'];
-											$sqlalt=('UPDATE anuncio_jog set status_pagamento="F" WHERE id_usuario_an='.$id_usuario_an.';');
+											$id_usuario_an=$_POST['id_usuario'];
+											$sqlalt=('UPDATE pagamento set status_pagamento="F" WHERE id_usuario='.$id_usuario_an.' AND tipo_pagamento=1;');
 											mysqli_query($conexao,$sqlalt);
-											$sqlalt=('UPDATE pagamento set status_pagamento="F" WHERE id_usuario='.$id_usuario_an.';');
+											$sqlalt=('UPDATE usuario set status_pagamento="F" WHERE id_usuario='.$id_usuario_an.';');
 											mysqli_query($conexao,$sqlalt);
-											echo('<script>window.alert("Anúncio Reprovado");window.location="gerenciar_anuncios_jog.php";</script>');
-											exit();
+											$reprov=mysqli_query($conexao,$sqlalt);
+											if($reprov)
+											{
+												echo('<script>window.alert("Pagamento Reprovado");window.location="gerenciar_pagamentos.php";</script>');
+												exit();
+											}
+											else
+											{
+												echo('<script>window.alert("Erro");window.location="gerenciar_pagamentos.php";</script>');
+												exit();
+											}
 										}
 									
 									}
@@ -187,14 +190,14 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="T"';
+								$sqlsel='SELECT * FROM pagamento WHERE status_pagamento="T" AND tipo_pagamento=1;';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
 									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
 									
-										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario_an'].'';
+										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario'].';';
 										$resul2=mysqli_query($conexao,$sqlsel2);
 										$consulta_usuario=mysqli_fetch_array($resul2);
 										$sql_est='SELECT * FROM estado WHERE id='.$consulta_usuario['estado'].'';
@@ -222,22 +225,13 @@
 											<p>Cidade: <?php echo $consulta_cid['nome'];?></p>
 										</div>
 										<div class='list-landmark'>
-											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
-										</div>
-										<div class='list-price'>
-											Plano: <?php 
-												if($con_anuncio['tipo']==1){
-													echo '1 semana por R$9,90';
-												}elseif ($con_anuncio['tipo']==2){
-													echo '14 dias por R$19,90';
-												}
-											?>
+											Data de Geração: <?php echo $con_anuncio['dta_geracao'];?>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-2">
 									<p align="center"><i class="fa fa-check fa-5x"></i><br>Aprovado</p>
-									<p align="center"><a href="gerenciar_anuncios.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
+									<p align="center"><a href="gerenciar_pagamentos.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
 								</div>
 							</div>
 							<?php
@@ -249,12 +243,15 @@
 								}
 								if (isset($_GET['exc'])) {
 									$exc=$_GET['exc'];
-									$sqlex=('DELETE FROM anuncio_jog WHERE id_usuario_an='.$exc.';');
-									mysqli_query($conexao,$sqlex);
-									$sqlex=('DELETE FROM pagamento WHERE id_usuario='.$exc.';');
-									if(mysqli_query($conexao,$sqlex)){
-									echo('<script>window.alert("Anúncio Excluído");window.location="gerenciar_anuncios_jog.php";</script>');
-								}
+									$sqlex=('DELETE FROM pagamento WHERE id_usuario='.$exc.' AND tipo_pagamento=1;');
+									$delpag=mysqli_query($conexao,$sqlex);
+									if($delpag)
+									{
+										echo('<script>window.alert("Pagamento Excluído");window.location="gerenciar_pagamentos.php";</script>');
+									}
+									else{
+										echo('<script>window.alert("Erro");window.location="gerenciar_pagamentos.php";</script>');
+									}
 								}
 							?>
 						</div>
@@ -265,14 +262,14 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="F"';
+								$sqlsel='SELECT * FROM pagamento WHERE status_pagamento="F" AND tipo_pagamento=1;';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
 									while ($con_anuncio=mysqli_fetch_array($resul)) 
 									{
 									
-										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario_an'].'';
+										$sqlsel2='SELECT * FROM usuario WHERE id_usuario='.$con_anuncio['id_usuario'].'';
 										$resul2=mysqli_query($conexao,$sqlsel2);
 										$consulta_usuario=mysqli_fetch_array($resul2);
 										$sql_est='SELECT * FROM estado WHERE id='.$consulta_usuario['estado'].'';
@@ -300,16 +297,7 @@
 											<p>Cidade: <?php echo $consulta_cid['nome'];?></p>
 										</div>
 										<div class='list-landmark'>
-											Data de Criação: <?php echo $con_anuncio['data_criacao_anuncio'];?>
-										</div>
-										<div class='list-price'>
-											Plano: <?php 
-												if($con_anuncio['tipo']==1){
-													echo '1 semana por R$9,90';
-												}elseif ($con_anuncio['tipo']==2){
-													echo '14 dias por R$19,90';
-												}
-											?>
+											Data de Geração: <?php echo $con_anuncio['dta_geracao'];?>
 										</div>
 									</div>
 								</div>

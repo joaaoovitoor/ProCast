@@ -65,8 +65,11 @@
 			            <div class="row">
 			                <div class="col-md-1"></div>
 			                <div class="col-md-10">
-			                    <div class="informacoes">
-			                        Nome <br><?php echo $con['nome'];?>
+			                    <div class="informacoes"><p>
+			                        Nome <br><?php echo $con['nome'];?></p>
+			                        <?php if($con['status_pagamento']=="F"){ ?>
+			                        <a href="boleto/boleto.php" target="_blank"><p><button type="submit" class="btn btn_foto" data-toggle="tooltip" data-placement="right" title="Você ainda não pagou seu boleto! Clique aqui para gera-lo! Se você já o pagou, aguarde 4 dias úteis!">Gerar boleto!</button></p></a>
+			                        <?php } ?>
 			                    </div>
 			                </div>
 			            </div>

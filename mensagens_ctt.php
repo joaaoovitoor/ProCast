@@ -35,14 +35,6 @@
     				</div>
   				</div>
   				<div class="col-md-9">
-  					<form action="" method="POST" class="no-radius">
-						<div class="input-group input-group-lg bg_branco sombra mg_bt">
-						  	<input type="text"  name="pesquisa_texto" class="form-control bg_branco_w sem_borda" placeholder="Pesquisar pessoa ou email" aria-describedby="pesquisar">
-						  	<span class="input-group-btn" id="pesquisar">
-						  		<button type="submit" name="pesquisar_btn" class="btn btn-lg bg_branco_w sem_borda"><span class="glyphicon glyphicon-search fonte_azul_escuro" aria-hidden="true"></span></button>
-						  	</span>
-						</div>
-					</form>
                                 <?php
                                     //contatos
                                     $sqlsel2='SELECT * FROM contato WHERE rec="'.$con['email'].'" ORDER BY data_contato DESC;';

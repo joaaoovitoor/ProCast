@@ -39,12 +39,6 @@
   				</div>
   				<div class="col-md-9">
   					<form action="#" method="POST" enctype="multipart/form-data">
-                        <div class="input-group input-group-lg bg_branco sombra mg_bt">
-                            <input type="text"  name="pesquisa_texto" class="form-control bg_branco_w sem_borda" placeholder="Pesquisar pessoa ou email" aria-describedby="pesquisar">
-                            <span class="input-group-btn" id="pesquisar">
-                                <button type="submit" name="pesquisar_btn" class="btn btn-lg bg_branco_w sem_borda"><span class="glyphicon glyphicon-search fonte_azul_escuro" aria-hidden="true"></span></button>
-                            </span>
-                        </div>
                         <div class="form-group">
                             <label for="destinatario">Para</label>
                             <input type="text" class="form-control" id="destinatario" name="destinatario" <?php if(isset($_GET['rm'])){echo'value="'.$_GET['rm'].'"';}?>placeholder="Nome ou email do usuário de destino">
@@ -82,9 +76,8 @@
                     $con2=mysqli_fetch_array($resul);
                     if(mysqli_num_rows($resul))
                     {
-                        if (isset($_FILES['anexo']))
-                        {
-                            if($_FILES['anexo']['error']==4)
+                        
+                        if($_FILES['anexo']['error']==4)
                         {
                            $sqlin='INSERT INTO mensagem(assunto,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
                         }
@@ -98,10 +91,6 @@
                             //quando o php recebe um arquivo de upload ele é armazenado temporariamente em uma pasta com seus arquivos de sistema
                             $sqlin='INSERT INTO mensagem(assunto,anexo,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$novo_nome.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
                             }
-                        }
-                        else{
-                            $sqlin='INSERT INTO mensagem(assunto,mensagem,favorito_env,excluido_env,rascunho,favorito_rec,excluido_rec,solicitacao_env,solicitacao_rec,id_enviar,id_receber,data,view)VALUES ("'.$assunto.'","'.$mensagem.'","F","F","F","F","F","F","F",'.$con['id_usuario'].','.$con2['id_usuario'].',NOW(),"F");';
-                        }
                         mysqli_query($conexao,$sqlin);
                         echo('<script>swal("Mensagem Enviada", "", "success");</script>');
                         echo('<script>window.location="mensagens_env.php";</script>');

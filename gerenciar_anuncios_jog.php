@@ -156,20 +156,26 @@
 											$id_usuario_an=$_POST['id_usuario'];
 											$sqlalt=('UPDATE anuncio_jog set status_pagamento="T" WHERE id_usuario_an='.$id_usuario_an.';');
 											mysqli_query($conexao,$sqlalt);
-											$sqlalt=('UPDATE pagamento set status_pagamento="T" WHERE id_usuario='.$id_usuario_an.';');
+											$sqlalt=('UPDATE pagamento set status_pagamento="T" WHERE id_usuario='.$id_usuario_an.' AND tipo_pagamento=2;');
 											mysqli_query($conexao,$sqlalt);
 											echo('<script>window.alert("Anúncio Aprovado");window.location="gerenciar_anuncios_jog.php";</script>');
 											exit();
 										}
 										if(isset($_POST['reprovar']))
 										{
-											$id_usuario_an=$_POST['id_usuario_an'];
+											$id_usuario_an=$_POST['id_usuario'];
 											$sqlalt=('UPDATE anuncio_jog set status_pagamento="F" WHERE id_usuario_an='.$id_usuario_an.';');
-											mysqli_query($conexao,$sqlalt);
-											$sqlalt=('UPDATE pagamento set status_pagamento="F" WHERE id_usuario='.$id_usuario_an.';');
-											mysqli_query($conexao,$sqlalt);
-											echo('<script>window.alert("Anúncio Reprovado");window.location="gerenciar_anuncios_jog.php";</script>');
-											exit();
+											$reprov=mysqli_query($conexao,$sqlalt);
+											if($reprov)
+											{
+												echo('<script>window.alert("Anúncio Reprovado");window.location="gerenciar_anuncios_jog.php";</script>');
+												exit();
+											}
+											else
+											{
+												echo('<script>window.alert("Erro");window.location="gerenciar_anuncios_jog.php";</script>');
+												exit();
+											}
 										}
 									
 									}
@@ -187,7 +193,7 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="T"';
+								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="T";';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
@@ -237,7 +243,7 @@
 								</div>
 								<div class="col-md-2">
 									<p align="center"><i class="fa fa-check fa-5x"></i><br>Aprovado</p>
-									<p align="center"><a href="gerenciar_anuncios.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
+									<p align="center"><a href="gerenciar_anuncios_jog.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
 								</div>
 							</div>
 							<?php
@@ -250,11 +256,16 @@
 								if (isset($_GET['exc'])) {
 									$exc=$_GET['exc'];
 									$sqlex=('DELETE FROM anuncio_jog WHERE id_usuario_an='.$exc.';');
-									mysqli_query($conexao,$sqlex);
-									$sqlex=('DELETE FROM pagamento WHERE id_usuario='.$exc.';');
-									if(mysqli_query($conexao,$sqlex)){
-									echo('<script>window.alert("Anúncio Excluído");window.location="gerenciar_anuncios_jog.php";</script>');
-								}
+									$delan=mysqli_query($conexao,$sqlex);
+									$sqlex=('DELETE FROM pagamento WHERE id_usuario='.$exc.' AND tipo_pagamento=2;');
+									$delpag=mysqli_query($conexao,$sqlex);
+									if($delpag && $delan)
+									{
+										echo('<script>window.alert("Anúncio Excluído");window.location="gerenciar_anuncios_jog.php";</script>');
+									}
+									else{
+										echo('<script>window.alert("Erro");window.location="gerenciar_anuncios_jog.php";</script>');
+									}
 								}
 							?>
 						</div>
@@ -265,7 +276,7 @@
 					<div class="container">
 						<div class="row">
 							<?php
-								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="F"';
+								$sqlsel='SELECT * FROM anuncio_jog WHERE status_pagamento="F";';
 								$resul=mysqli_query($conexao,$sqlsel);
 								if (mysqli_num_rows($resul)>0)
 								{
@@ -315,7 +326,7 @@
 								</div>
 								<div class="col-md-2">
 									<p align="center"><i class="fa fa-times fa-5x"></i><br>Reprovado</p>
-									<p align="center"><a href="gerenciar_anuncios.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
+									<p align="center"><a href="gerenciar_anuncios_jog.php?exc=<?php echo($consulta_usuario['id_usuario']); ?>"><i class="fa fa-times fa-3x"></i><br>Excluir</a></p>
 								</div>
 							</div>
 							<?php

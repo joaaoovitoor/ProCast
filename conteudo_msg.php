@@ -35,14 +35,6 @@
     				</div>
   				</div>
   				<div class="col-md-9">
-  					<form action="" method="POST" class="no-radius">
-						<div class="input-group input-group-lg bg_branco sombra mg_bt">
-						  	<input type="text"  name="pesquisa_texto" class="form-control bg_branco_w sem_borda" placeholder="Pesquisar pessoa ou email" aria-describedby="pesquisar">
-						  	<span class="input-group-btn" id="pesquisar">
-						  		<button type="submit" name="pesquisar_btn" class="btn btn-lg bg_branco_w sem_borda"><span class="glyphicon glyphicon-search fonte_azul_escuro" aria-hidden="true"></span></button>
-						  	</span>
-						</div>
-					</form>
 					<div class="mg_bt">
                         <div>
                             <button onclick="location.href='escrever_mensagem.php'" class="btn bg_azul_escuro fonte_branca" href="escrever_mensagem.php">Escrever Mensagem <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
@@ -66,7 +58,7 @@
                                     <div class="panel bg_branco_w">
                                         <div class="panel-body">
                                             <div class="col-xs-2 col-sm-1">
-                                                <img src="img/perfil_icon.png" alt="" class="img-circle img_env">
+                                                <img src="uploads/'.$con3['foto_perfil'].'" alt="" class="img-circle img_env">
                                             </div>
                                             <div class="col-xs-2 col-sm-3">
                                                 <h4 class="fonte_azul_claro"><strong>'.$con3['nome'].' '.$con3['sobrenome'].'</strong></h4>
@@ -93,18 +85,25 @@
                                             <div class="col-xs-12 ">
                                                 '.$con2['mensagem'].'
                                             </div>
+                                            ');
+                                            if(!$con2['anexo']=="")
+                                            {
+                                                echo('
                                             <div class="col-xs-12 mg_btn">
                                                 <a href="uploads/'.$con2['anexo'].'">
                                                     <div class="panel-default bg_branco col-xs-5 sombra anexo">
                                                         <div class="col-xs-2">
                                                             <img src="img/file.png"> 
                                                         </div>
+                                                        
                                                         <div class="col-xs-7">
                                                             <p class="text-center">'.$con2['anexo'].'</p>
                                                         </div>
                                                     </div>
                                                 </a>
-                                            </div>
+                                            </div>');
+                                            }
+                                            echo ('
                                         </div>
                                     </div>
                                 </div>        
