@@ -95,6 +95,7 @@
 								<ul>
 									<li><a href="#1"><span>Jogadores</span></a></li>
 									<!-- <li><a href="#3"><span>Torneio</span></a></li> -->
+									<li><a href="#3"><span>Agenda</span></a></li>
 									<li><a href="#4"><span>Vídeos</span></a></li>
 									<li><a href="#5"><span>Fotos</span></a></li>
 								</ul>
@@ -177,6 +178,45 @@
 						            
 						            
 								</section>
+								<section id="3">
+								<?php
+										$sqlsel='SELECT * FROM agenda where cl='.$con['clube'].';';
+										$res=mysqli_query($conexao,$sqlsel);
+										if (mysqli_num_rows($res)) {
+											while ($control=mysqli_fetch_array($res)) {
+												$data=explode('-', $control['data']);
+
+								?>
+								<div class="cartao-equipe">
+					                <div class="media">
+					                    <div class="media-left">
+					                        <blockquote>
+												<h5>Autor: Clube</h5>
+												<p>Dia: <?php echo $data[2].'-'.$data[1].'-'.$data[0]; ?></p>
+												<p>Horário: <?php echo $control['hora']; ?></p>
+											</blockquote>
+					                    </div>
+					                    <div class="media-body">
+					                        <h3><?php echo $control['evento']; ?></h3>
+					                        <h4>Descrição: <?php echo $control['descricao_evento']; ?>
+					                        </h4>
+					                    </div>
+					                </div>
+					            </div> 
+					            <?php
+					            		}
+										}  
+										else
+										{
+											echo
+											('
+												<h1 class="text-center"><img src="img/triste.png"></h1>
+												<h3 class="text-center">Sem eventos marcados</h3>
+
+											');
+										}
+								?>
+							</section>
 								<!--FIM MENU - CLUBE-->
 								<!-- MENU - TORNEIO -->
 								<!-- <section id="3">

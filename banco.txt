@@ -5827,6 +5827,8 @@ CREATE TABLE agenda(
 	data date,
 	evento varchar(20),
 	descricao_evento varchar(200),
+  cl int,
+  tipo c,
 	id_usuario int
 );
 

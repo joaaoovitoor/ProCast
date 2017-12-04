@@ -243,11 +243,11 @@
 													else
 													{
 														$data2=$data[2].$data[1].$data[0];
-														$sqlin='INSERT INTO agenda (hora,data,evento,descricao_evento,id_usuario,cl) VALUES ("'.$horario.'","'.$data2.'","'.$titulo.'","'.$descricao_agd.'",'.$con['id_usuario'].','.$con2['id_clube'].');';
+														$sqlin='INSERT INTO agenda (hora,data,evento,descricao_evento,id_usuario,cl,tipo) VALUES ("'.$horario.'","'.$data2.'","'.$titulo.'","'.$descricao_agd.'",'.$con['id_usuario'].','.$con2['id_clube'].',"C");';
 														if(mysqli_query($conexao,$sqlin))
 														{
 															echo ('<script>window.alert("Evento agendado com sucesso!");</script>');
-															header('location:perfil_jogador.php');
+															header('location:clube_investidor.php');
 														}
 													}
 												}
@@ -256,7 +256,7 @@
 													echo ('<script>window.alert("Preencha todos os campos!");</script>');
 												}
 											}
-											$sqlsel='SELECT * FROM agenda WHERE id_usuario='.$con['id_usuario'].' AND cl='.$con2['id_clube'].' ORDER BY data DESC;';
+											$sqlsel='SELECT * FROM agenda WHERE cl='.$con2['id_clube'].' ORDER BY data DESC;';
 											$resul=mysqli_query($conexao,$sqlsel);
 											if (mysqli_num_rows($resul))
 											{
@@ -335,7 +335,7 @@
 												if(mysqli_query($conexao,$sqlex))
 												{
 													echo ('<script>window.alert("Evento excluído com sucesso!");</script>');
-													header('location:perfil_jogador.php');
+													header('location:clube_investidor.php');
 												}
 											}
 											if(isset($_POST['alt_agendar']))
@@ -350,7 +350,7 @@
 													$sqlup='UPDATE agenda SET hora="'.$alt_horario.'",data="'.$alt_data.'",evento="'.$alt_titulo.'",descricao_evento="'.$alt_descricao_agd.'" WHERE id_agenda='.$id_evt.';';
 													if (mysqli_query($conexao,$sqlup)) {
 														echo ('<script>window.alert("Alterado com sucesso!");</script>');
-														header('location:perfil_jogador.php');
+														header('location:clube_investidor.php');
 													}
 												}
 												else
