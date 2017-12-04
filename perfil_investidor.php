@@ -233,11 +233,12 @@
 				                <div class="media">
 				                    <div class="media-left">
 				                        <img class="media-object img-circle img-responsive perfil_img" src="uploads/<?php echo $membrosclube['foto_perfil']; ?>">
-				                        <a class="btn btn-default " href="escrever_mensagem.php?rm=<?php echo $membrosclube['id_usuario']; ?>"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a>
+				                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm=<?php echo $membrosclube['email']; ?>"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
 				                    </div>
 				                    <div class="media-body">
 				                        <a href="ver_jogador.php?pesq=<?php echo $membrosclube['nick']; ?>"><h3 class="media-heading"><?php echo $membrosclube['nick']; ?></h3></a>
 				                        <h5><?php echo $membrosclube['nome']." ".$membrosclube['sobrenome']; ?></h5>
+				                        <p>Email: <?php echo $membrosclube['email']; ?></p>
 				                        <p>Função primária: <?php echo $conf1['nome_funcao']; ?></p>
 				                        <p>Função primária: <?php echo $conf2['nome_funcao']; ?></p> 
 				                    </div>
