@@ -33,10 +33,12 @@ $sqlsel='SELECT * FROM pagamento WHERE id_usuario='.$con['id_usuario'].';';
 $res=mysqli_query($conexao,$sqlsel);
 if (mysqli_num_rows($res)) {
 	echo('<script>window.location="../home.php";</script>');
+	exit();
 }
 if(empty($tipoan))
 {
 	echo('<script>window.location="../home.php";</script>');
+	exit();
 }
 else
 {

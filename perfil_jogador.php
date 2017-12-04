@@ -343,7 +343,7 @@
 						                        <p><a class="btn btn-default " href="escrever_mensagem.php?rm='.$ctrl['email'].'"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensagem</a></p>
 						                    </div>
 						                    <div class="media-body">
-						                        <h3 class="media-heading">'.$ctrl['nick'].'</h3>
+						                        <a href="ver_jogador.php?pesq='.$ctrl['nick'].'"><h3 class="media-heading">'.$ctrl['nick'].'</h3></a>
 						                        <h5>'.$ctrl['nome'].' '.$ctrl['sobrenome'].'</h5>
 						                        <p>Email: '.$ctrl['email'].'</p>
 						                        <p>Função primária: '.$f1['nome_funcao'].'</p>
@@ -683,8 +683,8 @@
 												<p class="card-text">'.$vd['descricao_video'].'</p>
 												<p class="card-text"><small class="text-muted">Publicado em: '.$vd['data_video'].'</small></p>
 												<div>
-						                		<a href="perfil_jogador.php?excvd='.$vd['id_video'].'" class="btn-lg btn-default text-center"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-						                		<a data-toggle="collapse" data-target="#altvd'.$vd['id_video'].'" aria-expanded="false" aria-controls="collapseExample" class="btn-lg btn-default text-center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+						                		<p><a href="perfil_jogador.php?excvd='.$vd['id_video'].'" class="btn-lg btn-default text-center"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						                		<a data-toggle="collapse" data-target="#altvd'.$vd['id_video'].'" aria-expanded="false" aria-controls="collapseExample" class="btn-lg btn-default text-center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></p>
 						                	</div>
 											</div>
 										</div>
@@ -950,7 +950,7 @@
 									$resul_anperf=mysqli_query($conexao,$sql_anperf);
 									$con_anperf=mysqli_fetch_array($resul_anperf);
 								?>
-				                Anúncio de perfil: <input type="text" class="form-control" name="status" value="<?php if(mysqli_num_rows($resul_anperf)<=0){ echo("Nenhum anúncio solicitado!");}else{ if($con_anperf['status_pagamento']=="F"){ echo "Anúncio solicitado! Pagamento pendente!";}else{echo 'Anúncio solicitado! Pagamento realizado! Seu perfil já está sendo anunciado.';}} ?>" readonly>
+				                Anúncio de perfil: <input type="text" class="form-control" name="status" value="<?php if(mysqli_num_rows($resul_anperf)<=0){ echo("Nenhum anúncio solicitado!");}else{ if($con_anperf['status_pagamento']=="0"){ echo "Anúncio solicitado! Pagamento pendente!";}else{echo 'Anúncio solicitado! Pagamento realizado! Seu perfil já está sendo anunciado.';}} ?>" readonly>
 				            </div>
 						</div>
 						<div class="col-md-12">
