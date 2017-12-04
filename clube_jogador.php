@@ -189,16 +189,59 @@
 								<!--FIM MENU - TORNEIO-->
 								<!-- MENU VÍDEOS -->
 								<section id="4">
-									<div class="card mb-3">
-										<div class="embed-responsive embed-responsive-16by9">
-								  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-6JqoJrM9IM"></iframe>
-								</div>
-										<div class="card-body">
-											<h4 class="card-title">Nome do Vídeo</h4>
-											<p class="card-text">Descrição do Vídeo</p>
-											<p class="card-text"><small class="text-muted">Publicado em:20/08/2017</small></p>
-										</div>
-									</div>
+									<?php
+										$sqlsel='SELECT * FROM clube WHERE id_clube='.$con['clube'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										$cl=mysqli_fetch_array($resul);
+										$sqlsel='SELECT * FROM video WHERE tipo="C" and id_usuario='.$cl['id_usuario'].';';
+										$resul=mysqli_query($conexao,$sqlsel);
+										if (mysqli_num_rows($resul))
+										{
+											while ($vd=mysqli_fetch_array($resul))
+											{
+
+												$id = explode('=',$vd['url']);
+
+												if(strstr($id[1],'&')==true)
+												{
+													$idNovo = explode('&',$id[1]);
+												}else{
+
+													$idNovo[0] = $id[1];
+
+												}
+												echo
+													('
+														<div class="card mb-3">
+															<div class="embed-responsive embed-responsive-16by9">
+																<iframe width="560" height="315" class="embed-responsive-item" src="http://www.youtube.com/embed/'.$idNovo[0].'" frameborder="0" allowfullscreen ng-show="showvideo"></iframe>
+														  		
+															</div>
+															<div class="card-body">
+																<h4 class="card-title">'.$vd['titulo_video'].'</h4>
+																<p class="card-text">'.$vd['descricao_video'].'</p>
+																<p class="card-text"><small class="text-muted">Publicado em: '.$vd['data_video'].'</small></p>
+																
+										                	
+															</div>
+														</div>
+													');	
+
+											}
+											
+										}
+										else
+										{
+											echo
+											('
+												<h1 class="text-center"><img src="img/triste.png"></h1>
+												<h3 class="text-center">Você ainda não possui nenhum vídeo</h3>
+												<h5 class="text-center">Clique em compartilhar vídeo</h5>
+
+											');
+										}
+									?>
+
 								</section>
 								<!--FIM MENU - VÍDEOS-->
 								<!-- MENU - FOTOS -->

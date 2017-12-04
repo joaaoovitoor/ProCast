@@ -617,6 +617,7 @@
 							</div>
 							<br><input class="form-control" type="submit" name="publicar" value="Publicar"><br>
 						</form>
+						
 					</div>
 					<?php
 						if (isset($_POST['publicar'])) 
@@ -679,9 +680,39 @@
 												<h4 class="card-title">'.$vd['titulo_video'].'</h4>
 												<p class="card-text">'.$vd['descricao_video'].'</p>
 												<p class="card-text"><small class="text-muted">Publicado em: '.$vd['data_video'].'</small></p>
+												<div>
+						                		<a href="perfil_jogador.php?excvd='.$vd['id_video'].'" class="btn-lg btn-default text-center"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						                		<a data-toggle="collapse" data-target="#altvd'.$vd['id_video'].'" aria-expanded="false" aria-controls="collapseExample" class="btn-lg btn-default text-center"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+						                	</div>
 											</div>
 										</div>
 									');	
+									echo
+									('
+										<div class="collapse" id="altvd'.$vd['id_video'].'">
+											<div class="card card-body">
+												<form action="#" method="POST">
+													<input type="hidden" name="id_vd" value="'.$vd['id_video'].'">
+													<div class="form-group col-md-12">
+												    <label for="alt_video">Título do Vídeo</label>
+													    <input value="'.$vd['titulo_video'].'" type="text" name="alt_video" class="form-control" id="alt_video"  required="" placeholder="Título do video">
+													</div>
+													<div class="form-group col-md-6">
+												    <label class="form-control-label" for="alt_descricao">Descrição do Vídeo</label>
+													<input value="'.$vd['descricao_video'].'" type="text" name="alt_descricao" class="form-control" id="alt_descricao" required="">
+													</div>
+													<div class="form-group col-md-6">
+													    <label class="form-control-label" for="alt_url">Link do vídeo</label>
+														<input type="text" value="'.$vd['url'].'" name="alt_url" class="form-control" id="alt_url"  required="">
+													</div>
+																
+													<div class="col-md-12">
+														<input class="form-control" type="submit" name="alt_vd" value="Alterar"><br>
+													</div>
+												</form>
+											</div>
+										</div>
+									');
 								}
 								
 							}
@@ -694,6 +725,34 @@
 									<h5 class="text-center">Clique em compartilhar vídeo</h5>
 
 								');
+							}
+							if (isset($_GET['excvd'])) {
+								$id_vd=$_GET['excvd'];
+								$sqlex='DELETE FROM video WHERE id_video='.$id_vd.';';
+								if(mysqli_query($conexao,$sqlex))
+								{
+									echo ('<script>window.alert("Vídeo excluído com sucesso!");</script>');
+									header('location:perfil_jogador.php');
+								}
+							}
+							if(isset($_POST['alt_vd']))
+							{
+								$id_vd=$_POST['id_vd'];
+								$alt_titulo_vd=$_POST['alt_video'];
+								$alt_desc=$_POST['alt_descricao'];
+								$alt_lk=$_POST['alt_url'];
+								if(!empty($alt_titulo_vd)&&!empty($alt_desc)&&!empty($alt_lk))
+								{
+									$sqlup='UPDATE video SET titulo_video="'.$alt_titulo_vd.'",descricao_video="'.$alt_desc.'",url="'.$alt_lk.'" WHERE id_video='.$id_vd.';';
+									if (mysqli_query($conexao,$sqlup)) {
+										echo ('<script>window.alert("Alterado com sucesso!");</script>');
+										header('location:perfil_jogador.php');
+									}
+								}
+								else
+								{
+									echo ('<script>window.alert("Preencha todos os campos!");</script>');
+								}
 							}
 						?>
 						
