@@ -79,10 +79,100 @@
 			                    <div class="col-sm-12">
 			                        <span class="coach-name"><p><?php echo $con2['nome_clube']; ?></p></span>
 			                        <span class="coach-job"><p>Descrição: <?php echo $con2['descricao_clube']; ?></p></span>
+			                        
 			                        <a href="pesquisa.php"><p><button type="submit" class="btn btn_foto btn_saircb" data-toggle="tooltip" data-placement="right" title="Clique aqui para buscar jogadores para o seu clube!" name="sair_clube">Buscar jogadores</button></p></a>
+			                        
+			                        <p><button data-toggle="modal" class="btn btn_foto btn_saircb" data-target="#desc">Alterar nome do clube</button></p>
+
+			                        <a><p><button class="btn btn_foto btn_saircb" data-toggle="modal" data-target="#confirmar" >Excluir</button></p></a>
+			                        <!--Confirmar excluir-->
+									<div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="descLabel">
+										<div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      	<div class="modal-header">
+										        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        	<h4 class="modal-title" id="descLabel">Confirmação - Excluir clube?</h4>
+										      	</div>
+											    <div class="modal-body">
+											    	<form action="#" method="POST">
+													    <div class="modal-body">
+													    	E-mail <input type="text" class="form-control" name="email_verificacao" value="<?php echo $_SESSION['email'];?>">
+															Senha <input type="password" name="senha_verificacao" placeholder="Senha" maxlength="25" class="form-control">
+													    </div>
+												    	<div class="modal-footer">
+						                                    <input class="form-control" type="submit" name="confirmar" value="Confirmar">
+												      	</div>
+											      	</form>
+											    </div>
+										    </div>
+										</div>
+									</div>	
+
+
+			                        <div class="modal fade" id="desc" tabindex="-1" role="dialog" aria-labelledby="descLabel">
+										<div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      	<div class="modal-header">
+										        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        	<h4 class="modal-title" id="descLabel">Novo nome</h4>
+										      	</div>
+											    <div class="modal-body">
+											    	<form action="#" method="POST">
+											      		<input type="text" name="nome_cb" class="form-control" placeholder="Digite o nome do clube">
+											    </div>
+											    <div class="modal-footer">
+											        	<button type="submit" class="btn btn-block azul" name="alt_nome">Salvar Mudanças</button>
+											        </form>
+											    </div>
+										    </div>
+										</div>
+									</div>	
 			                    </div>
 			                </div>
 			            </div>
+			            <?php 
+
+							if(isset($_POST['confirmar']))
+							{
+						    	$email_verificacao=$_POST['email_verificacao'];
+								$senha_verificacao=base64_encode($_POST['senha_verificacao']);
+								if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha'])
+								{
+									$sqlexcb='DELETE FROM clube WHERE id_clube='.$con2['id_clube'].';';
+									$delcb=mysqli_query($conexao,$sqlexcb);
+									$sqlupjog='UPDATE usuario SET clube=NULL WHERE clube='.$con2['id_clube'].';';
+									$upjog=mysqli_query($conexao,$sqlupjog);
+									if($delcb && $upjog)
+									{
+										echo('<script>window.alert("Clube excluido!")</script>');
+										echo('<script>window.location="verificar_perfil.php";</script>');
+									}
+									else
+									{
+										echo('<script>window.alert("Erro ao excluir clube!")</script>');
+										echo('<script>window.location="clube_investidor.php";</script>');
+									}
+								}
+								else
+								{
+									echo('<script>window.alert("Dados inválidos!")</script>');
+									echo('<script>window.location="verificar_perfil.php";</script>');
+								}
+							}
+							if (isset($_POST['alt_nome'])) {
+								if(!empty($_POST['nome_cb']))
+								{
+									$sqlup='update clube set nome_clube="'.$_POST['nome_cb'].'" where id_clube='.$con2['id_clube'].';';
+									mysqli_query($conexao,$sqlup);
+                           			echo('<script>window.location="clube_investidor.php";</script>');
+								}
+								else
+								{
+									echo('<script>swal("Digite o novo nome", "", "error");</script>');
+
+								}
+							}
+						?>
 			            <div class="descricao">
 			                    <?php 
 			                    	$dataexplode=explode("-",$con2['dta_criacao']);
@@ -113,7 +203,6 @@
 									<!-- <li><a href="#3"><span>Torneio</span></a></li> -->
 									<li><a href="#4"><span>Vídeos</span></a></li>
 									<li><a href="#5"><span>Fotos</span></a></li>
-									<li><a href="#6"><span>Dados</span></a></li>
 								</ul>
 							</nav>
 							<div class="content-wrap">
@@ -614,116 +703,7 @@
 
 								?>
 								<!-- MENU - ALTERAR-->
-								<section id="6">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="cartao-equipe">
-								                <div class="media">
-								                    <div class="media-left">
-								                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-								                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Excluir </button>
-								                    </div>
-								                    <div class="media-body">
-								                        <h3 class="media-heading">Nick carinha</h3>
-								                        <h5>Nome carinha</h5>
-								                        <p>Função primária: Atirador</p>
-								                        <p>Função primária: Meio</p> 
-								                        <p>Posição: Alguma coisa</p>
-								                    </div>
-								                </div>
-							            	</div>
-										</div>
-										<div class="col-md-6">
-											<div class="cartao-equipe">
-								                <div class="media">
-								                    <div class="media-left">
-								                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-								                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Excluir</button>
-								                    </div>
-								                    <div class="media-body">
-								                        <h3 class="media-heading">Nick carinha</h3>
-								                        <h5>Nome carinha</h5>
-								                        <p>Função primária: Atirador</p>
-								                        <p>Função primária: Meio</p> 
-								                        <p>Posição: Alguma coisa</p>
-								                    </div>
-								                </div>
-							            	</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="cartao-equipe">
-								                <div class="media">
-								                    <div class="media-left">
-								                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-								                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Excluir </button>
-								                    </div>
-								                    <div class="media-body">
-								                        <h3 class="media-heading">Nick carinha</h3>
-								                        <h5>Nome carinha</h5>
-								                        <p>Função primária: Atirador</p>
-								                        <p>Função primária: Meio</p> 
-								                        <p>Posição: Alguma coisa</p>
-								                    </div>
-								                </div>
-							            	</div>
-										</div>
-										<div class="col-md-6">
-											<div class="cartao-equipe">
-								                <div class="media">
-								                    <div class="media-left">
-								                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-								                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Excluir</button>
-								                    </div>
-								                    <div class="media-body">
-								                        <h3 class="media-heading">Nick carinha</h3>
-								                        <h5>Nome carinha</h5>
-								                        <p>Função primária: Atirador</p>
-								                        <p>Função primária: Meio</p> 
-								                        <p>Posição: Alguma coisa</p>
-								                    </div>
-								                </div>
-							            	</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="cartao-equipe">
-								                <div class="media">
-								                    <div class="media-left">
-								                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-								                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Excluir </button>
-								                    </div>
-								                    <div class="media-body">
-								                        <h3 class="media-heading">Nick carinha</h3>
-								                        <h5>Nome carinha</h5>
-								                        <p>Função primária: Atirador</p>
-								                        <p>Função primária: Meio</p> 
-								                        <p>Posição: Alguma coisa</p>
-								                    </div>
-								                </div>
-							            	</div>
-										</div>
-										<div class="col-md-6">
-											<div class="cartao-equipe">
-								                <div class="media">
-								                    <div class="media-left">
-								                        <img class="media-object img-circle profile-img" src="img/fotinha.png">
-								                        <button class="btn btn-default "><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Excluir</button>
-								                    </div>
-								                    <div class="media-body">
-								                        <h3 class="media-heading">Nick carinha</h3>
-								                        <h5>Nome carinha</h5>
-								                        <p>Função primária: Atirador</p>
-								                        <p>Função primária: Meio</p> 
-								                        <p>Posição: Alguma coisa</p>
-								                    </div>
-								                </div>
-							            	</div>
-										</div>
-									</div>
-								</section>
+								
 							</div>
 						</div>
 					</section>

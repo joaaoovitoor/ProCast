@@ -990,7 +990,6 @@
 										$senha_verificacao=base64_encode($_POST['senha_verificacao']);
 										if($email_verificacao==$con['email'] && $senha_verificacao==$con['senha'])
 										{
-											echo ('<script>window.alert("Dados inválidos!")</script>');
 											header('location:excluir.php');
 										}
 										else
