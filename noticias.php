@@ -11,6 +11,11 @@
 
 		?>
         <script>tinymce.init({ selector:'textarea' });</script>
+        <style type="text/css">
+            .thumbnail{
+                height: 450px !important;
+            }
+        </style>
 	</head>
 	<body>
         <?php
